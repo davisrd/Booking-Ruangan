@@ -5,6 +5,7 @@ import java.util.List;
 import com.websystique.springmvc.model.Peminjaman;
 
 public interface PeminjamanDao {
+	/*this is test comment*/
 
 	Peminjaman findById(int nip);
 
