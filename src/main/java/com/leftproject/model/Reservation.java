@@ -3,6 +3,11 @@ package com.leftproject.model;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="RESERVATION")
 public class Reservation {
 	private String reservationId;
 	private Date reservationDateStart;

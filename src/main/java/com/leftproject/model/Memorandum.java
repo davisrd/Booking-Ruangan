@@ -2,12 +2,34 @@ package com.leftproject.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="MEMORANDUM")
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Memorandum {
+    @Column(name="MEMORANDUM_ID")
 	private String memorandumId;
+    
+    @Column(name="MEMORANDUM_RECEIVER")
 	private String memorandumReceiver;
+    
+    @Column(name="MEMORANDUM_SUBJECT")
 	private String memorandumSubject;
+    
+    @Column(name="MEMORANDUM_MESSAGE")
 	private String memorandumMessage;
+    
+    @Column(name="MEMORANDUM_STATUS")
 	private boolean memorandumStatus;
+    
+    @Column(name="CREATED_BY")
 	private String createdBy;
+    
+    @Column(name="CREATED_DATE")
 	private Date createdDate;
 }
