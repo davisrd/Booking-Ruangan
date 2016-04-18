@@ -32,4 +32,63 @@ public class Memorandum {
     
     @Column(name="CREATED_DATE")
 	private Date createdDate;
+
+    
+	public String getMemorandumId() {
+		return memorandumId;
+	}
+
+	public void setMemorandumId(String memorandumId) {
+		this.memorandumId = memorandumId;
+	}
+
+	public String getMemorandumReceiver() {
+		return memorandumReceiver;
+	}
+
+	public void setMemorandumReceiver(String memorandumReceiver) {
+		this.memorandumReceiver = memorandumReceiver;
+	}
+
+	public String getMemorandumSubject() {
+		return memorandumSubject;
+	}
+
+	public void setMemorandumSubject(String memorandumSubject) {
+		this.memorandumSubject = memorandumSubject;
+	}
+
+	public String getMemorandumMessage() {
+		return memorandumMessage;
+	}
+
+	public void setMemorandumMessage(String memorandumMessage) {
+		this.memorandumMessage = memorandumMessage;
+	}
+
+	public boolean isMemorandumStatus() {
+		return memorandumStatus;
+	}
+
+	public void setMemorandumStatus(boolean memorandumStatus) {
+		this.memorandumStatus = memorandumStatus;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+    
+    
 }

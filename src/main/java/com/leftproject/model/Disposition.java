@@ -37,4 +37,69 @@ public class Disposition {
 
     @Column(name="CREATED_DATE")
 	private Date createdDate;
+
+    public Disposition (String dispositionId, String dispositionSubject, String dispositionMessage, boolean dispositionStatus){
+    	this.dispositionId = dispositionId;
+    	this.dispositionSubject = dispositionSubject;
+    	this.dispositionMessage = dispositionMessage;
+    	this.dispositionStatus = dispositionStatus;
+    }
+    
+	public String getDispositionId() {
+		return dispositionId;
+	}
+
+	public void setDispositionId(String dispositionId) {
+		this.dispositionId = dispositionId;
+	}
+
+	public String getDispositionReceiver() {
+		return dispositionReceiver;
+	}
+
+	public void setDispositionReceiver(String dispositionReceiver) {
+		this.dispositionReceiver = dispositionReceiver;
+	}
+
+	public String getDispositionSubject() {
+		return dispositionSubject;
+	}
+
+	public void setDispositionSubject(String dispositionSubject) {
+		this.dispositionSubject = dispositionSubject;
+	}
+
+	public String getDispositionMessage() {
+		return dispositionMessage;
+	}
+
+	public void setDispositionMessage(String dispositionMessage) {
+		this.dispositionMessage = dispositionMessage;
+	}
+
+	public boolean isDispositionStatus() {
+		return dispositionStatus;
+	}
+
+	public void setDispositionStatus(boolean dispositionStatus) {
+		this.dispositionStatus = dispositionStatus;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+    
+    
 }

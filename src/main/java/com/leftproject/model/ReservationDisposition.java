@@ -8,5 +8,11 @@ import javax.persistence.Table;
 @Table(name="RESERVATION_DISPOSITION")
 @PrimaryKeyJoinColumn(name="DISPOSITION_ID")
 public class ReservationDisposition extends Disposition {
+
+	public ReservationDisposition(String dispositionId, String dispositionSubject, String dispositionMessage,
+			boolean dispositionStatus) {
+		super(dispositionId, dispositionSubject, dispositionMessage, dispositionStatus);
+		// TODO Auto-generated constructor stub
+	}
 	
 }

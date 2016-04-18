@@ -9,4 +9,14 @@ import javax.persistence.Table;
 public class CanceledReservation {
     @Column(name="CANCELED_RESERVATION_REASON")
 	private String canceledReservationReason;
+
+	public String getCanceledReservationReason() {
+		return canceledReservationReason;
+	}
+
+	public void setCanceledReservationReason(String canceledReservationReason) {
+		this.canceledReservationReason = canceledReservationReason;
+	}
+    
+    
 }
