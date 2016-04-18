@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -58,7 +59,8 @@ public class Reservation {
 
 	private User user;
 	
-	private Facility facility;
+	
+	private String facilityId;
 	
 	private Set<ReservationDisposition> reservationDispositionList;
 	private Set<ReservationLog> reservationLogList;
@@ -68,7 +70,7 @@ public class Reservation {
 			boolean reservationStatus, String reservationFilePath, long reservationOperationalPrice,
 			String reservationRejectReason, String eventType, String eventName, String eventScale,
 			int eventTotalParticipant, Date createdDate, String updatedBy, Date updatedDate, User user,
-			Facility facility, Set<ReservationDisposition> reservationDispositionList,
+			String facilityId, Set<ReservationDisposition> reservationDispositionList,
 			Set<ReservationLog> reservationLogList, Set<ReservationMemorandum> reservationMemorandumList) {
 		super();
 		this.reservationId = reservationId;
@@ -86,7 +88,7 @@ public class Reservation {
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
 		this.user = user;
-		this.facility = facility;
+		this.facilityId = facilityId;
 		this.reservationDispositionList = reservationDispositionList;
 		this.reservationLogList = reservationLogList;
 		this.reservationMemorandumList = reservationMemorandumList;
@@ -182,11 +184,11 @@ public class Reservation {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public Facility getFacility() {
-		return facility;
+	public String getFacility() {
+		return facilityId;
 	}
-	public void setFacility(Facility facility) {
-		this.facility = facility;
+	public void setFacility(String facilityId) {
+		this.facilityId = facilityId;
 	}
 	public Set<ReservationDisposition> getReservationDispositionList() {
 		return reservationDispositionList;
