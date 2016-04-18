@@ -5,8 +5,11 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -59,8 +62,9 @@ public class Reservation {
 
 	private User user;
 	
-	
-	private String facilityId;
+	@OneToMany(fetch=FetchType.LAZY)
+	@JoinColumn(name = "facility_id")
+	private Facility facility;
 	
 	private Set<ReservationDisposition> reservationDispositionList;
 	private Set<ReservationLog> reservationLogList;
@@ -70,7 +74,7 @@ public class Reservation {
 			boolean reservationStatus, String reservationFilePath, long reservationOperationalPrice,
 			String reservationRejectReason, String eventType, String eventName, String eventScale,
 			int eventTotalParticipant, Date createdDate, String updatedBy, Date updatedDate, User user,
-			String facilityId, Set<ReservationDisposition> reservationDispositionList,
+			Facility facility, Set<ReservationDisposition> reservationDispositionList,
 			Set<ReservationLog> reservationLogList, Set<ReservationMemorandum> reservationMemorandumList) {
 		super();
 		this.reservationId = reservationId;
@@ -88,7 +92,7 @@ public class Reservation {
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
 		this.user = user;
-		this.facilityId = facilityId;
+		this.facility = facility;
 		this.reservationDispositionList = reservationDispositionList;
 		this.reservationLogList = reservationLogList;
 		this.reservationMemorandumList = reservationMemorandumList;
@@ -184,11 +188,11 @@ public class Reservation {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public String getFacility() {
-		return facilityId;
+	public Facility getFacility() {
+		return facility;
 	}
-	public void setFacility(String facilityId) {
-		this.facilityId = facilityId;
+	public void setFacility(Facility facility) {
+		this.facility = facility;
 	}
 	public Set<ReservationDisposition> getReservationDispositionList() {
 		return reservationDispositionList;
