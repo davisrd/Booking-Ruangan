@@ -15,12 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.websystique.springmvc.model.Peminjaman;
-import com.websystique.springmvc.service.PeminjamanService;
-import com.websystique.springmvc.model.Peminjam;
-import com.websystique.springmvc.service.PeminjamService;
-import com.websystique.springmvc.model.Ruangan;
-import com.websystique.springmvc.service.RuanganService;
+import com.websystique.springmvc.model.*;
+import com.websystique.springmvc.service.*;
 
 @Controller
 @RequestMapping("/")
@@ -32,6 +28,8 @@ public class AppController {
 	PeminjamService peminjamService;
 	@Autowired
 	RuanganService ruanganService;
+	@Autowired
+	FacilityService facilityService;
 	
 	@Autowired
 	MessageSource messageSource;
@@ -50,6 +48,17 @@ public class AppController {
 	public String getRuanganPage() {
 		return "RuanganManagement";
 	}
+	
+	//-------------------Retrieve All facility--------------------------------------------------------
+    
+    @RequestMapping(value = "/facility", method = RequestMethod.GET)
+    public ResponseEntity<List<Facility>> listAllFacility() {
+        List<Facility> facility = facilityService.getFacilityList();
+        if(facility.isEmpty()){
+            return new ResponseEntity<List<Facility>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+        }
+        return new ResponseEntity<List<Facility>>(facility, HttpStatus.OK);
+    }
 	
 	//-------------------Retrieve All peminjams--------------------------------------------------------
     
