@@ -38,11 +38,13 @@ public class Disposition {
     @Column(name="CREATED_DATE")
 	private Date createdDate;
 
-    public Disposition (String dispositionId, String dispositionSubject, String dispositionMessage, boolean dispositionStatus){
+    public Disposition (String dispositionId, String dispositionSubject, String dispositionMessage, boolean dispositionStatus, String createdBy, Date createdDate){
     	this.dispositionId = dispositionId;
     	this.dispositionSubject = dispositionSubject;
     	this.dispositionMessage = dispositionMessage;
     	this.dispositionStatus = dispositionStatus;
+    	this.createdBy = createdBy;
+    	this.createdDate = createdDate;
     }
     
 	public String getDispositionId() {

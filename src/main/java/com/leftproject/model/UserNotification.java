@@ -27,4 +27,66 @@ public class UserNotification {
     
     @Column(name="CREATED_DATE")
 	private Date createdDate;
+
+	public UserNotification(String notificationId, String notificationReceiver, String notificationSubject,
+			String notificationMessage, String notificationStatus, Date createdDate) {
+		super();
+		this.notificationId = notificationId;
+		this.notificationReceiver = notificationReceiver;
+		this.notificationSubject = notificationSubject;
+		this.notificationMessage = notificationMessage;
+		this.notificationStatus = notificationStatus;
+		this.createdDate = createdDate;
+	}
+
+	public String getNotificationId() {
+		return notificationId;
+	}
+
+	public void setNotificationId(String notificationId) {
+		this.notificationId = notificationId;
+	}
+
+	public String getNotificationReceiver() {
+		return notificationReceiver;
+	}
+
+	public void setNotificationReceiver(String notificationReceiver) {
+		this.notificationReceiver = notificationReceiver;
+	}
+
+	public String getNotificationSubject() {
+		return notificationSubject;
+	}
+
+	public void setNotificationSubject(String notificationSubject) {
+		this.notificationSubject = notificationSubject;
+	}
+
+	public String getNotificationMessage() {
+		return notificationMessage;
+	}
+
+	public void setNotificationMessage(String notificationMessage) {
+		this.notificationMessage = notificationMessage;
+	}
+
+	public String getNotificationStatus() {
+		return notificationStatus;
+	}
+
+	public void setNotificationStatus(String notificationStatus) {
+		this.notificationStatus = notificationStatus;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+    
+    
+    
 }
