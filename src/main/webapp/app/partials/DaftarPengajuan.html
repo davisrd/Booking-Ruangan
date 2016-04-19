@@ -1,0 +1,39 @@
+<div>
+	<div class="col-md-offset-1" style="font-size: 20px;">
+		<b>Daftar Pengajuan Peminjaman</b>
+	</div>
+	
+	<div class="col-md-offset-10">
+		<input type="text" placeholder="Search"></input>
+	</div>
+	
+	<div class="col-md-2">
+			<button>Ajukan Peminjaman</button>
+	</div>
+			<button>Lihat Detail</button>
+	
+	<table class="table table-hover">
+	    <thead>
+	        <tr>
+	            <th>No. </th>
+	            <th>Organisasi</th>
+				<th>Tanggal Mulai</th>
+	            <th>Tanggal Selesai</th>
+	            <th>Tempat</th>
+	            <th>Judul Kegiatan</th>
+	            <th>Status</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr ng-repeat="reservation in listOfReservation" ng-click="selectReservation()">
+	            <td><span ng-bind="reservation.reservationId"></span></td>
+	            <td><span ng-bind="reservation.eventUserName"></span></td>
+	            <td><span ng-bind="reservation.reservationStartDate"></span></td>
+	            <td><span ng-bind="reservation.reservationEndDate"></span></td>
+				<td><span ng-bind="reservation.facility.facilityName"></span></td>
+	            <td><span ng-bind="reservation.eventName"></span></td>
+	            <td><span ng-bind="reservation.reservationStatus"></span></td>
+	        </tr>
+	    </tbody>
+	</table>
+</div>
