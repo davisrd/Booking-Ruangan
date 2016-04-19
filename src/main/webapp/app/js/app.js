@@ -14,8 +14,7 @@ roomReservationApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/dashboard', {
-        templateUrl: 'partials/dashboard.html',
-        /*controller: 'PhoneListCtrl'*/
+        templateUrl: 'partials/dashboard.html'
       }).
       when('/reservationForm', {
         templateUrl: 'partials/ReservationForm.html',
@@ -30,11 +29,11 @@ roomReservationApp.config(['$routeProvider',
         controller: 'DaftarPengajuanCtrl'
       }).
       when('/daftarRuangan', {
-        templateUrl: 'partials/PilihRuangan.html',
+        templateUrl: 'partials/RoomSelectScreen.html',
         controller: 'PilihRuanganCtrl'
       }).
       when('/cancelBook', {
-        templateUrl: 'partials/FormPembatalan.html',
+        templateUrl: 'partials/CancelReservationForm.html',
         controller: 'FormPembatalanCtrl'
       }).
 	  when('/pemindahanpeminjaman', {
@@ -42,6 +41,6 @@ roomReservationApp.config(['$routeProvider',
         controller: 'FormPemindahanPeminjamanCtrl'
       }).
       otherwise({
-        redirectTo: '/reservationForm'
+        redirectTo: '/dashboard'
       });
   }]);

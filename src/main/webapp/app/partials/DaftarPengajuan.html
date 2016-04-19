@@ -1,39 +1,47 @@
-<div>
-	<div class="col-md-offset-1" style="font-size: 20px;">
-		<b>Daftar Pengajuan Peminjaman</b>
-	</div>
-	
-	<div class="col-md-offset-10">
-		<input type="text" placeholder="Search"></input>
-	</div>
-	
+<div ng-include src="'partials/template.html'"></div>
+
+
+<div class="row" style="border:  #000000 medium solid;  height: 500px;">
 	<div class="col-md-2">
-			<button>Ajukan Peminjaman</button>
+		<div ng-include src="'partials/navigationTemplate.html'"></div>
 	</div>
-			<button>Lihat Detail</button>
-	
-	<table class="table table-hover">
-	    <thead>
-	        <tr>
-	            <th>No. </th>
-	            <th>Organisasi</th>
-				<th>Tanggal Mulai</th>
-	            <th>Tanggal Selesai</th>
-	            <th>Tempat</th>
-	            <th>Judul Kegiatan</th>
-	            <th>Status</th>
-	        </tr>
-	    </thead>
-	    <tbody>
-	        <tr ng-repeat="reservation in listOfReservation" ng-click="selectReservation()">
-	            <td><span ng-bind="reservation.reservationId"></span></td>
-	            <td><span ng-bind="reservation.eventUserName"></span></td>
-	            <td><span ng-bind="reservation.reservationStartDate"></span></td>
-	            <td><span ng-bind="reservation.reservationEndDate"></span></td>
-				<td><span ng-bind="reservation.facility.facilityName"></span></td>
-	            <td><span ng-bind="reservation.eventName"></span></td>
-	            <td><span ng-bind="reservation.reservationStatus"></span></td>
-	        </tr>
-	    </tbody>
-	</table>
+	<div class="col-md-10"  style="border-left: #000000 medium solid;  height: 500px;">
+		<div>
+			<h1>Daftar Pengajuan Peminjaman</h1>
+			
+			<div class="col-md-offset-10">
+				<input type="text" placeholder="Search"></input>
+			</div>
+			
+			<div class="col-md-2">
+				<a href="#/daftarRuangan"><button>Ajukan Peminjaman</button></a>
+			</div>
+					<button>Lihat Detail</button>
+			
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>No. </th>
+						<th>Organisasi</th>
+						<th>Tanggal Mulai</th>
+						<th>Tanggal Selesai</th>
+						<th>Tempat</th>
+						<th>Judul Kegiatan</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="reservation in listOfReservation" ng-click="selectReservation()">
+						<td><span ng-bind="reservation.reservationId"></span></td>
+						<td><span ng-bind="reservation.eventUserName"></span></td>
+						<td><span ng-bind="reservation.reservationStartDate"></span></td>
+						<td><span ng-bind="reservation.reservationEndDate"></span></td>
+						<td><span ng-bind="reservation.facility.facilityName"></span></td>
+						<td><span ng-bind="reservation.eventName"></span></td>
+						<td><span ng-bind="reservation.reservationStatus"></span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>

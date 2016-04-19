@@ -3,7 +3,13 @@
 /* Controllers */
 
 var roomReservationControllers = angular.module('roomReservationControllers', []);
-
+roomReservationControllers.run(function($rootScope) {
+	$rootScope.user = {};
+	$rootScope.user.nim = '131524028';
+	$rootScope.user.userName = 'ZakiyCute';
+	$rootScope.user.userRole = 'Peminjam';
+	
+})
 roomReservationControllers.controller('PhoneListCtrl', ['$scope', 'Phone',
   function($scope, Phone) {
     $scope.phones = Phone.query();
@@ -25,13 +31,35 @@ roomReservationControllers.controller('DaftarPengajuanCtrl', function($scope, $r
 	$scope.listOfReservation = [{
 		reservationId: 1,
 		eventUserName: "Himakom",
-		reservationStartDate: "",
-		reservationEndDate: "",
+		reservationStartDate: "18 April 2016 10:00",
+		reservationEndDate: "18 April 2016 17:00",
 		facility: {
 			facilityId: 1,
 			facilityName: "RSG"
 		},
 		eventName: "Studi Banding",
+		reservationStatus: true
+	},{
+		reservationId: 2,
+		eventUserName: "Himakaps",
+		reservationStartDate: "19 April 2016 10:00",
+		reservationEndDate: "20 April 2016 10:00",
+		facility: {
+			facilityId: 2,
+			facilityName: "Pendopo"
+		},
+		eventName: "Seminar",
+		reservationStatus: true
+	},{
+		reservationId: 3,
+		eventUserName: "Himakom",
+		reservationStartDate: "30 April 2016 08:00",
+		reservationEndDate: "30 April 2016 21:00",
+		facility: {
+			facilityId: 3,
+			facilityName: "Student Center"
+		},
+		eventName: "Pelatihan",
 		reservationStatus: true
 	}];
 
