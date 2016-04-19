@@ -1,0 +1,88 @@
+<h1>Rincian Peminjaman</h1>
+
+<form class="form-horizontal" role="form" ng-submit="openModal('sm',pengajuan)">
+    <div class="form-group">
+      <label class="control-label col-md-2" style="text-align:left" for="namaPeminjam">Nama Peminjam</label>
+      <div class="col-md-4">
+        {{reservation.eventUserName}}               
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-md-2" style="text-align:left" for="tanggalMulai">Tanggal Mulai</label>
+      <div class="col-md-4">
+        {{reservation.reservationStartDate}}             
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-md-2" style="text-align:left" for="tanggalSelesai">Tanggal Selesai</label>
+      <div class="col-md-4">
+        {{reservation.reservationEndDate}}               
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-md-2" style="text-align:left" for="namaKegiatan">Nama Kegiatan</label>
+      <div class="col-md-4">
+        {{reservation.eventName}}                        
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-md-2" style="text-align:left" for="jenisKegiatan">Jenis Kegiatan</label>
+      <div class="col-md-4">
+        {{reservation.eventType}}              
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-md-2" style="text-align:left" for="skalaKegiatan">Skala Kegiatan</label>
+      <div class="col-md-4">
+        {{reservation.eventScale}}               
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-md-2" style="text-align:left" for="jumlahPeserta">Jumlah Peserta</label>
+      <div class="col-md-4">
+        {{reservation.totalAudience}}               
+      </div>
+    </div> 
+
+    <div class="form-group">
+      <label class="control-label col-md-2" style="text-align:left" for="namaRuangan">Nama Ruangan</label>
+      <div class="col-md-4">
+        {{reservation.facility.facilityName}}               
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-md-2" style="text-align:left" for="jenisRuangan">Jenis Ruangan</label>
+      <div class="col-md-4">
+        {{reservation.facility.facilityType}}              
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-md-2" style="text-align:left" for="statusPeminjaman">Status Peminjaman</label>
+      <div class="col-md-4">
+        {{reservation.reservationStatus}}              
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-md-2" style="text-align:left" for="lampiranSuratIzinKegiatan">Lampiran Surat Izin Kegiatan</label>
+      <div class="col-md-4">
+        <input type="file"></input>              
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <div class="col-md-offset-1 col-md-5">
+        <button type="reset" class="btn btn-default alert alert-danger">Kembali</button>
+        <button type="reset" class="btn btn-default alert alert-danger">Batalkan Peminjaman</button>
+        <button type="submit" class="btn btn-default alert alert-success">Pindah Jadwal / Tempat</button>
+      </div>
+    </div>
+</form>

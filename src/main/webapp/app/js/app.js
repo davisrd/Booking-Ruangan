@@ -5,7 +5,6 @@
 var roomReservationApp = angular.module('roomReservationApp', [
   'ngRoute',
   'roomReservationAnimations',
-
   'roomReservationControllers',
   'roomReservationFilters',
   'roomReservationServices'
@@ -18,13 +17,13 @@ roomReservationApp.config(['$routeProvider',
         templateUrl: 'partials/dashboard.html',
         /*controller: 'PhoneListCtrl'*/
       }).
-      when('/phones', {
-        templateUrl: 'partials/phone-list.html',
-        controller: 'PhoneListCtrl'
+      when('/reservationForm', {
+        templateUrl: 'partials/ReservationForm.html',
+        controller: 'FormReservationCtrl'
       }).
-      when('/phones/:phoneId', {
-        templateUrl: 'partials/phone-detail.html',
-        controller: 'PhoneDetailCtrl'
+      when('/reservationDetail', {
+        templateUrl: 'partials/ReservationDetail.html',
+        controller: 'ReservationDetailCtrl'
       }).
       when('/reservationList', {
         templateUrl: 'partials/DaftarPengajuan.html',
@@ -43,6 +42,6 @@ roomReservationApp.config(['$routeProvider',
         controller: 'FormPemindahanPeminjamanCtrl'
       }).
       otherwise({
-        redirectTo: '/reservationList'
+        redirectTo: '/reservationForm'
       });
   }]);

@@ -109,4 +109,41 @@ roomReservationControllers.controller('FormPemindahanPeminjamanCtrl', function($
 	$scope.selectReservation = function(reservation){
 		$rootScope.selectedReservation = reservation;
 	};
+})
+roomReservationControllers.controller('FormReservationCtrl', function($scope, $rootScope) {
+	$scope.facility = {
+		facilityId: 1,
+		facilityName: "Ruangan Utama Pendopo Agung",
+		facilityType: "Umum"
+	};
+	$scope.reservation = {};
+	$scope.reservation.reservationStartDate = "17 April 2015 10:00";
+	$scope.reservation.reservationEndDate = "17 April 2015 17:00";
+	$scope.reservation.facility = $scope.facility;
+	$scope.selectFacility = function(facility){
+		$rootScope.selectedFacility = facility;
+	};
 });
+roomReservationControllers.controller('ReservationDetailCtrl', function($scope, $rootScope) {
+	$scope.reservation = {
+		reservationId: 1,
+		eventUserName: "Himakom",
+		reservationStartDate: "17-04-2016",
+		reservationEndDate: "20-04-2016",
+		eventName: "Seminar International",
+		eventType: "Kegiatan Mahasiswa",
+		eventScale: "International",
+		totalAudience : "200 orang",
+		facility: {
+			facilityId: 1,
+			facilityName: "RSG",
+			facilityType: "Fasilitas Umum"
+		},
+		reservationStatus: "Diizinkan"
+		
+	};
+
+	$scope.selectReservation = function(reservation){
+		$rootScope.selectedReservation = reservation;
+	};
+})
