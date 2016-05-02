@@ -64,7 +64,7 @@ public class Reservation {
 	
 	@OneToMany(fetch=FetchType.LAZY)
 	@JoinColumn(name = "facility_id")
-	private Facility facility;
+	private Room room;
 	
 	private Set<ReservationDisposition> reservationDispositionList;
 	private Set<ReservationLog> reservationLogList;
@@ -74,7 +74,7 @@ public class Reservation {
 			boolean reservationStatus, String reservationFilePath, long reservationOperationalPrice,
 			String reservationRejectReason, String eventType, String eventName, String eventScale,
 			int eventTotalParticipant, Date createdDate, String updatedBy, Date updatedDate, User user,
-			Facility facility, Set<ReservationDisposition> reservationDispositionList,
+			Room room, Set<ReservationDisposition> reservationDispositionList,
 			Set<ReservationLog> reservationLogList, Set<ReservationMemorandum> reservationMemorandumList) {
 		super();
 		this.reservationId = reservationId;
@@ -92,7 +92,7 @@ public class Reservation {
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
 		this.user = user;
-		this.facility = facility;
+		this.room = room;
 		this.reservationDispositionList = reservationDispositionList;
 		this.reservationLogList = reservationLogList;
 		this.reservationMemorandumList = reservationMemorandumList;
@@ -188,11 +188,11 @@ public class Reservation {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public Facility getFacility() {
-		return facility;
+	public Room getRoom() {
+		return room;
 	}
-	public void setFacility(Facility facility) {
-		this.facility = facility;
+	public void setRoom(Room room) {
+		this.room = room;
 	}
 	public Set<ReservationDisposition> getReservationDispositionList() {
 		return reservationDispositionList;

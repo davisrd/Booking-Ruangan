@@ -58,7 +58,7 @@ public class Rent {
 
 	private User user;
 	
-	private Facility facility;
+	private Room room;
 	
 //	@OneToMany(mappedBy="department")
 //    @JoinColumn(name="department_id")
