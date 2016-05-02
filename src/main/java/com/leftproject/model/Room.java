@@ -32,7 +32,7 @@ public class Room {
     private long roomPrice;
     
    
-    @ManyToOne(fetch=FetchType.EAGER)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id")
     private RoomManager roomManager;
      
