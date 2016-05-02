@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ROOM")
+@Table(name="ROOM_MANAGER")
 public class RoomManager {
  
     @Id
@@ -19,8 +19,7 @@ public class RoomManager {
     @Column(name="user_id")
     private String userId;
     
-    @OneToMany(mappedBy="ROOM")
-    private Set<Room> room;
+   
     
     public RoomManager(String userId){
         this.userId = userId;

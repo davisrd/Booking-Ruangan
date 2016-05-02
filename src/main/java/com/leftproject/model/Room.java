@@ -3,6 +3,7 @@ package com.leftproject.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -30,7 +31,8 @@ public class Room {
     @Column(name="room_price")
     private long roomPrice;
     
-    @ManyToOne
+   
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="user_id")
     private RoomManager roomManager;
      
