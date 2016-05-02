@@ -1,0 +1,55 @@
+<h1>Pilih Ruangan yang akan dipinjam</h1>
+
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>No. </th>
+					<th>Nama Ruangan</th>
+					<th>Jenis Ruangan</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="facility in listOfFacility">
+					<td><span ng-bind="facility.facilityId"></span></td>
+					<td><span ng-bind="facility.facilityName"></span></td>
+					<td><span ng-bind="facility.facilityType"></span></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="row">
+			<div class="col-md-2">
+				<label>Tanggal Mulai </label>
+			</div>
+			<div class="col-md-4">
+				<p class="input-group">
+				  <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+				  <span class="input-group-btn">
+					<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+				  </span>
+				</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2">
+				<label>Tanggal Selesai</label>
+			</div>
+			<div class="col-md-4">
+				<p class="input-group">
+				  <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+				  <span class="input-group-btn">
+					<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+				  </span>
+				</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6 col-md-offset-6">
+				<div class="col-md-2"><a href="#/reservationRequestList"><button class="btn btn-default alert alert-danger">Batal</button></a>
+				</div>
+				<div class="col-md-2s"><a href="#/reservationForm"><button class="btn btn-default alert alert-success">OK</button></a>
+				</div>
+			</div>
+		</div>
