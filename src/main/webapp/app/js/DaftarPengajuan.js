@@ -1,4 +1,4 @@
-roomReservationControllers.controller('DaftarPengajuanController', function($scope) {
+roomReservationControllers.controller('ReservationRequestListController', function($scope) {
 	$scope.listOfReservation = [];
 
 	$scope.selectReservation = function(reservation){

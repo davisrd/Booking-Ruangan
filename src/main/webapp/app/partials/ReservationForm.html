@@ -24,28 +24,28 @@
 			<div class="form-group">
 			  <label class="control-label col-md-2" style="text-align:left" for="namaKegiatan">Nama Kegiatan</label>
 			  <div class="col-md-4">
-				<input type="text" class="form-control" ng-model="pengajuan.namaKegiatan">               
+				<input type="text" class="form-control" ng-model="pengajuan.namaKegiatan" ng-required="true">               
 			  </div>
 			</div>
 
 			<div class="form-group">
 			  <label class="control-label col-md-2" style="text-align:left" for="jenisKegiatan">Jenis Kegiatan</label>
 			  <div class="col-md-4">
-				<input type="text" class="form-control" ng-model="pengajuan.jenisKegiatan">               
+				<input type="text" class="form-control" ng-model="pengajuan.jenisKegiatan" ng-required="true">               
 			  </div>
 			</div>
 
 			<div class="form-group">
 			  <label class="control-label col-md-2" style="text-align:left" for="skalaKegiatan">Skala Kegiatan</label>
 			  <div class="col-md-4">
-				<input type="text" class="form-control" ng-model="pengajuan.skalaKegiatan">               
+				<input type="text" class="form-control" ng-model="pengajuan.skalaKegiatan" ng-required="true">               
 			  </div>
 			</div>
 
 			<div class="form-group">
 			  <label class="control-label col-md-2" style="text-align:left" for="jumlahPeserta">Jumlah Peserta</label>
 			  <div class="col-md-4">
-				<input type="text" class="form-control" ng-model="pengajuan.jumlahPeserta">               
+				<input type="text" class="form-control" ng-model="pengajuan.jumlahPeserta" ng-required="true">               
 			  </div>
 			</div> 
 
@@ -74,7 +74,7 @@
 
 			<div class="form-group">
 			  <div class="col-md-offset-4 col-md-3">
-				<a href="#/reservationList"><button type="reset" class="btn btn-default alert alert-danger">Batal</button></a>
+				<a href="#/reservationRequestList"><button type="reset" class="btn btn-default alert alert-danger">Batal</button></a>
 				<button type="submit" class="btn btn-default alert alert-success">Ajukan Peminjaman</button>
 			  </div>
 			</div>

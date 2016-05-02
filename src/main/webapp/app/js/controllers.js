@@ -27,7 +27,7 @@ roomReservationControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParam
     };
   }]);
 
-roomReservationControllers.controller('DaftarPengajuanCtrl', function($scope, $rootScope) {
+roomReservationControllers.controller('ReservationRequestListCtrl', function($scope, $rootScope) {
 	$scope.listOfReservation = [{
 		reservationId: 1,
 		eventUserName: "Himakom",
@@ -175,3 +175,28 @@ roomReservationControllers.controller('ReservationDetailCtrl', function($scope, 
 		$rootScope.selectedReservation = reservation;
 	};
 })
+
+roomReservationControllers.controller('RentDetailCtrl', function($scope, $rootScope) {
+	$scope.rent = {
+		rentId: 1,
+		eventUserName: "Himakom",
+		rentStartDate: "17-04-2016",
+		rentEndDate: "20-04-2016",
+		eventName: "Seminar International",
+		eventType: "Kegiatan Mahasiswa",
+		eventScale: "International",
+		totalAudience : "200 orang",
+		facility: {
+			facilityId: 1,
+			facilityName: "RSG",
+			facilityType: "Fasilitas Umum"
+		},
+		rentStatus: "Diizinkan"
+		
+	};
+
+	$scope.selectRent = function(rent){
+		$rootScope.selectedRent = rent;
+	};
+})
+
