@@ -1,0 +1,82 @@
+<div>
+	<div>
+		<b>Form Pembatalan Penyewaan</b>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-4">
+			Nama Peminjam
+		</div>
+		<div class="col-md-8">
+			{{reservation.eventUserName}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+	Tanggal Mulai
+		</div>
+		<div class="col-md-8">
+			{{reservation.reservationStartDate}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			Tanggal Selesai
+		</div>
+		<div class="col-md-8">
+			{{reservation.reservationEndDate}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			Nama Kegiatan
+		</div>
+		<div class="col-md-8">
+			{{reservation.eventName}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			Kategori Kegiatan
+		</div>
+		<div class="col-md-8">
+			{{reservation.eventType}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			Nama Ruangan
+		</div>
+		<div class="col-md-8">
+			{{reservation.facility.facilityName}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			Harga Sewa
+		</div>
+		<div class="col-md-8">
+			{{reservation.facility.facilityPrice}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			Lampiran Surat Pengajuan Penyewaan
+		</div>
+		<div class="col-md-8">
+			<input type="file"></input>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			Alasan Pembatalan
+		</div>
+		<div class="col-md-8">
+			<input type="text"></input>
+		</div>
+	</div>
+	<div class="col-offset-3">
+		<button>Batal</button>
+		<button>Ajukan Pembatalan Penyewaan</button>
+	</div>
+</div>
