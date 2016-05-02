@@ -5,8 +5,8 @@
 var roomReservationControllers = angular.module('roomReservationControllers', []);
 roomReservationControllers.run(function($rootScope) {
 	$rootScope.user = {};
-	$rootScope.user.nim = '131524028';
-	$rootScope.user.userName = 'ZakiyCute';
+	$rootScope.user.userId = 'UST00001';
+	$rootScope.user.userName = 'Zakiy';
 	$rootScope.user.userRole = 'Peminjam';
 	
 })
@@ -33,9 +33,9 @@ roomReservationControllers.controller('ReservationRequestListCtrl', function($sc
 		eventUserName: "Himakom",
 		reservationStartDate: "18 April 2016 10:00",
 		reservationEndDate: "18 April 2016 17:00",
-		facility: {
-			facilityId: 1,
-			facilityName: "RSG"
+		room: {
+			roomId: 1,
+			roomName: "RSG"
 		},
 		eventName: "Studi Banding",
 		reservationStatus: true
@@ -44,9 +44,9 @@ roomReservationControllers.controller('ReservationRequestListCtrl', function($sc
 		eventUserName: "Himakaps",
 		reservationStartDate: "19 April 2016 10:00",
 		reservationEndDate: "20 April 2016 10:00",
-		facility: {
-			facilityId: 2,
-			facilityName: "Pendopo"
+		room: {
+			roomId: 2,
+			roomName: "Pendopo"
 		},
 		eventName: "Seminar",
 		reservationStatus: true
@@ -55,9 +55,9 @@ roomReservationControllers.controller('ReservationRequestListCtrl', function($sc
 		eventUserName: "Himakom",
 		reservationStartDate: "30 April 2016 08:00",
 		reservationEndDate: "30 April 2016 21:00",
-		facility: {
-			facilityId: 3,
-			facilityName: "Student Center"
+		room: {
+			roomId: 3,
+			roomName: "Student Center"
 		},
 		eventName: "Pelatihan",
 		reservationStatus: true
@@ -69,30 +69,30 @@ roomReservationControllers.controller('ReservationRequestListCtrl', function($sc
 });
 
 roomReservationControllers.controller('PilihRuanganCtrl', function($scope, $rootScope) {
-	$scope.listOfFacility = [{
-		facilityId: 1,
-		facilityName: "Ruangan Utama Pendopo Agung",
-		facilityType: "Umum"
+	$scope.listOfRoom = [{
+		roomId: 1,
+		roomName: "Ruangan Utama Pendopo Agung",
+		roomType: "Umum"
 	},{
-		facilityId: 2,
-		facilityName: "Student Center",
-		facilityType: "Umum"
+		roomId: 2,
+		roomName: "Student Center",
+		roomType: "Umum"
 	},{
-		facilityId: 3,
-		facilityName: "GKB",
-		facilityType: "Umum"
+		roomId: 3,
+		roomName: "GKB",
+		roomType: "Umum"
 	},{
-		facilityId: 4,
-		facilityName: "Conference Room P2T",
-		facilityType: "Umum"
+		roomId: 4,
+		roomName: "Conference Room P2T",
+		roomType: "Umum"
 	},{
-		facilityId: 5,
-		facilityName: "Conference Room Direktorat",
-		facilityType: "Umum"
+		roomId: 5,
+		roomName: "Conference Room Direktorat",
+		roomType: "Umum"
 	}];
 
-	$scope.selectFacility = function(facility){
-		$rootScope.selectedFacility = facility;
+	$scope.selectRoom = function(room){
+		$rootScope.selectedRoom = room;
 	};
 });
 
@@ -103,10 +103,10 @@ roomReservationControllers.controller('FormPembatalanCtrl', function($scope, $ro
 		eventUserName: "Himakom",
 		reservationStartDate: "17-04-2016",
 		reservationEndDate: "20-04-2016",
-		facility: {
-			facilityId: 1,
-			facilityName: "RSG",
-			facilityType: "Diijinkan"
+		room: {
+			roomId: 1,
+			roomName: "RSG",
+			roomType: "Diijinkan"
 		},
 		eventName: "Studi Banding",
 		eventType: "Studi Banding",
@@ -118,16 +118,31 @@ roomReservationControllers.controller('FormPembatalanCtrl', function($scope, $ro
 	};
 });
 
-roomReservationControllers.controller('FormPemindahanPeminjamanCtrl', function($scope, $rootScope) {
+roomReservationControllers.controller('ReservationFormCtrl', function($scope, $rootScope) {
+	$scope.room = {
+		roomId: 1,
+		roomName: "Ruangan Utama Pendopo Agung",
+		roomType: "Umum"
+	};
+	$scope.reservation = {};
+	$scope.reservation.reservationStartDate = "17 April 2015 10:00";
+	$scope.reservation.reservationEndDate = "17 April 2015 17:00";
+	$scope.reservation.room = $scope.room;
+	$scope.selectRoom = function(room){
+		$rootScope.selectedRoom = room;
+	};
+});
+
+roomReservationControllers.controller('ReservationChangeFormCtrl', function($scope, $rootScope) {
 	$scope.reservation = {
 		reservationId: 1,
 		eventUserName: "Himakom",
 		reservationStartDate: "17-04-2016",
 		reservationEndDate: "20-04-2016",
-		facility: {
-			facilityId: 1,
-			facilityName: "RSG",
-			facilityType: "Diijinkan"
+		room: {
+			roomId: 1,
+			roomName: "RSG",
+			roomType: "Diijinkan"
 		},
 		eventName: "Studi Banding",
 		eventType: "Studi Banding",
@@ -138,20 +153,7 @@ roomReservationControllers.controller('FormPemindahanPeminjamanCtrl', function($
 		$rootScope.selectedReservation = reservation;
 	};
 })
-roomReservationControllers.controller('FormReservationCtrl', function($scope, $rootScope) {
-	$scope.facility = {
-		facilityId: 1,
-		facilityName: "Ruangan Utama Pendopo Agung",
-		facilityType: "Umum"
-	};
-	$scope.reservation = {};
-	$scope.reservation.reservationStartDate = "17 April 2015 10:00";
-	$scope.reservation.reservationEndDate = "17 April 2015 17:00";
-	$scope.reservation.facility = $scope.facility;
-	$scope.selectFacility = function(facility){
-		$rootScope.selectedFacility = facility;
-	};
-});
+
 roomReservationControllers.controller('ReservationDetailCtrl', function($scope, $rootScope) {
 	$scope.reservation = {
 		reservationId: 1,
@@ -162,10 +164,10 @@ roomReservationControllers.controller('ReservationDetailCtrl', function($scope, 
 		eventType: "Kegiatan Mahasiswa",
 		eventScale: "International",
 		totalAudience : "200 orang",
-		facility: {
-			facilityId: 1,
-			facilityName: "RSG",
-			facilityType: "Fasilitas Umum"
+		room: {
+			roomId: 1,
+			roomName: "RSG",
+			roomType: "Fasilitas Umum"
 		},
 		reservationStatus: "Diizinkan"
 		
@@ -184,19 +186,62 @@ roomReservationControllers.controller('RentDetailCtrl', function($scope, $rootSc
 		rentEndDate: "20-04-2016",
 		eventName: "Seminar International",
 		eventType: "Kegiatan Mahasiswa",
-		eventScale: "International",
-		totalAudience : "200 orang",
-		facility: {
-			facilityId: 1,
-			facilityName: "RSG",
-			facilityType: "Fasilitas Umum"
+		room: {
+			roomId: 1,
+			roomName: "RSG",
+			roomType: "Fasilitas Umum"
 		},
-		rentStatus: "Diizinkan"
-		
+		rentStatus: "Diizinkan",
+		rentPrice: "200000"
 	};
 
 	$scope.selectRent = function(rent){
 		$rootScope.selectedRent = rent;
 	};
 })
+
+roomReservationControllers.controller('FormPemindahanPenyewaanCtrl', function($scope, $rootScope) {
+	$scope.reservation = {
+		reservationId: 1,
+		eventUserName: "Jaki",
+		reservationStartDate: "18-04-2016",
+		reservationEndDate: "18-04-2016",
+		eventName: "Pernikahan",
+		eventType: "Diijinkan",
+		facility: {
+			facilityId: 1,
+			facilityName: "Ruang Utama Pendopo Agung",
+			facilityPrice: "10.000.000"
+		},
+		eventName: "Studi Banding",
+		eventType: "Studi Banding",
+		reservationStatus: true
+	};
+
+	$scope.selectReservation = function(reservation){
+		$rootScope.selectedReservation = reservation;
+	};
+});
+roomReservationControllers.controller('FormPemPenyewaanCtrl', function($scope, $rootScope) {
+	$scope.reservation = {
+		reservationId: 1,
+		eventUserName: "Jaki",
+		reservationStartDate: "18-04-2016",
+		reservationEndDate: "18-04-2016",
+		eventName: "Pernikahan",
+		eventType: "Diijinkan",
+		facility: {
+			facilityId: 1,
+			facilityName: "Ruang Utama Pendopo Agung",
+			facilityPrice: "10.000.000"
+		},
+		eventName: "Studi Banding",
+		eventType: "Studi Banding",
+		reservationStatus: true
+	};
+
+	$scope.selectReservation = function(reservation){
+		$rootScope.selectedReservation = reservation;
+	};
+});
 

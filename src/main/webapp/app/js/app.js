@@ -18,7 +18,7 @@ roomReservationApp.config(['$routeProvider',
       }).
       when('/reservationForm', {
         templateUrl: 'partials/ReservationForm.html',
-        controller: 'FormReservationCtrl'
+        controller: 'ReservationFormCtrl'
       }).
       when('/reservationDetail', {
         templateUrl: 'partials/ReservationDetail.html',
@@ -40,10 +40,18 @@ roomReservationApp.config(['$routeProvider',
         templateUrl: 'partials/CancelReservationForm.html',
         controller: 'FormPembatalanCtrl'
       }).
-	  when('/pemindahanpeminjaman', {
-        templateUrl: 'partials/FormPemindahanPeminjaman.html',
-        controller: 'FormPemindahanPeminjamanCtrl'
+	  when('/reservationChangeForm', {
+        templateUrl: 'partials/ReservationChangeForm.html',
+        controller: 'ReservationChangeFormCtrl'
       }).
+     when('/pemindahanpenyewaan', {
+        templateUrl: 'partials/FormPemindahanPeminjaman.html',
+        controller: 'FormPemindahanPenyewaanCtrl'
+    }).
+    when('/pembatalanpenyewaan', {
+        templateUrl: 'partials/FormPembatalanPeminjaman.html',
+        controller: 'FormPemindahanPenyewaanCtrl'
+    }).
       otherwise({
         redirectTo: '/dashboard'
       });
