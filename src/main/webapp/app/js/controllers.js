@@ -68,7 +68,7 @@ roomReservationControllers.controller('ReservationRequestListCtrl', function($sc
 	};
 });
 
-roomReservationControllers.controller('PilihRuanganCtrl', function($scope, $rootScope) {
+roomReservationControllers.controller('ReservationRoomSelectionCtrl', function($scope, $rootScope) {
 	$scope.listOfRoom = [{
 		roomId: 1,
 		roomName: "Ruangan Utama Pendopo Agung",

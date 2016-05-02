@@ -32,9 +32,9 @@ roomReservationApp.config(['$routeProvider',
         templateUrl: 'partials/RentDetail.html',
         controller: 'RentDetailCtrl'
       }).
-      when('/daftarRuangan', {
-        templateUrl: 'partials/RoomSelectScreen.html',
-        controller: 'PilihRuanganCtrl'
+      when('/reservationRoomSelection', {
+        templateUrl: 'partials/ReservationRoomSelection.html',
+        controller: 'ReservationRoomSelectionCtrl'
       }).
       when('/cancelBook', {
         templateUrl: 'partials/CancelReservationForm.html',
