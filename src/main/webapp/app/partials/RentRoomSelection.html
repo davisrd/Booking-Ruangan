@@ -1,18 +1,20 @@
-<h1>Pilih Ruangan yang akan dipinjam</h1>
+<h1>Kategori Penyewaan: {{rentCategory}}</h1>
+
+<h1>Pilih Ruangan yang akan disewa</h1>
 
 		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>No. </th>
 					<th>Nama Ruangan</th>
-					<th>Jenis Ruangan</th>
+					<th>Harga Sewa</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="facility in listOfFacility">
-					<td><span ng-bind="facility.facilityId"></span></td>
-					<td><span ng-bind="facility.facilityName"></span></td>
-					<td><span ng-bind="facility.facilityType"></span></td>
+				<tr ng-repeat="room in listOfRoom">
+					<td><span ng-bind="room.roomId"></span></td>
+					<td><span ng-bind="room.roomName"></span></td>
+					<td><span ng-bind="room.roomPrice"></span></td>
 				</tr>
 			</tbody>
 		</table>
@@ -46,10 +48,10 @@
 		</div>
 
 		<div class="row">
-			<div class="col-md-6 col-md-offset-6">
-				<div class="col-md-2"><a href="#/reservationRequestList"><button class="btn btn-default alert alert-danger">Batal</button></a>
-				</div>
-				<div class="col-md-2s"><a href="#/reservationForm"><button class="btn btn-default alert alert-success">OK</button></a>
-				</div>
+			<div class="col-md-1 col-md-offset-6">
+				<a href="#/rentList"><button >Batal</button></a>
+			</div>
+			<div class="col-md-5">
+				<a href="#/rentForm"><button >Ok</button></a>
 			</div>
 		</div>
