@@ -4,70 +4,70 @@
     <div class="form-group">
       <label class=" col-md-2" style="text-align:left" for="namaPeminjam">Nama Peminjam</label>
       <div class="col-md-4">
-        {{reservation.eventUserName}}               
+        {{selectedReservation.eventUserName}}               
       </div>
     </div>
 
     <div class="form-group">
       <label class=" col-md-2" style="text-align:left" for="tanggalMulai">Tanggal Mulai</label>
       <div class="col-md-4">
-        {{reservation.reservationStartDate}}             
+        {{selectedReservation.reservationStartDate}}             
       </div>
     </div>
 
     <div class="form-group">
       <label class=" col-md-2" style="text-align:left" for="tanggalSelesai">Tanggal Selesai</label>
       <div class="col-md-4">
-        {{reservation.reservationEndDate}}               
+        {{selectedReservation.reservationEndDate}}               
       </div>
     </div>
 
     <div class="form-group">
       <label class=" col-md-2" style="text-align:left" for="namaKegiatan">Nama Kegiatan</label>
       <div class="col-md-4">
-        {{reservation.eventName}}                        
+        {{selectedReservation.eventName}}                        
       </div>
     </div>
 
     <div class="form-group">
       <label class=" col-md-2" style="text-align:left" for="jenisKegiatan">Jenis Kegiatan</label>
       <div class="col-md-4">
-        {{reservation.eventType}}              
+        {{selectedReservation.eventType}}              
       </div>
     </div>
 
     <div class="form-group">
       <label class=" col-md-2" style="text-align:left" for="skalaKegiatan">Skala Kegiatan</label>
       <div class="col-md-4">
-        {{reservation.eventScale}}               
+        {{selectedReservation.eventScale}}               
       </div>
     </div>
 
     <div class="form-group">
       <label class=" col-md-2" style="text-align:left" for="jumlahPeserta">Jumlah Peserta</label>
       <div class="col-md-4">
-        {{reservation.totalAudience}}               
+        {{selectedReservation.totalAudience}}               
       </div>
     </div> 
 
     <div class="form-group">
       <label class=" col-md-2" style="text-align:left" for="namaRuangan">Nama Ruangan</label>
       <div class="col-md-4">
-        {{reservation.room.roomName}}               
+        {{selectedReservation.room.roomName}}               
       </div>
     </div>
 
     <div class="form-group">
       <label class=" col-md-2" style="text-align:left" for="jenisRuangan">Jenis Ruangan</label>
       <div class="col-md-4">
-        {{reservation.room.roomType}}              
+        {{selectedReservation.room.roomType}}              
       </div>
     </div>
 
     <div class="form-group">
       <label class=" col-md-2" style="text-align:left" for="statusPeminjaman">Status Peminjaman</label>
       <div class="col-md-4">
-        {{reservation.reservationStatus}}              
+        {{selectedReservation.reservationStatus}}              
       </div>
     </div>
 
@@ -88,10 +88,12 @@
 
     <br>
     <div class="form-group">
-      <div class="col-md-offset-1 col-md-7">
-        <a href="#"><button>Izinkan Peminjaman</button></a>
-        <a href="#"><button>Mengetahui Peminjaman</button></a>
-        <button type="reset" class="btn btn-default alert alert-danger">Tolak Peminjaman</button>
-      </div>
+	  <div class="col-md-offset-1 col-md-7">
+		  <div class="row">
+			<div ng-show="(user.userId.substring(0,4) != 'UMRG')"><button class="btn btn-default alert alert-success" ng-click="open()">Izinkan Peminjaman</button></a></div>
+			<div ng-show="(user.userId.substring(0,4) == 'UMRG')"><button class="btn btn-default alert alert-success">Mengetahui Peminjaman</button></a></div>
+			<div ng-show="(user.userId.substring(0,4) != 'UMRG')"><button type="reset" class="btn btn-default alert alert-danger">Tolak Peminjaman</button></div>
+		  </div>
+	  </div>
     </div>
 </form>

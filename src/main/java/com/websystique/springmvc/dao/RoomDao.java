@@ -9,5 +9,5 @@ public interface RoomDao {
 	
 	List<Room> getRoomList();
 	
-	Facility getRoom(int room_id);
+	Room getRoom(int room_id);
 }

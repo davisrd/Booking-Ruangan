@@ -3,7 +3,7 @@
 /* Controllers */
 
 var roomReservationControllers = angular.module('roomReservationControllers', ['ui.bootstrap']);
-roomReservationControllers.run(function($rootScope) {
+roomReservationControllers.run(function($rootScope, $uibModal) {
 	$rootScope.user = {};
 	$rootScope.rent = {};
 	$rootScope.reservation = {};
@@ -17,11 +17,18 @@ roomReservationControllers.run(function($rootScope) {
 		if(newValue == 2) $rootScope.eventCategoryName = 'Non-Bisnis'
 		if(newValue == 3) $rootScope.eventCategoryName = 'Sosial'
 	});
-	$rootScope.user.userId = 'UST00001';
+	$rootScope.user.userId = 'UMRS0001';
 	$rootScope.user.userName = 'Zakiy';
 	$rootScope.user.userRole = 'Peminjam';
 	
-	
+	$rootScope.message = '';
+	$rootScope.openMessage = function (controller, message) {
+		var modalInstance = $uibModal.open({
+		  animation: true,
+		  templateUrl: 'partials/MessageModal.html',
+		  controller: controller
+		});
+	};
 	
 	
 })
@@ -366,5 +373,67 @@ roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, 
 	$scope.selectRoom = function(room){
 		$rootScope.selectedRoom = room;
 	};
+});
+
+roomReservationControllers.controller('ReservationRequestApprovalListCtrl', function($scope, $rootScope) {
+	$scope.listOfReservation = [{
+		reservationId: 1,
+		eventUserName: "Himakom",
+		reservationStartDate: "18 April 2016 10:00",
+		reservationEndDate: "18 April 2016 17:00",
+		room: {
+			roomId: 1,
+			roomName: "RSG"
+		},
+		eventName: "Studi Banding",
+		reservationStatus: true
+	},{
+		reservationId: 2,
+		eventUserName: "Himakaps",
+		reservationStartDate: "19 April 2016 10:00",
+		reservationEndDate: "20 April 2016 10:00",
+		room: {
+			roomId: 2,
+			roomName: "Pendopo"
+		},
+		eventName: "Seminar",
+		reservationStatus: true
+	},{
+		reservationId: 3,
+		eventUserName: "Himakom",
+		reservationStartDate: "30 April 2016 08:00",
+		reservationEndDate: "30 April 2016 21:00",
+		room: {
+			roomId: 3,
+			roomName: "Student Center"
+		},
+		eventName: "Pelatihan",
+		reservationStatus: true
+	}];
+	
+	$scope.selectReservation = function(reservation) {
+		$rootScope.selectedReservation = reservation;
+	}
+});
+
+roomReservationControllers.controller('ReservationApprovalDetailCtrl', function($scope, $rootScope) {
+	$scope.open = function () {
+		$rootScope.openMessage('ReservationApprovalModalCtrl');
+		$rootScope.message = 'Peminjaman Diizinkan';
+	};
+	
+	$scope.selectRoom = function(room){
+		$rootScope.selectedRoom = room;
+	};
+});
+
+roomReservationControllers.controller('ReservationApprovalModalCtrl', function($scope, $uibModalInstance) {
+	$scope.close = function(){
+		$uibModalInstance.close();
+	}
+});
+
+roomReservationControllers.controller('MemorandumFormCtrl', function($scope) {
+	$scope.memorandum = {};
 });
 

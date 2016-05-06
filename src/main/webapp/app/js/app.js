@@ -60,6 +60,18 @@ roomReservationApp.config(['$routeProvider',
         templateUrl: 'partials/FormPembatalanPeminjaman.html',
         controller: 'FormPemindahanPenyewaanCtrl'
     }).
+    when('/reservationRequestApprovalList', {
+        templateUrl: 'partials/ReservationRequestApprovalList.html',
+        controller: 'ReservationRequestApprovalListCtrl'
+    }).
+    when('/reservationApprovalDetail', {
+        templateUrl: 'partials/ReservationApprovalDetail.html',
+        controller: 'ReservationApprovalDetailCtrl'
+    }).
+    when('/memorandumForm', {
+        templateUrl: 'partials/MemorandumForm.html',
+        controller: 'MemorandumFormCtrl'
+    }).
       otherwise({
         redirectTo: '/dashboard'
       });

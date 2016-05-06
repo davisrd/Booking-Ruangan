@@ -8,20 +8,21 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import com.leftproject.model.Room;
 import com.websystique.springmvc.model.*;
 
 @Repository("FacilityDao")
-public class FacilityDaoImpl extends AbstractDao<Integer, Facility> implements FacilityDao{
+public class RoomDaoImpl extends AbstractDao<Integer, Room> implements RoomDao{
 	
 	
-	public List<Facility> getFacilityList()
+	public List<Room> getRoomList()
 	{
 		Criteria criteria = createEntityCriteria();
-		return (List<Facility>) criteria.list();
+		return (List<Room>) criteria.list();
 	}
 	
 	
-	public Facility getFacility(int facility_id)
+	public Room getRoom(int facility_id)
 	{
 		return getByKey(facility_id);
 	}

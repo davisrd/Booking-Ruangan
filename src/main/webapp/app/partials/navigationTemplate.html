@@ -3,7 +3,7 @@
 		<li ng-class="isActive(1)" ng-click="selectNavBar(1)"><a href="#">Jadwal Ruangan</a></li>
 		<li ng-class="isActive(2)" ng-click="selectNavBar(2)" ng-hide="(user.userId.substring(0,3) == 'UAL' || user.userId.substring(0,3) == 'UEX')"><a href="#/reservationRequestList">Pengajuan Peminjaman Ruangan</a></li>
 		<li ng-class="isActive(3)" ng-click="selectNavBar(3)"><a href="#/rentRequestList">Pengajuan Penyewaan Ruangan</a></li>
-		<li ng-class="isActive(4)" ng-click="selectNavBar(4)" ng-show="(user.userId.substring(0,3) == 'UMR')"><a href="#">Persetujuan Peminjaman</a></li>
+		<li ng-class="isActive(4)" ng-click="selectNavBar(4)" ng-show="(user.userId.substring(0,3) == 'UMR')"><a href="#/reservationRequestApprovalList">Persetujuan Peminjaman</a></li>
 		<li ng-class="isActive(5)" ng-click="selectNavBar(5)" ng-show="(user.userId.substring(0,3) == 'UMRG' || user.userId.substring(0,3) == 'UMD')"><a href="#">Persetujuan Penyewaan</a></li>
 		<li ng-class="isActive(6)" ng-click="selectNavBar(6)" ng-show="(user.userId.substring(0,3) == 'UMR' || user.userId.substring(0,3) == 'UMD')"><a href="#">Memorandum</a></li>
 		<li ng-class="isActive(7)" ng-click="selectNavBar(7)"><a href="#">Pemberitahuan</a></li>
