@@ -1,0 +1,27 @@
+<h1>Daftar Pengajuan Peminjaman yang Belum Diproses</h1>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>No. </th>
+			<th>Nama Peminjam</th>
+			<th>Tanggal Mulai</th>
+			<th>Tanggal Selesai</th>
+			<th>Tempat</th>
+			<th>Judul Kegiatan</th>
+			<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="reservation in listOfReservation" ng-click="selectReservation()">
+			<td><span ng-bind="reservation.reservationId"></span></td>
+			<td><span ng-bind="reservation.eventUserName"></span></td>
+			<td><span ng-bind="reservation.reservationStartDate"></span></td>
+			<td><span ng-bind="reservation.reservationEndDate"></span></td>
+			<td><span ng-bind="reservation.room.roomName"></span></td>
+			<td><span ng-bind="reservation.eventName"></span></td>
+			<td><span ng-bind="reservation.reservationStatus"></span></td>
+		</tr>
+	</tbody>
+</table>
+<button>View Detail</button>
