@@ -1,5 +1,5 @@
-<h1>Kategori Penyewaan: {{rentCategory}}</h1>
-
+<h1>Kategori Penyewaan: {{eventCategoryName}}</h1>
+<br>
 <h1>Pilih Ruangan yang akan disewa</h1>
 
 		<table class="table table-hover">
@@ -11,7 +11,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="room in listOfRoom">
+				<tr ng-repeat="room in listOfRoom" ng-click="selectRoom(room)" ng-class="{selected: room.roomId == selectedRoom.roomId}">
 					<td><span ng-bind="room.roomId"></span></td>
 					<td><span ng-bind="room.roomName"></span></td>
 					<td><span ng-bind="room.roomPrice"></span></td>
@@ -39,9 +39,9 @@
 			</div>
 			<div class="col-md-4">
 				<p class="input-group">
-				  <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+				  <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt2" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
 				  <span class="input-group-btn">
-					<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+					<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
 				  </span>
 				</p>
 			</div>
@@ -49,9 +49,9 @@
 
 		<div class="row">
 			<div class="col-md-1 col-md-offset-6">
-				<a href="#/rentList"><button >Batal</button></a>
+				<a href="#/rentList"><button class="btn btn-default alert alert-danger">Batal</button></a>
 			</div>
 			<div class="col-md-5">
-				<a href="#/rentForm"><button >Ok</button></a>
+				<a href="#/rentForm"><button class="btn btn-default alert alert-success">Ok</button></a>
 			</div>
 		</div>

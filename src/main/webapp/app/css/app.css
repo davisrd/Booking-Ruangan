@@ -97,3 +97,9 @@ ul.specs dt {
 h1 {
   border-bottom: 1px solid gray;
 }
+
+.selected {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}

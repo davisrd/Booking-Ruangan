@@ -6,9 +6,9 @@
 			</div>
 			
 			<div class="col-md-2">
-				<a href="#/"><button>Ajukan Penyewaan</button></a>
+				<button class="btn btn-primary" ng-click="open()">Ajukan Penyewaan</button>
 			</div>
-					<button href='#/'>Lihat Detail</button>
+					<a href="#/rentDetail"><button class="btn btn-primary">Lihat Detail</button></a>
 			
 			<table class="table table-hover">
 				<thead>
@@ -24,7 +24,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="rent in listOfRent" ng-click="selectRent()">
+					<tr ng-repeat="rent in listOfRent" ng-click="selectRent(rent)" ng-class="{selected: rent.rentId == selectedRent.rentId}">
 						<td><span ng-bind="rent.rentId"></span></td>
 						<td><span ng-bind="rent.eventUserName"></span></td>
 						<td><span ng-bind="rent.rentStartDate"></span></td>

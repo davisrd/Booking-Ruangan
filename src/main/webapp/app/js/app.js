@@ -28,13 +28,21 @@ roomReservationApp.config(['$routeProvider',
         templateUrl: 'partials/ReservationRequestList.html',
         controller: 'ReservationRequestListCtrl'
       }).
+      when('/reservationRoomSelection', {
+        templateUrl: 'partials/ReservationRoomSelection.html',
+        controller: 'ReservationRoomSelectionCtrl'
+      }).
+      when('/rentRequestList', {
+        templateUrl: 'partials/RentRequestList.html',
+        controller: 'RentRequestListCtrl'
+      }).
       when('/rentDetail', {
         templateUrl: 'partials/RentDetail.html',
         controller: 'RentDetailCtrl'
       }).
-      when('/reservationRoomSelection', {
-        templateUrl: 'partials/ReservationRoomSelection.html',
-        controller: 'ReservationRoomSelectionCtrl'
+      when('/rentRoomSelection', {
+        templateUrl: 'partials/RentRoomSelection.html',
+        controller: 'RentRoomSelectionCtrl'
       }).
       when('/cancelBook', {
         templateUrl: 'partials/CancelReservationForm.html',

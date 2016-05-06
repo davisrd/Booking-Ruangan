@@ -2,19 +2,41 @@
 
 /* Controllers */
 
-var roomReservationControllers = angular.module('roomReservationControllers', []);
+var roomReservationControllers = angular.module('roomReservationControllers', ['ui.bootstrap']);
 roomReservationControllers.run(function($rootScope) {
 	$rootScope.user = {};
+	$rootScope.rent = {};
+	$rootScope.reservation = {};
+	
+	$rootScope.dateFormat = 'dd-MMMM-yyyy';
+	$rootScope.eventCategoryName;
+	$rootScope.eventCategoryCode;
+	
+	$rootScope.$watch('eventCategoryCode', function(newValue, oldValue) {
+		if(newValue == 1) $rootScope.eventCategoryName = 'Bisnis'
+		if(newValue == 2) $rootScope.eventCategoryName = 'Non-Bisnis'
+		if(newValue == 3) $rootScope.eventCategoryName = 'Sosial'
+	});
 	$rootScope.user.userId = 'UST00001';
 	$rootScope.user.userName = 'Zakiy';
 	$rootScope.user.userRole = 'Peminjam';
 	
+	
+	
+	
 })
-roomReservationControllers.controller('PhoneListCtrl', ['$scope', 'Phone',
-  function($scope, Phone) {
-    $scope.phones = Phone.query();
-    $scope.orderProp = 'age';
-  }]);
+roomReservationControllers.controller('navigationTemplateCtrl',function($scope) {
+    $scope.navBar = 1;
+	
+	$scope.selectNavBar = function(navBarCode){
+		$scope.navBar = navBarCode;
+	}
+	
+	$scope.isActive = function(navBarCode){
+		if( $scope.navBar == navBarCode) return 'active';
+		else return '';
+	}
+  });
 
 roomReservationControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone',
   function($scope, $routeParams, Phone) {
@@ -242,6 +264,107 @@ roomReservationControllers.controller('FormPemPenyewaanCtrl', function($scope, $
 
 	$scope.selectReservation = function(reservation){
 		$rootScope.selectedReservation = reservation;
+	};
+});
+roomReservationControllers.controller('RentRequestListCtrl', function($scope, $rootScope, $uibModal) {
+	$scope.listOfRent = [{
+		rentId: 1,
+		eventUserName: "Himakom",
+		rentStartDate: "18 April 2016 10:00",
+		rentEndDate: "18 April 2016 17:00",
+		room: {
+			roomId: 1,
+			roomName: "RSG"
+		},
+		eventName: "Studi Banding",
+		rentStatus: true
+	},{
+		rentId: 2,
+		eventUserName: "Himakaps",
+		rentStartDate: "19 April 2016 10:00",
+		rentEndDate: "20 April 2016 10:00",
+		room: {
+			roomId: 2,
+			roomName: "Pendopo"
+		},
+		eventName: "Seminar",
+		rentStatus: true
+	},{
+		rentId: 3,
+		eventUserName: "Himakom",
+		rentStartDate: "30 April 2016 08:00",
+		rentEndDate: "30 April 2016 21:00",
+		room: {
+			roomId: 3,
+			roomName: "Student Center"
+		},
+		eventName: "Pelatihan",
+		rentStatus: true
+	}];
+	
+	$scope.open = function () {
+		var modalInstance = $uibModal.open({
+		  animation: $scope.animationsEnabled,
+		  templateUrl: 'partials/RentRequestModal.html',
+		  controller: 'RentRequestModalCtrl',
+		  size: 'sm'
+		});
+	};
+	
+	$scope.isSelected = false;
+	
+	$scope.selectRent = function(rent){
+		$rootScope.selectedRent = rent;
+		$scope.isSelected = true;
+	};
+});
+
+roomReservationControllers.controller('RentRequestModalCtrl', function($scope, $rootScope, $uibModalInstance) {
+	$scope.setRentType = function(eventCategory){
+		$rootScope.rent.eventCategory = eventCategory;
+		$rootScope.eventCategoryCode = eventCategory;
+		$uibModalInstance.close();
+	}
+});
+
+roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, $rootScope) {
+	$scope.listOfRoom = [{
+		roomId: 1,
+		roomName: "Ruangan Utama Pendopo Agung",
+		roomType: "Umum"
+	},{
+		roomId: 2,
+		roomName: "Student Center",
+		roomType: "Umum"
+	},{
+		roomId: 3,
+		roomName: "GKB",
+		roomType: "Umum"
+	},{
+		roomId: 4,
+		roomName: "Conference Room P2T",
+		roomType: "Umum"
+	},{
+		roomId: 5,
+		roomName: "Conference Room Direktorat",
+		roomType: "Umum"
+	}];
+	
+	$scope.popup1 = {
+		opened: false
+	};
+	$scope.open1 = function() {
+		$scope.popup1.opened = true;
+	};
+	$scope.popup2 = {
+		opened: false
+	};
+	$scope.open2 = function() {
+		$scope.popup2.opened = true;
+	};
+	
+	$scope.selectRoom = function(room){
+		$rootScope.selectedRoom = room;
 	};
 });
 
