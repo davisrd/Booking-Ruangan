@@ -12,15 +12,14 @@ import com.leftproject.model.Schedule;;
 public class ScheduleDaoImpl extends AbstractDao<Integer, Schedule> implements ScheduleDao{
 	
 	public int roomStatus(String facilityId, Date startDate, Date endDate){
-		int roomStatus = 0;
-		
+			
 			List<Schedule> listSchedule = getListSchedule(facilityId, startDate, endDate);
 			if(listSchedule.isEmpty()){
 				return 0;
 			}
 			
 			
-		return roomStatus;
+		return 2;
 	}
 	
 	public List<Schedule> getListSchedule(String facilityId, Date startDate, Date endDate){
