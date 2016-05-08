@@ -68,6 +68,14 @@ roomReservationApp.config(['$routeProvider',
         templateUrl: 'partials/ReservationApprovalDetail.html',
         controller: 'ReservationApprovalDetailCtrl'
     }).
+    when('/reservationRejectionDetail', {
+        templateUrl: 'partials/ReservationRejectionDetail.html',
+        controller: 'ReservationRejectionDetailCtrl'
+    }).
+    when('/collidedReservationApprovalDetail', {
+        templateUrl: 'partials/CollidedReservationApprovalDetail.html',
+        controller: 'CollidedReservationApprovalDetailCtrl'
+    }).
     when('/memorandumForm', {
         templateUrl: 'partials/MemorandumForm.html',
         controller: 'MemorandumFormCtrl'

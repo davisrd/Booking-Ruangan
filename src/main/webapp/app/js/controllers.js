@@ -29,9 +29,15 @@ roomReservationControllers.run(function($rootScope, $uibModal) {
 		  controller: controller
 		});
 	};
-	
-	
-})
+});
+
+roomReservationControllers.controller('MessageModalCtrl', function($scope, $uibModalInstance, $location) {
+	$scope.close = function(){
+		$uibModalInstance.close();
+		$location.path( $rootScope.nextPath + '.html' );
+	}
+});
+
 roomReservationControllers.controller('navigationTemplateCtrl',function($scope) {
     $scope.navBar = 1;
 	
@@ -44,17 +50,6 @@ roomReservationControllers.controller('navigationTemplateCtrl',function($scope) 
 		else return '';
 	}
   });
-
-roomReservationControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone',
-  function($scope, $routeParams, Phone) {
-    $scope.phone = Phone.get({phoneId: $routeParams.phoneId}, function(phone) {
-      $scope.mainImageUrl = phone.images[0];
-    });
-
-    $scope.setImage = function(imageUrl) {
-      $scope.mainImageUrl = imageUrl;
-    };
-  }]);
 
 roomReservationControllers.controller('ReservationRequestListCtrl', function($scope, $rootScope) {
 	$scope.listOfReservation = [{
@@ -416,24 +411,27 @@ roomReservationControllers.controller('ReservationRequestApprovalListCtrl', func
 	}
 });
 
-roomReservationControllers.controller('ReservationApprovalDetailCtrl', function($scope, $rootScope) {
-	$scope.open = function () {
-		$rootScope.openMessage('ReservationApprovalModalCtrl');
-		$rootScope.message = 'Peminjaman Diizinkan';
-	};
-	
-	$scope.selectRoom = function(room){
-		$rootScope.selectedRoom = room;
-	};
-});
-
-roomReservationControllers.controller('ReservationApprovalModalCtrl', function($scope, $uibModalInstance) {
-	$scope.close = function(){
-		$uibModalInstance.close();
-	}
-});
-
 roomReservationControllers.controller('MemorandumFormCtrl', function($scope) {
 	$scope.memorandum = {};
 });
 
+roomReservationControllers.controller('ReservationRejectionDetailCtrl', function($scope, $rootScope) {
+	$scope.open = function () {
+		$rootScope.message = 'Form sukses disubmit';
+		$rootScope.openMessage('MessageModalCtrl');
+	};
+});
+
+roomReservationControllers.controller('CollidedReservationApprovalDetailCtrl', function($scope, $rootScope) {
+	$scope.openRecommendedEvent = function () {
+		$rootScope.message = 'Rekomendasi Kegiatan yang diizinkan<br>';
+		$rootScope.openMessage('MessageModalCtrl');
+	};
+	
+	$scope.openApproveEvent = function () {
+		$rootScope.message = 'Peminjaman Diizinkan';
+		$rootScope.openMessage('MessageModalCtrl');
+	};
+});
+
+// $location.path( '/new-page.html' ); fungsi buat pindah page. bisi ada yg butuh
