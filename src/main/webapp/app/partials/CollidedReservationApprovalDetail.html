@@ -87,11 +87,11 @@
     <div class="form-group">
 	  <div class="col-md-offset-1 col-md-7">
 		  <div class="row">
-			<button class="btn btn-default alert alert-success">Ajukan Memorandum</button>
-			<button type="reset" class="btn btn-default alert alert-danger">Rekomendasi Kegiatan yang diizinkan</button>
+			<button class="btn btn-default alert alert-success" ng-click="goTo('/memorandumForm')">Ajukan Memorandum</button>
+			<button type="reset" class="btn btn-default alert alert-danger" ng-click="openRecommendedEvent()">Rekomendasi Kegiatan yang diizinkan</button>
 		  <div class="row">
-			<button class="btn btn-default alert alert-success">Izinkan Peminjaman</button>
-			<button type="reset" class="btn btn-default alert alert-danger">Tolak Peminjaman</button>
+			<button class="btn btn-default alert alert-success" ng-click="openApproveEvent()">Izinkan Peminjaman</button>
+			<button type="reset" class="btn btn-default alert alert-danger" ng-click="goTo('/reservationRejectionDetail')">Tolak Peminjaman</button>
 		  </div>
 	  </div>
     </div>

@@ -3,7 +3,7 @@
 /* Controllers */
 
 var roomReservationControllers = angular.module('roomReservationControllers', ['ui.bootstrap']);
-roomReservationControllers.run(function($rootScope, $uibModal) {
+roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 	$rootScope.user = {};
 	$rootScope.rent = {};
 	$rootScope.reservation = {};
@@ -22,19 +22,25 @@ roomReservationControllers.run(function($rootScope, $uibModal) {
 	$rootScope.user.userRole = 'Peminjam';
 	
 	$rootScope.message = '';
+	$rootScope.nextPath = '';
 	$rootScope.openMessage = function (controller, message) {
 		var modalInstance = $uibModal.open({
 		  animation: true,
 		  templateUrl: 'partials/MessageModal.html',
-		  controller: controller
+		  controller: controller,
+		  windowClass: 'center-modal'
 		});
 	};
+	
+	$rootScope.goTo = function(path) {
+		$location.path(path);
+	}
 });
 
-roomReservationControllers.controller('MessageModalCtrl', function($scope, $uibModalInstance, $location) {
+roomReservationControllers.controller('MessageModalCtrl', function($scope, $rootScope, $uibModalInstance, $location) {
 	$scope.close = function(){
 		$uibModalInstance.close();
-		$location.path( $rootScope.nextPath + '.html' );
+		$location.path($rootScope.nextPath);
 	}
 });
 
@@ -418,6 +424,15 @@ roomReservationControllers.controller('MemorandumFormCtrl', function($scope) {
 roomReservationControllers.controller('ReservationRejectionDetailCtrl', function($scope, $rootScope) {
 	$scope.open = function () {
 		$rootScope.message = 'Form sukses disubmit';
+		$rootScope.nextPath = '/reservationRequestApprovalList';
+		$rootScope.openMessage('MessageModalCtrl');
+	};
+});
+
+roomReservationControllers.controller('ReservationApprovalDetailCtrl', function($scope, $rootScope) {
+	$scope.openApproveEvent = function () {
+		$rootScope.message = 'Peminjaman Diizinkan';
+		$rootScope.nextPath = '/reservationRequestApprovalList';
 		$rootScope.openMessage('MessageModalCtrl');
 	};
 });
@@ -425,11 +440,13 @@ roomReservationControllers.controller('ReservationRejectionDetailCtrl', function
 roomReservationControllers.controller('CollidedReservationApprovalDetailCtrl', function($scope, $rootScope) {
 	$scope.openRecommendedEvent = function () {
 		$rootScope.message = 'Rekomendasi Kegiatan yang diizinkan<br>';
+		$rootScope.nextPath = '/collidedReservationApprovalDetail';
 		$rootScope.openMessage('MessageModalCtrl');
 	};
 	
 	$scope.openApproveEvent = function () {
 		$rootScope.message = 'Peminjaman Diizinkan';
+		$rootScope.nextPath = '/reservationRequestApprovalList';
 		$rootScope.openMessage('MessageModalCtrl');
 	};
 });
