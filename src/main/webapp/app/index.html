@@ -21,6 +21,7 @@
 </head>
 <body>
 	<!--<div ng-include src="'partials/template.html'"></div>-->
+	<div id="header">
     <div class= "header row">
 	    <div class="logo col-md-5">
 	    	<div class="col-md-3" style="border-right:medium #CC0000 solid; height:110px;">
@@ -32,14 +33,15 @@
 			</div>	
 	    </div>
 	    <div class="col-md-6 text-right">
-				<h4>{{user.nim}}|{{user.userName}}|{{user.userRole}}</h4>
+				<h4>{{user.id}}|{{user.userName}}|{{user.userRole}}</h4>
 		</div>	
 	    
 	</div>
     <hr size="100">
+    </div>
 
 	<div class="row" >
-	    <div class="col-md-2">
+	    <div id="nav" class="col-md-2" >
 			<div ng-include src="'partials/navigationTemplate.html'"></div>
 		</div>
 		<div class="col-md-9" >

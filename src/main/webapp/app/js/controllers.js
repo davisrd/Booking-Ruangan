@@ -93,9 +93,14 @@ roomReservationControllers.controller('ReservationRequestListCtrl', function($sc
 		reservationStatus: true
 	}];
 
+	$scope.isSelected = false;
+
 	$scope.selectReservation = function(reservation){
 		$rootScope.selectedReservation = reservation;
+		$scope.isSelected = true;
 	};
+
+	
 });
 
 roomReservationControllers.controller('ReservationRoomSelectionCtrl', function($scope, $rootScope) {
@@ -315,7 +320,7 @@ roomReservationControllers.controller('RentRequestListCtrl', function($scope, $r
 		  animation: $scope.animationsEnabled,
 		  templateUrl: 'partials/RentRequestModal.html',
 		  controller: 'RentRequestModalCtrl',
-		  size: 'sm'
+		  size: 'xl',
 		});
 	};
 	
@@ -414,6 +419,50 @@ roomReservationControllers.controller('ReservationRequestApprovalListCtrl', func
 	
 	$scope.selectReservation = function(reservation) {
 		$rootScope.selectedReservation = reservation;
+	}
+});
+
+roomReservationControllers.controller('RentRequestApprovalListCtrl', function($scope, $rootScope) {
+	$scope.listOfRent = [{
+		rentId: 1,
+		eventUserName: "Budi",
+		rentStartDate: "18 April 2016 10:00",
+		rentEndDate: "18 April 2016 17:00",
+		room: {
+			roomId: 1,
+			roomName: "Pendopo"
+		},
+		eventName: "Pernikahan",
+		eventType: "Kegiatan Non-Bisnis",
+		rentStatus: true
+	},{
+		rentId: 2,
+		eventUserName: "Ari",
+		rentStartDate: "19 April 2016 10:00",
+		rentEndDate: "20 April 2016 10:00",
+		room: {
+			roomId: 2,
+			roomName: "Ruang Fotocopy"
+		},
+		eventName: "Jual Beli",
+		eventType: "Bisnis",
+		rentStatus: true
+	},{
+		rentId: 3,
+		eventUserName: "Lisa",
+		rentStartDate: "30 April 2016 08:00",
+		rentEndDate: "30 April 2016 21:00",
+		room: {
+			roomId: 3,
+			roomName: "Student Center"
+		},
+		eventName: "Sosialisasi Narkoba",
+		eventType: "Sosial",
+		rentStatus: true
+	}];
+	
+	$scope.selectRent = function(rent) {
+		$rootScope.selectedRent = rent;
 	}
 });
 

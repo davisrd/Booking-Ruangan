@@ -22,8 +22,8 @@
 						<th>Status</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr ng-repeat="reservation in listOfReservation" ng-click="selectReservation()">
+				<tbody>					
+					<tr ng-repeat="reservation in listOfReservation" ng-click="selectReservation(reservation)" ng-class="{selected: reservation.reservationId == selectedReservation.reservationtId}">
 						<td><span ng-bind="reservation.reservationId"></span></td>
 						<td><span ng-bind="reservation.eventUserName"></span></td>
 						<td><span ng-bind="reservation.reservationStartDate"></span></td>
