@@ -14,7 +14,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="rent in listOfRent" ng-click="selectRent(rent)"  ng-class="{selected: rent.rentId == selectedRent.rendId}">
+		<tr ng-repeat="rent in listOfRent" ng-click="selectRent(rent)" ng-class="{selected : rent.rentId == selectedRent.rendId}" class="selected">
 			<td><span ng-bind="rent.rentId"></span></td>
 			<td><span ng-bind="rent.eventUserName"></span></td>
 			<td><span ng-bind="rent.rentStartDate"></span></td>

@@ -5,8 +5,24 @@
 var roomReservationControllers = angular.module('roomReservationControllers', ['ui.bootstrap']);
 roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 	$rootScope.user = {};
-	$rootScope.rent = {};
-	$rootScope.reservation = {};
+	$rootScope.selectedRent = {};
+	$rootScope.selectedReservation = {};
+	$rootScope.rent={};
+	$rootScope.reservation={};
+	$rootScope.popup1 = {
+		opened: false
+	};
+	$rootScope.open1 = function() {
+		$rootScope
+		.popup1.opened = true;
+	};
+	$rootScope.popup2 = {
+		opened: false
+	};
+	$rootScope.open2 = function() {
+		$rootScope.popup2.opened = true;
+	};
+
 	
 	$rootScope.dateFormat = 'dd-MMMM-yyyy';
 	$rootScope.eventCategoryName;
@@ -17,7 +33,7 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 		if(newValue == 2) $rootScope.eventCategoryName = 'Non-Bisnis'
 		if(newValue == 3) $rootScope.eventCategoryName = 'Sosial'
 	});
-	$rootScope.user.userId = 'UMRS0001';
+	$rootScope.user.userId = 'UMRG0001';
 	$rootScope.user.userName = 'Zakiy';
 	$rootScope.user.userRole = 'Peminjam';
 	
@@ -363,19 +379,6 @@ roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, 
 		roomType: "Umum"
 	}];
 	
-	$scope.popup1 = {
-		opened: false
-	};
-	$scope.open1 = function() {
-		$scope.popup1.opened = true;
-	};
-	$scope.popup2 = {
-		opened: false
-	};
-	$scope.open2 = function() {
-		$scope.popup2.opened = true;
-	};
-	
 	$scope.selectRoom = function(room){
 		$rootScope.selectedRoom = room;
 	};
@@ -462,7 +465,9 @@ roomReservationControllers.controller('RentRequestApprovalListCtrl', function($s
 	}];
 	
 	$scope.selectRent = function(rent) {
+		console.log(rent)
 		$rootScope.selectedRent = rent;
+		console.log($rootScope.selectedRent.rentId);
 	}
 });
 
@@ -482,6 +487,14 @@ roomReservationControllers.controller('ReservationApprovalDetailCtrl', function(
 	$scope.openApproveEvent = function () {
 		$rootScope.message = 'Peminjaman Diizinkan';
 		$rootScope.nextPath = '/reservationRequestApprovalList';
+		$rootScope.openMessage('MessageModalCtrl');
+	};
+});
+
+roomReservationControllers.controller('RentApprovalDetailCtrl', function($scope, $rootScope) {
+	$scope.openApproveEvent = function () {
+		$rootScope.message = 'Penyewaan Diizinkan';
+		$rootScope.nextPath = '/rentRequestApprovalList';
 		$rootScope.openMessage('MessageModalCtrl');
 	};
 });

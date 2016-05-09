@@ -1,7 +1,7 @@
 /* app css stylesheet */
 
 body {
-  padding-top: 20px;
+  /*padding-top: 20px;*/
 }
 
 
@@ -104,11 +104,11 @@ h1 {
   border-color: #d6e9c6;
 }
 
-/*#header {
+#header {
     background-color:#DCDCDC;
-    padding-left: 15px;
-    padding-bottom: 35px;
-}*/
+    padding: 5px;
+    padding-bottom: 5px;
+}
 
 #nav {
     background-color:#C0C0C0;

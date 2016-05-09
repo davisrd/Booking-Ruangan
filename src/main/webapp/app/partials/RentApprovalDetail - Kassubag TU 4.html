@@ -51,7 +51,7 @@
     </div>
 
     <div class="form-group">
-      <label class=" col-md-2" style="text-align:left" for="lampiranSuratIzinKegiatan">Lampiran Surat Izin Kegiatan</label>
+      <label class=" col-md-2" style="text-align:left" for="lampiranSuratPengajuanPenyewaan">Lampiran Surat Pengajuan Penyewaan</label>
       <div class="col-md-4">
         <p class="input-group">
           <span class="input-group-btn">
@@ -62,14 +62,17 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <label class=" col-md-3" style="text-align:left" for="apakahPenyewaanDiizinkanOlehKPKNL">PApakah Penyewaan diizinkan oleh KPKNL?</label>
+    </div>
+
     <br>
     <div class="form-group">
-	  <div class="col-md-offset-1 col-md-7">
-		  <div class="row">
-			<div ng-show="(user.userId.substring(0,4) == 'UMRG')"><button class="btn btn-default alert alert-success" ng-click="openApproveEvent()">Izinkan Penyewaan</button></a></div>
-			<div ng-show="(user.userId.substring(0,4) == 'UMRG')"><button class="btn btn-default alert alert-success"  ng-click="goTo('/reservationRequestApprovalList')">Mengetahui Penyewaan</button></a></div>
-			<div ng-show="(user.userId.substring(0,4) == 'UMRG')"><button type="reset" class="btn btn-default alert alert-danger"  ng-click="goTo('/reservationRejectionDetail')">Tolak Penyewaan</button></div>
-		  </div>
-	  </div>
+      <div class="col-md-6 col-md-offset-6">
+        <div class="col-md-2"><a href="#/"><button class="btn btn-default alert alert-danger">Tidak</button></a>
+        </div>
+        <div class="col-md-2"><a href="#/"><button class="btn btn-default alert alert-success">Ya</button></a>
+        </div>
+      </div>
     </div>
 </form>
