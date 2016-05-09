@@ -27,6 +27,10 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 		Criteria criteria = createEntityCriteria();
 		return (List<Reservation>) criteria.list();
 	}
+	
+	public Reservation getReservation(String roomId){
+		return getByKey(roomId);
+	}
 	/*	@SuppressWarnings("unchecked")
 	public List<Reservation> findAllPeminjamans() {
 		Criteria criteria = createEntityCriteria();
