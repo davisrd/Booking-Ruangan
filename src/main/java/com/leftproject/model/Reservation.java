@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import com.leftproject.model.Notification;
+
 @Entity
 @Table(name="RESERVATION")
 public class Reservation {
@@ -60,6 +63,8 @@ public class Reservation {
     @Column(name="UPDATED_DATE")
 	private Date updatedDate;
 
+ 
+         
 	private User user;
 	
 	@OneToMany(fetch=FetchType.LAZY)
@@ -69,6 +74,8 @@ public class Reservation {
 	private Set<ReservationDisposition> reservationDispositionList;
 	private Set<ReservationLog> reservationLogList;
 	private Set<ReservationMemorandum> reservationMemorandumList;
+	
+	
 	
 	public Reservation(String reservationId, Date reservationDateStart, Date reservationDateEnd,
 			boolean reservationStatus, String reservationFilePath, long reservationOperationalPrice,
@@ -98,12 +105,15 @@ public class Reservation {
 		this.reservationMemorandumList = reservationMemorandumList;
 	}
 	//Getter dan Setter
+		
+	
 	public String getReservationId() {
 		return reservationId;
 	}
 	public void setReservationId(String reservationId) {
 		this.reservationId = reservationId;
 	}
+	
 	public Date getReservationDateStart() {
 		return reservationDateStart;
 	}
@@ -213,5 +223,27 @@ public class Reservation {
 		this.reservationMemorandumList = reservationMemorandumList;
 	}
 	
+	public Reservation() {
+		super();
+		this.reservationId = null;
+		this.reservationDateStart = null;
+		this.reservationDateEnd = null;
+		this.reservationStatus = false;
+		this.reservationFilePath = null;
+		this.reservationOperationalPrice = 0;
+		this.reservationRejectReason = null;
+		this.eventType = null;
+		this.eventName = null;
+		this.eventScale = null;
+		this.eventTotalParticipant = 0;
+		this.createdDate = null;
+		this.updatedBy = null;
+		this.updatedDate = null;
+		this.user = null;
+		this.room = null;
+		this.reservationDispositionList = null;
+		this.reservationLogList = null;
+		this.reservationMemorandumList = null;
+	}
 	
 }

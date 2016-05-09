@@ -1,7 +1,7 @@
 /* app css stylesheet */
 
 body {
-  padding-top: 20px;
+  /*padding-top: 20px;*/
 }
 
 
@@ -102,4 +102,28 @@ h1 {
   color: #3c763d;
   background-color: #dff0d8;
   border-color: #d6e9c6;
+}
+
+#header {
+    background-color:#DCDCDC;
+    padding: 5px;
+    padding-bottom: 5px;
+}
+
+#nav {
+    background-color:#C0C0C0;
+    min-height: 700px;
+    padding:3px; 
+    padding-left: 10px;    
+}
+
+ul li {
+    background: #FFFFFF;
+    border-radius: 4px;    
+}
+
+#panel-body 
+{
+    background: #C0C0C0;
+    border-radius: 4px;    
 }

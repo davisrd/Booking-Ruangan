@@ -5,8 +5,24 @@
 var roomReservationControllers = angular.module('roomReservationControllers', ['ui.bootstrap']);
 roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 	$rootScope.user = {};
-	$rootScope.rent = {};
-	$rootScope.reservation = {};
+	$rootScope.selectedRent = {};
+	$rootScope.selectedReservation = {};
+	$rootScope.rent={};
+	$rootScope.reservation={};
+	$rootScope.popup1 = {
+		opened: false
+	};
+	$rootScope.open1 = function() {
+		$rootScope
+		.popup1.opened = true;
+	};
+	$rootScope.popup2 = {
+		opened: false
+	};
+	$rootScope.open2 = function() {
+		$rootScope.popup2.opened = true;
+	};
+
 	
 	$rootScope.dateFormat = 'dd-MMMM-yyyy';
 	$rootScope.eventCategoryName;
@@ -17,7 +33,11 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 		if(newValue == 2) $rootScope.eventCategoryName = 'Non-Bisnis'
 		if(newValue == 3) $rootScope.eventCategoryName = 'Sosial'
 	});
+<<<<<<< HEAD
 	$rootScope.user.userId = 'UMS0001';
+=======
+	$rootScope.user.userId = 'UMRG0001';
+>>>>>>> refs/remotes/origin/master
 	$rootScope.user.userName = 'Zakiy';
 	$rootScope.user.userRole = 'Peminjam';
 	
@@ -93,9 +113,14 @@ roomReservationControllers.controller('ReservationRequestListCtrl', function($sc
 		reservationStatus: true
 	}];
 
+	$scope.isSelected = false;
+
 	$scope.selectReservation = function(reservation){
 		$rootScope.selectedReservation = reservation;
+		$scope.isSelected = true;
 	};
+
+	
 });
 
 roomReservationControllers.controller('ReservationRoomSelectionCtrl', function($scope, $rootScope) {
@@ -315,7 +340,7 @@ roomReservationControllers.controller('RentRequestListCtrl', function($scope, $r
 		  animation: $scope.animationsEnabled,
 		  templateUrl: 'partials/RentRequestModal.html',
 		  controller: 'RentRequestModalCtrl',
-		  size: 'sm'
+		  size: 'xl',
 		});
 	};
 	
@@ -357,19 +382,6 @@ roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, 
 		roomName: "Conference Room Direktorat",
 		roomType: "Umum"
 	}];
-	
-	$scope.popup1 = {
-		opened: false
-	};
-	$scope.open1 = function() {
-		$scope.popup1.opened = true;
-	};
-	$scope.popup2 = {
-		opened: false
-	};
-	$scope.open2 = function() {
-		$scope.popup2.opened = true;
-	};
 	
 	$scope.selectRoom = function(room){
 		$rootScope.selectedRoom = room;
@@ -417,6 +429,52 @@ roomReservationControllers.controller('ReservationRequestApprovalListCtrl', func
 	}
 });
 
+roomReservationControllers.controller('RentRequestApprovalListCtrl', function($scope, $rootScope) {
+	$scope.listOfRent = [{
+		rentId: 1,
+		eventUserName: "Budi",
+		rentStartDate: "18 April 2016 10:00",
+		rentEndDate: "18 April 2016 17:00",
+		room: {
+			roomId: 1,
+			roomName: "Pendopo"
+		},
+		eventName: "Pernikahan",
+		eventType: "Kegiatan Non-Bisnis",
+		rentStatus: true
+	},{
+		rentId: 2,
+		eventUserName: "Ari",
+		rentStartDate: "19 April 2016 10:00",
+		rentEndDate: "20 April 2016 10:00",
+		room: {
+			roomId: 2,
+			roomName: "Ruang Fotocopy"
+		},
+		eventName: "Jual Beli",
+		eventType: "Bisnis",
+		rentStatus: true
+	},{
+		rentId: 3,
+		eventUserName: "Lisa",
+		rentStartDate: "30 April 2016 08:00",
+		rentEndDate: "30 April 2016 21:00",
+		room: {
+			roomId: 3,
+			roomName: "Student Center"
+		},
+		eventName: "Sosialisasi Narkoba",
+		eventType: "Sosial",
+		rentStatus: true
+	}];
+	
+	$scope.selectRent = function(rent) {
+		console.log(rent)
+		$rootScope.selectedRent = rent;
+		console.log($rootScope.selectedRent.rentId);
+	}
+});
+
 roomReservationControllers.controller('MemorandumFormCtrl', function($scope) {
 	$scope.memorandum = {};
 });
@@ -433,6 +491,14 @@ roomReservationControllers.controller('ReservationApprovalDetailCtrl', function(
 	$scope.openApproveEvent = function () {
 		$rootScope.message = 'Peminjaman Diizinkan';
 		$rootScope.nextPath = '/reservationRequestApprovalList';
+		$rootScope.openMessage('MessageModalCtrl');
+	};
+});
+
+roomReservationControllers.controller('RentApprovalDetailCtrl', function($scope, $rootScope) {
+	$scope.openApproveEvent = function () {
+		$rootScope.message = 'Penyewaan Diizinkan';
+		$rootScope.nextPath = '/rentRequestApprovalList';
 		$rootScope.openMessage('MessageModalCtrl');
 	};
 });
