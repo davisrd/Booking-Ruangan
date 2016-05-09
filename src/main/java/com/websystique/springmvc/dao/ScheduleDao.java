@@ -9,4 +9,5 @@ public interface ScheduleDao {
 	public int roomStatus(String roomId, Date startDate, Date endDate);
 	
 	public List<Schedule> getListSchedule(String roomId, Date startDate, Date endDate);
+	Schedule getSchedule(String roomId, Date date);
 }
