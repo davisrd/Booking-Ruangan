@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.websystique.springmvc.dao.ReservationDao;
-import com.leftproject.model.Reservation;
+import com.leftproject.model.*;
 
 @Service("employeeService")
 @Transactional
@@ -15,9 +15,12 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Autowired
 	private ReservationDao dao;
+	
 
 	public void saveReservation(Reservation employee) {
 		dao.saveReservation(employee);
+		Notification notif = new Notification();
+		notif.setNotificationMessage("Pemesanan berhasil");	
 	}
 
 	/*

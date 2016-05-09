@@ -39,6 +39,10 @@ public class Notification {
 		this.createdDate = createdDate;
 	}
 
+	public Notification() {
+		
+	}
+	
 	public String getNotificationId() {
 		return notificationId;
 	}
