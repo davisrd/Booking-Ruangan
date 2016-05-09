@@ -1,6 +1,6 @@
 package com.websystique.springmvc.dao;
 
-import com.websystique.springmvc.model.Notification;
+import com.leftproject.model.Notification;
 
 public interface NotificationDao {
 	
