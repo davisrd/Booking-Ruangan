@@ -17,7 +17,7 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 		if(newValue == 2) $rootScope.eventCategoryName = 'Non-Bisnis'
 		if(newValue == 3) $rootScope.eventCategoryName = 'Sosial'
 	});
-	$rootScope.user.userId = 'UMRS0001';
+	$rootScope.user.userId = 'UMS0001';
 	$rootScope.user.userName = 'Zakiy';
 	$rootScope.user.userRole = 'Peminjam';
 	
