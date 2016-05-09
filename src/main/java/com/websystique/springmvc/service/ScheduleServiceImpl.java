@@ -16,7 +16,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 	@Autowired
 	private ScheduleDao dao;
 	
-	public int roomStatus(String facilityId, Date startDate, Date endDate){
-		return dao.roomStatus(facilityId, startDate, endDate);
+	public int roomStatus(String roomId, Date startDate, Date endDate){
+		return dao.roomStatus(roomId, startDate, endDate);
 	}
 }

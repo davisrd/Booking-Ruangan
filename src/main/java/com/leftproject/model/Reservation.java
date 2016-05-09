@@ -213,5 +213,27 @@ public class Reservation {
 		this.reservationMemorandumList = reservationMemorandumList;
 	}
 	
+	public Reservation() {
+		super();
+		this.reservationId = null;
+		this.reservationDateStart = null;
+		this.reservationDateEnd = null;
+		this.reservationStatus = false;
+		this.reservationFilePath = null;
+		this.reservationOperationalPrice = 0;
+		this.reservationRejectReason = null;
+		this.eventType = null;
+		this.eventName = null;
+		this.eventScale = null;
+		this.eventTotalParticipant = 0;
+		this.createdDate = null;
+		this.updatedBy = null;
+		this.updatedDate = null;
+		this.user = null;
+		this.room = null;
+		this.reservationDispositionList = null;
+		this.reservationLogList = null;
+		this.reservationMemorandumList = null;
+	}
 	
 }
