@@ -7,14 +7,16 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 	$rootScope.user = {};
 	$rootScope.selectedRent = {};
 	$rootScope.selectedReservation = {};
+	$rootScope.selectedRoom = {};
+	$rootScope.selectedDate = {};
 	$rootScope.rent={};
 	$rootScope.reservation={};
+	
 	$rootScope.popup1 = {
 		opened: false
 	};
 	$rootScope.open1 = function() {
-		$rootScope
-		.popup1.opened = true;
+		$rootScope.popup1.opened = true;
 	};
 	$rootScope.popup2 = {
 		opened: false
@@ -24,7 +26,7 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 	};
 
 	
-	$rootScope.dateFormat = 'dd-MMMM-yyyy';
+	$rootScope.dateFormat = 'dd-MMMM-yyyy HH:mm';
 	$rootScope.eventCategoryName;
 	$rootScope.eventCategoryCode;
 	
@@ -33,6 +35,7 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 		if(newValue == 2) $rootScope.eventCategoryName = 'Non-Bisnis'
 		if(newValue == 3) $rootScope.eventCategoryName = 'Sosial'
 	});
+	
 	$rootScope.user.userId = 'UMRG0001';
 	$rootScope.user.userName = 'Zakiy';
 	$rootScope.user.userRole = 'Peminjam';
@@ -73,78 +76,47 @@ roomReservationControllers.controller('navigationTemplateCtrl',function($scope) 
 	}
   });
 
-roomReservationControllers.controller('ReservationRequestListCtrl', function($scope, $rootScope) {
-	$scope.listOfReservation = [{
-		reservationId: 1,
-		eventUserName: "Himakom",
-		reservationStartDate: "18 April 2016 10:00",
-		reservationEndDate: "18 April 2016 17:00",
-		room: {
-			roomId: 1,
-			roomName: "RSG"
-		},
-		eventName: "Studi Banding",
-		reservationStatus: true
-	},{
-		reservationId: 2,
-		eventUserName: "Himakaps",
-		reservationStartDate: "19 April 2016 10:00",
-		reservationEndDate: "20 April 2016 10:00",
-		room: {
-			roomId: 2,
-			roomName: "Pendopo"
-		},
-		eventName: "Seminar",
-		reservationStatus: true
-	},{
-		reservationId: 3,
-		eventUserName: "Himakom",
-		reservationStartDate: "30 April 2016 08:00",
-		reservationEndDate: "30 April 2016 21:00",
-		room: {
-			roomId: 3,
-			roomName: "Student Center"
-		},
-		eventName: "Pelatihan",
-		reservationStatus: true
-	}];
-
-	$scope.isSelected = false;
+roomReservationControllers.controller('ReservationRequestListCtrl', function($scope, $rootScope, Reservation) {
+	$scope.listOfReservation = Reservation;
+	$rootScope.selectedReservation = {};
+	$scope.isSelected = function(reservation){
+		if($rootScope.selectedReservation == reservation){ 
+			return "selected";
+		}
+		else return '';
+	};
 
 	$scope.selectReservation = function(reservation){
 		$rootScope.selectedReservation = reservation;
-		$scope.isSelected = true;
 	};
-
-	
 });
 
-roomReservationControllers.controller('ReservationRoomSelectionCtrl', function($scope, $rootScope) {
-	$scope.listOfRoom = [{
-		roomId: 1,
-		roomName: "Ruangan Utama Pendopo Agung",
-		roomType: "Umum"
-	},{
-		roomId: 2,
-		roomName: "Student Center",
-		roomType: "Umum"
-	},{
-		roomId: 3,
-		roomName: "GKB",
-		roomType: "Umum"
-	},{
-		roomId: 4,
-		roomName: "Conference Room P2T",
-		roomType: "Umum"
-	},{
-		roomId: 5,
-		roomName: "Conference Room Direktorat",
-		roomType: "Umum"
-	}];
+roomReservationControllers.controller('ReservationRoomSelectionCtrl', function($scope, $rootScope, Room, $location) {
+	$scope.listOfRoom = Room;
 
+	$scope.isSelected = function(room) {
+		if($rootScope.selectedRoom == room) return 'selected';
+		else return '';
+	}
 	$scope.selectRoom = function(room){
 		$rootScope.selectedRoom = room;
 	};
+	
+	$scope.validateData = function(path){
+		if($rootScope.selectedRoom.roomId != undefined){
+			if($rootScope.selectedDate.startDate !=undefined) {
+				if($rootScope.selectedDate.endDate !=undefined) {
+					$location.path(path);
+				} else {
+					alert('Tanggal selesai harus diisi!');
+				}
+			} else {
+				alert('Tanggal mulai harus diisi!');
+			}
+		} else {
+			alert('Ruangan harus dipilih!');
+		}
+	}
 });
 
 
@@ -295,41 +267,8 @@ roomReservationControllers.controller('FormPemPenyewaanCtrl', function($scope, $
 		$rootScope.selectedReservation = reservation;
 	};
 });
-roomReservationControllers.controller('RentRequestListCtrl', function($scope, $rootScope, $uibModal) {
-	$scope.listOfRent = [{
-		rentId: 1,
-		eventUserName: "Himakom",
-		rentStartDate: "18 April 2016 10:00",
-		rentEndDate: "18 April 2016 17:00",
-		room: {
-			roomId: 1,
-			roomName: "RSG"
-		},
-		eventName: "Studi Banding",
-		rentStatus: true
-	},{
-		rentId: 2,
-		eventUserName: "Himakaps",
-		rentStartDate: "19 April 2016 10:00",
-		rentEndDate: "20 April 2016 10:00",
-		room: {
-			roomId: 2,
-			roomName: "Pendopo"
-		},
-		eventName: "Seminar",
-		rentStatus: true
-	},{
-		rentId: 3,
-		eventUserName: "Himakom",
-		rentStartDate: "30 April 2016 08:00",
-		rentEndDate: "30 April 2016 21:00",
-		room: {
-			roomId: 3,
-			roomName: "Student Center"
-		},
-		eventName: "Pelatihan",
-		rentStatus: true
-	}];
+roomReservationControllers.controller('RentRequestListCtrl', function($scope, $rootScope, $uibModal, Rent) {
+	$scope.listOfRent = Rent;
 	
 	$scope.open = function () {
 		var modalInstance = $uibModal.open({
@@ -356,113 +295,24 @@ roomReservationControllers.controller('RentRequestModalCtrl', function($scope, $
 	}
 });
 
-roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, $rootScope) {
-	$scope.listOfRoom = [{
-		roomId: 1,
-		roomName: "Ruangan Utama Pendopo Agung",
-		roomType: "Umum"
-	},{
-		roomId: 2,
-		roomName: "Student Center",
-		roomType: "Umum"
-	},{
-		roomId: 3,
-		roomName: "GKB",
-		roomType: "Umum"
-	},{
-		roomId: 4,
-		roomName: "Conference Room P2T",
-		roomType: "Umum"
-	},{
-		roomId: 5,
-		roomName: "Conference Room Direktorat",
-		roomType: "Umum"
-	}];
+roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, $rootScope, Room) {
+	$scope.listOfRoom = Room;
 	
 	$scope.selectRoom = function(room){
 		$rootScope.selectedRoom = room;
 	};
 });
 
-roomReservationControllers.controller('ReservationRequestApprovalListCtrl', function($scope, $rootScope) {
-	$scope.listOfReservation = [{
-		reservationId: 1,
-		eventUserName: "Himakom",
-		reservationStartDate: "18 April 2016 10:00",
-		reservationEndDate: "18 April 2016 17:00",
-		room: {
-			roomId: 1,
-			roomName: "RSG"
-		},
-		eventName: "Studi Banding",
-		reservationStatus: true
-	},{
-		reservationId: 2,
-		eventUserName: "Himakaps",
-		reservationStartDate: "19 April 2016 10:00",
-		reservationEndDate: "20 April 2016 10:00",
-		room: {
-			roomId: 2,
-			roomName: "Pendopo"
-		},
-		eventName: "Seminar",
-		reservationStatus: true
-	},{
-		reservationId: 3,
-		eventUserName: "Himakom",
-		reservationStartDate: "30 April 2016 08:00",
-		reservationEndDate: "30 April 2016 21:00",
-		room: {
-			roomId: 3,
-			roomName: "Student Center"
-		},
-		eventName: "Pelatihan",
-		reservationStatus: true
-	}];
+roomReservationControllers.controller('ReservationRequestApprovalListCtrl', function($scope, $rootScope, Reservation) {
+	$scope.listOfReservation = Reservation;
 	
 	$scope.selectReservation = function(reservation) {
 		$rootScope.selectedReservation = reservation;
 	}
 });
 
-roomReservationControllers.controller('RentRequestApprovalListCtrl', function($scope, $rootScope) {
-	$scope.listOfRent = [{
-		rentId: 1,
-		eventUserName: "Budi",
-		rentStartDate: "18 April 2016 10:00",
-		rentEndDate: "18 April 2016 17:00",
-		room: {
-			roomId: 1,
-			roomName: "Pendopo"
-		},
-		eventName: "Pernikahan",
-		eventType: "Kegiatan Non-Bisnis",
-		rentStatus: true
-	},{
-		rentId: 2,
-		eventUserName: "Ari",
-		rentStartDate: "19 April 2016 10:00",
-		rentEndDate: "20 April 2016 10:00",
-		room: {
-			roomId: 2,
-			roomName: "Ruang Fotocopy"
-		},
-		eventName: "Jual Beli",
-		eventType: "Bisnis",
-		rentStatus: true
-	},{
-		rentId: 3,
-		eventUserName: "Lisa",
-		rentStartDate: "30 April 2016 08:00",
-		rentEndDate: "30 April 2016 21:00",
-		room: {
-			roomId: 3,
-			roomName: "Student Center"
-		},
-		eventName: "Sosialisasi Narkoba",
-		eventType: "Sosial",
-		rentStatus: true
-	}];
+roomReservationControllers.controller('RentRequestApprovalListCtrl', function($scope, $rootScope, Rent) {
+	$scope.listOfRent = Rent;
 	
 	$scope.selectRent = function(rent) {
 		console.log(rent)

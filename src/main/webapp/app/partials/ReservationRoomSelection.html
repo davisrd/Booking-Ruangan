@@ -1,6 +1,6 @@
 <h1>Pilih Ruangan yang akan dipinjam</h1>
 
-		<table class="table table-hover">
+		<table datatable="ng" class="table">
 			<thead>
 				<tr>
 					<th>No. </th>
@@ -9,7 +9,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="room in listOfRoom">
+				<tr ng-repeat="room in listOfRoom" ng-click="selectRoom(room)" ng-class="isSelected(room)">
 					<td><span ng-bind="room.roomId"></span></td>
 					<td><span ng-bind="room.roomName"></span></td>
 					<td><span ng-bind="room.roomType"></span></td>
@@ -23,7 +23,7 @@
 			</div>
 			<div class="col-md-4">
 				<p class="input-group">
-				  <input type="text" class="form-control" uib-datepicker-popup="{{dateFormat}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+				  <input type="text" class="form-control" uib-datepicker-popup="{{dateFormat}}" ng-model="selectedDate.startDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
 				  <span class="input-group-btn">
 					<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
 				  </span>
@@ -37,7 +37,7 @@
 			</div>
 			<div class="col-md-4">
 				<p class="input-group">
-				  <input type="text" class="form-control" uib-datepicker-popup="{{dateFormat}}" ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+				  <input type="text" class="form-control" uib-datepicker-popup="{{dateFormat}}" ng-model="selectedDate.endDate" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
 				  <span class="input-group-btn">
 					<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
 				  </span>
@@ -49,7 +49,7 @@
 			<div class="col-md-6 col-md-offset-6">
 				<div class="col-md-2"><a href="#/reservationRequestList"><button class="btn btn-default alert alert-danger">Batal</button></a>
 				</div>
-				<div class="col-md-2s"><a href="#/reservationForm"><button class="btn btn-default alert alert-success">OK</button></a>
+				<div class="col-md-2s"><button class="btn btn-default alert alert-success" ng-click="validateData('/reservationForm')">OK</button></a>
 				</div>
 			</div>
 		</div>
