@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-var roomReservationControllers = angular.module('roomReservationControllers', ['ui.bootstrap']);
+var roomReservationControllers = angular.module('roomReservationControllers', ['ui.bootstrap', 'datatables']);
 roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 	$rootScope.user = {};
 	$rootScope.selectedRent = {};
@@ -33,11 +33,7 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 		if(newValue == 2) $rootScope.eventCategoryName = 'Non-Bisnis'
 		if(newValue == 3) $rootScope.eventCategoryName = 'Sosial'
 	});
-<<<<<<< HEAD
-	$rootScope.user.userId = 'UMS0001';
-=======
 	$rootScope.user.userId = 'UMRG0001';
->>>>>>> refs/remotes/origin/master
 	$rootScope.user.userName = 'Zakiy';
 	$rootScope.user.userRole = 'Peminjam';
 	
