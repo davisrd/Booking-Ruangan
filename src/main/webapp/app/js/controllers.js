@@ -333,6 +333,14 @@ roomReservationControllers.controller('ReservationRejectionDetailCtrl', function
 	};
 });
 
+roomReservationControllers.controller('RentRejectionDetailCtrl', function($scope, $rootScope) {
+	$scope.open = function () {
+		$rootScope.message = 'Form sukses disubmit';
+		$rootScope.nextPath = '/rentRequestApprovalList';
+		$rootScope.openMessage('MessageModalCtrl');
+	};
+});
+
 roomReservationControllers.controller('ReservationApprovalDetailCtrl', function($scope, $rootScope) {
 	$scope.openApproveEvent = function () {
 		$rootScope.message = 'Peminjaman Diizinkan';
