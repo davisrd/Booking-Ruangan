@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.websystique.springmvc.model.*;
+import com.leftproject.model.*;
 import com.websystique.springmvc.service.*;
 
 @Controller
@@ -29,7 +30,11 @@ public class AppController {
 	@Autowired
 	RuanganService ruanganService;
 	@Autowired
-	RoomService facilityService;
+	RoomService roomService;
+	@Autowired
+	ScheduleService scheduleService;
+	@Autowired
+	ReservationService reservationService;
 	
 	@Autowired
 	MessageSource messageSource;
@@ -49,17 +54,31 @@ public class AppController {
 		return "RuanganManagement";
 	}
 	
-	//-------------------Retrieve All facility--------------------------------------------------------
-   /* 
-    @RequestMapping(value = "/facility", method = RequestMethod.GET)
-    public ResponseEntity<List<Facility>> listAllFacility() {
-        List<Facility> facility = facilityService.getRoomList();
-        if(facility.isEmpty()){
-            return new ResponseEntity<List<Facility>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+	
+	//-------------------Retrieve All Room--------------------------------------------------------
+    
+    @RequestMapping(value = "/room", method = RequestMethod.GET)
+    public ResponseEntity<List<Room>> getAllRoom() {
+        List<Room> rooms = roomService.getRoomList();
+        if(rooms.isEmpty()){
+            return new ResponseEntity<List<Room>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }
-        return new ResponseEntity<List<Facility>>(facility, HttpStatus.OK);
+        return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
     }
-	*/
+    
+    
+    
+    //-------------------Get Room Status----------------------------------------------------------
+    // If no schedule, status = 0
+    // If akademik/rent, status = 1
+    // If non-akademik, status = 2
+    @RequestMapping(value = "/roomStatus", method = RequestMethod.GET)
+    public ResponseEntity<Integer> getRoomStatus(@RequestBody Schedule schedule)
+    {
+    	return new ResponseEntity<Integer>(scheduleService.roomStatus(schedule.getIdRoom(), schedule.getDateStart(), schedule.getDateEnd()), HttpStatus.OK);
+    }
+    
+	
 	//-------------------Retrieve All peminjams--------------------------------------------------------
     
     @RequestMapping(value = "/peminjam", method = RequestMethod.GET)
@@ -132,6 +151,16 @@ public class AppController {
             return new ResponseEntity<Ruangan>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Ruangan>(employee, HttpStatus.OK);
+    }
+    
+    //-------------------Save a Reservation-------------------------------------------------------
+    @RequestMapping(value = "/reservation", method = RequestMethod.POST)
+    public ResponseEntity<Void> saveReservation(@RequestBody Reservation reservation, UriComponentsBuilder ucBuilder)
+    {
+    	reservationService.saveReservation(reservation);
+    	HttpHeaders headers = new HttpHeaders();
+    	headers.setLocation(ucBuilder.path("/reservation/{id}").buildAndExpand(reservation.getReservationId()).toUri());
+    	return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
      
     //-------------------Create a Peminjam--------------------------------------------------------
