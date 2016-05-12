@@ -28,11 +28,11 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 		return (List<Reservation>) criteria.list();
 	}
 	
-	public Reservation getReservationByRoomId(String roomId){
+/*	public Reservation getReservationByRoomId(String roomId){
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("ROOMID", roomId));
 		return ((List<Reservation>) criteria.list()).get(0);
-	}
+	}*/
 	
 	public Reservation getReservation(String reservationId){
 		return getByKey(reservationId);
