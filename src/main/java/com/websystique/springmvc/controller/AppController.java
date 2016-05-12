@@ -29,7 +29,7 @@ public class AppController {
 	@Autowired
 	RuanganService ruanganService;
 	@Autowired
-	FacilityService facilityService;
+	RoomService facilityService;
 	
 	@Autowired
 	MessageSource messageSource;
@@ -50,16 +50,16 @@ public class AppController {
 	}
 	
 	//-------------------Retrieve All facility--------------------------------------------------------
-    
+   /* 
     @RequestMapping(value = "/facility", method = RequestMethod.GET)
     public ResponseEntity<List<Facility>> listAllFacility() {
-        List<Facility> facility = facilityService.getFacilityList();
+        List<Facility> facility = facilityService.getRoomList();
         if(facility.isEmpty()){
             return new ResponseEntity<List<Facility>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }
         return new ResponseEntity<List<Facility>>(facility, HttpStatus.OK);
     }
-	
+	*/
 	//-------------------Retrieve All peminjams--------------------------------------------------------
     
     @RequestMapping(value = "/peminjam", method = RequestMethod.GET)
