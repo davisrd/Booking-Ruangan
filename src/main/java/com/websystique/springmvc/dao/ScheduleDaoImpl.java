@@ -20,7 +20,7 @@ public class ScheduleDaoImpl extends AbstractDao<Integer, Schedule> implements S
 				return 0;
 			}
 			else if(listSchedule.get(0).getIdRoomUsage().substring(0, 1)=="RS"){
-				Reservation reservation = dao.getReservation(roomId);
+				Reservation reservation = dao.getReservationByRoomId(roomId);
 				if(reservation.getEventType().toUpperCase()=="AKADEMIK") return 1;
 			}
 			else if(listSchedule.get(0).getIdRoomUsage().substring(0, 1)=="RE") return 1;
