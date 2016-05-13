@@ -72,6 +72,10 @@ roomReservationApp.config(['$routeProvider',
         templateUrl: 'partials/ReservationApprovalDetail.html',
         controller: 'ReservationApprovalDetailCtrl'
     }).
+    when('/rentRejectionDetail', {
+        templateUrl: 'partials/RentRejectionDetail.html',
+        controller: 'RentRejectionDetailCtrl'
+    }).
     when('/rentApprovalDetail', {
         templateUrl: 'partials/RentApprovalDetail.html',
         controller: 'RentApprovalDetailCtrl'
