@@ -39,7 +39,7 @@
 	    		<h4>Sistem Pengajuan <br> Peminjaman Ruangan <br>Politeknik Negeri Bandung</h4>
 			</div>	
 	    </div>
-	    <div class="col-md-6 text-right">
+	    <div class="col-md-6 text-right" ng-show="user.userName != undefined">
         		<a href="#" class="btn btn-secondary btn-lg">
           		<span class="glyphicon glyphicon-user"></span> Hello, {{user.userName}}
         		</a>
@@ -49,8 +49,8 @@
     <!--<hr size="100">-->
     </div>
 
-	<div class="row" >
-	    <div id="nav" class="col-md-2" >
+	<div class="row">
+	    <div id="nav" class="col-md-2" ng-show="user.userName != undefined">
 			<div ng-include src="'partials/navigationTemplate.html'"></div>
 		</div>
 		<div class="col-md-9" >

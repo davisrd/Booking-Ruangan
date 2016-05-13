@@ -37,7 +37,7 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 	});
 	
 	$rootScope.user.userId = 'UMRG0001';
-	$rootScope.user.userName = 'Zakiy';
+	// $rootScope.user.userName = 'Zakiy';
 	$rootScope.user.userRole = 'Peminjam';
 	
 	$rootScope.message = '';
@@ -53,6 +53,20 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 	
 	$rootScope.goTo = function(path) {
 		$location.path(path);
+	}
+})
+.controller('DashboardCtrl', function($rootScope){
+	if($rootScope.user.userName == undefined){
+		console.log($rootScope.user.username);
+		$rootScope.goTo('/login');
+	}
+})
+.controller('LoginCtrl', function($rootScope, $scope){
+	$scope.userLogin = {};
+	$scope.login = function(){
+		$rootScope.user.userName = $scope.userLogin.username;
+		$rootScope.user.password = $scope.userLogin.password;
+		$rootScope.goTo('/dashboard');
 	}
 });
 

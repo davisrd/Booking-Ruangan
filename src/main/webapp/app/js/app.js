@@ -14,7 +14,12 @@ roomReservationApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/dashboard', {
-        templateUrl: 'partials/dashboard.html'
+        templateUrl: 'partials/Dashboard.html',
+        controller: 'DashboardCtrl'
+      }).
+      when('/login', {
+        templateUrl: 'partials/Login.html',
+        controller: 'LoginCtrl'
       }).
       when('/reservationForm', {
         templateUrl: 'partials/ReservationForm.html',
