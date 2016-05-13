@@ -106,6 +106,8 @@ roomReservationControllers.controller('ReservationRoomSelectionCtrl', function($
 		if($rootScope.selectedRoom.roomId != undefined){
 			if($rootScope.selectedDate.startDate !=undefined) {
 				if($rootScope.selectedDate.endDate !=undefined) {
+					$rootScope.selectedDate.startDate = moment($rootScope.selectedDate.startDate).format("DD-MMM-YYYY");
+					$rootScope.selectedDate.endDate = moment($rootScope.selectedDate.endDate).format("DD-MMM-YYYY");
 					$location.path(path);
 				} else {
 					alert('Tanggal selesai harus diisi!');
