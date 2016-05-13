@@ -8,7 +8,8 @@ public interface ReservationDao {
 //	Reservation findById(int nip);
 
 	void saveReservation(Reservation reservation);
-	Reservation getReservation(String roomId);
+	/*Reservation getReservationByRoomId(String roomId);*/
+	Reservation getReservation(String reservationId);
 	void deleteReservationById(int id);
 	List<Reservation> getProposedReservation();
 	

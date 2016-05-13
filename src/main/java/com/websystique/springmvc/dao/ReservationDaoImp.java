@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.leftproject.model.Reservation;
 
-@Repository("PeminjamanDao")
+@Repository("ReservationDao")
 public class ReservationDaoImp extends AbstractDao<Integer, Reservation> implements ReservationDao {
 
 	public void saveReservation(Reservation employee) {
@@ -28,8 +28,14 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 		return (List<Reservation>) criteria.list();
 	}
 	
-	public Reservation getReservation(String roomId){
-		return getByKey(roomId);
+/*	public Reservation getReservationByRoomId(String roomId){
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("ROOMID", roomId));
+		return ((List<Reservation>) criteria.list()).get(0);
+	}*/
+	
+	public Reservation getReservation(String reservationId){
+		return getByKey(reservationId);
 	}
 	/*	@SuppressWarnings("unchecked")
 	public List<Reservation> findAllPeminjamans() {

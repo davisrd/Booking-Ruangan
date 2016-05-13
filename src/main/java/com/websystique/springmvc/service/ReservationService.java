@@ -15,5 +15,6 @@ public interface ReservationService {
 //	List<Reservation> findAllReservations(); 
 
 	//boolean isEmployeeSsnUnique(Integer id, String ssn);
+	Reservation getReservation(String reservationId);
 	List<Reservation> getProposedReservation();
 }

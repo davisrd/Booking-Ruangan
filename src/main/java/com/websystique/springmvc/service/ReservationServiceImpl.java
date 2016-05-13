@@ -45,4 +45,7 @@ public class ReservationServiceImpl implements ReservationService {
 	public List<Reservation> getProposedReservation(){
 		return dao.getProposedReservation();
 	}
+	public Reservation getReservation(String reservationId){
+		return dao.getReservation(reservationId);
+	}
 }
