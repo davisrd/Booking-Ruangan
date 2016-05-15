@@ -1,6 +1,9 @@
-<h1>Pilih Ruangan yang akan dipinjam</h1>
-
-		<table datatable="ng" class="table">
+<div class="panel panel-default" id="pan">
+	<div class="panel-heading" id="pan-head">
+    	<p class="panel-title" id="pan-title">Pilih Ruangan yang akan dipinjam</p>
+  	</div>
+  	<div class="panel-body" id="pan-body">
+  		<table datatable="ng" class="table">
 			<thead>
 				<tr>
 					<th>No. </th>
@@ -14,7 +17,7 @@
 					<td><span ng-bind="room.roomName"></span></td>
 					<td><span ng-bind="room.roomType"></span></td>
 				</tr>
-			</tbody>
+				</tbody>
 		</table>
 
 		<div class="row">
@@ -23,10 +26,10 @@
 			</div>
 			<div class="col-md-4">
 				<p class="input-group">
-				  <input type="text" class="form-control" uib-datepicker-popup="{{dateFormat}}" ng-model="selectedDate.startDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-				  <span class="input-group-btn">
-					<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-				  </span>
+					<input type="text" class="form-control" uib-datepicker-popup="{{dateFormat}}" ng-model="selectedDate.startDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+					</span>
 				</p>
 			</div>
 		</div>
@@ -43,13 +46,31 @@
 				  </span>
 				</p>
 			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-6 col-md-offset-9">
-				<div class="col-md-2"><a href="#/reservationRequestList"><button type="button" class="btn btn-danger btn-md">Batal</button></a>
-				</div>
-				<div class="col-md-2s"><button type="button" class="btn btn-success btn-md" ng-click="validateData('/reservationForm')">Lanjut</button></a>
-				</div>
+			<div class="input-group clockpicker1 col-md-2" data-placement="top" data-align="bottom" data-autoclose="true">
+			    <input type="text" class="form-control" value="13:14"/>
+			    <span class="input-group-addon" ng-click="open3()">
+				    <span class="glyphicon glyphicon-time"></span>
+				</span>
 			</div>
 		</div>
+
+		<br><br>
+
+		<div class="row">
+			<div class="col-md-4 col-md-offset-10">
+				<a href="#/reservationRequestList"><button type="button" class="btn btn-danger btn-md">Batal</button></a>
+				<a href="#/reservationForm"><button type="button" class="btn btn-success btn-md" ng-click="validateData('/reservationForm')">Lanjut</button></a>
+			</div>
+		</div>
+
+		<br><br>
+	</div>
+</div>
+ 
+   
+
+		
+
+<script type="text/javascript">
+ $('.clockpicker1').clockpicker()
+ </script>
