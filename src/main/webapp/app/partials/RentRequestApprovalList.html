@@ -1,29 +1,34 @@
-<h1>Daftar Pengajuan Penyewaan yang Belum Diproses</h1>
-
-<table datatable="ng" class="table">
-	<thead>
-		<tr>
-			<th>No. </th>
-			<th>Nama Penyewa</th>
-			<th>Tanggal Mulai</th>
-			<th>Tanggal Selesai</th>
-			<th>Tempat</th>
-			<th>Judul Kegiatan</th>
-			<th>Jenis Kegiatan</th>
-			<th>Status</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat="rent in listOfRent" ng-click="selectRent(rent)" ng-class="{selected: rent.rentId == selectedRent.rentId}">
-			<td><span ng-bind="rent.rentId"></span></td>
-			<td><span ng-bind="rent.eventUserName"></span></td>
-			<td><span ng-bind="rent.rentStartDate"></span></td>
-			<td><span ng-bind="rent.rentEndDate"></span></td>
-			<td><span ng-bind="rent.room.roomName"></span></td>
-			<td><span ng-bind="rent.eventName"></span></td>
-			<td><span ng-bind="rent.eventType"></span></td>
-			<td><span ng-bind="rent.rentStatus"></span></td>
-		</tr>
-	</tbody>
-</table>
-<a href="#/rentApprovalDetail"><button class="btn btn-primary">Lihat Detail</button></a>
+<div class="panel panel-default" id="pan">
+  <div class="panel-heading" id="pan-head">
+    <p class="panel-title" id="pan-title">Daftar Pengajuan Penyewaan yang Belum Diproses</p>
+  </div>
+  <div class="panel-body" id="pan-body">
+  	<table datatable="ng" class="table">
+		<thead>
+			<tr>
+				<th>No. </th>
+				<th>Nama Penyewa</th>
+				<th>Tanggal Mulai</th>
+				<th>Tanggal Selesai</th>
+				<th>Tempat</th>
+				<th>Judul Kegiatan</th>
+				<th>Jenis Kegiatan</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="rent in listOfRent" ng-click="selectRent(rent)" ng-class="{selected: rent.rentId == selectedRent.rentId}">
+				<td><span ng-bind="rent.rentId"></span></td>
+				<td><span ng-bind="rent.eventUserName"></span></td>
+				<td><span ng-bind="rent.rentStartDate"></span></td>
+				<td><span ng-bind="rent.rentEndDate"></span></td>
+				<td><span ng-bind="rent.room.roomName"></span></td>
+				<td><span ng-bind="rent.eventName"></span></td>
+				<td><span ng-bind="rent.eventType"></span></td>
+				<td><span ng-bind="rent.rentStatus"></span></td>
+			</tr>
+		</tbody>
+	</table>
+	<a href="#/rentApprovalDetail"><button class="btn btn-primary">Lihat Detail</button></a>
+	  </div>
+</div>

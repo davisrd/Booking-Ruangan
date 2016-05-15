@@ -1,83 +1,91 @@
-<h1>Rincian Penyewaan</h1>
-
-<form class="form-horizontal" role="form" ng-submit="openModal('sm',pengajuan)">
-    <div class="form-group">
-      <label class=" col-md-2" style="text-align:left" for="namaPeminjam">Nama Penyewa</label>
-      <div class="col-md-4">
-        {{rent.eventUserName}}               
+<div class="panel panel-default" id="pan">
+  <div class="panel-heading" id="pan-head">
+    <p class="panel-title" id="pan-title">Rincian Penyewaan </p>
+  </div>
+  <div class="panel-body" id="pan-body">
+    <form class="form-horizontal" role="form" ng-submit="openModal('sm',pengajuan)">
+      <div class="form-group">
+        <label class=" col-md-2" style="text-align:left" for="namaPeminjam">Nama Penyewa</label>
+        <div class="col-md-4">
+          {{rent.eventUserName}}               
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class=" col-md-2" style="text-align:left" for="tanggalMulai">Tanggal Mulai</label>
-      <div class="col-md-4">
-        {{rent.rentStartDate}}             
+      <div class="form-group">
+        <label class=" col-md-2" style="text-align:left" for="tanggalMulai">Tanggal Mulai</label>
+        <div class="col-md-4">
+          {{rent.rentStartDate}}             
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class=" col-md-2" style="text-align:left" for="tanggalSelesai">Tanggal Selesai</label>
-      <div class="col-md-4">
-        {{rent.rentEndDate}}               
+      <div class="form-group">
+        <label class=" col-md-2" style="text-align:left" for="tanggalSelesai">Tanggal Selesai</label>
+        <div class="col-md-4">
+          {{rent.rentEndDate}}               
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class=" col-md-2" style="text-align:left" for="namaKegiatan">Nama Kegiatan</label>
-      <div class="col-md-4">
-        {{rent.eventName}}                        
+      <div class="form-group">
+        <label class=" col-md-2" style="text-align:left" for="namaKegiatan">Nama Kegiatan</label>
+        <div class="col-md-4">
+          {{rent.eventName}}                        
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class=" col-md-2" style="text-align:left" for="jenisKegiatan">Jenis Kegiatan</label>
-      <div class="col-md-4">
-        {{rent.eventType}}              
+      <div class="form-group">
+        <label class=" col-md-2" style="text-align:left" for="jenisKegiatan">Jenis Kegiatan</label>
+        <div class="col-md-4">
+          {{rent.eventType}}              
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class=" col-md-2" style="text-align:left" for="namaRuangan">Nama Ruangan</label>
-      <div class="col-md-4">
-        {{rent.room.roomName}}               
+      <div class="form-group">
+        <label class=" col-md-2" style="text-align:left" for="namaRuangan">Nama Ruangan</label>
+        <div class="col-md-4">
+          {{rent.room.roomName}}               
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class=" col-md-2" style="text-align:left" for="statusPeminjaman">Status Peminjaman</label>
-      <div class="col-md-4">
-        {{rent.rentStatus}}              
+      <div class="form-group">
+        <label class=" col-md-2" style="text-align:left" for="statusPeminjaman">Status Peminjaman</label>
+        <div class="col-md-4">
+          {{rent.rentStatus}}              
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class=" col-md-2" style="text-align:left" for="statusPeminjaman">Total Biaya</label>
-      <div class="col-md-4">
-        {{rent.rentPrice}}              
+      <div class="form-group">
+        <label class=" col-md-2" style="text-align:left" for="statusPeminjaman">Total Biaya</label>
+        <div class="col-md-4">
+          {{rent.rentPrice}}              
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class=" col-md-2" style="text-align:left" for="lampiranSuratIzinKegiatan">Lampiran Surat Izin Kegiatan</label>
-      <div class="col-md-4">
-        <p class="input-group">
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click = "open2()" ><i class="glyphicon glyphicon-floppy-disk" ></i></button>
-          </span>
-        </p>
-        <label><a href="#" target="_blank">Lampiran.docx</a></label>             
+      <div class="form-group">
+        <label class=" col-md-2" style="text-align:left" for="lampiranSuratIzinKegiatan">Lampiran Surat Izin Kegiatan</label>
+        <div class="col-md-4">
+          <p class="input-group">
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click = "open2()" ><i class="glyphicon glyphicon-floppy-disk" ></i></button>
+            </span>
+          </p>
+          <label><a href="#" target="_blank">Lampiran.docx</a></label>             
+        </div>
       </div>
-    </div>
 
-    
+      
 
 
-    <br>
-    <div class="form-group">
-      <div class="col-md-offset-1 col-md-7">
-        <button type="reset" class="btn btn-default alert alert-danger">Kembali</button>
-        <button type="reset" class="btn btn-default alert alert-danger">Batalkan Peminjaman</button>
-        <button type="submit" class="btn btn-default alert alert-success">Pindah Jadwal / Tempat</button>
+      <br>
+      <div class="form-group">
+        <div class="col-md-offset-4 col-md-7">
+          <a href="#/rentRequestList"><button type="reset" class="btn btn-danger">Kembali</button>
+          <button type="reset" class="btn btn-danger">Batalkan Peminjaman</button>
+          <button type="submit" class="btn btn-success">Pindah Jadwal / Tempat</button>
+        </div>
       </div>
-    </div>
-</form>
+    </form>
+  </div>
+</div>
+
+
+

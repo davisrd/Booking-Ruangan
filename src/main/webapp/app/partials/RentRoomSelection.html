@@ -1,6 +1,11 @@
-<h1>Kategori Penyewaan: {{eventCategoryName}}</h1>
-<br></br>
-<h1>Pilih Ruangan yang akan disewa</h1>
+<div class="panel panel-default" id="pan">
+  <div class="panel-heading" id="pan-head">
+    <p class="panel-title" id="pan-title">Kategori Penyewaan: {{eventCategoryName}} </p>
+  </div>
+  <div class="panel-body" id="pan-body">
+  	<h2>Pilih Ruangan yang akan disewa </h2>
+  	<br></br>
+
 		
 		<table datatable="ng" class="table">
 			<thead>
@@ -46,12 +51,13 @@
 				</p>
 			</div>
 		</div>
-
+		<br><br>
 		<div class="row">
-			<div class="col-md-1 col-md-offset-6">
-				<a href="#/rentList"><button class="btn btn-default alert alert-danger">Batal</button></a>
-			</div>
-			<div class="col-md-3">
-				<a href="#/rentForm"><button class="btn btn-default alert alert-success">Ok</button></a>
+			<div class="col-md-3 col-md-offset-10">
+				<a href="#/rentRequestList"><button class="btn btn-danger">Batal</button></a>
+				<a href="#/rentForm"><button class="btn btn-success">Lanjut</button></a>
 			</div>
 		</div>
+		<br><br>
+  </div>
+ </div>

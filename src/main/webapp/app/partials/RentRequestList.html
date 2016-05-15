@@ -1,36 +1,38 @@
-<div>
-			<h1>Daftar Pengajuan Penyewaan</h1>
+<div class="panel panel-default" id="pan">
+  <div class="panel-heading" id="pan-head">
+    <p class="panel-title" id="pan-title">Daftar Pengajuan Penyewaan</p>
+  </div>
+  <div class="panel-body" id="pan-body">
+  	<div class="col-md-4">
+		<button class="btn btn-primary" ng-click="open()">Ajukan Penyewaan</button>
+		<a href="#/rentDetail"><button class="btn btn-primary">Lihat Detail</button></a>
+	</div>
 			
-			<div class="col-md-2">
-				<button class="btn btn-primary" ng-click="open()">Ajukan Penyewaan</button>
-			</div>
-			<div class="col-md-2">
-					<a href="#/rentDetail"><button class="btn btn-primary">Lihat Detail</button></a>
-			</div>
-			<table datatable="ng" class="table">
-				<thead>
-					<tr>
-						<th>No. </th>
-						<th>Nama Penyewa</th>
-						<th>Tanggal Mulai</th>
-						<th>Tanggal Selesai</th>
-						<th>Tempat</th>
-						<th>Judul Kegiatan</th>
-						<th>Total Biaya</th>
-						<th>Status</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="rent in listOfRent" ng-click="selectRent(rent)" ng-class="{selected: rent.rentId == selectedRent.rentId}">
-						<td><span ng-bind="rent.rentId"></span></td>
-						<td><span ng-bind="rent.eventUserName"></span></td>
-						<td><span ng-bind="rent.rentStartDate"></span></td>
-						<td><span ng-bind="rent.rentEndDate"></span></td>
-						<td><span ng-bind="rent.facility.facilityName"></span></td>
-						<td><span ng-bind="rent.eventName"></span></td>
-						<td><span ng-bind="rent.rentPrice"></span></td>
-						<td><span ng-bind="rent.rentStatus"></span></td>
-					</tr>
-				</tbody>
-			</table>
+	<table datatable="ng" class="table">
+		<thead>
+			<tr>
+				<th>No. </th>
+				<th>Nama Penyewa</th>
+				<th>Tanggal Mulai</th>
+				<th>Tanggal Selesai</th>
+				<th>Tempat</th>
+				<th>Judul Kegiatan</th>
+				<th>Total Biaya</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="rent in listOfRent" ng-click="selectRent(rent)" ng-class="{selected: rent.rentId == selectedRent.rentId}">
+				<td><span ng-bind="rent.rentId"></span></td>
+				<td><span ng-bind="rent.eventUserName"></span></td>
+				<td><span ng-bind="rent.rentStartDate"></span></td>
+				<td><span ng-bind="rent.rentEndDate"></span></td>
+				<td><span ng-bind="rent.facility.facilityName"></span></td>
+				<td><span ng-bind="rent.eventName"></span></td>
+				<td><span ng-bind="rent.rentPrice"></span></td>
+				<td><span ng-bind="rent.rentStatus"></span></td>
+			</tr>
+		</tbody>
+	</table>
+  </div>
 </div>
