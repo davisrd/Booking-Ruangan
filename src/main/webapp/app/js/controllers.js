@@ -24,11 +24,6 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 	$rootScope.open2 = function() {
 		$rootScope.popup2.opened = true;
 	};
-
-	$rootScope.open3 = function() {
-		
-		open3.clockpicker('show')
-	};
 		
 	$rootScope.dateFormat = 'dd-MMMM-yyyy HH:mm';
 	$rootScope.eventCategoryName;
