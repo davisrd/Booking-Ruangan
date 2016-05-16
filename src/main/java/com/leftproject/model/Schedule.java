@@ -14,7 +14,6 @@ import javax.validation.constraints.Size;
 public class Schedule {
 	
 	@Id
-    @GeneratedValue
     @Column(name="ID_SCHEDULE")
 	@Size(max = 10)
     private String idSchedule;

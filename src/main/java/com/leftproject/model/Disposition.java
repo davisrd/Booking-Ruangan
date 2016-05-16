@@ -16,7 +16,6 @@ import javax.persistence.InheritanceType;
 public class Disposition {
     
 	@Id
-    @GeneratedValue
     @Column(name="DISPOSITION_ID")
 	private String dispositionId;
 

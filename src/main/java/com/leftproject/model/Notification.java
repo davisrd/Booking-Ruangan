@@ -4,13 +4,16 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="NOTIFICATION")
 public class Notification {
-    
-    @Column(name="NOTIFICATION_ID")
+	@Id
+    @Column(name="NOTIFICATION_ID", nullable = false)
 	private String notificationId;
     
     @Column(name="NOTIFICATION_RECEIVER")

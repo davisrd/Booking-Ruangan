@@ -3,12 +3,18 @@ package com.leftproject.model;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="RENT_LOG")
 public class RentLog {
-    
+	@Id
+	@Column(name = "RENT_ID", nullable = false)
+	private int rentId;
+	
     @Column(name="RENT_DATE_START")
 	private Date rentDateStart;
     
@@ -49,6 +55,20 @@ public class RentLog {
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
 	}
+
+    
+    
+	public int getRentId() {
+		return rentId;
+	}
+
+
+
+	public void setRentId(int rentId) {
+		this.rentId = rentId;
+	}
+
+
 
 	public Date getRentDateStart() {
 		return rentDateStart;

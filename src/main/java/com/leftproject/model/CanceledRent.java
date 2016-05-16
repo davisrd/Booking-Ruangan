@@ -6,6 +6,10 @@ import javax.persistence.Column;
 @Entity
 @Table(name="CANCELED_RENT")
 public class CanceledRent {
+	@Id
+	@Column(name = "ID_RENT", nullable = false)
+	private int id;
+	
     @Column(name="CANCELED_RENT_REASON")
 	private String canceledRentReason;
 

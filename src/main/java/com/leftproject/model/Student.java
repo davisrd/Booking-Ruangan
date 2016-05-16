@@ -11,11 +11,10 @@ import javax.persistence.Table;
 public class Student {
  
     @Id
-    @GeneratedValue
-    @Column(name="STUDENT FACULTY")
+    @Column(name="STUDENT_FACULTY")
     private String StudentFac;
      
-    @Column(name="STUDENT MAJOR")
+    @Column(name="STUDENT_MAJOR")
     private String StudentMaj;
      
   

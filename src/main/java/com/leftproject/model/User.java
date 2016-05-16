@@ -11,17 +11,16 @@ import javax.persistence.Table;
 public class User {
  
     @Id
-    @GeneratedValue
-    @Column(name="USER ID")
+    @Column(name="USER_ID")
     private String userId;
      
-    @Column(name="USER NAME")
+    @Column(name="USER_NAME")
     private String userName;
      
-    @Column(name="USER PASSWORD")
+    @Column(name="USER_PASSWORD")
     private String userPassword;
      
-    @Column(name="USER TYPE")
+    @Column(name="USER_TYPE")
     private int userType;
      
     public User(){}

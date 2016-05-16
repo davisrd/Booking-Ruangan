@@ -4,12 +4,19 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="RESERVATION_LOG")
 public class ReservationLog {
     
+	@Id
+	@Column(name = "RESERVATION_ID", nullable = false)
+	private int reservationId;
+	
     @Column(name="RESERVATION_DATE_START")
 	private Date rentDateStart;
     
@@ -46,6 +53,20 @@ public class ReservationLog {
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
 	}
+	
+	
+
+	public int getReservationId() {
+		return reservationId;
+	}
+
+
+
+	public void setReservationId(int reservationId) {
+		this.reservationId = reservationId;
+	}
+
+
 
 	public Date getRentDateStart() {
 		return rentDateStart;

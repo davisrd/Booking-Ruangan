@@ -11,8 +11,7 @@ import javax.persistence.Table;
 public class ExternalUser {
  
     @Id
-    @GeneratedValue
-    @Column(name="ORGANIZATION TYPE")
+    @Column(name="ORGANIZATION_TYPE")
     private String OrgType;
      
      

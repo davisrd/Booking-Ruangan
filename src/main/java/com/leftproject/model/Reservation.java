@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,7 +21,6 @@ import com.leftproject.model.Notification;
 @Table(name="RESERVATION")
 public class Reservation {
     @Id
-    @GeneratedValue
     @Column(name="RESERVATION_ID")
 	private String reservationId;
     
@@ -64,23 +64,21 @@ public class Reservation {
 	private Date updatedDate;
 
  
-         
-	private User user;
+    @Column(name="USER_ID")
+	private String userId;
 	
-	@OneToMany(fetch=FetchType.LAZY)
-	@JoinColumn(name = "facility_id")
+	@Autowired
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name = "room_id")
 	private Room room;
 	
-	private Set<ReservationDisposition> reservationDispositionList;
-	private Set<ReservationLog> reservationLogList;
-	private Set<ReservationMemorandum> reservationMemorandumList;
 	
 	
 	
 	public Reservation(String reservationId, Date reservationDateStart, Date reservationDateEnd,
 			boolean reservationStatus, String reservationFilePath, long reservationOperationalPrice,
 			String reservationRejectReason, String eventType, String eventName, String eventScale,
-			int eventTotalParticipant, Date createdDate, String updatedBy, Date updatedDate, User user,
+			int eventTotalParticipant, Date createdDate, String updatedBy, Date updatedDate, String user,
 			Room room, Set<ReservationDisposition> reservationDispositionList,
 			Set<ReservationLog> reservationLogList, Set<ReservationMemorandum> reservationMemorandumList) {
 		super();
@@ -98,11 +96,8 @@ public class Reservation {
 		this.createdDate = createdDate;
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
-		this.user = user;
+		this.userId = user;
 		this.room = room;
-		this.reservationDispositionList = reservationDispositionList;
-		this.reservationLogList = reservationLogList;
-		this.reservationMemorandumList = reservationMemorandumList;
 	}
 	//Getter dan Setter
 		
@@ -192,11 +187,11 @@ public class Reservation {
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
 	}
-	public User getUser() {
-		return user;
+	public String getUserId() {
+		return userId;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(String user) {
+		this.userId = user;
 	}
 	public Room getRoom() {
 		return room;
@@ -204,24 +199,7 @@ public class Reservation {
 	public void setRoom(Room room) {
 		this.room = room;
 	}
-	public Set<ReservationDisposition> getReservationDispositionList() {
-		return reservationDispositionList;
-	}
-	public void setReservationDispositionList(Set<ReservationDisposition> reservationDispositionList) {
-		this.reservationDispositionList = reservationDispositionList;
-	}
-	public Set<ReservationLog> getReservationLogList() {
-		return reservationLogList;
-	}
-	public void setReservationLogList(Set<ReservationLog> reservationLogList) {
-		this.reservationLogList = reservationLogList;
-	}
-	public Set<ReservationMemorandum> getReservationMemorandumList() {
-		return reservationMemorandumList;
-	}
-	public void setReservationMemorandumList(Set<ReservationMemorandum> reservationMemorandumList) {
-		this.reservationMemorandumList = reservationMemorandumList;
-	}
+
 	
 	public Reservation() {
 		super();
@@ -239,11 +217,8 @@ public class Reservation {
 		this.createdDate = null;
 		this.updatedBy = null;
 		this.updatedDate = null;
-		this.user = null;
+		this.userId = null;
 		this.room = null;
-		this.reservationDispositionList = null;
-		this.reservationLogList = null;
-		this.reservationMemorandumList = null;
 	}
 	
 }

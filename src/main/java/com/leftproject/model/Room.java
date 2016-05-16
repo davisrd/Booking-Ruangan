@@ -15,8 +15,7 @@ import javax.persistence.Table;
 public class Room {
  
     @Id
-    @GeneratedValue
-    @Column(name="room_id")
+    @Column(name="room_id", nullable = false)
     private String roomId;
      
     @Column(name="room_name")

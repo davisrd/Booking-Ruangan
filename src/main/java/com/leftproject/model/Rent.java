@@ -5,15 +5,19 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name="RENT")
 public class Rent {
     @Id
-    @GeneratedValue
     @Column(name="RENT_ID")
 	private String rentId;
 
@@ -56,16 +60,17 @@ public class Rent {
     @Column(name="UPDATED_DATE")
 	private Date updatedDate;
 
-	private User user;
+    @Column(name="USER_ID")
+	private String userId;
 	
+	@Autowired
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name = "room_id")
 	private Room room;
 	
 //	@OneToMany(mappedBy="department")
 //    @JoinColumn(name="department_id")
 //    @IndexColumn(name="idx")
-    private Set<RentDisposition> rentDispositionList;
-	private Set<RentLog> rentLogList;
-	private Set<RentMemorandum> rentMemorandumList;
 	
 	
 }

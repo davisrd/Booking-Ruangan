@@ -15,7 +15,6 @@ import javax.persistence.Table;
 public class RoomManager {
  
     @Id
-    @GeneratedValue
     @Column(name="user_id")
     private String userId;
     

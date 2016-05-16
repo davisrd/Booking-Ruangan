@@ -11,7 +11,6 @@ import javax.persistence.Table;
 public class Management {
  
     @Id
-    @GeneratedValue
     @Column(name="management_position")
     private String managementPosition;
      
