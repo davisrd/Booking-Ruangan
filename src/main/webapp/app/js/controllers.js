@@ -106,6 +106,7 @@ roomReservationControllers.controller('ReservationRequestListCtrl', function($sc
 
 roomReservationControllers.controller('ReservationRoomSelectionCtrl', function($scope, $rootScope, Room, $location) {
 	$scope.listOfRoom = Room.query();
+	$('.clockpicker1').clockpicker()
 
 	$scope.isSelected = function(room) {
 		if($rootScope.selectedRoom == room) return 'selected';
@@ -311,7 +312,7 @@ roomReservationControllers.controller('RentRequestModalCtrl', function($scope, $
 });
 
 roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, $rootScope, Room) {
-	$scope.listOfRoom = Room;
+	$scope.listOfRoom = Room.query();
 	
 	$scope.selectRoom = function(room){
 		$rootScope.selectedRoom = room;

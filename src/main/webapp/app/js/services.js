@@ -89,33 +89,15 @@ roomReservationServices.factory('Phone', ['$resource',
 	return listOfRent;
   })
   
-  .factory('Room', function(){
-	  var listOfRoom = [{
-		roomId: 1,
-		roomName: "Ruangan Utama Pendopo Agung",
-		roomType: "Umum",
-		roomPrice: 6000000
-	},{
-		roomId: 2,
-		roomName: "Student Center",
-		roomType: "Umum"
-	},{
-		roomId: 3,
-		roomName: "GKB",
-		roomType: "Umum"
-	},{
-		roomId: 4,
-		roomName: "Conference Room P2T",
-		roomType: "Umum"
-	},{
-		roomId: 5,
-		roomName: "Conference Room Direktorat",
-		roomType: "Umum"
-	},{
-		roomId: 6,
-		roomName: "RSG Jurusan Teknik Komputer",
-		roomType: "Khusus"
-	}];
-	
-	return listOfRoom;
+  .factory('Room', function($resource){
+	  return $resource(
+    		'http://localhost:8080/SpringHibernateRuangan/ruangan/:id', 
+    		{id: '@id'},//Handy for update & delete. id will be set with id of instance
+    		{
+    			update: {
+    			      method: 'PUT' // To send the HTTP Put request when calling this custom update method.
+    			}
+    			
+    		}
+    );
   });
