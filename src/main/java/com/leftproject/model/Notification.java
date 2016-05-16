@@ -8,31 +8,35 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="NOTIFICATION")
 public class Notification {
 	@Id
     @Column(name="NOTIFICATION_ID", nullable = false)
+	@Size(min=10,max=10)
 	private String notificationId;
     
     @Column(name="NOTIFICATION_RECEIVER")
+    @Size(max=8)
 	private String notificationReceiver;
     
     @Column(name="NOTIFICATION_SUBJECT")
+    @Size(max=50)
 	private String notificationSubject;
     
     @Column(name="NOTIFICATION_MESSAGE")
 	private String notificationMessage;
     
     @Column(name="NOTIFICATION_STATUS")
-	private String notificationStatus;
+	private boolean notificationStatus;
     
     @Column(name="CREATED_DATE")
 	private Date createdDate;
 
 	public Notification(String notificationId, String notificationReceiver, String notificationSubject,
-			String notificationMessage, String notificationStatus, Date createdDate) {
+			String notificationMessage, boolean notificationStatus, Date createdDate) {
 		super();
 		this.notificationId = notificationId;
 		this.notificationReceiver = notificationReceiver;
@@ -78,11 +82,11 @@ public class Notification {
 		this.notificationMessage = notificationMessage;
 	}
 
-	public String getNotificationStatus() {
+	public boolean getNotificationStatus() {
 		return notificationStatus;
 	}
 
-	public void setNotificationStatus(String notificationStatus) {
+	public void setNotificationStatus(boolean notificationStatus) {
 		this.notificationStatus = notificationStatus;
 	}
 

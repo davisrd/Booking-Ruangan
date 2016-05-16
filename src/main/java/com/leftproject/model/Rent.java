@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,10 +20,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Rent {
     @Id
     @Column(name="RENT_ID")
+    @Size(min=10,max=10)
 	private String rentId;
 
-    @Column(name="ORGANIZATIONAL_NAME")
-	private String organizationName;
+    @Column(name="RENTER")
+	private String renter;
 
     @Column(name="RENT_DATE_START")
 	private Date rentDateStart;
@@ -37,24 +39,40 @@ public class Rent {
 	private long rentOperationalPrice;
 
     @Column(name="RENT_STATUS")
+    @Size(min=2,max=2)
 	private boolean rentStatus;
+    
+    @Column(name="RENT_PHASE")
+    @Size(min=2,max=2)
+	private boolean rentPhase;
+    
+    @Column(name="RENT_LETTER_PATH")
+    @Size(max=100)
+	private String rentLetterPath;
 
-    @Column(name="RENT_FILE_PATH")
-	private String rentFilePath;
+    @Column(name="RENT_EVIDENCE_PATH")
+    @Size(max=100)
+	private String rentEvidencePath;
+
+    @Column(name="RENT_REJECT_REASON")
+	private String rentRejectReason;
+    
+    @Column(name="RENT_CANCEL_REASON")
+	private String rentCancelReason;
 
     @Column(name="EVENT_CATEGORY")
+    @Size(min=2,max=2)
 	private String eventCategory;
 
     @Column(name="EVENT_NAME")
+    @Size(max=25)
 	private String eventName;
-
-    @Column(name="EVENT_TOTAL_PARTICIPANT")
-	private int eventTotalParticipant;
 
     @Column(name="CREATED_DATE")
 	private Date createdDate;
 
     @Column(name="UPDATED_BY")
+    @Size(min=50,max=50)
 	private String updatedBy;
 
     @Column(name="UPDATED_DATE")

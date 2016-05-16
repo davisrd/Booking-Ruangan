@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="RENT_LOG")
@@ -25,24 +26,27 @@ public class RentLog {
 	private long rentPrice;
     
     @Column(name="RENT_STATUS")
-	private boolean rentStatus;
+    @Size(min=2,max=2)
+	private String rentStatus;
     
     @Column(name="RENT_OPERATIONAL_PRICE")
 	private long rentOperationalPrice;
     
     @Column(name="RENT_FOLDER_PATH")
+    @Size(max = 100)
 	private String rentFolderPath;
     
     @Column(name="RENT_REJECT_REASON")
 	private String rentRejectReason;
     
     @Column(name="UPDATED_BY")
+    @Size(min=50,max=50)
 	private String updatedBy;
     
     @Column(name="UPDATED_DATE")
 	private Date updatedDate;
     
-    public RentLog(Date rentDateStart, Date rentDateEnd, long rentPrice, boolean rentStatus, long rentOperationalPrice,
+    public RentLog(Date rentDateStart, Date rentDateEnd, long rentPrice, String rentStatus, long rentOperationalPrice,
 			String rentFolderPath, String rentRejectReason, String updatedBy, Date updatedDate) {
 		super();
 		this.rentDateStart = rentDateStart;
@@ -94,11 +98,11 @@ public class RentLog {
 		this.rentPrice = rentPrice;
 	}
 
-	public boolean isRentStatus() {
+	public String isRentStatus() {
 		return rentStatus;
 	}
 
-	public void setRentStatus(boolean rentStatus) {
+	public void setRentStatus(String rentStatus) {
 		this.rentStatus = rentStatus;
 	}
 
