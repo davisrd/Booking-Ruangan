@@ -105,25 +105,59 @@ h1 {
 }
 
 #header {
-    background-color:#DCDCDC;
-    padding: 5px;
-    padding-bottom: 5px;
+    /*background-color:#DCDCDC;*/
+    background-color:#252B47;
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-bottom: 20px;
 }
-
+#non-header{
+  background-color: #ECECEC;
+}
 #nav {
     background-color:#C0C0C0;
-    min-height: 700px;
+    min-height: 900px;
     padding:3px; 
     padding-left: 10px;    
 }
 
-ul li {
-    background: #FFFFFF;
+#nav a{
+    color:#FFFFFF;    
+}
+
+#user {
+  background-color: #62667A;
+}
+#user:visited{
+  color:#428BCA; 
+}
+
+#user:hover{
+  color: #ABACC5;
+}
+#nav ul li {
+    /*background: #FFFFFF;*/
+    background: #4A4E5D;
     border-radius: 4px;    
 }
 
-#panel-body 
-{
-    background: #C0C0C0;
+#nav ul li :hover {
+    /*background: #FFFFFF;*/
+    background: #267093;
     border-radius: 4px;    
+}
+#pan{
+  box-shadow: 10px 10px 5px 0px;
+}
+#pan-head{
+  color: #FFFFFF;
+  background-color: #0D407A;
+  border-radius: 4px;
+}
+#pan-title{
+    font-size: 25px; 
+}
+#pan-body{
+  padding-top: 50px;
+  padding-left: 50px;
 }

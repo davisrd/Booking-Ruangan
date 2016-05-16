@@ -1,79 +1,87 @@
-<h1>Form Peminjaman</h1>
-<form class="form-horizontal" role="form" ng-submit="openModal('sm',pengajuan)">
-	<div class="form-group">
-	  <label class=" col-md-2" style="text-align:left" for="namaPeminjam">Nama Peminjam</label>
-	  <div class="col-md-4">
-		<input type="text" class="form-control" ng-model="pengajuan.namaPeminjam" ng-required="true">               
-	  </div>
-	</div>
+<div class="panel panel-default" id="pan">
+  <div class="panel-heading" id="pan-head">
+    <p class="panel-title" id="pan-title">Form Peminjaman</p>
+  </div>
+  <div class="panel-body" id="pan-body">
+    <form class="form-horizontal" role="form" ng-submit="openModal('sm',pengajuan)">
+		<div class="form-group">
+		  <label class="col-md-2" style="text-align:left" for="namaPeminjam">Nama Peminjam</label>
+		  <div class="col-md-4">
+			<input type="text" class="form-control" ng-model="pengajuan.namaPeminjam" ng-required="true">               
+		  </div>
+		</div>
 
-	<div class="form-group">
-	  <label class=" col-md-2" style="text-align:left" for="tanggalMulai">Tanggal Mulai</label>
-	  <div class="col-md-4">
-		{{selectedDate.startDate}}             
-	  </div>
-	</div>
+		<div class="form-group">
+		  <label class=" col-md-2" style="text-align:left" for="tanggalMulai">Tanggal Mulai</label>
+		  <div class="col-md-4">
+			{{selectedDate.startDate}}             
+		  </div>
+		</div>
 
-	<div class="form-group">
-	  <label class=" col-md-2" style="text-align:left" for="tanggalSelesai">Tanggal Selesai</label>
-	  <div class="col-md-4">
-		{{selectedDate.endDate}}               
-	  </div>
-	</div>
+		<div class="form-group">
+		  <label class=" col-md-2" style="text-align:left" for="tanggalSelesai">Tanggal Selesai</label>
+		  <div class="col-md-4">
+			{{selectedDate.endDate}}               
+		  </div>
+		</div>
 
-	<div class="form-group">
-	  <label class=" col-md-2" style="text-align:left" for="namaKegiatan">Nama Kegiatan</label>
-	  <div class="col-md-4">
-		<input type="text" class="form-control" ng-model="pengajuan.namaKegiatan" ng-required="true">               
-	  </div>
-	</div>
+		<div class="form-group">
+		  <label class=" col-md-2" style="text-align:left" for="namaKegiatan">Nama Kegiatan</label>
+		  <div class="col-md-4">
+			<input type="text" class="form-control" ng-model="pengajuan.namaKegiatan" ng-required="true">               
+		  </div>
+		</div>
 
-	<div class="form-group">
-	  <label class=" col-md-2" style="text-align:left" for="jenisKegiatan">Jenis Kegiatan</label>
-	  <div class="col-md-4">
-		<input type="text" class="form-control" ng-model="pengajuan.jenisKegiatan" ng-required="true">               
-	  </div>
-	</div>
+		<div class="form-group">
+		  <label class=" col-md-2" style="text-align:left" for="jenisKegiatan">Jenis Kegiatan</label>
+		  <div class="col-md-4">
+			<input type="text" class="form-control" ng-model="pengajuan.jenisKegiatan" ng-required="true">               
+		  </div>
+		</div>
 
-	<div class="form-group">
-	  <label class=" col-md-2" style="text-align:left" for="skalaKegiatan">Skala Kegiatan</label>
-	  <div class="col-md-4">
-		<input type="text" class="form-control" ng-model="pengajuan.skalaKegiatan" ng-required="true">               
-	  </div>
-	</div>
+		<div class="form-group">
+		  <label class=" col-md-2" style="text-align:left" for="skalaKegiatan">Skala Kegiatan</label>
+		  <div class="col-md-4">
+			<input type="text" class="form-control" ng-model="pengajuan.skalaKegiatan" ng-required="true">               
+		  </div>
+		</div>
 
-	<div class="form-group">
-	  <label class=" col-md-2" style="text-align:left" for="jumlahPeserta">Jumlah Peserta</label>
-	  <div class="col-md-4">
-		<input type="text" class="form-control" ng-model="pengajuan.jumlahPeserta" ng-required="true">               
-	  </div>
-	</div> 
+		<div class="form-group">
+		  <label class=" col-md-2" style="text-align:left" for="jumlahPeserta">Jumlah Peserta</label>
+		  <div class="col-md-4">
+			<input type="text" class="form-control" ng-model="pengajuan.jumlahPeserta" ng-required="true">               
+		  </div>
+		</div> 
 
-	<div class="form-group">
-	  <label class=" col-md-2" style="text-align:left" for="namaRuangan">Nama Ruangan</label>
-	  <div class="col-md-4">
-		{{selectedRoom.roomName}}               
-	  </div>
-	</div>
+		<div class="form-group">
+		  <label class=" col-md-2" style="text-align:left" for="namaRuangan">Nama Ruangan</label>
+		  <div class="col-md-4">
+			{{selectedRoom.roomName}}               
+		  </div>
+		</div>
 
-	<div class="form-group">
-	  <label class=" col-md-2" style="text-align:left" for="jenisRuangan">Jenis Ruangan</label>
-	  <div class="col-md-4">
-		{{selectedRoom.roomType}}              
-	  </div>
-	</div>
+		<div class="form-group">
+		  <label class=" col-md-2" style="text-align:left" for="jenisRuangan">Jenis Ruangan</label>
+		  <div class="col-md-4">
+			{{selectedRoom.roomType}}              
+		  </div>
+		</div>
 
-	<div class="form-group">
-	  <label class=" col-md-2" style="text-align:left" for="lampiranSuratIzinKegiatan">Lampiran Surat Izin Kegiatan</label>
-	  <div class="col-md-4">
-		<input type="file"></input>              
-	  </div>
-	</div>
+		<div class="form-group">
+		  <label class=" col-md-2" style="text-align:left" for="lampiranSuratIzinKegiatan">Lampiran Surat Izin Kegiatan</label>
+		  <div class="col-md-4">
+			<input type="file"></input>              
+		  </div>
+		</div>
+		<br>
+		<div class="form-group">
+		  <div class="col-md-offset-6 col-md-4">
+			<a href="#/reservationRoomSelection"><button type="button" class="btn btn-danger btn-md">Batal</button></a>
+			<a href="#/reservationRequestList"><button type="submit" class="btn btn-success btn-md">Ajukan Peminjaman</button></a>
+		  </div>
+		</div>
+	</form>
+  </div>
+</div>
 
-	<div class="form-group">
-	  <div class="col-md-offset-4 col-md-3">
-		<a href="#/reservationRoomSelection"><button type="reset" class="btn btn-default alert alert-danger">Batal</button></a>
-		<button type="submit" class="btn btn-default alert alert-success">Ajukan Peminjaman</button>
-	  </div>
-	</div>
-</form>
+
