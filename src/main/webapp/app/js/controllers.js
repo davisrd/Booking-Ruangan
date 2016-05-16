@@ -90,7 +90,7 @@ roomReservationControllers.controller('navigationTemplateCtrl',function($scope) 
   });
 
 roomReservationControllers.controller('ReservationRequestListCtrl', function($scope, $rootScope, Reservation) {
-	$scope.listOfReservation = Reservation;
+	$scope.listOfReservation = Reservation.query();
 	$rootScope.selectedReservation = {};
 	$scope.isSelected = function(reservation){
 		if($rootScope.selectedReservation == reservation){ 
@@ -105,7 +105,7 @@ roomReservationControllers.controller('ReservationRequestListCtrl', function($sc
 });
 
 roomReservationControllers.controller('ReservationRoomSelectionCtrl', function($scope, $rootScope, Room, $location) {
-	$scope.listOfRoom = Room;
+	$scope.listOfRoom = Room.query();
 	$('.clockpicker1').clockpicker()
 
 	$scope.isSelected = function(room) {
@@ -120,8 +120,8 @@ roomReservationControllers.controller('ReservationRoomSelectionCtrl', function($
 		if($rootScope.selectedRoom.roomId != undefined){
 			if($rootScope.selectedDate.startDate !=undefined) {
 				if($rootScope.selectedDate.endDate !=undefined) {
-					$rootScope.selectedDate.startDate = moment($rootScope.selectedDate.startDate).format("DD-MMM-YYYY");
-					$rootScope.selectedDate.endDate = moment($rootScope.selectedDate.endDate).format("DD-MMM-YYYY");
+					$rootScope.selectedDate.startDate = moment($rootScope.selectedDate.startDate).format("DD-MMM-YYYY HH:mm");
+					$rootScope.selectedDate.endDate = moment($rootScope.selectedDate.endDate).format("DD-MMM-YYYY HH:mm");
 					$location.path(path);
 				} else {
 					alert('Tanggal selesai harus diisi!');
@@ -157,16 +157,20 @@ roomReservationControllers.controller('FormPembatalanCtrl', function($scope, $ro
 	};
 });
 
-roomReservationControllers.controller('ReservationFormCtrl', function($scope, $rootScope) {
-	$scope.room = {
-		roomId: 1,
-		roomName: "Ruangan Utama Pendopo Agung",
-		roomType: "Umum"
-	};
-	$scope.reservation = {};
-	$scope.reservation.reservationStartDate = "17 April 2015 10:00";
-	$scope.reservation.reservationEndDate = "17 April 2015 17:00";
+roomReservationControllers.controller('ReservationFormCtrl', function($scope, $rootScope, Reservation) {
+	
+	$scope.reservation = new Reservation();
+	$scope.reservation.reservationStartDate = $rootScope.selectedDate.startDate;
+	$scope.reservation.reservationEndDate = $rootScope.selectedDate.endDate;
 	$scope.reservation.room = $scope.room;
+	
+	$scope.createPeminjam = function(){
+		  $scope.reservation.$save(function(){
+			alert('sesuatu');  
+			goTo('/reservationRequestList');
+		  });
+	  };
+	
 	$scope.selectRoom = function(room){
 		$rootScope.selectedRoom = room;
 	};
@@ -351,7 +355,7 @@ roomReservationControllers.controller('RentRequestModalCtrl', function($scope, $
 });
 
 roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, $rootScope, Room) {
-	$scope.listOfRoom = Room;
+	$scope.listOfRoom = Room.query();
 	
 	$scope.selectRoom = function(room){
 		$rootScope.selectedRoom = room;
@@ -359,7 +363,7 @@ roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, 
 });
 
 roomReservationControllers.controller('ReservationRequestApprovalListCtrl', function($scope, $rootScope, Reservation) {
-	$scope.listOfReservation = Reservation;
+	$scope.listOfReservation = Reservation.query();
 	
 	$scope.selectReservation = function(reservation) {
 		$rootScope.selectedReservation = reservation;

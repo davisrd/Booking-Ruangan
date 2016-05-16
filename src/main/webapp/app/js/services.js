@@ -11,7 +11,18 @@ roomReservationServices.factory('Phone', ['$resource',
     });
   }])
   
-  .factory('Reservation', function(){
+  .factory('Reservation', function($resource){
+	  return $resource(
+     		'http://localhost:8080/ProyekRuangan/reservation/:id', 
+     		{id: '@id'},//Handy for update & delete. id will be set with id of instance
+     		{
+     			update: {
+     			      method: 'PUT' // To send the HTTP Put request when calling this custom update method.
+     			}
+    			
+     		}
+   		);
+		/*
 	  var listOfReservation = [{
 		reservationId: 1,
 		eventUserName: "Himakom",
@@ -47,61 +58,35 @@ roomReservationServices.factory('Phone', ['$resource',
 		reservationStatus: true
 	}];
 	
-	return listOfReservation;
+	return listOfReservation; */
   })
   
-  .factory('Rent', function(){
-	  var listOfRent = [{
-		rentId: 1,
-		eventUserName: "Himakom",
-		rentStartDate: "18 April 2016 10:00",
-		rentEndDate: "18 April 2016 17:00",
-		room: {
-			roomId: 1,
-			roomName: "RSG"
-		},
-		eventName: "Studi Banding",
-		rentStatus: true
-	},{
-		rentId: 2,
-		eventUserName: "Himakaps",
-		rentStartDate: "19 April 2016 10:00",
-		rentEndDate: "20 April 2016 10:00",
-		room: {
-			roomId: 2,
-			roomName: "Pendopo"
-		},
-		eventName: "Seminar",
-		rentStatus: true
-	},{
-		rentId: 3,
-		eventUserName: "Himakom",
-		rentStartDate: "30 April 2016 08:00",
-		rentEndDate: "30 April 2016 21:00",
-		room: {
-			roomId: 3,
-			roomName: "Student Center"
-		},
-		eventName: "Pelatihan",
-		rentStatus: true
-	}];
-	
-	return listOfRent;
+  .factory('Rent', function($resource){
+	  return $resource(
+     		'http://localhost:8080/ProyekRuangan/rent/:id', 
+     		{id: '@id'},//Handy for update & delete. id will be set with id of instance
+     		{
+     			update: {
+     			      method: 'PUT' // To send the HTTP Put request when calling this custom update method.
+     			}
+    			
+     		}
+   		);
   })
   
   .factory('Room', function($resource){
 	  
-	  // return $resource(
-   //  		'http://localhost:8080/SpringHibernateRuangan/ruangan/:id', 
-   //  		{id: '@id'},//Handy for update & delete. id will be set with id of instance
-   //  		{
-   //  			update: {
-   //  			      method: 'PUT' // To send the HTTP Put request when calling this custom update method.
-   //  			}
+	   return $resource(
+     		'http://localhost:8080/ProyekRuangan/room/:id', 
+     		{id: '@id'},//Handy for update & delete. id will be set with id of instance
+     		{
+     			update: {
+     			      method: 'PUT' // To send the HTTP Put request when calling this custom update method.
+     			}
     			
-   //  		}
-   	//	);
-   	var room = [{
+     		}
+   		);
+   	/*var room = [{
    		roomId: 1,
 		roomName: "Pendopo",
 		roomType: "Fasilitas Umum"
@@ -126,5 +111,5 @@ roomReservationServices.factory('Phone', ['$resource',
 		roomName: "GKB",
 		roomType: "Fasilitas Khusus"
 	}]
-	return room;
+	return room; */
   });
