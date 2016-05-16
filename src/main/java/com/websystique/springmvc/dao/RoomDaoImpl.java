@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.leftproject.model.Room;
 import com.websystique.springmvc.model.*;
 
-@Repository("FacilityDao")
+@Repository("RoomDao")
 public class RoomDaoImpl extends AbstractDao<Integer, Room> implements RoomDao{
 	
 	

@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.websystique.springmvc.dao.ReservationDao;
 import com.leftproject.model.*;
 
-@Service("employeeService")
+@Service("reservationService")
 @Transactional
 public class ReservationServiceImpl implements ReservationService {
 

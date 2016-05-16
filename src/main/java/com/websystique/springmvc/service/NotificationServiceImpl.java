@@ -9,9 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.websystique.springmvc.dao.NotificationDao;
 import com.leftproject.model.Notification;
 
-//@Service("NotificationService")
+@Service("NotificationService")
 @Transactional
-
 public class NotificationServiceImpl implements NotificationService{
 
 	@Autowired
