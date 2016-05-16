@@ -135,17 +135,22 @@ h1 {
 #user:hover{
   color: #ABACC5;
 }
+
+
 #nav ul li {
     /*background: #FFFFFF;*/
     background: #4A4E5D;
     border-radius: 4px;    
 }
 
+
+
 #nav ul li :hover {
     /*background: #FFFFFF;*/
     background: #267093;
     border-radius: 4px;    
 }
+
 #pan{
   box-shadow: 10px 10px 5px 0px;
 }
