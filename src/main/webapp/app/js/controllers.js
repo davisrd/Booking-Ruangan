@@ -24,8 +24,7 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 	$rootScope.open2 = function() {
 		$rootScope.popup2.opened = true;
 	};
-
-	
+		
 	$rootScope.dateFormat = 'dd-MMMM-yyyy HH:mm';
 	$rootScope.eventCategoryName;
 	$rootScope.eventCategoryCode;
@@ -37,7 +36,7 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 	});
 	
 	$rootScope.user.userId = 'UMRG0001';
-	// $rootScope.user.userName = 'Zakiy';
+	$rootScope.user.userName = 'Zakiy';
 	$rootScope.user.userRole = 'Peminjam';
 	
 	$rootScope.message = '';
@@ -58,7 +57,7 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 .controller('DashboardCtrl', function($rootScope){
 	if($rootScope.user.userName == undefined){
 		console.log($rootScope.user.username);
-		$rootScope.goTo('/login');
+		//$rootScope.goTo('/login');
 	}
 })
 .controller('LoginCtrl', function($rootScope, $scope){
@@ -106,7 +105,7 @@ roomReservationControllers.controller('ReservationRequestListCtrl', function($sc
 });
 
 roomReservationControllers.controller('ReservationRoomSelectionCtrl', function($scope, $rootScope, Room, $location) {
-	$scope.listOfRoom = Room;
+	$scope.listOfRoom = Room.query();
 
 	$scope.isSelected = function(room) {
 		if($rootScope.selectedRoom == room) return 'selected';
