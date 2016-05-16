@@ -12,7 +12,6 @@ import javax.validation.constraints.Size;
 public class ExternalUser {
  
     @Id
-    @GeneratedValue
     @Column(name="ORGANIZATION TYPE")
     @Size(max = 50)
     private String OrgType;
