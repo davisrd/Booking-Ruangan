@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="MEMORANDUM")
@@ -17,12 +18,15 @@ import javax.persistence.Table;
 public class Memorandum {
 	@Id
     @Column(name="MEMORANDUM_ID", nullable = false)
+	@Size(min=10, max=10)
 	private String memorandumId;
     
     @Column(name="MEMORANDUM_RECEIVER")
+    @Size(min=8, max=8)
 	private String memorandumReceiver;
     
     @Column(name="MEMORANDUM_SUBJECT")
+    @Size(max=50)
 	private String memorandumSubject;
     
     @Column(name="MEMORANDUM_MESSAGE")
@@ -32,6 +36,7 @@ public class Memorandum {
 	private boolean memorandumStatus;
     
     @Column(name="CREATED_BY")
+    @Size(max=50)
 	private String createdBy;
     
     @Column(name="CREATED_DATE")
