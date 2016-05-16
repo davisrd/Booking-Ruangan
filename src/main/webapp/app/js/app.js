@@ -97,6 +97,10 @@ roomReservationApp.config(['$routeProvider',
         templateUrl: 'partials/MemorandumForm.html',
         controller: 'MemorandumFormCtrl'
     }).
+    when('/roomSchedule', {
+        templateUrl: 'partials/RoomScheduleSelection.html',
+        controller: 'RoomScheduleSelectionCtrl'
+    }).
       otherwise({
         redirectTo: '/dashboard'
       });

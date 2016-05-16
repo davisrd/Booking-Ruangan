@@ -39,9 +39,9 @@ public class AppController {
 	@Autowired
 	MessageSource messageSource;
 
-	@RequestMapping(value = { "/"}, method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String getIndexPage() {
-		return "UserManagement";
+		return "redirect:/app/index.html";
 	}
 	
 	@RequestMapping(value = { "/PeminjamManagement"}, method = RequestMethod.GET)
