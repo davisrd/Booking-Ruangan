@@ -105,7 +105,7 @@ roomReservationControllers.controller('ReservationRequestListCtrl', function($sc
 });
 
 roomReservationControllers.controller('ReservationRoomSelectionCtrl', function($scope, $rootScope, Room, $location) {
-	$scope.listOfRoom = Room.query();
+	$scope.listOfRoom = Room;
 	$('.clockpicker1').clockpicker()
 
 	$scope.isSelected = function(room) {
@@ -172,6 +172,21 @@ roomReservationControllers.controller('ReservationFormCtrl', function($scope, $r
 	};
 });
 
+roomReservationControllers.controller('RentFormCtrl', function($scope, $rootScope) {
+	$scope.room = {
+		roomId: 1,
+		roomName: "Ruangan Utama Pendopo Agung",
+		roomType: "Umum"
+	};
+	$scope.rent = {};
+	$scope.rent.rentStartDate = "17 April 2015 10:00";
+	$scope.rent.rentEndDate = "17 April 2015 17:00";
+	$scope.rent.room = $scope.room;
+	$scope.selectRoom = function(room){
+		$rootScope.selectedRoom = room;
+	};
+});
+
 roomReservationControllers.controller('ReservationChangeFormCtrl', function($scope, $rootScope) {
 	$scope.reservation = {
 		reservationId: 1,
@@ -194,6 +209,30 @@ roomReservationControllers.controller('ReservationChangeFormCtrl', function($sco
 })
 
 roomReservationControllers.controller('ReservationDetailCtrl', function($scope, $rootScope) {
+	$scope.reservation = {
+		reservationId: 1,
+		eventUserName: "Himakom",
+		reservationStartDate: "17-04-2016",
+		reservationEndDate: "20-04-2016",
+		eventName: "Seminar International",
+		eventType: "Kegiatan Mahasiswa",
+		eventScale: "International",
+		totalAudience : "200 orang",
+		room: {
+			roomId: 1,
+			roomName: "RSG",
+			roomType: "Fasilitas Umum"
+		},
+		reservationStatus: "Diizinkan"
+		
+	};
+
+	$scope.selectReservation = function(reservation){
+		$rootScope.selectedReservation = reservation;
+	};
+})
+
+roomReservationControllers.controller('ReservationCancelFormCtrl', function($scope, $rootScope) {
 	$scope.reservation = {
 		reservationId: 1,
 		eventUserName: "Himakom",
@@ -312,7 +351,7 @@ roomReservationControllers.controller('RentRequestModalCtrl', function($scope, $
 });
 
 roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, $rootScope, Room) {
-	$scope.listOfRoom = Room.query();
+	$scope.listOfRoom = Room;
 	
 	$scope.selectRoom = function(room){
 		$rootScope.selectedRoom = room;

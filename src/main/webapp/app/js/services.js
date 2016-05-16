@@ -90,14 +90,41 @@ roomReservationServices.factory('Phone', ['$resource',
   })
   
   .factory('Room', function($resource){
-	  return $resource(
-    		'http://localhost:8080/SpringHibernateRuangan/ruangan/:id', 
-    		{id: '@id'},//Handy for update & delete. id will be set with id of instance
-    		{
-    			update: {
-    			      method: 'PUT' // To send the HTTP Put request when calling this custom update method.
-    			}
+	  
+	  // return $resource(
+   //  		'http://localhost:8080/SpringHibernateRuangan/ruangan/:id', 
+   //  		{id: '@id'},//Handy for update & delete. id will be set with id of instance
+   //  		{
+   //  			update: {
+   //  			      method: 'PUT' // To send the HTTP Put request when calling this custom update method.
+   //  			}
     			
-    		}
-    );
+   //  		}
+   	//	);
+   	var room = [{
+   		roomId: 1,
+		roomName: "Pendopo",
+		roomType: "Fasilitas Umum"
+	},
+	{
+		roomId: 2,
+		roomName: "Student Center",
+		roomType: "Fasilitas Umum"	
+	},
+	{
+		roomId: 3,
+		roomName: "Converence Room",
+		roomType: "Fasilitas Umum"
+	},
+	{
+		roomId: 4,
+		roomName: "RSG JTK",
+		roomType: "Fasilitas Khusus"
+	},
+	{
+		roomId: 5,
+		roomName: "GKB",
+		roomType: "Fasilitas Khusus"
+	}]
+	return room;
   });

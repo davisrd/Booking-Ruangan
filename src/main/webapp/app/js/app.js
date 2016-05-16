@@ -25,6 +25,10 @@ roomReservationApp.config(['$routeProvider',
         templateUrl: 'partials/ReservationForm.html',
         controller: 'ReservationFormCtrl'
       }).
+      when('/rentForm', {
+        templateUrl: 'partials/RentForm.html',
+        controller: 'RentFormCtrl'
+      }).
       when('/reservationDetail', {
         templateUrl: 'partials/ReservationDetail.html',
         controller: 'ReservationDetailCtrl'
@@ -49,9 +53,9 @@ roomReservationApp.config(['$routeProvider',
         templateUrl: 'partials/RentRoomSelection.html',
         controller: 'RentRoomSelectionCtrl'
       }).
-      when('/cancelBook', {
-        templateUrl: 'partials/CancelReservationForm.html',
-        controller: 'FormPembatalanCtrl'
+      when('/reservationCancelForm', {
+        templateUrl: 'partials/ReservationCancelForm.html',
+        controller: 'ReservationCancelFormCtrl'
       }).
 	  when('/reservationChangeForm', {
         templateUrl: 'partials/ReservationChangeForm.html',
