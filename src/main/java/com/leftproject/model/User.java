@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="USER")
@@ -12,20 +13,24 @@ public class User {
  
     @Id
     @Column(name="USER_ID")
+    @Size(max=8)
     private String userId;
      
     @Column(name="USER_NAME")
+    @Size(max=50)
     private String userName;
      
     @Column(name="USER_PASSWORD")
+    @Size(max=50)
     private String userPassword;
      
     @Column(name="USER_TYPE")
-    private int userType;
+    @Size(max=2)
+    private char userType;
      
     public User(){}
     
-    public User(String userId, String userName,String userPassword, int userType){
+    public User(String userId, String userName,String userPassword, char userType){
         this.userId = userId;
         this.userName = userName;
         this.userPassword = userPassword;
@@ -62,7 +67,7 @@ public class User {
 		return userType;
 	}
 
-	public void setuserType(int userType) {
+	public void setuserType(char userType) {
 		this.userType = userType;
 	}
 

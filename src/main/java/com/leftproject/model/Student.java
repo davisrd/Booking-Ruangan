@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="STUDENT")
@@ -12,9 +13,11 @@ public class Student {
  
     @Id
     @Column(name="STUDENT_FACULTY")
+    @Size(max=50)
     private String StudentFac;
      
     @Column(name="STUDENT_MAJOR")
+    @Size(max=50)
     private String StudentMaj;
      
   
