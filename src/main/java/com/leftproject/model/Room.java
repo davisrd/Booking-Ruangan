@@ -9,14 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="ROOM")
 public class Room {
  
     @Id
-    @Column(name="room_id", nullable = false)
-    private String roomId;
+    @GeneratedValue
+    @Column(name="room_id")
+    @Size (max = 7)
+    private char roomId;
      
     @Column(name="room_name")
     private String roomName;
@@ -40,7 +43,7 @@ public class Room {
     }
    
     
-    public Room(String roomId, String roomName,boolean roomType, boolean roomStatus, long roomPrice){
+    public Room(char roomId, String roomName,boolean roomType, boolean roomStatus, long roomPrice){
         this.roomId = roomId;
         this.roomName = roomName;
         this.roomType = roomType;
@@ -48,11 +51,11 @@ public class Room {
         this.roomPrice = roomPrice;
     }
 
-	public String getroomId() {
+	public char getroomId() {
 		return roomId;
 	}
 
-	public void setroomId(String roomId) {
+	public void setroomId(char roomId) {
 		this.roomId = roomId;
 	}
 

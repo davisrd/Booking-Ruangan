@@ -2,7 +2,7 @@ package com.websystique.springmvc.service;
 
 import java.util.List;
 
-import com.leftproject.model.Reservation;
+import com.leftproject.model.*;
 
 public interface ReservationService {
 
@@ -17,4 +17,8 @@ public interface ReservationService {
 	//boolean isEmployeeSsnUnique(Integer id, String ssn);
 	Reservation getReservation(String reservationId);
 	List<Reservation> getProposedReservation();
+	
+	void sendMemorandum (String memorandum);
+	
+	
 }

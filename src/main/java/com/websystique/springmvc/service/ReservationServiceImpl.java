@@ -6,19 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.websystique.springmvc.dao.MemorandumDao;
 import com.websystique.springmvc.dao.ReservationDao;
 import com.leftproject.model.*;
 
-@Service("reservationService")
+@Service("employeeService")
 @Transactional
 public class ReservationServiceImpl implements ReservationService {
 
 	@Autowired
-	private ReservationDao dao;
+	private ReservationDao reservationDao;
+	@Autowired
+	private MemorandumDao memorandumDao;
 	
 
 	public void saveReservation(Reservation employee) {
-		dao.saveReservation(employee);
+		reservationDao.saveReservation(employee);
 		Notification notif = new Notification();
 		notif.setNotificationMessage("Pemesanan berhasil");	
 	}
@@ -30,7 +33,7 @@ public class ReservationServiceImpl implements ReservationService {
 	 */
 
 	public void deleteReservationById(int ssn) {
-		dao.deleteReservationById(ssn);
+		reservationDao.deleteReservationById(ssn);
 	}
 	
 /*	public List<Reservation> findAllReservations() {
@@ -43,9 +46,21 @@ public class ReservationServiceImpl implements ReservationService {
 	}*/
 	
 	public List<Reservation> getProposedReservation(){
-		return dao.getProposedReservation();
+		return reservationDao.getProposedReservation();
 	}
 	public Reservation getReservation(String reservationId){
-		return dao.getReservation(reservationId);
+		return reservationDao.getReservation(reservationId);
 	}
+	public Reservation getsendMemorandum(String memorandum){
+		return memorandumDao.getsendMemorandum(memorandum);
+		
+	}
+
+	public void sendMemorandum(String memorandum) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
 }
