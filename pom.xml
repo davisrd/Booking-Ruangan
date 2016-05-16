@@ -4,10 +4,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.websystique.springmvc</groupId>
-	<artifactId>SpringHibernateExample</artifactId>
+	<artifactId>ProyekRuangan</artifactId>
 	<packaging>war</packaging>
 	<version>1.0.0</version>
-	<name>SpringHibernateExample</name>
+	<name>ProyekRuangan</name>
 
 	<properties>
 		<springframework.version>4.2.0.RELEASE</springframework.version>
@@ -166,13 +166,13 @@
 					<configuration>
             			<outputDirectory>/xampp/tomcat/webapps/</outputDirectory>
 						<warSourceDirectory>src/main/webapp</warSourceDirectory>
-						<warName>SpringHibernateExample</warName>
+						<warName>ProyekRuangan</warName>
 						<failOnMissingWebXml>false</failOnMissingWebXml>
 					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
-		<finalName>SpringHibernateExample</finalName>
+		<finalName>ProyekRuangan</finalName>
 	</build>
 </project>
 
