@@ -17,7 +17,7 @@ public class ReservationLog {
 	@Id
 	@Column(name = "RESERVATION_ID", nullable = false)
 	@Size (max =10)
-	private int reservationId;
+	private char reservationId;
 	
     @Column(name="RESERVATION_DATE_START")
 	private Date rentDateStart;
@@ -64,7 +64,7 @@ public class ReservationLog {
 
 
 
-	public void setReservationId(int reservationId) {
+	public void setReservationId(char reservationId) {
 		this.reservationId = reservationId;
 	}
 

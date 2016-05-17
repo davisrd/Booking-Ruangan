@@ -19,7 +19,7 @@ public class Memorandum {
 	@Id
     @Column(name="MEMORANDUM_ID", nullable = false)
 	@Size(min=10, max=10)
-	private String memorandumId;
+	private char memorandumId;
     
     @Column(name="MEMORANDUM_RECEIVER")
     @Size(min=8, max=8)
@@ -43,11 +43,11 @@ public class Memorandum {
 	private Date createdDate;
 
     
-	public String getMemorandumId() {
+	public char getMemorandumId() {
 		return memorandumId;
 	}
 
-	public void setMemorandumId(String memorandumId) {
+	public void setMemorandumId(char memorandumId) {
 		this.memorandumId = memorandumId;
 	}
 
