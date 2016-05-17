@@ -82,7 +82,7 @@ public class Reservation {
 			boolean reservationStatus, String reservationFilePath, long reservationOperationalPrice,
 			String reservationRejectReason, String eventType, String eventName, String eventScale,
 			int eventTotalParticipant, Date createdDate, String updatedBy, Date updatedDate, String user,
-			Room room, Set<ReservationDisposition> reservationDispositionList,
+			Room room,
 			Set<ReservationLog> reservationLogList, Set<ReservationMemorandum> reservationMemorandumList) {
 		super();
 		this.reservationId = reservationId;
@@ -206,7 +206,7 @@ public class Reservation {
 	
 	public Reservation() {
 		super();
-		this.reservationId = null;
+		
 		this.reservationDateStart = null;
 		this.reservationDateEnd = null;
 		this.reservationStatus = false;
