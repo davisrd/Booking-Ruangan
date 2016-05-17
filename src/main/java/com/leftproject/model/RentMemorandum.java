@@ -8,4 +8,5 @@ import javax.persistence.Table;
 @Table(name="RENT_MEMORANDUM")
 @PrimaryKeyJoinColumn(name="MEMORANDUM_ID")
 public class RentMemorandum extends Memorandum {
+	
 }

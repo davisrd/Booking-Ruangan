@@ -19,8 +19,13 @@ public class Memorandum {
 	@Id
     @Column(name="MEMORANDUM_ID", nullable = false)
 	@Size(min=10, max=10)
-	private char memorandumId;
+	private int memorandumId;
     
+	@Column (name="MEMORANDUM_CODE")
+	@Size (min=7, max=7)
+	private String memorandumCode;
+	
+	
     @Column(name="MEMORANDUM_RECEIVER")
     @Size(min=8, max=8)
 	private String memorandumReceiver;
@@ -43,11 +48,34 @@ public class Memorandum {
 	private Date createdDate;
 
     
-	public char getMemorandumId() {
-		return memorandumId;
+    
+    
+	public Memorandum(int memorandumId, String memorandumCode, String memorandumReceiver, String memorandumSubject,
+			String memorandumMessage, boolean memorandumStatus, String createdBy, Date createdDate) {
+		super();
+		this.memorandumId = memorandumId;
+		this.memorandumCode = memorandumCode;
+		this.memorandumReceiver = memorandumReceiver;
+		this.memorandumSubject = memorandumSubject;
+		this.memorandumMessage = memorandumMessage;
+		this.memorandumStatus = memorandumStatus;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
 	}
 
-	public void setMemorandumId(char memorandumId) {
+	public String getMemorandumCode() {
+		return memorandumCode;
+	}
+
+	public void setMemorandumCode(String memorandumCode) {
+		this.memorandumCode = memorandumCode;
+	}
+
+	public int getMemorandumId() {
+		return memorandumId;
+	}
+	
+	public void setMemorandumId(int memorandumId) {
 		this.memorandumId = memorandumId;
 	}
 

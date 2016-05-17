@@ -18,9 +18,12 @@ public class Room {
     @Id
     @GeneratedValue
     @Column(name="room_id")
-    @Size (max = 7)
-    private char roomId;
+    private int roomId;
      
+    @Column(name="room_code")
+    @Size (max = 7)
+    private char roomCode;
+    
     @Column(name="room_name")
     private String roomName;
      
@@ -42,20 +45,36 @@ public class Room {
          
     }
    
-    
-    public Room(char roomId, String roomName,boolean roomType, boolean roomStatus, long roomPrice){
-        this.roomId = roomId;
-        this.roomName = roomName;
-        this.roomType = roomType;
-        this.roomStatus = roomStatus;
-        this.roomPrice = roomPrice;
-    }
-
-	public char getroomId() {
-		return roomId;
+    public Room(int roomId, char roomCode, String roomName, Boolean roomType, Boolean roomStatus, long roomPrice,
+			RoomManager roomManager) {
+		super();
+		this.roomId = roomId;
+		this.roomCode = roomCode;
+		this.roomName = roomName;
+		this.roomType = roomType;
+		this.roomStatus = roomStatus;
+		this.roomPrice = roomPrice;
+		this.roomManager = roomManager;
 	}
 
-	public void setroomId(char roomId) {
+	
+
+	public int getroomId() {
+		return roomId;
+	}
+	
+
+	public char getRoomCode() {
+		return roomCode;
+	}
+
+
+	public void setRoomCode(char roomCode) {
+		this.roomCode = roomCode;
+	}
+
+
+	public void setroomId(int roomId) {
 		this.roomId = roomId;
 	}
 

@@ -20,8 +20,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Rent {
     @Id
     @Column(name="RENT_ID")
-    @Size(min=10,max=10)
-	private String rentId;
+	private int rentId;
+    
+    @Column(name="RENT_CODE")
+    @Size(min=9 ,max=9)
+    private char rentCode;
 
     @Column(name="RENTER")
 	private String renter;
@@ -39,11 +42,11 @@ public class Rent {
 	private long rentOperationalPrice;
 
     @Column(name="RENT_STATUS")
-    @Size(min=2,max=2)
+    @Size(min=1,max=1)
 	private boolean rentStatus;
     
     @Column(name="RENT_PHASE")
-    @Size(min=2,max=2)
+    @Size(min=1,max=1)
 	private boolean rentPhase;
     
     @Column(name="RENT_LETTER_PATH")
@@ -61,7 +64,7 @@ public class Rent {
 	private String rentCancelReason;
 
     @Column(name="EVENT_CATEGORY")
-    @Size(min=2,max=2)
+    @Size(min=1,max=1)
 	private String eventCategory;
 
     @Column(name="EVENT_NAME")

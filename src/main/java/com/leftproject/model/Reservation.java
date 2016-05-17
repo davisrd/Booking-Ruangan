@@ -24,8 +24,11 @@ public class Reservation {
     @Id
     
     @Column(name="RESERVATION_ID")
-    @Size (max = 10)
-	private char reservationId;
+	private int reservationId;
+    
+    @Column(name="RESERVATION_CODE")
+    @Size (max = 9)
+    private char reservationCode;
     
     @Column(name="RESERVATION_DATE_START")
 	private Date reservationDateStart;
@@ -34,7 +37,10 @@ public class Reservation {
 	private Date reservationDateEnd;
 
     @Column(name="RESERVATION_STATUS")
-	private boolean reservationStatus;
+	private char reservationStatus;
+    
+    @Column(name="RESERVATION_PHASE")
+	private char reservationPhase;
     
     @Column(name="RESERVATION_FILE_PATH")
 	private String reservationFilePath;
@@ -77,18 +83,17 @@ public class Reservation {
 	
 	
 	
-	
-	public Reservation(char reservationId, Date reservationDateStart, Date reservationDateEnd,
-			boolean reservationStatus, String reservationFilePath, long reservationOperationalPrice,
+	public Reservation(int reservationId, char reservationCode, Date reservationDateStart, Date reservationDateEnd,
+			char reservationStatus, char reservationPhase, String reservationFilePath, long reservationOperationalPrice,
 			String reservationRejectReason, String eventType, String eventName, String eventScale,
-			int eventTotalParticipant, Date createdDate, String updatedBy, Date updatedDate, String user,
-			Room room,
-			Set<ReservationLog> reservationLogList, Set<ReservationMemorandum> reservationMemorandumList) {
+			int eventTotalParticipant, Date createdDate, String updatedBy, Date updatedDate, String userId, Room room) {
 		super();
 		this.reservationId = reservationId;
+		this.reservationCode = reservationCode;
 		this.reservationDateStart = reservationDateStart;
 		this.reservationDateEnd = reservationDateEnd;
 		this.reservationStatus = reservationStatus;
+		this.reservationPhase = reservationPhase;
 		this.reservationFilePath = reservationFilePath;
 		this.reservationOperationalPrice = reservationOperationalPrice;
 		this.reservationRejectReason = reservationRejectReason;
@@ -99,16 +104,26 @@ public class Reservation {
 		this.createdDate = createdDate;
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
-		this.userId = user;
+		this.userId = userId;
 		this.room = room;
 	}
 	//Getter dan Setter
 		
 	
-	public char getReservationId() {
+	public int getReservationId() {
 		return reservationId;
 	}
-	public void setReservationId(char reservationId) {
+	public char getReservationPhase() {
+		return reservationPhase;
+	}
+
+
+	public void setReservationPhase(char reservationPhase) {
+		this.reservationPhase = reservationPhase;
+	}
+
+
+	public void setReservationId(int reservationId) {
 		this.reservationId = reservationId;
 	}
 	
@@ -124,10 +139,10 @@ public class Reservation {
 	public void setReservationDateEnd(Date reservationDateEnd) {
 		this.reservationDateEnd = reservationDateEnd;
 	}
-	public boolean isReservationStatus() {
+	public char isReservationStatus() {
 		return reservationStatus;
 	}
-	public void setReservationStatus(boolean reservationStatus) {
+	public void setReservationStatus(char reservationStatus) {
 		this.reservationStatus = reservationStatus;
 	}
 	public String getReservationFilePath() {

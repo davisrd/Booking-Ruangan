@@ -16,6 +16,10 @@ public class RentLog {
 	@Column(name = "RENT_ID", nullable = false)
 	private int rentId;
 	
+	@Column(name="RENT_CODE")
+	@Size(min=9 ,max=9)
+	private char rentCode;
+	
     @Column(name="RENT_DATE_START")
 	private Date rentDateStart;
     
@@ -26,7 +30,7 @@ public class RentLog {
 	private long rentPrice;
     
     @Column(name="RENT_STATUS")
-    @Size(min=2,max=2)
+    @Size(min=1,max=1)
 	private String rentStatus;
     
     @Column(name="RENT_OPERATIONAL_PRICE")
@@ -46,9 +50,13 @@ public class RentLog {
     @Column(name="UPDATED_DATE")
 	private Date updatedDate;
     
-    public RentLog(Date rentDateStart, Date rentDateEnd, long rentPrice, String rentStatus, long rentOperationalPrice,
-			String rentFolderPath, String rentRejectReason, String updatedBy, Date updatedDate) {
+    
+	public RentLog(int rentId, char rentCode, Date rentDateStart, Date rentDateEnd, long rentPrice, String rentStatus,
+			long rentOperationalPrice, String rentFolderPath, String rentRejectReason, String updatedBy,
+			Date updatedDate) {
 		super();
+		this.rentId = rentId;
+		this.rentCode = rentCode;
 		this.rentDateStart = rentDateStart;
 		this.rentDateEnd = rentDateEnd;
 		this.rentPrice = rentPrice;
@@ -60,8 +68,8 @@ public class RentLog {
 		this.updatedDate = updatedDate;
 	}
 
-    
-    
+
+
 	public int getRentId() {
 		return rentId;
 	}

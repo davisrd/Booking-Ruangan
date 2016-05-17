@@ -16,7 +16,7 @@ public class Notification {
 	@Id
     @Column(name="NOTIFICATION_ID", nullable = false)
 	@Size(min=10,max=10)
-	private String notificationId;
+	private int notificationId;
     
     @Column(name="NOTIFICATION_RECEIVER")
     @Size(max=8)
@@ -35,7 +35,7 @@ public class Notification {
     @Column(name="CREATED_DATE")
 	private Date createdDate;
 
-	public Notification(String notificationId, String notificationReceiver, String notificationSubject,
+	public Notification(int notificationId, String notificationReceiver, String notificationSubject,
 			String notificationMessage, boolean notificationStatus, Date createdDate) {
 		super();
 		this.notificationId = notificationId;
@@ -50,11 +50,11 @@ public class Notification {
 		
 	}
 	
-	public String getNotificationId() {
+	public int getNotificationId() {
 		return notificationId;
 	}
 
-	public void setNotificationId(String notificationId) {
+	public void setNotificationId(int notificationId) {
 		this.notificationId = notificationId;
 	}
 
