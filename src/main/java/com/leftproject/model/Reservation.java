@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import com.leftproject.model.Notification;
@@ -21,8 +22,10 @@ import com.leftproject.model.Notification;
 @Table(name="RESERVATION")
 public class Reservation {
     @Id
+    
     @Column(name="RESERVATION_ID")
-	private String reservationId;
+    @Size (max = 10)
+	private char reservationId;
     
     @Column(name="RESERVATION_DATE_START")
 	private Date reservationDateStart;
@@ -75,7 +78,7 @@ public class Reservation {
 	
 	
 	
-	public Reservation(String reservationId, Date reservationDateStart, Date reservationDateEnd,
+	public Reservation(char reservationId, Date reservationDateStart, Date reservationDateEnd,
 			boolean reservationStatus, String reservationFilePath, long reservationOperationalPrice,
 			String reservationRejectReason, String eventType, String eventName, String eventScale,
 			int eventTotalParticipant, Date createdDate, String updatedBy, Date updatedDate, String user,
@@ -102,10 +105,10 @@ public class Reservation {
 	//Getter dan Setter
 		
 	
-	public String getReservationId() {
+	public char getReservationId() {
 		return reservationId;
 	}
-	public void setReservationId(String reservationId) {
+	public void setReservationId(char reservationId) {
 		this.reservationId = reservationId;
 	}
 	

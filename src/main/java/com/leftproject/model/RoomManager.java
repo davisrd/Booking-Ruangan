@@ -16,19 +16,19 @@ public class RoomManager {
  
     @Id
     @Column(name="user_id")
-    private String userId;
+    private char userId;
     
    
     
-    public RoomManager(String userId){
+    public RoomManager(char userId){
         this.userId = userId;
     }
         
-        public String getuserId() {
+        public char getuserId() {
     		return userId;
     	}
 
-    	public void setuserId(String userId) {
+    	public void setuserId(char userId) {
     		this.userId = userId;
     	}
     	

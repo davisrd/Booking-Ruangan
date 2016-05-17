@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="RESERVATION_LOG")
@@ -15,6 +16,7 @@ public class ReservationLog {
     
 	@Id
 	@Column(name = "RESERVATION_ID", nullable = false)
+	@Size (max =10)
 	private int reservationId;
 	
     @Column(name="RESERVATION_DATE_START")
