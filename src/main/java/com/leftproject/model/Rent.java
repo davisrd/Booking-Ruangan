@@ -47,7 +47,7 @@ public class Rent {
     
     @Column(name="RENT_PHASE")
     @Size(min=1,max=1)
-	private boolean rentPhase;
+	private char rentPhase;
     
     @Column(name="RENT_LETTER_PATH")
     @Size(max=100)
@@ -93,5 +93,8 @@ public class Rent {
 //    @JoinColumn(name="department_id")
 //    @IndexColumn(name="idx")
 	
+	public void setRentPhase(char rentPhase) {
+		this.rentPhase = rentPhase;
+	}
 	
 }
