@@ -30,6 +30,8 @@ public class AppController {
 	@Autowired
 	RuanganService ruanganService;
 	@Autowired
+	RentService rentService;
+	@Autowired
 	RoomService roomService;
 	@Autowired
 	ScheduleService scheduleService;
@@ -66,7 +68,16 @@ public class AppController {
         return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
     }
     
+    //-------------------Use Case : Mengajukan Penyewaan--------------------------------------------------------
     
+    @RequestMapping(value = "/rent/{userId}", method = RequestMethod.GET)
+    public ResponseEntity<List<Rent>> getAllRent() {
+        List<Rent> rents = rentService.getRentList();
+        if(rents.isEmpty()){
+            return new ResponseEntity<List<Rent>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+        }
+        return new ResponseEntity<List<Rent>>(rents, HttpStatus.OK);
+    }
     
     //-------------------Get Room Status----------------------------------------------------------
     // If no schedule, status = 0
