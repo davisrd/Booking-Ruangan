@@ -43,12 +43,13 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 	
 	//yg dari sequence appl
 	public List<Reservation> getAllReservations(User user){
-		Query query = getSession().createSQLQuery("select from RESERVATION where user_id = " + user.userId);
-		//return list reservation
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("user_id", user.getuserId()));
+		return (List<Reservation>) criteria.list();
 	}
 	
 	public String cancelReservation(Reservation reservation){
-		Query query = getSession().createSQLQuery("delete from RESERVATION where reservation_id = " + reservation.reservationId);
+		Query query = getSession().createSQLQuery("delete from RESERVATION where reservation_id = " + reservation.getReservationId());
 		return "Pembatalan peminjaman ruangan berhasil";
 	}
 	
@@ -57,18 +58,19 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 	}
 	
 	public List<Reservation> getProposedMovementReservation(){
-		Query query = getSession().createSQLQuery("select from RESERVATION where reservation_status = M");
-		//return list reservation
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("reservation_phase", "M"));
+		return (List<Reservation>) criteria.list();
 	}
 	
 	public String approveReservationByRoomManager(Reservation reservation){
-		reservation.reservationPhase=4;
+		reservation.setReservationPhase('4');
 		persist(reservation);
 		return "Peminjaman rungan telah disetujui";
 	}
 	
 	public String approveReservationByKaSubbagTU(Reservation reservation){
-		reservation.reservationPhase=3;
+		reservation.setReservationPhase('3');
 		persist(reservation);
 		return "Peminjaman rungan telah disetujui";
 	}
