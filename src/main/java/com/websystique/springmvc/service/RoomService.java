@@ -8,5 +8,7 @@ public interface RoomService {
 	
 	List<Room> getRoomList();
 	
+	List<Room> getRoomList(char roomCategory);
+	
 	Room getRoom(int room_id);
 }

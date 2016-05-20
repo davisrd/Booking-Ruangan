@@ -13,21 +13,21 @@ import com.leftproject.model.Schedule;;
 @Repository("ScheduleDao")
 public class ScheduleDaoImpl extends AbstractDao<Integer, Schedule> implements ScheduleDao{
 	ReservationDao dao;
-	public int roomStatus(String roomId, Date startDate, Date endDate){
+	public boolean getRoomStatus(String roomId, Date startDate, Date endDate){
 			
 			List<Schedule> listSchedule = getListSchedule(roomId, startDate, endDate);
 			if(listSchedule.isEmpty()){
-				return 0;
+				return true;
 			}
 			else if(listSchedule.get(0).getIdRoomUsage().substring(0, 1)=="RS"){
 				Schedule schedule = listSchedule.get(0);
 				Reservation reservation = dao.getReservation(schedule.getIdRoomUsage());
-				if(reservation.getEventType().toUpperCase()=="AKADEMIK") return 1;
+				if(reservation.getEventType().toUpperCase()=="AKADEMIK") return false;
 			}
-			else if(listSchedule.get(0).getIdRoomUsage().substring(0, 1)=="RE") return 1;
+			else if(listSchedule.get(0).getIdRoomUsage().substring(0, 1)=="RE") return false;
 			
 			
-		return 2;
+		return false;
 	}
 	
 	public List<Schedule> getListSchedule(String roomId, Date startDate, Date endDate){

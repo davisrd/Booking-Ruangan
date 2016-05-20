@@ -29,14 +29,15 @@ public class AppController {
 	PeminjamService peminjamService;
 	@Autowired
 	RuanganService ruanganService;
-	@Autowired
-	RentService rentService;
+	
 	@Autowired
 	RoomService roomService;
 	@Autowired
 	ScheduleService scheduleService;
 	@Autowired
 	ReservationService reservationService;
+	@Autowired
+	RentService rentService;
 	
 	@Autowired
 	MessageSource messageSource;
@@ -45,17 +46,6 @@ public class AppController {
 	public String getIndexPage() {
 		return "redirect:/app/index.html";
 	}
-	
-	@RequestMapping(value = { "/PeminjamManagement"}, method = RequestMethod.GET)
-	public String getPeminjamPage() {
-		return "PeminjamManagement";
-	}
-	
-	@RequestMapping(value = { "/RuanganManagement"}, method = RequestMethod.GET)
-	public String getRuanganPage() {
-		return "RuanganManagement";
-	}
-	
 	
 	//-------------------Retrieve All Room--------------------------------------------------------
     
@@ -70,15 +60,33 @@ public class AppController {
     
     //-------------------Use Case : Mengajukan Penyewaan--------------------------------------------------------
 
+    @RequestMapping(value = "/rentRoomCategory/{category}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Room> getAllRentableRoom(@PathVariable("category") char category) {
+    	List<Room> rooms = roomService.getRoomList(category); // With condition it should be
+        if(rooms.isEmpty()){
+            return new ResponseEntity<List<Room>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+        }
+        return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/roomAvailibility/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<boolean> getRoomAvailibility(@PathVariable("id") int id) {
+    	boolean status = scheduleService.getRoomStatus(id, startDate, endDate); // With condition it should be
+        if(status==false){
+            return new ResponseEntity<boolean>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+        }
+        return new ResponseEntity<boolean>(status, HttpStatus.OK);
+    }
+    
     @RequestMapping(value = "/rent", method = RequestMethod.GET)
     public ResponseEntity<List<Rent>> getAllRent() {
-        List<Rent> rents = rentService.getRentList();
+        List<Rent> rents = rentService.getProposedRent();
         if(rents.isEmpty()){
             return new ResponseEntity<List<Rent>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }
         return new ResponseEntity<List<Rent>>(rents, HttpStatus.OK);
     }
-    
+
     @RequestMapping(value = "/rent", method = RequestMethod.POST)
     public ResponseEntity<Void> saveRent(@RequestBody Rent rent, UriComponentsBuilder ucBuilder)
     {
@@ -86,6 +94,42 @@ public class AppController {
     	HttpHeaders headers = new HttpHeaders();
     	headers.setLocation(ucBuilder.path("/rent/{id}").buildAndExpand(rent.getRentId()).toUri());
     	return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/rent/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Void> saveRent(@PathVariable("id") int id, @RequestBody Rent rent, UriComponentsBuilder ucBuilder)
+    {
+    	System.out.println("Updating Employee " + id);
+        
+        Rent currentRent = rentService.getRent(id);
+         
+        if (currentRent==null) {
+            System.out.println("Employee with nip " + id + " not found");
+            return new ResponseEntity<Rent>(HttpStatus.NOT_FOUND);
+        }
+ 
+        currentRent.setCreatedDate(rent.getCreatedDate());
+        currentRent.setEventCategory(rent.getEventCategory());
+        currentRent.setEventName(rent.getEventName());
+        currentRent.setRentCancelReason(rent.getRentCancelReason());
+        currentRent.setRentCode(rent.getRentCode());
+        currentRent.setRentDateStart(rent.getRentDateStart());
+        currentRent.setRentDateEnd(rent.getRentDateEnd());
+        currentRent.setRenter(rent.getRenter());
+        currentRent.setRentEvidencePath(rent.getRentEvidencePath());
+        currentRent.setRentLetterPath(rent.getRentLetterPath());
+        currentRent.setRentOperationalPrice(rent.getRentOperationalPrice());
+        currentRent.setRentPhase(rent.getRentPhase());
+        currentRent.setRentPrice(rent.getRentPrice());
+        currentRent.setRentRejectReason(rent.getRentRejectReason());
+        currentRent.setRentStatus(rent.getRentStatus());
+        currentRent.setRoom(rent.getRoom());
+        currentRent.setUpdatedBy(rent.getUpdatedBy());
+        currentRent.setUpdatedDate(rent.getUpdatedDate());
+        currentRent.setUserId(rent.getUserId());
+         
+        rentService.updateRent(currentRent);
+        return new ResponseEntity<Rent>(currentRent, HttpStatus.OK);
     }
     
     //-------------------Get Room Status----------------------------------------------------------
