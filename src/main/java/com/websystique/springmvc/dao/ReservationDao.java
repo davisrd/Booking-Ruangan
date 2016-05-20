@@ -26,7 +26,9 @@ public interface ReservationDao {
 	
 	String approveReservationByKaSubbagTU(Reservation reservation);
 	
-	String denyReservation(Reservation reservation);
+	String denyReservationByRoomManager(Reservation reservation);
+	
+	String denyReservationByKasubbagTU(Reservation reservation);
 	
 //	List<Reservation> findAllReservations();
 	

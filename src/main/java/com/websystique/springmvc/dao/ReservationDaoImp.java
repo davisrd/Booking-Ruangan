@@ -75,10 +75,20 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 		return "Peminjaman rungan telah disetujui";
 	}
 	
-	public String denyReservation(Reservation reservation){
-		
-		//return success message
+	public String denyReservationByRoomManager(Reservation reservation){
+		reservation.setReservationPhase('5');
+		persist(reservation);
+		return "Pengajuan pemindahan jadwal atau ruang peminjaman tidak diizinkan Pengelola Ruang Khusus";
 	}
+	
+	public String denyReservationByKasubbagTU(Reservation reservation){
+		reservation.setReservationPhase('6');
+		persist(reservation);
+		return "Pengajuan pemindahan jadwal atau ruang peminjaman tidak diizinkan Kasubbag TU";
+	}
+	
+	
+	
 	
 	
 }
