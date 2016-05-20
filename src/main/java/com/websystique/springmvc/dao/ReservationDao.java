@@ -31,5 +31,4 @@ public interface ReservationDao {
 	String denyReservationByKasubbagTU(Reservation reservation);
 	
 //	List<Reservation> findAllReservations();
-	
 }

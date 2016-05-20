@@ -87,8 +87,4 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 		return "Pengajuan pemindahan jadwal atau ruang peminjaman tidak diizinkan Kasubbag TU";
 	}
 	
-	
-	
-	
-	
 }

@@ -35,9 +35,10 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 		return (List<Rent>) criteria.list();
 	}
 	
-	public void setRentPhase(Rent rent, char phase){
+	public String setRentPhase(Rent rent, char phase){
 		rent.setRentPhase(phase);
 		persist(rent);
+		return "Berhasil";
 	}
 	
 	public boolean saveRent(Rent rent){
