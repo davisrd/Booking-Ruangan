@@ -177,11 +177,6 @@ roomReservationControllers.controller('ReservationFormCtrl', function($scope, $r
 });
 
 roomReservationControllers.controller('RentFormCtrl', function($scope, $rootScope) {
-	$scope.room = {
-		roomId: 1,
-		roomName: "Ruangan Utama Pendopo Agung",
-		roomType: "Umum"
-	};
 	$scope.rent = {};
 	$scope.rent.rentStartDate = "17 April 2015 10:00";
 	$scope.rent.rentEndDate = "17 April 2015 17:00";
@@ -327,7 +322,7 @@ roomReservationControllers.controller('FormPemPenyewaanCtrl', function($scope, $
 	};
 });
 roomReservationControllers.controller('RentRequestListCtrl', function($scope, $rootScope, $uibModal, Rent) {
-	$scope.listOfRent = Rent;
+	$scope.listOfRent = Rent.query();
 	
 	$scope.open = function () {
 		var modalInstance = $uibModal.open({
@@ -371,7 +366,7 @@ roomReservationControllers.controller('ReservationRequestApprovalListCtrl', func
 });
 
 roomReservationControllers.controller('RentRequestApprovalListCtrl', function($scope, $rootScope, Rent) {
-	$scope.listOfRent = Rent;
+	$scope.listOfRent = Rent.query();
 	
 	$scope.selectRent = function(rent) {
 		console.log(rent)

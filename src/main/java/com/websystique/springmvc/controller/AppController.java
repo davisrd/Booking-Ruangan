@@ -69,14 +69,23 @@ public class AppController {
     }
     
     //-------------------Use Case : Mengajukan Penyewaan--------------------------------------------------------
-    
-    @RequestMapping(value = "/rent/{userId}", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/rent", method = RequestMethod.GET)
     public ResponseEntity<List<Rent>> getAllRent() {
         List<Rent> rents = rentService.getRentList();
         if(rents.isEmpty()){
             return new ResponseEntity<List<Rent>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }
         return new ResponseEntity<List<Rent>>(rents, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/rent", method = RequestMethod.POST)
+    public ResponseEntity<Void> saveRent(@RequestBody Rent rent, UriComponentsBuilder ucBuilder)
+    {
+    	rentService.saveRent(rent);
+    	HttpHeaders headers = new HttpHeaders();
+    	headers.setLocation(ucBuilder.path("/rent/{id}").buildAndExpand(rent.getRentId()).toUri());
+    	return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
     
     //-------------------Get Room Status----------------------------------------------------------
