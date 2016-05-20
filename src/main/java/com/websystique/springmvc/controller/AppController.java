@@ -78,6 +78,7 @@ public class AppController {
         return new ResponseEntity<boolean>(status, HttpStatus.OK);
     }
     
+    
     @RequestMapping(value = "/rent", method = RequestMethod.GET)
     public ResponseEntity<List<Rent>> getAllRent() {
         List<Rent> rents = rentService.getProposedRent();
