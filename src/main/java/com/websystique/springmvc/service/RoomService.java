@@ -8,7 +8,7 @@ public interface RoomService {
 	
 	List<Room> getRoomList();
 	
-	List<Room> getRoomList(char roomCategory);
+	List<Room> getRentRoomByCategory(char roomStatus, char roomCategory);
 	
 	Room getRoom(int room_id);
 }

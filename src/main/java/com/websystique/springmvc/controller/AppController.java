@@ -61,8 +61,8 @@ public class AppController {
     //-------------------Use Case : Mengajukan Penyewaan--------------------------------------------------------
 
     @RequestMapping(value = "/rentRoomCategory/{category}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Room> getAllRentableRoom(@PathVariable("category") char category) {
-    	List<Room> rooms = roomService.getRoomList(category); // With condition it should be
+    public ResponseEntity<List<Room>> getAllRentableRoom(@PathVariable("category") char category) {
+    	List<Room> rooms = roomService.getRentRoomByCategory('E', category); // With condition it should be
         if(rooms.isEmpty()){
             return new ResponseEntity<List<Room>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }

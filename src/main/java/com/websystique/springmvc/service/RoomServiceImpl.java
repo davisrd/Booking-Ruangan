@@ -22,7 +22,7 @@ public class RoomServiceImpl implements RoomService{
 		return roomDao.getRoomList();
 	}
 
-	public List<Room> getRoomList(char roomCategory)
+	public List<Room> getRentRoomByCategory(char roomStatus, char roomCategory)
 	{
 		return roomDao.getRoomList(roomCategory);
 	}
