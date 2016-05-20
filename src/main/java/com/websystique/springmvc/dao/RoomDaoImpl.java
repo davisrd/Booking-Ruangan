@@ -13,11 +13,19 @@ import com.websystique.springmvc.model.*;
 
 @Repository("RoomDao")
 public class RoomDaoImpl extends AbstractDao<Integer, Room> implements RoomDao{
-	
+
 	
 	public List<Room> getRoomList()
 	{
 		Criteria criteria = createEntityCriteria();
+		return (List<Room>) criteria.list();
+	}
+	
+	public List<Room> getRentRoomByCategory(char roomStatus, char category)
+	{
+		Criteria criteria = createEntityCriteria()
+				.add(Restrictions.eq("roomCategory", category))
+				.add(Restrictions.eq("roomStatus", roomStatus));
 		return (List<Room>) criteria.list();
 	}
 	
