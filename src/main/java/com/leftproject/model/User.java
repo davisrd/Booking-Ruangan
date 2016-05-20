@@ -42,7 +42,7 @@ public class User {
 		return userId;
 	}
 
-	public void userId(String userId) {
+	public void setuserId(String userId) {
 		this.userId = userId;
 	}
 

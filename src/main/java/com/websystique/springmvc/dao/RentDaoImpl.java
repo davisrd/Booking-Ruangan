@@ -15,7 +15,7 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 	//getAllMinRent(User user)
 	
 	public String cancelRent(Rent rent){
-		Query query = getSession().createSQLQuery("delete from RENT where rent_id = " + rent.rentId);
+		Query query = getSession().createSQLQuery("delete from RENT where rent_id = " + rent.getRentId());
 		return "Pembatalan penyewaan ruangan berhasil";
 	}
 		
