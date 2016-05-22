@@ -11,29 +11,33 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import com.leftproject.model.Room;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="RENT")
 public class Rent {
     @Id
+    @GeneratedValue
     @Column(name="RENT_ID")
 	private int rentId;
     
     @Column(name="RENT_CODE")
     @Size(min=9 ,max=9)
-    private char rentCode;
+    private String rentCode;
 
     @Column(name="RENTER")
 	private String renter;
 
     @Column(name="RENT_DATE_START")
+    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
 	private Date rentDateStart;
 
     @Column(name="RENT_DATE_END")
+    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
 	private Date rentDateEnd;
 
     @Column(name="RENT_PRICE")
@@ -42,11 +46,11 @@ public class Rent {
     @Column(name="RENT_OPERATIONAL_PRICE")
 	private long rentOperationalPrice;
 
-    @Column(name="RENT_STATUS")
+    @Column(name="RENT_STATUS", nullable = false)
     @Size(min=1,max=1)
-	private boolean rentStatus;
-    
-    @Column(name="RENT_PHASE")
+	private char rentStatus;
+
+    @Column(name="RENT_PHASE", nullable = false)
     @Size(min=1,max=1)
 	private char rentPhase;
     
@@ -64,9 +68,9 @@ public class Rent {
     @Column(name="RENT_CANCEL_REASON")
 	private String rentCancelReason;
 
-    @Column(name="EVENT_CATEGORY")
+    @Column(name="EVENT_CATEGORY", nullable = false)
     @Size(min=1,max=1)
-	private String eventCategory;
+	private char eventCategory;
 
     @Column(name="EVENT_NAME")
     @Size(max=25)
@@ -86,7 +90,7 @@ public class Rent {
 	private String userId;
 	
 	@Autowired
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "room_id")
 	private Room room;
 	
@@ -98,9 +102,13 @@ public class Rent {
 		this.rentPhase = rentPhase;
 	}
 
-	public Rent(int rentId, char rentCode, String renter, Date rentDateStart, Date rentDateEnd, long rentPrice,
-			long rentOperationalPrice, boolean rentStatus, char rentPhase, String rentLetterPath,
-			String rentEvidencePath, String rentRejectReason, String rentCancelReason, String eventCategory,
+	public Rent(){
+		
+	}
+	
+	public Rent(int rentId, String rentCode, String renter, Date rentDateStart, Date rentDateEnd, long rentPrice,
+			long rentOperationalPrice, char rentStatus, char rentPhase, String rentLetterPath,
+			String rentEvidencePath, String rentRejectReason, String rentCancelReason, char eventCategory,
 			String eventName, Date createdDate, String updatedBy, Date updatedDate, String userId, Room room) {
 		super();
 		this.rentId = rentId;
@@ -133,11 +141,11 @@ public class Rent {
 		this.rentId = rentId;
 	}
 
-	public char getRentCode() {
+	public String getRentCode() {
 		return rentCode;
 	}
 
-	public void setRentCode(char rentCode) {
+	public void setRentCode(String rentCode) {
 		this.rentCode = rentCode;
 	}
 
@@ -165,7 +173,7 @@ public class Rent {
 		this.rentDateEnd = rentDateEnd;
 	}
 
-	public boolean getRentStatus() {
+	public char getRentStatus() {
 		return rentStatus;
 	}
 
@@ -185,11 +193,7 @@ public class Rent {
 		this.rentOperationalPrice = rentOperationalPrice;
 	}
 
-	public boolean isRentStatus() {
-		return rentStatus;
-	}
-
-	public void setRentStatus(boolean rentStatus) {
+	public void setRentStatus(char rentStatus) {
 		this.rentStatus = rentStatus;
 	}
 
@@ -225,11 +229,11 @@ public class Rent {
 		this.rentCancelReason = rentCancelReason;
 	}
 
-	public String getEventCategory() {
+	public char getEventCategory() {
 		return eventCategory;
 	}
 
-	public void setEventCategory(String eventCategory) {
+	public void setEventCategory(char eventCategory) {
 		this.eventCategory = eventCategory;
 	}
 

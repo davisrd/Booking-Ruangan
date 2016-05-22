@@ -3,12 +3,17 @@ package com.websystique.springmvc.dao;
 import java.util.List;
 
 import com.leftproject.model.Rent;
+<<<<<<< HEAD
 import com.websystique.springmvc.model.*;
+=======
+import com.leftproject.model.User;
+>>>>>>> refs/remotes/origin/master
 
 
 public interface RentDao {
 	String cancelRent(Rent rent);
 		
+<<<<<<< HEAD
 //	List<Rent> getAllRentUnacceptedByDirectur();
 	
 	List<Rent> getProposedRent();
@@ -16,10 +21,17 @@ public interface RentDao {
 	Rent getRent(int rentId);
 	
 	void deleteRentById(int id);
+=======
+	List<Rent> getNotYetApproveMovementRentByDirectur();
+>>>>>>> refs/remotes/origin/master
 	
-	void setRentPhase(Rent rent);
+	String setRentPhase(Rent rent, char phase);
 	
-	void saveRent(Rent rent);
+	boolean saveRent(Rent rent);
 	
 	boolean updateRent(Rent rent);
+	
+	void getAllMinRent(User user);
+	
+	public List<Rent> getAllRentsByUser(User user);
 }

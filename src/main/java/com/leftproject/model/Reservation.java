@@ -16,7 +16,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import com.leftproject.model.Notification;
+
+import com.leftproject.model.*;
 
 @Entity
 @Table(name="RESERVATION")
@@ -224,7 +225,7 @@ public class Reservation {
 		
 		this.reservationDateStart = null;
 		this.reservationDateEnd = null;
-		this.reservationStatus = false;
+		this.reservationStatus = 'N';
 		this.reservationFilePath = null;
 		this.reservationOperationalPrice = 0;
 		this.reservationRejectReason = null;
