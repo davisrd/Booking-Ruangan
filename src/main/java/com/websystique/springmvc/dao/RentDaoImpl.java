@@ -12,12 +12,9 @@ import org.springframework.stereotype.Repository;
 
 import com.websystique.springmvc.model.*;
 import com.leftproject.model.Rent;
-<<<<<<< HEAD
 import com.leftproject.model.Room;
-=======
 import com.leftproject.model.Reservation;
 import com.leftproject.model.User;
->>>>>>> refs/remotes/origin/master
 
 @Repository("RentDao")
 public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
@@ -38,7 +35,6 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 		return "Pembatalan penyewaan ruangan berhasil";
 	}
 		
-<<<<<<< HEAD
 	public void deleteRentById(int id) {
 		Query query = getSession().createSQLQuery("delete from RENT where rent_ID = " + id);
 //		query.setString("nip", nip);
@@ -51,17 +47,14 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 		criteria.add(Restrictions.eq("rentStatus", 'M'));
 		return (List<Rent>) criteria.list();
 		//return list of rent
-=======
+	}
+	
 	public List<Rent> getNotYetApproveMovementRentByDirectur(){
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("rent_status", "M"));
 		return (List<Rent>) criteria.list();
->>>>>>> refs/remotes/origin/master
 	}
 	
-<<<<<<< HEAD
-	public void setRentPhase(Rent rent){
-=======
 	public List<Rent> getAllRentsByUser(User user){
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("user_id", user.getuserId()));
@@ -70,7 +63,6 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 	
 	public String setRentPhase(Rent rent, char phase){
 		rent.setRentPhase(phase);
->>>>>>> refs/remotes/origin/master
 		persist(rent);
 		return "Berhasil";
 	}

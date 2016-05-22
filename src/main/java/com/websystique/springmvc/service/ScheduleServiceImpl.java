@@ -1,7 +1,6 @@
 package com.websystique.springmvc.service;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.leftproject.model.Schedule;
 import com.websystique.springmvc.dao.ScheduleDao;
-import com.websystique.springmvc.model.*;
 
 @Service("ScheduleService")
 @Transactional

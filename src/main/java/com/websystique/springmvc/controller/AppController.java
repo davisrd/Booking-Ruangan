@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.websystique.springmvc.model.*;
 import com.leftproject.model.*;
 import com.websystique.springmvc.service.*;
+import com.websystique.springmvc.model.*;
 
 @Controller
 @RequestMapping("/")
