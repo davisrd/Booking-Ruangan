@@ -441,10 +441,10 @@ public class Reservation {
 		this.reservationRejectReason = null;
 		this.eventType = null;
 		this.eventName = null;
-		this.eventScale = null;
+		this.eventScale = '\0';
 		this.eventTotalParticipant = 0;
 		this.createdDate = null;
-		this.updatedBy = null;
+		this.updatedBy = '\0';
 		this.updatedDate = null;
 		this.userId = null;
 		this.room = null;

@@ -20,12 +20,12 @@ public class ScheduleDaoImpl extends AbstractDao<Integer, Schedule> implements S
 			if(listSchedule.isEmpty()){
 				return true;
 			}
-			else if(listSchedule.get(0).getIdRoomUsage().substring(0, 1)=="RS"){
+			else if(listSchedule.get(0).getIdRoomUsage().toString().substring(0, 1)=="RS"){
 				Schedule schedule = listSchedule.get(0);
-				Reservation reservation = dao.getReservation(schedule.getIdRoomUsage());
+				Reservation reservation = dao.getReservation(schedule.getIdRoomUsage().toString());
 				if(reservation.getEventType().toUpperCase()=="AKADEMIK") return false;
 			}
-			else if(listSchedule.get(0).getIdRoomUsage().substring(0, 1)=="RE") return false;
+			else if(listSchedule.get(0).getIdRoomUsage().toString().substring(0, 1)=="RE") return false;
 			
 			
 		return false;

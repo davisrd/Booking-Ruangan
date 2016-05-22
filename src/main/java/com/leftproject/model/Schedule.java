@@ -20,9 +20,9 @@ public class Schedule {
 	
 	@Column(name="USAGE_ID")
 	@Size(max=10)
-	private char idRoomUsage;
+	private char[] idRoomUsage;
 
-	public Schedule(int idSchedule, char idRoomUsage) {
+	public Schedule(int idSchedule, char[] idRoomUsage) {
 		super();
 		this.idSchedule = idSchedule;
 		this.idRoomUsage = idRoomUsage;
@@ -36,11 +36,11 @@ public class Schedule {
 		this.idSchedule = idSchedule;
 	}
 
-	public char getIdRoomUsage() {
+	public char[] getIdRoomUsage() {
 		return idRoomUsage;
 	}
 
-	public void setIdRoomUsage(char idRoomUsage) {
+	public void setIdRoomUsage(char[] idRoomUsage) {
 		this.idRoomUsage = idRoomUsage;
 	}
 	
