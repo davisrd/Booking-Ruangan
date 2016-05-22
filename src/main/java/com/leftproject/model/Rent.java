@@ -25,11 +25,13 @@ public class Rent {
     @Column(name="RENT_ID")
 	private int rentId;
     
+    @Id
     @Column(name="RENT_CODE")
     @Size(min=9 ,max=9)
     private String rentCode;
 
     @Column(name="RENTER")
+    @Size (max =255)
 	private String renter;
 
     @Column(name="RENT_DATE_START")

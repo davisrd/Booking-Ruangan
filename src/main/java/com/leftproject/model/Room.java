@@ -20,9 +20,10 @@ public class Room {
     @Column(name="room_id")
     private int roomId;
      
+    @Id
     @Column(name="room_code")
-    @Size (max = 7)
-    private String roomCode;
+    @Size (max = 5)
+    private char roomCode;
     
     @Column(name="room_name")
     private String roomName;
@@ -44,67 +45,75 @@ public class Room {
     public Room() {
          
     }
-   
-    public Room(int roomId, String roomCode, String roomName, char roomStatus, long roomPrice, char roomCategory,
+
+	public Room(int roomId, char roomCode, String roomName, char roomStatus, long roomPrice, char roomCategory,
 			RoomManager roomManager) {
 		super();
 		this.roomId = roomId;
 		this.roomCode = roomCode;
 		this.roomName = roomName;
-		this.roomCategory = roomCategory;
 		this.roomStatus = roomStatus;
 		this.roomPrice = roomPrice;
+		this.roomCategory = roomCategory;
 		this.roomManager = roomManager;
 	}
 
-	public int getroomId() {
+	public int getRoomId() {
 		return roomId;
 	}
-	
 
-	public String getRoomCode() {
-		return roomCode;
-	}
-
-
-	public void setRoomCode(String roomCode) {
-		this.roomCode = roomCode;
-	}
-
-
-	public void setroomId(int roomId) {
+	public void setRoomId(int roomId) {
 		this.roomId = roomId;
 	}
 
-	public String getroomName() {
+	public char getRoomCode() {
+		return roomCode;
+	}
+
+	public void setRoomCode(char roomCode) {
+		this.roomCode = roomCode;
+	}
+
+	public String getRoomName() {
 		return roomName;
 	}
 
-	public void setroomName(String roomName ) {
+	public void setRoomName(String roomName) {
 		this.roomName = roomName;
 	}
 
-	public char getroomStatus() {
+	public char getRoomStatus() {
 		return roomStatus;
 	}
 
-	public void setroomStatus(char roomStatus) {
+	public void setRoomStatus(char roomStatus) {
 		this.roomStatus = roomStatus;
 	}
 
-	public long  getroomPrice() {
+	public long getRoomPrice() {
 		return roomPrice;
 	}
 
-	public void setroomPrice(Long roomPrice) {
+	public void setRoomPrice(long roomPrice) {
 		this.roomPrice = roomPrice;
 	}
-	public RoomManager getroomManager() {
-        return roomManager;
-    }
 
-    public void setRoomManager(RoomManager roomManager) {
-        this.roomManager = roomManager;
-    }
+	public char getRoomCategory() {
+		return roomCategory;
+	}
+
+	public void setRoomCategory(char roomCategory) {
+		this.roomCategory = roomCategory;
+	}
+
+	public RoomManager getRoomManager() {
+		return roomManager;
+	}
+
+	public void setRoomManager(RoomManager roomManager) {
+		this.roomManager = roomManager;
+	}
+   
+   
 }
     // Getter and Setter methods

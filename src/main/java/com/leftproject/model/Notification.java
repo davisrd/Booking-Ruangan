@@ -15,9 +15,9 @@ import javax.validation.constraints.Size;
 public class Notification {
 	@Id
     @Column(name="NOTIFICATION_ID", nullable = false)
-	@Size(min=10,max=10)
 	private int notificationId;
     
+	
     @Column(name="NOTIFICATION_RECEIVER")
     @Size(max=8)
 	private String notificationReceiver;

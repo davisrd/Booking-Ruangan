@@ -10,29 +10,33 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name="RESERVATION_LOG")
 public class ReservationLog {
     
-	@Id
-	@Column(name = "RESERVATION_ID", nullable = false)
-	@Size (max =10)
-	private char reservationId;
 	
     @Column(name="RESERVATION_DATE_START")
-	private Date rentDateStart;
+    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
+	private Date resDateStart;
     
     @Column(name="RESERVATION_DATE_END")
-	private Date rentDateEnd;
+    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
+	private Date resDateEnd;
     
     @Column(name="RESERVATION_STATUS")
-	private boolean rentStatus;
+	private char resStatus;
+    
+    @Column(name="RESERVATION_PHASE")
+   	private char resPhase;
+    
     
     @Column(name="RESERVATION_OPERATIONAL_PRICE")
-	private long rentOperationalPrice;
+	private long resOperationalPrice;
     
-    @Column(name="RESERVATION_FOLDER_PATH")
-	private String rentFolderPath;
+    @Column(name="RESERVATION_FILE_PATH")
+	private String resFilePath;
     
     @Column(name="RESERVATION_REJECT_REASON")
 	private String rentRejectReason;
@@ -41,73 +45,69 @@ public class ReservationLog {
 	private String updatedBy;
     
     @Column(name="UPDATED_DATE")
+    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
 	private Date updatedDate;
 
-	public ReservationLog(Date rentDateStart, Date rentDateEnd, boolean rentStatus, long rentOperationalPrice,
-			String rentFolderPath, String rentRejectReason, String updatedBy, Date updatedDate) {
+	public ReservationLog(Date resDateStart, Date resDateEnd, char resStatus, char resPhase, long resOperationalPrice,
+			String resFilePath, String rentRejectReason, String updatedBy, Date updatedDate) {
 		super();
-		this.rentDateStart = rentDateStart;
-		this.rentDateEnd = rentDateEnd;
-		this.rentStatus = rentStatus;
-		this.rentOperationalPrice = rentOperationalPrice;
-		this.rentFolderPath = rentFolderPath;
+		this.resDateStart = resDateStart;
+		this.resDateEnd = resDateEnd;
+		this.resStatus = resStatus;
+		this.resPhase = resPhase;
+		this.resOperationalPrice = resOperationalPrice;
+		this.resFilePath = resFilePath;
 		this.rentRejectReason = rentRejectReason;
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
 	}
-	
-	
 
-	public int getReservationId() {
-		return reservationId;
+	public Date getResDateStart() {
+		return resDateStart;
 	}
 
-
-
-	public void setReservationId(char reservationId) {
-		this.reservationId = reservationId;
+	public void setResDateStart(Date resDateStart) {
+		this.resDateStart = resDateStart;
 	}
 
-
-
-	public Date getRentDateStart() {
-		return rentDateStart;
+	public Date getResDateEnd() {
+		return resDateEnd;
 	}
 
-	public void setRentDateStart(Date rentDateStart) {
-		this.rentDateStart = rentDateStart;
+	public void setResDateEnd(Date resDateEnd) {
+		this.resDateEnd = resDateEnd;
 	}
 
-	public Date getRentDateEnd() {
-		return rentDateEnd;
+	public char getResStatus() {
+		return resStatus;
 	}
 
-	public void setRentDateEnd(Date rentDateEnd) {
-		this.rentDateEnd = rentDateEnd;
+	public void setResStatus(char resStatus) {
+		this.resStatus = resStatus;
 	}
 
-	public boolean isRentStatus() {
-		return rentStatus;
+	public char getResPhase() {
+		return resPhase;
 	}
 
-	public void setRentStatus(boolean rentStatus) {
-		this.rentStatus = rentStatus;
+	public void setResPhase(char resPhase) {
+		this.resPhase = resPhase;
 	}
 
-	public long getRentOperationalPrice() {
-		return rentOperationalPrice;
+	public long getResOperationalPrice() {
+		return resOperationalPrice;
 	}
 
-	public void setRentOperationalPrice(long rentOperationalPrice) {
-		this.rentOperationalPrice = rentOperationalPrice;
+	public void setResOperationalPrice(long resOperationalPrice) {
+		this.resOperationalPrice = resOperationalPrice;
 	}
 
-	public String getRentFolderPath() {
-		return rentFolderPath;
+	public String getResFilePath() {
+		return resFilePath;
 	}
 
-	public void setRentFolderPath(String rentFolderPath) {
-		this.rentFolderPath = rentFolderPath;
+	public void setResFilePath(String resFilePath) {
+		this.resFilePath = resFilePath;
 	}
 
 	public String getRentRejectReason() {
@@ -133,7 +133,9 @@ public class ReservationLog {
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
 	}
-
+    
     
     
 }
+
+	

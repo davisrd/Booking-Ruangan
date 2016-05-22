@@ -17,9 +17,10 @@ public class User {
     @Column(name="USER_ID")
     private int userId;
     
+    @Id
     @Column(name="USER_CODE")
     @Size(max=8)
-    private String userCode;
+    private char userCode;
      
     @Column(name="USER_NAME")
     @Size(max=50)
@@ -35,7 +36,7 @@ public class User {
      
     public User(){}
     
-    public User(int userId, String userCode, String userName,String userPassword, char userType){
+    public User(int userId, char userCode, String userName,String userPassword, char userType){
         this.userId = userId;
         this.userCode = userCode;
         this.userName = userName;
@@ -51,11 +52,11 @@ public class User {
 		this.userId = userId;
 	}
 
-	public String getuserCode() {
+	public char getuserCode() {
 		return userCode;
 	}
 
-	public void setuserCode(String userCode) {
+	public void setuserCode(char userCode) {
 		this.userCode = userCode;
 	}
 	

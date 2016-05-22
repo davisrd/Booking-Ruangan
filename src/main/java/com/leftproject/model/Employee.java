@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="EMPLOYEE")
@@ -12,9 +13,11 @@ public class Employee {
  
     @Id
     @Column(name="employee_position")
+    @Size (max = 50)
     private String employeePosition;
      
     @Column(name="employee_Department")
+    @Size (max = 50)
     private String employeeDepartment;
      
   
