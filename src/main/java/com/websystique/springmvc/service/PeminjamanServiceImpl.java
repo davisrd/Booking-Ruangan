@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.websystique.springmvc.dao.PeminjamanDao;
 import com.websystique.springmvc.model.Peminjaman;
 
-@Service("employeeService")
+@Service("peminjamanService")
 @Transactional
 public class PeminjamanServiceImpl implements PeminjamanService {
 

@@ -16,7 +16,7 @@ public class Schedule {
 	@Id
     @Column(name="ID_SCHEDULE")
 	@Size(max = 10)
-    private String idSchedule;
+    private int idSchedule;
 	
 	@Column(name="ID_ROOM_USAGE")
 	@Size(max=10)
@@ -24,7 +24,7 @@ public class Schedule {
 	
 	@Column(name="ID_ROOM")
 	@Size(max=7)
-	private String idRoom;
+	private int idRoom;
 	
 	@Column(name="ID_USER")
 	@Size(max=8)
@@ -44,7 +44,7 @@ public class Schedule {
 	@Size(max=25)
 	private String eventName;
 
-	public Schedule(String idSchedule, String idRoomUsage, String idRoom, String idUser, String eventUserName,
+	public Schedule(int idSchedule, String idRoomUsage, int idRoom, String idUser, String eventUserName,
 			Date dateStart, Date dateEnd, String eventName) {
 		super();
 		this.idSchedule = idSchedule;
@@ -57,11 +57,11 @@ public class Schedule {
 		this.eventName = eventName;
 	}
 
-	public String getIdSchedule() {
+	public int getIdSchedule() {
 		return idSchedule;
 	}
 
-	public void setIdSchedule(String idSchedule) {
+	public void setIdSchedule(int idSchedule) {
 		this.idSchedule = idSchedule;
 	}
 
@@ -73,11 +73,11 @@ public class Schedule {
 		this.idRoomUsage = idRoomUsage;
 	}
 
-	public String getIdRoom() {
+	public int getIdRoom() {
 		return idRoom;
 	}
 
-	public void setIdRoom(String idRoom) {
+	public void setIdRoom(int idRoom) {
 		this.idRoom = idRoom;
 	}
 

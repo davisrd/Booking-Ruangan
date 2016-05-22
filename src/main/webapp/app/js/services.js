@@ -112,4 +112,38 @@ roomReservationServices.factory('Phone', ['$resource',
 		roomType: "Fasilitas Khusus"
 	}]
 	return room; */
-  });
+  })
+  
+  .factory('RentRoom', function($resource){
+	  
+	   return $resource(
+     		'http://localhost:8080/ProyekRuangan/rentRoom/:id', 
+     		{id: '@id'},//Handy for update & delete. id will be set with id of instance
+     		{
+     			update: {
+     			      method: 'PUT' // To send the HTTP Put request when calling this custom update method.
+     			}
+    			
+     		}
+   		);
+  })
+  .factory('Service', function($resource, $http){
+  		var urlBase = 'http://localhost:8080/ProyekRuangan'; //get?model=userDetail&userid=123123123;
+	    return {
+	        getRoomAvailibility: function(roomId, startDate, endDate) {
+	        	var params = {
+	        		startDate: startDate,
+	        		endDate: endDate
+	        	}
+	        	$http({
+				    url: urlBase + '/roomAvailibility/' + roomId, 
+				    method: "GET",
+				    params: params
+				 }).then(function success(data) {
+                	console.log(data);
+                }, function error(error){
+                    console.log(error);
+                });
+	        }
+	    }
+	});

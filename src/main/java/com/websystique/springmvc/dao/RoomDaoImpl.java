@@ -20,12 +20,19 @@ public class RoomDaoImpl extends AbstractDao<Integer, Room> implements RoomDao{
 		Criteria criteria = createEntityCriteria();
 		return (List<Room>) criteria.list();
 	}
+
+	public List<Room> getReservationRoom()
+	{
+		Criteria criteria = createEntityCriteria()
+				.add(Restrictions.eq("roomStatus", 'P'));
+		return (List<Room>) criteria.list();
+	}
 	
-	public List<Room> getRentRoomByCategory(char roomStatus, char category)
+	public List<Room> getRentRoomByCategory(char category)
 	{
 		Criteria criteria = createEntityCriteria()
 				.add(Restrictions.eq("roomCategory", category))
-				.add(Restrictions.eq("roomStatus", roomStatus));
+				.add(Restrictions.eq("roomStatus", 'E'));
 		return (List<Room>) criteria.list();
 	}
 	

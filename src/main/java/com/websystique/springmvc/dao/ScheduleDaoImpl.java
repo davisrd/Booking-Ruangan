@@ -7,13 +7,14 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import com.websystique.springmvc.model.*;
 import com.leftproject.model.Reservation;
 import com.leftproject.model.Schedule;;
 
 @Repository("ScheduleDao")
 public class ScheduleDaoImpl extends AbstractDao<Integer, Schedule> implements ScheduleDao{
 	ReservationDao dao;
-	public boolean getRoomStatus(String roomId, Date startDate, Date endDate){
+	public boolean getRoomStatus(int roomId, Date startDate, Date endDate){
 			
 			List<Schedule> listSchedule = getListSchedule(roomId, startDate, endDate);
 			if(listSchedule.isEmpty()){
@@ -30,20 +31,18 @@ public class ScheduleDaoImpl extends AbstractDao<Integer, Schedule> implements S
 		return false;
 	}
 	
-	public List<Schedule> getListSchedule(String roomId, Date startDate, Date endDate){
+	public List<Schedule> getListSchedule(int roomId, Date startDate, Date endDate){
 		Criteria criteria = createEntityCriteria();
-		Restrictions res = null;
-		criteria.add(res.eq("ID_ROOM", roomId));
-		criteria.add(res.between("DATE_START", startDate, endDate));
-		criteria.add(res.between("DATE_END", startDate, endDate));
+		criteria.add(Restrictions.eq("idRoom", roomId));
+		criteria.add(Restrictions.between("dateStart", startDate, endDate));
+		criteria.add(Restrictions.between("dateEnd", startDate, endDate));
 		return (List<Schedule>) criteria.list();
 	}
 	
-	public Schedule getSchedule(String roomId, Date date){
+	public Schedule getSchedule(int roomId, Date date){
 		Criteria criteria = createEntityCriteria();
-		Restrictions res = null;
-		criteria.add(res.eq("ID_ROOM", roomId));
-		criteria.add(res.like("DATE_START", new Date(date.getYear(),date.getMonth(),date.getDate()) ));
+		criteria.add(Restrictions.eq("idRoom", roomId));
+//		criteria.add(res.like("dateStart", new Date(date.getYear(),date.getMonth(),date.getDate()) ));
 		return (Schedule) criteria.list();
 	}
 }

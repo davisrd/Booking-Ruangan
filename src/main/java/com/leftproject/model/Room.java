@@ -22,19 +22,19 @@ public class Room {
      
     @Column(name="room_code")
     @Size (max = 7)
-    private char roomCode;
+    private String roomCode;
     
     @Column(name="room_name")
     private String roomName;
      
-    @Column(name="room_type")
-    private Boolean roomType;
-     
     @Column(name="room_status")
-    private Boolean roomStatus;
+    private char roomStatus;
      
     @Column(name="room_price")
     private long roomPrice;
+    
+   @Column(name="room_category")
+   private char roomCategory;
     
    
     @ManyToOne(fetch=FetchType.LAZY)
@@ -45,31 +45,29 @@ public class Room {
          
     }
    
-    public Room(int roomId, char roomCode, String roomName, Boolean roomType, Boolean roomStatus, long roomPrice,
+    public Room(int roomId, String roomCode, String roomName, char roomStatus, long roomPrice, char roomCategory,
 			RoomManager roomManager) {
 		super();
 		this.roomId = roomId;
 		this.roomCode = roomCode;
 		this.roomName = roomName;
-		this.roomType = roomType;
+		this.roomCategory = roomCategory;
 		this.roomStatus = roomStatus;
 		this.roomPrice = roomPrice;
 		this.roomManager = roomManager;
 	}
-
-	
 
 	public int getroomId() {
 		return roomId;
 	}
 	
 
-	public char getRoomCode() {
+	public String getRoomCode() {
 		return roomCode;
 	}
 
 
-	public void setRoomCode(char roomCode) {
+	public void setRoomCode(String roomCode) {
 		this.roomCode = roomCode;
 	}
 
@@ -86,20 +84,11 @@ public class Room {
 		this.roomName = roomName;
 	}
 
-	public boolean getroomType() {
-		return roomType;
-	}
-
-	public void setroomType(boolean roomType ) {
-		this.roomType = roomType;
-	}
-
-
-	public boolean getroomStatus() {
+	public char getroomStatus() {
 		return roomStatus;
 	}
 
-	public void setroomStatus(boolean roomStatus) {
+	public void setroomStatus(char roomStatus) {
 		this.roomStatus = roomStatus;
 	}
 

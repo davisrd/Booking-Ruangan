@@ -9,14 +9,14 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="EXTERNAL USER")
-public class ExternalUser {
+public class ExternalUser{
  
     @Id
-    @Column(name="ORGANIZATION TYPE")
+    @Column(name="ORGANIZATION_TYPE")
     @Size(max = 50)
     private String OrgType;
     
-    @Column (name="ORGANIZATION CATEGORY")
+    @Column (name="ORGANIZATION_CATEGORY")
     @Size(max = 1)
     private char OrgCat;
      
@@ -25,8 +25,6 @@ public class ExternalUser {
     
     }
 
-    
-    
 	public char getOrgCat() {
 		return OrgCat;
 	}

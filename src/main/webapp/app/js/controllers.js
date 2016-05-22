@@ -30,9 +30,9 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 	$rootScope.eventCategoryCode;
 	
 	$rootScope.$watch('eventCategoryCode', function(newValue, oldValue) {
-		if(newValue == 1) $rootScope.eventCategoryName = 'Bisnis'
-		if(newValue == 2) $rootScope.eventCategoryName = 'Non-Bisnis'
-		if(newValue == 3) $rootScope.eventCategoryName = 'Sosial'
+		if(newValue == 'B') $rootScope.eventCategoryName = 'Bisnis'
+		if(newValue == 'N') $rootScope.eventCategoryName = 'Non-Bisnis'
+		if(newValue == 'S') $rootScope.eventCategoryName = 'Sosial'
 	});
 	
 	$rootScope.user.userId = 'UMRG0001';
@@ -108,10 +108,6 @@ roomReservationControllers.controller('ReservationRoomSelectionCtrl', function($
 	$scope.listOfRoom = Room.query();
 	$('.clockpicker1').clockpicker()
 
-	$scope.isSelected = function(room) {
-		if($rootScope.selectedRoom == room) return 'selected';
-		else return '';
-	}
 	$scope.selectRoom = function(room){
 		$rootScope.selectedRoom = room;
 	};
@@ -157,11 +153,11 @@ roomReservationControllers.controller('FormPembatalanCtrl', function($scope, $ro
 	};
 });
 
-roomReservationControllers.controller('ReservationFormCtrl', function($scope, $rootScope, Reservation) {
-	
+roomReservationControllers.controller('ReservationFormCtrl', function($scope, $rootScope, Reservation) {	
 	$scope.reservation = new Reservation();
 	$scope.reservation.reservationStartDate = $rootScope.selectedDate.startDate;
 	$scope.reservation.reservationEndDate = $rootScope.selectedDate.endDate;
+	$scope.reservation.reservationPhase = 'N';
 	$scope.reservation.room = $scope.room;
 	
 	$scope.createPeminjam = function(){
@@ -176,14 +172,22 @@ roomReservationControllers.controller('ReservationFormCtrl', function($scope, $r
 	};
 });
 
-roomReservationControllers.controller('RentFormCtrl', function($scope, $rootScope) {
-	$scope.rent = {};
-	$scope.rent.rentStartDate = "17 April 2015 10:00";
-	$scope.rent.rentEndDate = "17 April 2015 17:00";
+roomReservationControllers.controller('RentFormCtrl', function($scope, $rootScope, Rent) {
+	$scope.rent = new Rent();
+	
+	$scope.rent.rentStartDate = $rootScope.selectedDate.startDate;
+	$scope.rent.rentEndDate = $rootScope.selectedDate.endDate;
+	$scope.rent.eventCategory = $rootScope.eventCategoryCode;
+	$scope.rent.rentPhase = 'N';
+
 	$scope.rent.room = $scope.room;
-	$scope.selectRoom = function(room){
-		$rootScope.selectedRoom = room;
-	};
+
+	$scope.createRent = function(){
+		  $scope.rent.$save(function(){
+			alert('sesuatu');  
+			goTo('/rentRequestList');
+		  });
+	  };
 });
 
 roomReservationControllers.controller('ReservationChangeFormCtrl', function($scope, $rootScope) {
@@ -349,12 +353,31 @@ roomReservationControllers.controller('RentRequestModalCtrl', function($scope, $
 	}
 });
 
-roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, $rootScope, Room) {
-	$scope.listOfRoom = Room.query();
+roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, $rootScope, $location, RentRoom, Service) {
+	$scope.listOfRoom = RentRoom.query({id:$rootScope.eventCategoryCode});
 	
 	$scope.selectRoom = function(room){
 		$rootScope.selectedRoom = room;
 	};
+
+	$scope.validateData = function(path){
+		if($rootScope.selectedRoom.roomId != undefined){
+			if($rootScope.selectedDate.startDate !=undefined) {
+				if($rootScope.selectedDate.endDate !=undefined) {
+					$rootScope.selectedDate.startDate = moment($rootScope.selectedDate.startDate).format("DD-MMM-YYYY HH:mm");
+					$rootScope.selectedDate.endDate = moment($rootScope.selectedDate.endDate).format("DD-MMM-YYYY HH:mm");
+					Service.getRoomAvailibility($rootScope.selectedRoom.roomId, $rootScope.selectedDate.startDate, $rootScope.selectedDate.endDate)
+					$location.path(path);
+				} else {
+					alert('Tanggal selesai harus diisi!');
+				}
+			} else {
+				alert('Tanggal mulai harus diisi!');
+			}
+		} else {
+			alert('Ruangan harus dipilih!');
+		}
+	}
 });
 
 roomReservationControllers.controller('ReservationRequestApprovalListCtrl', function($scope, $rootScope, Reservation) {

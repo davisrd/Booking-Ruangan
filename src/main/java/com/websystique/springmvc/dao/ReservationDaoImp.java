@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import com.websystique.springmvc.model.*;
 import com.leftproject.model.Reservation;
 import com.leftproject.model.User;
 
@@ -76,7 +77,7 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 	}
 	
 	public String denyReservation(Reservation reservation){
-		
+		return "success";
 		//return success message
 	}
 	

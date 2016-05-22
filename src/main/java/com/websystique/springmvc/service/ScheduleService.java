@@ -5,6 +5,6 @@ import java.util.Date;
 import com.leftproject.model.Schedule;
 
 public interface ScheduleService {
-	public boolean getRoomStatus(String roomId, Date startDate, Date endDate);
-	Schedule getSchedule(String roomId, Date date);
+	public boolean getRoomStatus(int roomId, Date startDate, Date endDate);
+	Schedule getSchedule(int roomId, Date date);
 }

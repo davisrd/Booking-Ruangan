@@ -8,8 +8,10 @@ import com.websystique.springmvc.model.*;
 public interface RoomDao {
 
 	List<Room> getRoomList();
+	
+	List<Room> getReservationRoom();
 
-	List<Room> getRentRoomByCategory(char roomStatus, char category);
+	List<Room> getRentRoomByCategory(char category);
 	
 	Room getRoom(int room_id);
 }

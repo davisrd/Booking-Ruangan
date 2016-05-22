@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -12,9 +13,13 @@ import javax.validation.constraints.Size;
 public class User {
  
     @Id
+    @GeneratedValue
     @Column(name="USER_ID")
+    private int userId;
+    
+    @Column(name="USER_CODE")
     @Size(max=8)
-    private String userId;
+    private String userCode;
      
     @Column(name="USER_NAME")
     @Size(max=50)
@@ -25,27 +30,35 @@ public class User {
     private String userPassword;
      
     @Column(name="USER_TYPE")
-    @Size(max=2)
+    @Size(max=1)
     private char userType;
      
     public User(){}
     
-    public User(String userId, String userName,String userPassword, char userType){
+    public User(int userId, String userCode, String userName,String userPassword, char userType){
         this.userId = userId;
+        this.userCode = userCode;
         this.userName = userName;
         this.userPassword = userPassword;
         this.userType = userType;
-       
     }
 
-	public String getuserId() {
+	public int getuserId() {
 		return userId;
 	}
 
-	public void setuserId(String userId) {
+	public void setuserId(int userId) {
 		this.userId = userId;
 	}
 
+	public String getuserCode() {
+		return userCode;
+	}
+
+	public void setuserCode(String userCode) {
+		this.userCode = userCode;
+	}
+	
 	public String getuserName() {
 		return userName;
 	}

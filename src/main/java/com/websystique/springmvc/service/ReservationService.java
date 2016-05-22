@@ -2,7 +2,8 @@ package com.websystique.springmvc.service;
 
 import java.util.List;
 
-import com.leftproject.model.*;
+import com.leftproject.model.Reservation;
+import com.websystique.springmvc.model.*;
 
 public interface ReservationService {
 
@@ -18,7 +19,7 @@ public interface ReservationService {
 	Reservation getReservation(String reservationId);
 	List<Reservation> getProposedReservation();
 	
-	void sendMemorandum (String memorandum);
+//	void sendMemorandum (String memorandum);
 	
 	
 }

@@ -24,10 +24,10 @@
 		<tbody>
 			<tr ng-repeat="rent in listOfRent" ng-click="selectRent(rent)" ng-class="{selected: rent.rentId == selectedRent.rentId}">
 				<td><span ng-bind="rent.rentId"></span></td>
-				<td><span ng-bind="rent.eventUserName"></span></td>
-				<td><span ng-bind="rent.rentStartDate"></span></td>
-				<td><span ng-bind="rent.rentEndDate"></span></td>
-				<td><span ng-bind="rent.facility.facilityName"></span></td>
+				<td><span ng-bind="rent.renter"></span></td>
+				<td><span ng-bind="rent.rentDateStart"></span></td>
+				<td><span ng-bind="rent.rentDateEnd"></span></td>
+				<td><span ng-bind="rent.room.roomName"></span></td>
 				<td><span ng-bind="rent.eventName"></span></td>
 				<td><span ng-bind="rent.rentPrice"></span></td>
 				<td><span ng-bind="rent.rentStatus"></span></td>

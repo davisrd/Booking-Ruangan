@@ -6,8 +6,8 @@ import com.leftproject.model.Schedule;
 
 public interface ScheduleDao {
 
-	public boolean getRoomStatus(String roomId, Date startDate, Date endDate);
+	public boolean getRoomStatus(int roomId, Date startDate, Date endDate);
 	
-	public List<Schedule> getListSchedule(String roomId, Date startDate, Date endDate);
-	Schedule getSchedule(String roomId, Date date);
+	public List<Schedule> getListSchedule(int roomId, Date startDate, Date endDate);
+	Schedule getSchedule(int roomId, Date date);
 }

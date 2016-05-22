@@ -1,5 +1,6 @@
 package com.websystique.springmvc.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.websystique.springmvc.model.*;
@@ -57,12 +59,23 @@ public class AppController {
         }
         return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
     }
+
+	//-------------------Retrieve All Reservable Room--------------------------------------------------------
+    
+    @RequestMapping(value = "/reservationRoom", method = RequestMethod.GET)
+    public ResponseEntity<List<Room>> getAllReservableRoom() {
+        List<Room> rooms = roomService.getReservationRoom();
+        if(rooms.isEmpty()){
+            return new ResponseEntity<List<Room>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+        }
+        return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
+    }
     
     //-------------------Use Case : Mengajukan Penyewaan--------------------------------------------------------
 
-    @RequestMapping(value = "/rentRoomCategory/{category}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/rentRoom/{category}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Room>> getAllRentableRoom(@PathVariable("category") char category) {
-    	List<Room> rooms = roomService.getRentRoomByCategory('E', category); // With condition it should be
+    	List<Room> rooms = roomService.getRentRoomByCategory(category); // With condition it should be
         if(rooms.isEmpty()){
             return new ResponseEntity<List<Room>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }
@@ -70,12 +83,13 @@ public class AppController {
     }
     
     @RequestMapping(value = "/roomAvailibility/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<boolean> getRoomAvailibility(@PathVariable("id") int id) {
-    	boolean status = scheduleService.getRoomStatus(id, startDate, endDate); // With condition it should be
-        if(status==false){
-            return new ResponseEntity<boolean>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+    public ResponseEntity<Boolean> getRoomAvailibility(@PathVariable("id") int id, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
+    	Boolean status = scheduleService.getRoomStatus(id, startDate, endDate); // With condition it should be
+//        Boolean status = true;
+    	if(status==false){
+            return new ResponseEntity<Boolean>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }
-        return new ResponseEntity<boolean>(status, HttpStatus.OK);
+        return new ResponseEntity<Boolean>(status, HttpStatus.OK);
     }
     
     
@@ -91,6 +105,7 @@ public class AppController {
     @RequestMapping(value = "/rent", method = RequestMethod.POST)
     public ResponseEntity<Void> saveRent(@RequestBody Rent rent, UriComponentsBuilder ucBuilder)
     {
+    	System.out.println("Create Rent with eventName : " + rent.getEventName());
     	rentService.saveRent(rent);
     	HttpHeaders headers = new HttpHeaders();
     	headers.setLocation(ucBuilder.path("/rent/{id}").buildAndExpand(rent.getRentId()).toUri());
@@ -98,7 +113,7 @@ public class AppController {
     }
 
     @RequestMapping(value = "/rent/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> saveRent(@PathVariable("id") int id, @RequestBody Rent rent, UriComponentsBuilder ucBuilder)
+    public ResponseEntity<Rent> saveRent(@PathVariable("id") int id, @RequestBody Rent rent, UriComponentsBuilder ucBuilder)
     {
     	System.out.println("Updating Employee " + id);
         
@@ -138,9 +153,9 @@ public class AppController {
     // If akademik/rent, status = 1
     // If non-akademik, status = 2
     @RequestMapping(value = "/roomStatus", method = RequestMethod.GET)
-    public ResponseEntity<Integer> getRoomStatus(@RequestBody Schedule schedule)
+    public ResponseEntity<Boolean> getRoomStatus(@RequestBody Schedule schedule)
     {
-    	return new ResponseEntity<Integer>(scheduleService.roomStatus(schedule.getIdRoom(), schedule.getDateStart(), schedule.getDateEnd()), HttpStatus.OK);
+    	return new ResponseEntity<Boolean>(scheduleService.getRoomStatus(schedule.getIdRoom(), schedule.getDateStart(), schedule.getDateEnd()), HttpStatus.OK);
     }
     
 	

@@ -3,11 +3,11 @@
     <p class="panel-title" id="pan-title">Form Penyewaan</p>
   </div>
   <div class="panel-body" id="pan-body">
-    <form class="form-horizontal" role="form" ng-submit="openModal('sm',pengajuan)">
+    <form class="form-horizontal" role="form" ng-submit="openModal('sm',rent)">
 		<div class="form-group">
 		  <label class="col-md-2" style="text-align:left" for="namaPenyewa">Nama Penyewa</label>
 		  <div class="col-md-4">
-			<input type="text" class="form-control" ng-model="pengajuan.namaPenyewa" ng-required="true">               
+			<input type="text" class="form-control" ng-model="rent.renter" ng-required="true">               
 		  </div>
 		</div>
 
@@ -28,30 +28,16 @@
 		<div class="form-group">
 		  <label class=" col-md-2" style="text-align:left" for="namaKegiatan">Nama Kegiatan</label>
 		  <div class="col-md-4">
-			<input type="text" class="form-control" ng-model="pengajuan.namaKegiatan" ng-required="true">               
+			<input type="text" class="form-control" ng-model="rent.eventName" ng-required="true">               
 		  </div>
 		</div>
 
 		<div class="form-group">
 		  <label class=" col-md-2" style="text-align:left" for="jenisKegiatan">Jenis Kegiatan</label>
 		  <div class="col-md-4">
-			<input type="text" class="form-control" ng-model="pengajuan.jenisKegiatan" ng-required="true">               
+			<input type="text" class="form-control" ng-model="rent.eventCategory" ng-required="true">               
 		  </div>
 		</div>
-
-		<div class="form-group">
-		  <label class=" col-md-2" style="text-align:left" for="skalaKegiatan">Skala Kegiatan</label>
-		  <div class="col-md-4">
-			<input type="text" class="form-control" ng-model="pengajuan.skalaKegiatan" ng-required="true">               
-		  </div>
-		</div>
-
-		<div class="form-group">
-		  <label class=" col-md-2" style="text-align:left" for="jumlahPeserta">Jumlah Peserta</label>
-		  <div class="col-md-4">
-			<input type="text" class="form-control" ng-model="pengajuan.jumlahPeserta" ng-required="true">               
-		  </div>
-		</div> 
 
 		<div class="form-group">
 		  <label class=" col-md-2" style="text-align:left" for="namaRuangan">Nama Ruangan</label>
@@ -63,7 +49,7 @@
 		<div class="form-group">
 		  <label class=" col-md-2" style="text-align:left" for="jenisRuangan">Jenis Ruangan</label>
 		  <div class="col-md-4">
-			{{selectedRoom.roomType}}              
+			{{selectedRoom.roomCode}}              
 		  </div>
 		</div>
 
@@ -77,7 +63,8 @@
 		<div class="form-group">
 		  <div class="col-md-offset-6 col-md-4">
 			<a href="#/reservationRoomSelection"><button type="button" class="btn btn-danger btn-md">Batal</button></a>
-			<a href="#/reservationRequestList"><button type="submit" class="btn btn-success btn-md">Ajukan Penyewaan</button></a>
+			<!-- <a href="#/reservationRequestList"><button type="submit" class="btn btn-success btn-md">Ajukan Penyewaan</button></a> -->
+			<button type="submit" class="btn btn-success btn-md" ng-click="createRent()">Ajukan Peminjaman</button>
 		  </div>
 		</div>
 	</form>
