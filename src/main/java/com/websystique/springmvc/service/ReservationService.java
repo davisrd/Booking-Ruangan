@@ -8,11 +8,11 @@ public interface ReservationService {
 	
 	void saveReservation(Reservation reservation);
 	
-	void deleteReservationByCode(int reservationCode);
+	void deleteReservationByCode(String reservationCode);
 	
 	void updateReservation(Reservation reservation);
 	
-	Reservation getReservation(int reservatioCode);
+	Reservation getReservation(String reservatioCode);
 	
 	List<Reservation> getProposedReservation();
 

@@ -21,7 +21,7 @@ public class ReservationServiceImpl implements ReservationService {
 		
 	}
 	
-	public void deleteReservationByCode(int reservationCode){
+	public void deleteReservationByCode(String reservationCode){
 		
 	}
 	
@@ -29,12 +29,13 @@ public class ReservationServiceImpl implements ReservationService {
 		
 	}
 	
-	public Reservation getReservation(int reservationCode ){
-		return reservationDao.getProposedReservation(reservationId);
+	public Reservation getReservation(String reservationCode ){
+//		return reservationDao.getProposedReservation(reservationCode);
+		return null;
 	}
 	
 	public List<Reservation> getProposedReservation(){
-		
+		return null;
 	}
 
 		
