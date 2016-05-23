@@ -14,7 +14,7 @@ import com.leftproject.model.Schedule;;
 @Repository("ScheduleDao")
 public class ScheduleDaoImpl extends AbstractDao<Integer, Schedule> implements ScheduleDao{
 	ReservationDao dao;
-	public boolean getRoomStatus(String usageId, Date startDate, Date endDate){
+	public boolean getRoomAvailability(String usageId, Date startDate, Date endDate){
 			
 			List<Schedule> listSchedule = getListSchedule(usageId, startDate, endDate);
 			if(listSchedule.isEmpty()){

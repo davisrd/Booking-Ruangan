@@ -1,6 +1,6 @@
 package com.websystique.springmvc.service;
 
-import java.util.Date;
+import java.util.*;
 
 import javax.transaction.Transactional;
 
@@ -17,8 +17,15 @@ public class ScheduleServiceImpl implements ScheduleService{
 	@Autowired
 	private ScheduleDao dao;
 	
-	public boolean getRoomStatus(String usageCode, Date startDate, Date endDate){
-		return dao.getRoomStatus(usageCode, startDate, endDate);
+	public boolean getRentRoomAvailability(String usageCode, Date startDate, Date endDate){
+		List<Schedule> schedules = dao.getListSchedule(usageCode, startDate, endDate);
+		if(!schedules.isEmpty())
+			for(Schedule schedule:schedules)
+			{
+				if(schedule.getUsageCode().toString().substring(1,2)=="RE")
+					return false;
+			}
+		return true;
 	}
 	
 	public Schedule getSchedule(String usageCode, Date date){
