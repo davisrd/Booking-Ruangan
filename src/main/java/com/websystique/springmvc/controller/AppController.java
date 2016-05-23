@@ -38,8 +38,8 @@ public class AppController {
 	ScheduleService scheduleService;
 	@Autowired
 	ReservationService reservationService;
-/*	@Autowired
-	RentService rentService;*/
+	@Autowired
+	RentService rentService;
 	
 	@Autowired
 	MessageSource messageSource;
@@ -93,7 +93,7 @@ public class AppController {
     }
     
     
-  /*  @RequestMapping(value = "/rent", method = RequestMethod.GET)
+    @RequestMapping(value = "/rent", method = RequestMethod.GET)
     public ResponseEntity<List<Rent>> getAllRent() {
         List<Rent> rents = rentService.getProposedRent();
         if(rents.isEmpty()){
@@ -101,8 +101,8 @@ public class AppController {
         }
         return new ResponseEntity<List<Rent>>(rents, HttpStatus.OK);
     }
-*/
-   /* @RequestMapping(value = "/rent", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/rent", method = RequestMethod.POST)
     public ResponseEntity<Void> saveRent(@RequestBody Rent rent, UriComponentsBuilder ucBuilder)
     {
     	System.out.println("Create Rent with eventName : " + rent.getEventName());
@@ -110,9 +110,9 @@ public class AppController {
     	HttpHeaders headers = new HttpHeaders();
     	headers.setLocation(ucBuilder.path("/rent/{id}").buildAndExpand(rent.getRentId()).toUri());
     	return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
-    }*/
+    }
 
-  /*  @RequestMapping(value = "/rent/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/rent/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Rent> saveRent(@PathVariable("id") int id, @RequestBody Rent rent, UriComponentsBuilder ucBuilder)
     {
     	System.out.println("Updating Employee " + id);
@@ -146,7 +146,25 @@ public class AppController {
          
         rentService.updateRent(currentRent);
         return new ResponseEntity<Rent>(currentRent, HttpStatus.OK);
-    }*/
+    }
+
+    //-------------------Use Case : Menyetujui Penyewaan - Direktur--------------------------------------------------------
+    
+    @RequestMapping(value = "/rent/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Rent> directurRentConfirmation(@PathVariable("id") int id, @RequestBody Rent rent) {
+    	Rent currentRent = rentService.getRent(id);
+        
+        if (currentRent==null) {
+            System.out.println("Employee with nip " + id + " not found");
+            return new ResponseEntity<Rent>(HttpStatus.NOT_FOUND);
+        }
+ 
+        currentRent.setRentPhase(rent.getRentPhase());
+
+        rentService.updateRent(currentRent);
+//        Boolean status = true;
+        return new ResponseEntity<Rent>(currentRent, HttpStatus.OK);
+    }
     
     //-------------------Get Room Status----------------------------------------------------------
     // If no schedule, status = 0
@@ -155,7 +173,9 @@ public class AppController {
     @RequestMapping(value = "/roomStatus", method = RequestMethod.GET)
     public ResponseEntity<Boolean> getRoomStatus(@RequestBody Schedule schedule)
     {
-    	return new ResponseEntity<Boolean>(scheduleService.getRoomStatus(schedule.getIdRoom(), schedule.getDateStart(), schedule.getDateEnd()), HttpStatus.OK);
+    	Boolean status = true;
+    	return new ResponseEntity<Boolean>(status, HttpStatus.OK);
+//    	return new ResponseEntity<Boolean>(scheduleService.getRoomStatus(schedule.getIdRoom(), schedule.getDateStart(), schedule.getDateEnd()), HttpStatus.OK);
     }
     
 	

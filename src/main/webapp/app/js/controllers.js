@@ -157,7 +157,8 @@ roomReservationControllers.controller('ReservationFormCtrl', function($scope, $r
 	$scope.reservation = new Reservation();
 	$scope.reservation.reservationStartDate = $rootScope.selectedDate.startDate;
 	$scope.reservation.reservationEndDate = $rootScope.selectedDate.endDate;
-	$scope.reservation.reservationPhase = 'N';
+	$scope.reservation.reservationStatus = 'N';
+	$scope.reservation.reservationPhase = '1';
 	$scope.reservation.room = $scope.room;
 	
 	$scope.createPeminjam = function(){
@@ -178,11 +179,13 @@ roomReservationControllers.controller('RentFormCtrl', function($scope, $rootScop
 	$scope.rent.rentStartDate = $rootScope.selectedDate.startDate;
 	$scope.rent.rentEndDate = $rootScope.selectedDate.endDate;
 	$scope.rent.eventCategory = $rootScope.eventCategoryCode;
-	$scope.rent.rentPhase = 'N';
+	$scope.rent.rentStatus = 'N';
+	$scope.rent.rentPhase = '1';
 
 	$scope.rent.room = $scope.room;
 
 	$scope.createRent = function(){
+		console.log($scope.rent);
 		  $scope.rent.$save(function(){
 			alert('sesuatu');  
 			goTo('/rentRequestList');
