@@ -18,7 +18,7 @@ public class Schedule {
     private int idSchedule;
 	
 	@Column(name="USAGE_CODE")
-	@Size( min = 10 ,max=10)
+	@Size( min = 9 ,max=9)
 	private String  usageCode;
 
 	@Column(name="DATE_START")
