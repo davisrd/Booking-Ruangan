@@ -17,13 +17,13 @@ public class Room {
  
     @Id
     @GeneratedValue
-    @Column(name="room_id")
-    private int roomId;
-     
-    @Id
     @Column(name="room_code")
     @Size (max = 5)
     private char roomCode;
+    
+    @Column (name = "USER_CODE")
+   	@Size (min = 9 , max = 9)
+   	private String userCode;
     
     @Column(name="room_name")
     private String roomName;
@@ -46,24 +46,16 @@ public class Room {
          
     }
 
-	public Room(int roomId, char roomCode, String roomName, char roomStatus, long roomPrice, char roomCategory,
+	public Room(char roomCode, String userCode, String roomName, char roomStatus, long roomPrice, char roomCategory,
 			RoomManager roomManager) {
 		super();
-		this.roomId = roomId;
 		this.roomCode = roomCode;
+		this.userCode = userCode;
 		this.roomName = roomName;
 		this.roomStatus = roomStatus;
 		this.roomPrice = roomPrice;
 		this.roomCategory = roomCategory;
 		this.roomManager = roomManager;
-	}
-
-	public int getRoomId() {
-		return roomId;
-	}
-
-	public void setRoomId(int roomId) {
-		this.roomId = roomId;
 	}
 
 	public char getRoomCode() {
@@ -72,6 +64,14 @@ public class Room {
 
 	public void setRoomCode(char roomCode) {
 		this.roomCode = roomCode;
+	}
+
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
 	}
 
 	public String getRoomName() {
@@ -113,7 +113,7 @@ public class Room {
 	public void setRoomManager(RoomManager roomManager) {
 		this.roomManager = roomManager;
 	}
-   
-   
+
+
 }
     // Getter and Setter methods

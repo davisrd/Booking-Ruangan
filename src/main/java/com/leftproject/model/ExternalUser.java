@@ -12,38 +12,49 @@ import javax.validation.constraints.Size;
 public class ExternalUser{
  
     @Id
-    @Column(name="ORGANIZATION_TYPE")
+    @Column(name="USER_CODE")
+    @Size(min = 9 , max = 9)
+    private String userCode;
+    
+    @Column (name="ORGANIZATION_TYPE")
     @Size(max = 50)
     private String OrgType;
     
     @Column (name="ORGANIZATION_CATEGORY")
-    @Size(max = 1)
-    private char OrgCat;
-     
-    public ExternalUser(String OrgType){
-        this.OrgType = OrgType;  
-    
-    }
+    private char OrgCategory;
 
-	public char getOrgCat() {
-		return OrgCat;
+	public ExternalUser(String userCode, String orgType, char orgCategory) {
+		super();
+		this.userCode = userCode;
+		OrgType = orgType;
+		OrgCategory = orgCategory;
 	}
 
-	public void setOrgCat(char orgCat) {
-		OrgCat = orgCat;
+	public String getUserCode() {
+		return userCode;
 	}
 
-
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
+	}
 
 	public String getOrgType() {
 		return OrgType;
 	}
 
-	public void setOrgType(String OrgType) {
-		this.OrgType = OrgType;
+	public void setOrgType(String orgType) {
+		OrgType = orgType;
 	}
 
-	
- 
-    // Getter and Setter methods
+	public char getOrgCategory() {
+		return OrgCategory;
+	}
+
+	public void setOrgCategory(char orgCategory) {
+		OrgCategory = orgCategory;
+	}
+    
+    
+     
+   
 }

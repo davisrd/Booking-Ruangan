@@ -15,6 +15,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name="RENT_LOG")
 public class RentLog {
 	
+	@Id
+	@Column (name = "RENT_LOG_ID")
+	private int rentLogId;
+	
+	@Column (name = "RENT_CODE")
+	@Size ( min = 9 , max = 9)
+	private int rentCode;
+	
     @Column(name="RENT_DATE_START")
     @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
 	private Date rentDateStart;
@@ -28,11 +36,11 @@ public class RentLog {
     
     @Column(name="RENT_STATUS")
     @Size(min=1,max=1)
-	private char rentStatus;
+	private String rentStatus;
     
     @Column (name = "RENT_PHASE")
     @Size(min=1,max=1)
-    private char rentPhase;
+    private String rentPhase;
     
     @Column(name="RENT_LETTER_PATH")
     @Size(max = 100)
@@ -46,15 +54,18 @@ public class RentLog {
     
     @Column(name="UPDATED_BY")
     @Size(min=50,max=50)
-	private char updatedBy;
+	private String updatedBy;
     
     @Column(name="UPDATED_DATE")
     @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
 	private Date updatedDate;
 
-	public RentLog(Date rentDateStart, Date rentDateEnd, long rentPrice, char rentStatus, char rentPhase,
-			String rentLetterPath, long rentEvidancePath, String rentRejectReason, char updatedBy, Date updatedDate) {
+	public RentLog(int rentLogId, int rentCode, Date rentDateStart, Date rentDateEnd, long rentPrice, String rentStatus,
+			String rentPhase, String rentLetterPath, long rentEvidancePath, String rentRejectReason, String updatedBy,
+			Date updatedDate) {
 		super();
+		this.rentLogId = rentLogId;
+		this.rentCode = rentCode;
 		this.rentDateStart = rentDateStart;
 		this.rentDateEnd = rentDateEnd;
 		this.rentPrice = rentPrice;
@@ -65,6 +76,22 @@ public class RentLog {
 		this.rentRejectReason = rentRejectReason;
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
+	}
+
+	public int getRentLogId() {
+		return rentLogId;
+	}
+
+	public void setRentLogId(int rentLogId) {
+		this.rentLogId = rentLogId;
+	}
+
+	public int getRentCode() {
+		return rentCode;
+	}
+
+	public void setRentCode(int rentCode) {
+		this.rentCode = rentCode;
 	}
 
 	public Date getRentDateStart() {
@@ -91,19 +118,19 @@ public class RentLog {
 		this.rentPrice = rentPrice;
 	}
 
-	public char getRentStatus() {
+	public String getRentStatus() {
 		return rentStatus;
 	}
 
-	public void setRentStatus(char rentStatus) {
+	public void setRentStatus(String rentStatus) {
 		this.rentStatus = rentStatus;
 	}
 
-	public char getRentPhase() {
+	public String getRentPhase() {
 		return rentPhase;
 	}
 
-	public void setRentPhase(char rentPhase) {
+	public void setRentPhase(String rentPhase) {
 		this.rentPhase = rentPhase;
 	}
 
@@ -131,11 +158,11 @@ public class RentLog {
 		this.rentRejectReason = rentRejectReason;
 	}
 
-	public char getUpdatedBy() {
+	public String getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setUpdatedBy(char updatedBy) {
+	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 
@@ -146,8 +173,7 @@ public class RentLog {
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
 	}
-    
-    
+
 	
 }
 

@@ -22,13 +22,17 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Rent {
     @Id
     @GeneratedValue
-    @Column(name="RENT_ID")
-	private int rentId;
-    
-    @Id
     @Column(name="RENT_CODE")
     @Size(min=9 ,max=9)
     private String rentCode;
+    
+    @Column (name = "USER_CODE")
+	@Size (min = 9 , max = 9)
+	private String userCode;
+    
+    @Column (name = "ROOM_CODE")
+	@Size (min = 5 , max = 5)
+	private String roomCode;
 
     @Column(name="RENTER")
     @Size (max =255)
@@ -50,11 +54,11 @@ public class Rent {
 
     @Column(name="RENT_STATUS", nullable = false)
     @Size(min=1,max=1)
-	private char rentStatus;
+	private String rentStatus;
 
     @Column(name="RENT_PHASE", nullable = false)
     @Size(min=1,max=1)
-	private char rentPhase;
+	private String rentPhase;
     
     @Column(name="RENT_LETTER_PATH")
     @Size(max=100)
@@ -72,7 +76,7 @@ public class Rent {
 
     @Column(name="EVENT_CATEGORY", nullable = false)
     @Size(min=1,max=1)
-	private char eventCategory;
+	private String eventCategory;
 
     @Column(name="EVENT_NAME")
     @Size(max=25)
@@ -100,21 +104,22 @@ public class Rent {
 //    @JoinColumn(name="department_id")
 //    @IndexColumn(name="idx")
 	
-	public void setRentPhase(char rentPhase) {
+	public void setRentPhase(String rentPhase) {
 		this.rentPhase = rentPhase;
 	}
 
 	public Rent(){
 		
 	}
-	
-	public Rent(int rentId, String rentCode, String renter, Date rentDateStart, Date rentDateEnd, long rentPrice,
-			long rentOperationalPrice, char rentStatus, char rentPhase, String rentLetterPath,
-			String rentEvidencePath, String rentRejectReason, String rentCancelReason, char eventCategory,
+
+	public Rent(String rentCode, String userCode, String roomCode, String renter, Date rentDateStart, Date rentDateEnd,
+			long rentPrice, long rentOperationalPrice, String rentStatus, String rentPhase, String rentLetterPath,
+			String rentEvidencePath, String rentRejectReason, String rentCancelReason, String eventCategory,
 			String eventName, Date createdDate, String updatedBy, Date updatedDate, String userId, Room room) {
 		super();
-		this.rentId = rentId;
 		this.rentCode = rentCode;
+		this.userCode = userCode;
+		this.roomCode = roomCode;
 		this.renter = renter;
 		this.rentDateStart = rentDateStart;
 		this.rentDateEnd = rentDateEnd;
@@ -135,20 +140,28 @@ public class Rent {
 		this.room = room;
 	}
 
-	public int getRentId() {
-		return rentId;
-	}
-
-	public void setRentId(int rentId) {
-		this.rentId = rentId;
-	}
-
 	public String getRentCode() {
 		return rentCode;
 	}
 
 	public void setRentCode(String rentCode) {
 		this.rentCode = rentCode;
+	}
+
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
+	}
+
+	public String getRoomCode() {
+		return roomCode;
+	}
+
+	public void setRoomCode(String roomCode) {
+		this.roomCode = roomCode;
 	}
 
 	public String getRenter() {
@@ -175,10 +188,6 @@ public class Rent {
 		this.rentDateEnd = rentDateEnd;
 	}
 
-	public char getRentStatus() {
-		return rentStatus;
-	}
-
 	public long getRentPrice() {
 		return rentPrice;
 	}
@@ -195,7 +204,11 @@ public class Rent {
 		this.rentOperationalPrice = rentOperationalPrice;
 	}
 
-	public void setRentStatus(char rentStatus) {
+	public String getRentStatus() {
+		return rentStatus;
+	}
+
+	public void setRentStatus(String rentStatus) {
 		this.rentStatus = rentStatus;
 	}
 
@@ -231,11 +244,11 @@ public class Rent {
 		this.rentCancelReason = rentCancelReason;
 	}
 
-	public char getEventCategory() {
+	public String getEventCategory() {
 		return eventCategory;
 	}
 
-	public void setEventCategory(char eventCategory) {
+	public void setEventCategory(String eventCategory) {
 		this.eventCategory = eventCategory;
 	}
 
@@ -287,7 +300,7 @@ public class Rent {
 		this.room = room;
 	}
 
-	public char getRentPhase() {
+	public String getRentPhase() {
 		return rentPhase;
 	}
 	

@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="ROOM_MANAGER")
@@ -16,6 +17,7 @@ public class RoomManager {
  
     @Id
     @Column(name="user_id")
+    @Size (min = 5 , max = 5)
     private char userId;
     
    

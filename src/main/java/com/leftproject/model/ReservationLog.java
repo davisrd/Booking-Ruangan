@@ -16,6 +16,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name="RESERVATION_LOG")
 public class ReservationLog {
     
+	 @Id
+	    @GeneratedValue
+	    @Column(name="RESERVATION_LOG_ID")
+	    private int resLogId;
+	    
+	    
+	    @Column(name="RESERVATION_CODE")
+	    @Size(min=9 ,max=9)
+	    private String resCode;
 	
     @Column(name="RESERVATION_DATE_START")
     @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
@@ -26,10 +35,12 @@ public class ReservationLog {
 	private Date resDateEnd;
     
     @Column(name="RESERVATION_STATUS")
-	private char resStatus;
+    @Size (max = 1 , min =1)
+	private String resStatus;
     
     @Column(name="RESERVATION_PHASE")
-   	private char resPhase;
+    @Size (max = 1 , min =1)
+   	private String resPhase;
     
     
     @Column(name="RESERVATION_OPERATIONAL_PRICE")
@@ -48,9 +59,12 @@ public class ReservationLog {
     @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
 	private Date updatedDate;
 
-	public ReservationLog(Date resDateStart, Date resDateEnd, char resStatus, char resPhase, long resOperationalPrice,
-			String resFilePath, String rentRejectReason, String updatedBy, Date updatedDate) {
+	public ReservationLog(int resLogId, String resCode, Date resDateStart, Date resDateEnd, String resStatus,
+			String resPhase, long resOperationalPrice, String resFilePath, String rentRejectReason, String updatedBy,
+			Date updatedDate) {
 		super();
+		this.resLogId = resLogId;
+		this.resCode = resCode;
 		this.resDateStart = resDateStart;
 		this.resDateEnd = resDateEnd;
 		this.resStatus = resStatus;
@@ -60,6 +74,22 @@ public class ReservationLog {
 		this.rentRejectReason = rentRejectReason;
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
+	}
+
+	public int getResLogId() {
+		return resLogId;
+	}
+
+	public void setResLogId(int resLogId) {
+		this.resLogId = resLogId;
+	}
+
+	public String getResCode() {
+		return resCode;
+	}
+
+	public void setResCode(String resCode) {
+		this.resCode = resCode;
 	}
 
 	public Date getResDateStart() {
@@ -78,19 +108,19 @@ public class ReservationLog {
 		this.resDateEnd = resDateEnd;
 	}
 
-	public char getResStatus() {
+	public String getResStatus() {
 		return resStatus;
 	}
 
-	public void setResStatus(char resStatus) {
+	public void setResStatus(String resStatus) {
 		this.resStatus = resStatus;
 	}
 
-	public char getResPhase() {
+	public String getResPhase() {
 		return resPhase;
 	}
 
-	public void setResPhase(char resPhase) {
+	public void setResPhase(String resPhase) {
 		this.resPhase = resPhase;
 	}
 
@@ -133,9 +163,8 @@ public class ReservationLog {
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
 	}
-    
-    
-    
+
+	
 }
 
 	

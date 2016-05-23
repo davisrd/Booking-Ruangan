@@ -14,13 +14,9 @@ public class User {
  
     @Id
     @GeneratedValue
-    @Column(name="USER_ID")
-    private int userId;
-    
-    @Id
-    @Column(name="USER_CODE")
-    @Size(max=8)
-    private char userCode;
+    @Column (name = "USER_CODE")
+   	@Size (min = 9 , max = 9)
+   	private String userCode;
      
     @Column(name="USER_NAME")
     @Size(max=50)
@@ -35,58 +31,52 @@ public class User {
     private char userType;
      
     public User(){}
-    
-    public User(int userId, char userCode, String userName,String userPassword, char userType){
-        this.userId = userId;
-        this.userCode = userCode;
-        this.userName = userName;
-        this.userPassword = userPassword;
-        this.userType = userType;
-    }
 
-	public int getuserId() {
-		return userId;
+	public User(String userCode, String userName, String userPassword, char userType) {
+		super();
+		this.userCode = userCode;
+		this.userName = userName;
+		this.userPassword = userPassword;
+		this.userType = userType;
 	}
 
-	public void setuserId(int userId) {
-		this.userId = userId;
-	}
-
-	public char getuserCode() {
+	public String getUserCode() {
 		return userCode;
 	}
 
-	public void setuserCode(char userCode) {
+	public void setUserCode(String userCode) {
 		this.userCode = userCode;
 	}
-	
-	public String getuserName() {
+
+	public String getUserName() {
 		return userName;
 	}
 
-	public void setuserName(String userName ) {
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
-	public String getuserPassword() {
+	public String getUserPassword() {
 		return userPassword;
 	}
 
-	public void setuserPassword(String userPassword ) {
+	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
 
-
-	public int getuserTypes() {
+	public char getUserType() {
 		return userType;
 	}
 
-	public void setuserType(char userType) {
+	public void setUserType(char userType) {
 		this.userType = userType;
+	}
+    
+   
+	
 	}
 
 	
 	
  
     // Getter and Setter methods
-}

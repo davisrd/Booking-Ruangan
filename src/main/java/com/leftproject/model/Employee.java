@@ -12,41 +12,50 @@ import javax.validation.constraints.Size;
 public class Employee {
  
     @Id
-    @Column(name="employee_position")
+    @Column(name="USER_CODE")
+    @Size (max = 8 ,min = 8)
+    private String userCode;
+     
+    @Column(name="EMPLOYEE_POSITION")
     @Size (max = 50)
     private String employeePosition;
-     
-    @Column(name="employee_Department")
-    @Size (max = 50)
-    private String employeeDepartment;
-     
-  
     
-  
-     
-    public Employee(String employeePosition, String employeeDepartment){
-        this.employeePosition = employeePosition;
-        this.employeeDepartment = employeeDepartment;
-        
-    }
+    @Column (name= "EMPLOYEE_UNIT")
+    @Size (max =50)
+    private String employeeUnit;
 
-	public String getemployeePosition() {
+	public Employee(String userCode, String employeePosition, String employeeUnit) {
+		super();
+		this.userCode = userCode;
+		this.employeePosition = employeePosition;
+		this.employeeUnit = employeeUnit;
+	}
+
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
+	}
+
+	public String getEmployeePosition() {
 		return employeePosition;
 	}
 
-	public void setemployeePosition(String employeePosition) {
+	public void setEmployeePosition(String employeePosition) {
 		this.employeePosition = employeePosition;
 	}
 
-	public String getemployeeDepartment() {
-		return employeeDepartment;
+	public String getEmployeeUnit() {
+		return employeeUnit;
 	}
 
-	public void setemployeeDepartment(String employeeDepartment ) {
-		this.employeeDepartment = employeeDepartment;
+	public void setEmployeeUnit(String employeeUnit) {
+		this.employeeUnit = employeeUnit;
 	}
 
 	
- 
+  
     // Getter and Setter methods
 }

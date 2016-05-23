@@ -22,7 +22,8 @@ public class ReservationMemorandum  {
 		private int memorandumId;
 	    
 	    @Column(name="MEMORANDUM_RECEIVER")
-		private char memorandumReceiver;
+	    @Size (min =1 , max =1)
+		private String memorandumReceiver;
 	    
 	    @Column(name="MEMORANDUM_SUBJECT")
 		private String memoradumSubject;
@@ -41,7 +42,7 @@ public class ReservationMemorandum  {
 	    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
 		private Date memCreatedDate;
 
-		public ReservationMemorandum(int memorandumId, char memorandumReceiver, String memoradumSubject,
+		public ReservationMemorandum(int memorandumId, String memorandumReceiver, String memoradumSubject,
 				String memorandumMessage, boolean memorandumStatus, String memCreatedBy, Date memCreatedDate) {
 			super();
 			this.memorandumId = memorandumId;
@@ -61,11 +62,11 @@ public class ReservationMemorandum  {
 			this.memorandumId = memorandumId;
 		}
 
-		public char getMemorandumReceiver() {
+		public String getMemorandumReceiver() {
 			return memorandumReceiver;
 		}
 
-		public void setMemorandumReceiver(char memorandumReceiver) {
+		public void setMemorandumReceiver(String memorandumReceiver) {
 			this.memorandumReceiver = memorandumReceiver;
 		}
 
