@@ -27,12 +27,12 @@ public class User {
     private String userPassword;
      
     @Column(name="USER_TYPE")
-    @Size(max=1)
-    private char userType;
+    @Size(min = 1, max=1)
+    private String userType;
      
     public User(){}
 
-	public User(String userCode, String userName, String userPassword, char userType) {
+	public User(String userCode, String userName, String userPassword, String userType) {
 		super();
 		this.userCode = userCode;
 		this.userName = userName;
@@ -64,11 +64,11 @@ public class User {
 		this.userPassword = userPassword;
 	}
 
-	public char getUserType() {
+	public String getUserType() {
 		return userType;
 	}
 
-	public void setUserType(char userType) {
+	public void setUserType(String userType) {
 		this.userType = userType;
 	}
     

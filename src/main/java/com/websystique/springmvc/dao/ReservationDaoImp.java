@@ -45,7 +45,7 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 	//yg dari sequence appl
 	public List<Reservation> getAllReservations(User user){
 		Criteria criteria = createEntityCriteria();
-		criteria.add(Restrictions.eq("user_id", user.getuserId()));
+		criteria.add(Restrictions.eq("userCode", user.getuserCode()));
 		return (List<Reservation>) criteria.list();
 	}
 	
