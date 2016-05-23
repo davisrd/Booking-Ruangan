@@ -20,7 +20,7 @@ public interface RentDao {
 	
 	List<Rent> getNotYetApproveMovementRentByDirectur();
 	
-	String setRentPhase(Rent rent, char phase);
+	boolean setRentPhase(Rent rent, String phase);
 	
 	boolean saveRent(Rent rent);
 	
