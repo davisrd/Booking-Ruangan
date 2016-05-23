@@ -3,7 +3,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
-import com.websystique.springmvc.dao.*;
+
+import com.leftproject.dao.*;
 
 public abstract class ReservationDaoTest extends AbstractJUnit4SpringContextTests{
 	
