@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="ALUMNUS")
-public class Alumnus extends User {
+public class Alumnus {
 	
 	@Id
 	@Column (name = "USER_CODE")
