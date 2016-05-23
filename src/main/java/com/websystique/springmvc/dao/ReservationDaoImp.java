@@ -8,17 +8,22 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.websystique.springmvc.model.*;
 import com.leftproject.model.Reservation;
 import com.leftproject.model.User;
 
 @Repository("ReservationDao")
 public class ReservationDaoImp extends AbstractDao<Integer, Reservation> implements ReservationDao {
 
-	public void deleteReservationById(int nip) {
-		Query query = getSession().createSQLQuery("delete from RESERVATION where idPeminjaman = " + nip);
-//		query.setString("nip", nip);
-		query.executeUpdate();
+	public boolean deleteReservationById(int nip) {
+		try{
+			Query query = getSession().createSQLQuery("delete from RESERVATION where idPeminjaman = " + nip);
+			query.executeUpdate();
+			return true;
+		}
+		catch (Exception e){
+		//	System.out.println(e.toString());
+			return false;
+		}		
 	}
 	
 	public List<Reservation> getProposedReservation(){
@@ -45,17 +50,29 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 	//yg dari sequence appl
 	public List<Reservation> getAllReservations(User user){
 		Criteria criteria = createEntityCriteria();
-		criteria.add(Restrictions.eq("userCode", user.getUserCode()));
+		criteria.add(Restrictions.eq("user_id", user.getUserCode()));
 		return (List<Reservation>) criteria.list();
 	}
 	
-	public String cancelReservation(Reservation reservation){
-		Query query = getSession().createSQLQuery("delete from RESERVATION where reservation_code = " + reservation.getReservationCode());
-		return "Pembatalan peminjaman ruangan berhasil";
+	public boolean cancelReservation(Reservation reservation){
+		try{
+			Query query = getSession().createSQLQuery("delete from RESERVATION where reservation_id = " + reservation.getReservationCode());
+			query.executeUpdate();
+			return true;
+		}
+		catch(Exception e){
+			return false;
+		}		
 	}
 	
-	public void saveReservation(Reservation reservation) {
-		persist(reservation);
+	public boolean saveReservation(Reservation reservation) {
+		try{
+			persist(reservation);
+			return true;
+		}
+		catch(Exception e){
+			return false;
+		}
 	}
 	
 	public List<Reservation> getProposedMovementReservation(){
@@ -64,32 +81,48 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 		return (List<Reservation>) criteria.list();
 	}
 	
-	public String approveReservationByRoomManager(Reservation reservation){
-		reservation.setReservationPhase("4");
-		persist(reservation);
-		return "Peminjaman rungan telah disetujui";
+	public boolean approveReservationByRoomManager(Reservation reservation){
+		try{
+			reservation.setReservationPhase("4");
+			persist(reservation);
+			return true;
+		}
+		catch(Exception e){
+			return false;
+		}
 	}
 	
-	public String approveReservationByKaSubbagTU(Reservation reservation){
-		reservation.setReservationPhase("3");
-		persist(reservation);
-		return "Peminjaman rungan telah disetujui";
+	public boolean approveReservationByKaSubbagTU(Reservation reservation){
+		try{
+			reservation.setReservationPhase("3");
+			persist(reservation);
+			return true;
+		}
+		catch(Exception e){
+			return false;
+		}
 	}
 	
-	public String denyReservation(Reservation reservation){
-		return "success";
-		//return success message
-	}
-	public String denyReservationByRoomManager(Reservation reservation){
-		reservation.setReservationPhase("5");
-		persist(reservation);
-		return "Pengajuan pemindahan jadwal atau ruang peminjaman tidak diizinkan Pengelola Ruang Khusus";
+	public boolean denyReservationByRoomManager(Reservation reservation){
+		try{
+			reservation.setReservationPhase("5");
+			persist(reservation);
+			return true;
+		}
+		catch(Exception e){
+			return false;
+		}
 	}
 	
-	public String denyReservationByKasubbagTU(Reservation reservation){
-		reservation.setReservationPhase("6");
-		persist(reservation);
-		return "Pengajuan pemindahan jadwal atau ruang peminjaman tidak diizinkan Kasubbag TU";
+	public boolean denyReservationByKasubbagTU(Reservation reservation){
+		try{
+			reservation.setReservationPhase("6");
+			persist(reservation);
+			return true;
+		}
+		catch(Exception e){
+			return false;
+		}
 	}
 	
 }

@@ -10,9 +10,7 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.websystique.springmvc.model.*;
 import com.leftproject.model.Rent;
-import com.leftproject.model.Room;
 import com.leftproject.model.Reservation;
 import com.leftproject.model.User;
 
@@ -20,58 +18,63 @@ import com.leftproject.model.User;
 public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 	//getAllMinRent(User user)
 	
-	public Rent getRentByCode(String rentCode)
-	{
-		return getByKey(rentCode);
+	public boolean cancelRent(Rent rent){
+		try{
+			Query query = getSession().createSQLQuery("delete from RENT where rent_id = " + rent.getRentCode());
+		    query.executeUpdate();
+			return true;
+		}
+		catch(Exception e){
+			System.out.println(e.toString());
+			return false;
+		}				
 	}
-	
-	public List<Rent> getProposedRent(){
-		Criteria criteria = createEntityCriteria();
-		return (List<Rent>) criteria.list();
-	}
-	
-	public String cancelRent(Rent rent){
-		Query query = getSession().createSQLQuery("delete from RENT where rent_code = " + rent.getRentCode());
-		return "Pembatalan penyewaan ruangan berhasil";
-	}
-	
-	public List<Rent> getProposedMovementRentByDirectur(){
-		Query query = getSession().createSQLQuery("select from RENT where rent_status = M");
-		Criteria criteria = createEntityCriteria();
-		criteria.add(Restrictions.eq("rentStatus", 'M'));
-		return (List<Rent>) criteria.list();
-		//return list of rent
-	}
-	
+		
 	public List<Rent> getNotYetApproveMovementRentByDirectur(){
 		Criteria criteria = createEntityCriteria();
-		criteria.add(Restrictions.eq("rentStatus", "M"));
+		criteria.add(Restrictions.eq("rent_status", "M"));
 		return (List<Rent>) criteria.list();
 	}
 	
 	public List<Rent> getAllRentsByUser(User user){
 		Criteria criteria = createEntityCriteria();
-		criteria.add(Restrictions.eq("userCode", user.getUserCode()));
+		criteria.add(Restrictions.eq("user_id", user.getUserCode()));
 		return (List<Rent>) criteria.list();
 	}
 	
-	public String setRentPhase(Rent rent, String phase){
-		rent.setRentPhase(phase);
-		persist(rent);
-		return "Berhasil";
+	public boolean setRentPhase(Rent rent, String phase){
+		try{
+			rent.setRentCode(phase);
+			persist(rent);
+			return true;
+		}
+		catch(Exception e){
+			return false;
+		}
+		
 	}
 	
 	public boolean saveRent(Rent rent){
-		persist(rent);
-		return true;
+		try{
+			persist(rent);
+			return true;
+		}
+		catch(Exception e){
+			return false;
+		}		
 	}
 	
 	public boolean updateRent(Rent rent){
-		persist(rent);
-		return true;
+		try{
+			persist(rent);
+			return true;
+		}
+		catch(Exception e){
+			return false;
+		}	
 	}
 	
-	public void getAllMinRent(User user){
+	public List<Rent> getAllMinRent(User user){
 		List<Rent> UserRentList= getAllRentsByUser(user);
 		List<Rent> UserRentListToCancel=null; 
 		
@@ -87,13 +90,11 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 		    	UserRentListToCancel.add(obj);
 		    }
 		}
-
-	}
-
-	public void deleteRentByCode(String rentCode) {
-		// TODO Auto-generated method stub
-		Query query = getSession().createSQLQuery("delete from RENT where rent_code = " + rentCode);
 		
+		return (List<Rent>)UserRentListToCancel;
 	}
+	
+	
+	
 	
 }

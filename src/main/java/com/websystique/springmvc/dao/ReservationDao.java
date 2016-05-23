@@ -8,28 +8,29 @@ import com.leftproject.model.User;
 public interface ReservationDao {
 //	Reservation findById(int nip);
 	
-	void deleteReservationById(int id);
+	boolean deleteReservationById(int id);
 	List<Reservation> getProposedReservation();
 	
 	//yg dari sequence appl
 	List<Reservation> getAllReservations(User user);
 	
-	String cancelReservation(Reservation reservation);
+	boolean cancelReservation(Reservation reservation);
 	
 	/*Reservation getReservationByRoomId(String roomId);*/
 	Reservation getReservation(String reservationId);
 	
-	void saveReservation(Reservation reservation);
+	boolean saveReservation(Reservation reservation);
 	
 	List<Reservation> getProposedMovementReservation();
 	
-	String approveReservationByRoomManager(Reservation reservation);
+	boolean approveReservationByRoomManager(Reservation reservation);
 	
-	String approveReservationByKaSubbagTU(Reservation reservation);
+	boolean approveReservationByKaSubbagTU(Reservation reservation);
 	
-	String denyReservationByRoomManager(Reservation reservation);
+	boolean denyReservationByRoomManager(Reservation reservation);
 	
-	String denyReservationByKasubbagTU(Reservation reservation);
+	boolean denyReservationByKasubbagTU(Reservation reservation);
 	
 //	List<Reservation> findAllReservations();
 }
+

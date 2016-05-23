@@ -8,25 +8,25 @@ import com.leftproject.model.User;
 
 
 public interface RentDao {
-	String cancelRent(Rent rent);
+	boolean cancelRent(Rent rent);
 		
 //	List<Rent> getAllRentUnacceptedByDirectur();
 	
-	List<Rent> getProposedRent();
+//	List<Rent> getProposedRent();
 
-	Rent getRentByCode(String rentCode);
+//	Rent getRent(int rentId);
 	
-	void deleteRentByCode(String rentCode);
+//	void deleteRentById(int id);
 	
 	List<Rent> getNotYetApproveMovementRentByDirectur();
 	
-	String setRentPhase(Rent rent, String phase);
+	String setRentPhase(Rent rent, char phase);
 	
 	boolean saveRent(Rent rent);
 	
 	boolean updateRent(Rent rent);
 	
-	void getAllMinRent(User user);
+	List<Rent> getAllMinRent(User user);
 	
 	public List<Rent> getAllRentsByUser(User user);
 }
