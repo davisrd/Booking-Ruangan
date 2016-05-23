@@ -2,22 +2,25 @@ package com.websystique.springmvc.service;
 
 import java.util.List;
 
+import com.leftproject.model.Rent;
 import com.websystique.springmvc.model.Peminjaman;
 
 public interface PeminjamanService {
 
-	Peminjaman findById(int id);
+	void saveRent(Rent rent);
 	
-	void savePeminjaman(Peminjaman employee);
+	//void updateReservation(Reservation employee);
 	
-	void updatePeminjaman(Peminjaman employee);
-	
-	void deletePeminjamanById(int ssn);
+	void deleteRentById(int rentId);
 
-	List<Peminjaman> findAllPeminjamans(); 
-	
-	Peminjaman findPeminjamanById(int ssn);
+//	List<Reservation> findAllReservations(); 
 
-	//boolean isEmployeeSsnUnique(Integer id, String ssn);
+	Rent getRent(int rentId);
+	
+	List<Rent> getProposedRent();
+	
+	void updateRent(Rent rent);
+	
+//	void sendMemorandum (String memorandum);
 	
 }
