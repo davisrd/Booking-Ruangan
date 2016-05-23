@@ -83,7 +83,7 @@ public class AppController {
     }
     
     @RequestMapping(value = "/roomAvailibility/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> getRoomAvailibility(@PathVariable("id") int id, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
+    public ResponseEntity<Boolean> getRoomAvailibility(@PathVariable("id") String id, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
     	Boolean status = scheduleService.getRoomStatus(id, startDate, endDate); // With condition it should be
 //        Boolean status = true;
     	if(status==false){
@@ -108,16 +108,16 @@ public class AppController {
     	System.out.println("Create Rent with eventName : " + rent.getEventName());
     	rentService.saveRent(rent);
     	HttpHeaders headers = new HttpHeaders();
-    	headers.setLocation(ucBuilder.path("/rent/{id}").buildAndExpand(rent.getRentId()).toUri());
+    	headers.setLocation(ucBuilder.path("/rent/{id}").buildAndExpand(rent.getRentCode()).toUri());
     	return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/rent/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Rent> saveRent(@PathVariable("id") int id, @RequestBody Rent rent, UriComponentsBuilder ucBuilder)
+    public ResponseEntity<Rent> saveRent(@PathVariable("id") String id, @RequestBody Rent rent, UriComponentsBuilder ucBuilder)
     {
     	System.out.println("Updating Employee " + id);
         
-        Rent currentRent = rentService.getRent(id);
+        Rent currentRent = rentService.getRentByCode(id);
          
         if (currentRent==null) {
             System.out.println("Employee with nip " + id + " not found");
@@ -151,8 +151,8 @@ public class AppController {
     //-------------------Use Case : Menyetujui Penyewaan - Direktur--------------------------------------------------------
     
     @RequestMapping(value = "/rent/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Rent> directurRentConfirmation(@PathVariable("id") int id, @RequestBody Rent rent) {
-    	Rent currentRent = rentService.getRent(id);
+    public ResponseEntity<Rent> directurRentConfirmation(@PathVariable("id") String id, @RequestBody Rent rent) {
+    	Rent currentRent = rentService.getRentByCode(id);
         
         if (currentRent==null) {
             System.out.println("Employee with nip " + id + " not found");

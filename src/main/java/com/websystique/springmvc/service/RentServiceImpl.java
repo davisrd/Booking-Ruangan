@@ -32,20 +32,20 @@ public class RentServiceImpl implements RentService {
 	 * It will be updated in db once transaction ends. 
 	 */
 
-	public void deleteRentById(int ssn) {
-		rentDao.deleteRentById(ssn);
+	public void deleteRentByCode(String rentCode) {
+		rentDao.deleteRentByCode(rentCode);
 	}
 	
 	public List<Rent> getProposedRent(){
 		return rentDao.getProposedRent();
 	}
 	
-	public Rent getRent(int rentId){
-		return rentDao.getRent(rentId);
+	public Rent getRentByCode(String rentCode){
+		return rentDao.getRentByCode(rentCode);
 	}
 	
 	public void updateRent(Rent rent){
-		Rent entity = rentDao.getRent(rent.getRentId());
+		Rent entity = rentDao.getRentByCode(rent.getRentCode());
 		if(entity!=null){
 			entity.setCreatedDate(rent.getCreatedDate());
 	        entity.setEventCategory(rent.getEventCategory());

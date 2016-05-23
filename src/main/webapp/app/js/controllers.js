@@ -369,8 +369,14 @@ roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, 
 				if($rootScope.selectedDate.endDate !=undefined) {
 					$rootScope.selectedDate.startDate = moment($rootScope.selectedDate.startDate).format("DD-MMM-YYYY HH:mm");
 					$rootScope.selectedDate.endDate = moment($rootScope.selectedDate.endDate).format("DD-MMM-YYYY HH:mm");
-					Service.getRoomAvailibility($rootScope.selectedRoom.roomId, $rootScope.selectedDate.startDate, $rootScope.selectedDate.endDate)
-					$location.path(path);
+					Service.getRoomAvailibility($rootScope.selectedRoom.roomId, $rootScope.selectedDate.startDate, $rootScope.selectedDate.endDate).then(
+						function success(data){
+							console.log(data);
+							$location.path(path);
+						},
+						function error(error){
+							alert('Error : ' + error);
+						})
 				} else {
 					alert('Tanggal selesai harus diisi!');
 				}

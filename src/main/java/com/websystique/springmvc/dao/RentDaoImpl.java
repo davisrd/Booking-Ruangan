@@ -20,9 +20,9 @@ import com.leftproject.model.User;
 public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 	//getAllMinRent(User user)
 	
-	public Rent getRent(int rentId)
+	public Rent getRentByCode(String rentCode)
 	{
-		return getByKey(rentId);
+		return getByKey(rentCode);
 	}
 	
 	public List<Rent> getProposedRent(){
@@ -31,14 +31,8 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 	}
 	
 	public String cancelRent(Rent rent){
-		Query query = getSession().createSQLQuery("delete from RENT where rent_id = " + rent.getRentId());
+		Query query = getSession().createSQLQuery("delete from RENT where rent_code = " + rent.getRentCode());
 		return "Pembatalan penyewaan ruangan berhasil";
-	}
-		
-	public void deleteRentById(int id) {
-		Query query = getSession().createSQLQuery("delete from RENT where rent_ID = " + id);
-//		query.setString("nip", nip);
-		query.executeUpdate();
 	}
 	
 	public List<Rent> getProposedMovementRentByDirectur(){
@@ -51,17 +45,17 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 	
 	public List<Rent> getNotYetApproveMovementRentByDirectur(){
 		Criteria criteria = createEntityCriteria();
-		criteria.add(Restrictions.eq("rent_status", "M"));
+		criteria.add(Restrictions.eq("rentStatus", "M"));
 		return (List<Rent>) criteria.list();
 	}
 	
 	public List<Rent> getAllRentsByUser(User user){
 		Criteria criteria = createEntityCriteria();
-		criteria.add(Restrictions.eq("user_id", user.getuserId()));
+		criteria.add(Restrictions.eq("userCode", user.getUserCode()));
 		return (List<Rent>) criteria.list();
 	}
 	
-	public String setRentPhase(Rent rent, char phase){
+	public String setRentPhase(Rent rent, String phase){
 		rent.setRentPhase(phase);
 		persist(rent);
 		return "Berhasil";
@@ -95,8 +89,11 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 		}
 
 	}
-	
-	
-	
+
+	public void deleteRentByCode(String rentCode) {
+		// TODO Auto-generated method stub
+		Query query = getSession().createSQLQuery("delete from RENT where rent_code = " + rentCode);
+		
+	}
 	
 }

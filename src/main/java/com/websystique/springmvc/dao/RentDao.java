@@ -14,13 +14,13 @@ public interface RentDao {
 	
 	List<Rent> getProposedRent();
 
-	Rent getRent(int rentId);
+	Rent getRentByCode(String rentCode);
 	
-	void deleteRentById(int id);
+	void deleteRentByCode(String rentCode);
 	
 	List<Rent> getNotYetApproveMovementRentByDirectur();
 	
-	String setRentPhase(Rent rent, char phase);
+	String setRentPhase(Rent rent, String phase);
 	
 	boolean saveRent(Rent rent);
 	

@@ -15,17 +15,24 @@ public class Schedule {
 	
 	@Id
     @Column(name="SCHEDULE_ID")
-
     private int idSchedule;
 	
-	@Column(name="USAGE_ID")
+	@Column(name="USAGE_CODE")
 	@Size( min = 10 ,max=10)
-	private String  usageId;
+	private String  usageCode;
 
-	public Schedule(int idSchedule, String usageId) {
+	@Column(name="DATE_START")
+	@Size( min = 10 ,max=10)
+	private String  dateStart;
+
+	@Column(name="DATE_END")
+	@Size( min = 10 ,max=10)
+	private String  dateEnd;
+	
+	public Schedule(int idSchedule, String usageCode) {
 		super();
 		this.idSchedule = idSchedule;
-		this.usageId = usageId;
+		this.usageCode = usageCode;
 	}
 
 	public int getIdSchedule() {
@@ -36,12 +43,12 @@ public class Schedule {
 		this.idSchedule = idSchedule;
 	}
 
-	public String getUsageId() {
-		return usageId;
+	public String getUsageCode() {
+		return usageCode;
 	}
 
-	public void setUsageId(String usageId) {
-		this.usageId = usageId;
+	public void setUsageCode(String usageCode) {
+		this.usageCode = usageCode;
 	}
 
 	

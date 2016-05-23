@@ -17,11 +17,11 @@ public class ScheduleServiceImpl implements ScheduleService{
 	@Autowired
 	private ScheduleDao dao;
 	
-	public boolean getRoomStatus(int roomId, Date startDate, Date endDate){
-		return dao.getRoomStatus(roomId, startDate, endDate);
+	public boolean getRoomStatus(String usageCode, Date startDate, Date endDate){
+		return dao.getRoomStatus(usageCode, startDate, endDate);
 	}
 	
-	public Schedule getSchedule(int roomId, Date date){
-		return dao.getSchedule(roomId,date);
+	public Schedule getSchedule(String usageCode, Date date){
+		return dao.getSchedule(usageCode,date);
 	}
 }

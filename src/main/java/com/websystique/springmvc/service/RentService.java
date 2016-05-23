@@ -10,12 +10,12 @@ public interface RentService {
 	
 	//void updateReservation(Reservation employee);
 	
-	void deleteRentById(int rentId);
+	void deleteRentByCode(String rentCode);
 
 //	List<Reservation> findAllReservations(); 
 
 	//boolean isEmployeeSsnUnique(Integer id, String ssn);
-	Rent getRent(int rentId);
+	Rent getRentByCode(String rentCode);
 	
 	List<Rent> getProposedRent();
 	
