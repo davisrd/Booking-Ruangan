@@ -16,62 +16,48 @@ import javax.validation.constraints.Size;
 public class Room {
  
     @Id
-    @GeneratedValue
-    @Column(name="room_code")
+    @Column(name="ROOM_CODE")
     @Size (max = 5)
-    private char roomCode;
+    private String roomCode;
     
-    @Column (name = "USER_CODE")
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="USER_CODE")
    	@Size (min = 9 , max = 9)
-   	private String userCode;
+    private RoomManager roomManager;
     
-    @Column(name="room_name")
+    @Column(name="ROOM_NAME")
     private String roomName;
      
-    @Column(name="room_status")
-    private char roomStatus;
+    @Column(name="ROOM_STATUS")
+    private String roomStatus;
      
-    @Column(name="room_price")
-    private long roomPrice;
+    @Column(name="ROOM_PRICE")
+    private Long roomPrice;
     
-   @Column(name="room_category")
-   private char roomCategory;
+   @Column(name="ROOM_CATEGORY")
+   private String roomCategory;
     
-   
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    private RoomManager roomManager;
      
     public Room() {
          
     }
 
-	public Room(char roomCode, String userCode, String roomName, char roomStatus, long roomPrice, char roomCategory,
-			RoomManager roomManager) {
+	public Room(String roomCode, RoomManager roomManager, String roomName, String roomStatus, long roomPrice, String roomCategory) {
 		super();
 		this.roomCode = roomCode;
-		this.userCode = userCode;
+		this.roomManager = roomManager;
 		this.roomName = roomName;
 		this.roomStatus = roomStatus;
 		this.roomPrice = roomPrice;
 		this.roomCategory = roomCategory;
-		this.roomManager = roomManager;
 	}
 
-	public char getRoomCode() {
+	public String getRoomCode() {
 		return roomCode;
 	}
 
-	public void setRoomCode(char roomCode) {
+	public void setRoomCode(String roomCode) {
 		this.roomCode = roomCode;
-	}
-
-	public String getUserCode() {
-		return userCode;
-	}
-
-	public void setUserCode(String userCode) {
-		this.userCode = userCode;
 	}
 
 	public String getRoomName() {
@@ -82,27 +68,27 @@ public class Room {
 		this.roomName = roomName;
 	}
 
-	public char getRoomStatus() {
+	public String getRoomStatus() {
 		return roomStatus;
 	}
 
-	public void setRoomStatus(char roomStatus) {
+	public void setRoomStatus(String roomStatus) {
 		this.roomStatus = roomStatus;
 	}
 
-	public long getRoomPrice() {
+	public Long getRoomPrice() {
 		return roomPrice;
 	}
 
-	public void setRoomPrice(long roomPrice) {
+	public void setRoomPrice(Long roomPrice) {
 		this.roomPrice = roomPrice;
 	}
 
-	public char getRoomCategory() {
+	public String getRoomCategory() {
 		return roomCategory;
 	}
 
-	public void setRoomCategory(char roomCategory) {
+	public void setRoomCategory(String roomCategory) {
 		this.roomCategory = roomCategory;
 	}
 

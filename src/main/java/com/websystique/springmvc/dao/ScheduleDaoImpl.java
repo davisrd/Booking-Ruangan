@@ -7,7 +7,6 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.websystique.springmvc.model.*;
 import com.leftproject.model.Reservation;
 import com.leftproject.model.Schedule;;
 

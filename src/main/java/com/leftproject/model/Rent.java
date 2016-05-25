@@ -21,7 +21,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name="RENT")
 public class Rent {
     @Id
-    @GeneratedValue
     @Column(name="RENT_CODE")
     @Size(min=9 ,max=9)
     private String rentCode;

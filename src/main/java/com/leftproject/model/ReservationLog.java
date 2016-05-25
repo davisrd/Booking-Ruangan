@@ -24,7 +24,7 @@ public class ReservationLog {
 	    
 	    @Column(name="RESERVATION_CODE")
 	    @Size(min=9 ,max=9)
-	    private String resCode;
+	    private String reservationCode;
 	
     @Column(name="RESERVATION_DATE_START")
     @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
@@ -64,7 +64,7 @@ public class ReservationLog {
 			Date updatedDate) {
 		super();
 		this.resLogId = resLogId;
-		this.resCode = resCode;
+		this.reservationCode = resCode;
 		this.resDateStart = resDateStart;
 		this.resDateEnd = resDateEnd;
 		this.resStatus = resStatus;
@@ -85,11 +85,11 @@ public class ReservationLog {
 	}
 
 	public String getResCode() {
-		return resCode;
+		return reservationCode;
 	}
 
 	public void setResCode(String resCode) {
-		this.resCode = resCode;
+		this.reservationCode = resCode;
 	}
 
 	public Date getResDateStart() {

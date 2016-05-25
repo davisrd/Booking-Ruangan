@@ -9,7 +9,6 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.leftproject.model.Room;
-import com.websystique.springmvc.model.*;
 
 @Repository("RoomDao")
 public class RoomDaoImpl extends AbstractDao<Integer, Room> implements RoomDao{
@@ -24,15 +23,15 @@ public class RoomDaoImpl extends AbstractDao<Integer, Room> implements RoomDao{
 	public List<Room> getReservationRoom()
 	{
 		Criteria criteria = createEntityCriteria()
-				.add(Restrictions.eq("roomStatus", 'P'));
+				.add(Restrictions.or(Restrictions.eq("roomStatus", "P"),Restrictions.eq("roomStatus", "S")));
 		return (List<Room>) criteria.list();
 	}
 	
-	public List<Room> getRentRoomByCategory(char category)
+	public List<Room> getRentRoomByCategory(String category)
 	{
 		Criteria criteria = createEntityCriteria()
 				.add(Restrictions.eq("roomCategory", category))
-				.add(Restrictions.eq("roomStatus", 'E'));
+				.add(Restrictions.or(Restrictions.eq("roomStatus", "E"),Restrictions.eq("roomStatus", "S")));
 		return (List<Room>) criteria.list();
 	}
 	

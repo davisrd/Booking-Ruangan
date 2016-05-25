@@ -3,7 +3,6 @@ package com.websystique.springmvc.dao;
 import java.util.List;
 
 import com.leftproject.model.Rent;
-import com.websystique.springmvc.model.*;
 import com.leftproject.model.User;
 
 
@@ -29,4 +28,8 @@ public interface RentDao {
 	List<Rent> getAllMinRent(User user);
 	
 	public List<Rent> getAllRentsByUser(User user);
+	
+	public List<Rent> getProposedRent();
+	
+	public Rent getRentByCode(String rentCode);
 }

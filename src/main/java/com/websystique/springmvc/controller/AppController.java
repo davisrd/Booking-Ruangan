@@ -19,7 +19,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.leftproject.model.*;
 import com.websystique.springmvc.service.*;
-import com.websystique.springmvc.model.*;
 
 @Controller
 @RequestMapping("/")
@@ -66,7 +65,7 @@ public class AppController {
     //-------------------Use Case : Mengajukan Penyewaan--------------------------------------------------------
 
     @RequestMapping(value = "/rentRoom/{category}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Room>> getAllRentableRoom(@PathVariable("category") char category) {
+    public ResponseEntity<List<Room>> getAllRentableRoom(@PathVariable("category") String category) {
     	List<Room> rooms = roomService.getRentRoomByCategory(category); // With condition it should be
         if(rooms.isEmpty()){
             return new ResponseEntity<List<Room>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
@@ -76,7 +75,8 @@ public class AppController {
     
     @RequestMapping(value = "/roomAvailibility/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> getRoomAvailibility(@PathVariable("id") String id, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
-    	Boolean status = scheduleService.getRoomStatus(id, startDate, endDate); // With condition it should be
+    	System.out.println(startDate);
+    	Boolean status = scheduleService.getRentRoomAvailability(id, startDate, endDate); // With condition it should be
 //        Boolean status = true;
     	if(status==false){
             return new ResponseEntity<Boolean>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
@@ -142,7 +142,7 @@ public class AppController {
 
     //-------------------Use Case : Menyetujui Penyewaan - Direktur--------------------------------------------------------
     
-    @RequestMapping(value = "/rent/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/rentApprove/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Rent> directurRentConfirmation(@PathVariable("id") String id, @RequestBody Rent rent) {
     	Rent currentRent = rentService.getRentByCode(id);
         

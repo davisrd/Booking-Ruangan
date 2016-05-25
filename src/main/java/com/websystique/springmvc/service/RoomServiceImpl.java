@@ -27,7 +27,7 @@ public class RoomServiceImpl implements RoomService{
 		return roomDao.getReservationRoom();
 	}
 
-	public List<Room> getRentRoomByCategory(char roomCategory)
+	public List<Room> getRentRoomByCategory(String roomCategory)
 	{
 		return roomDao.getRentRoomByCategory(roomCategory);
 	}

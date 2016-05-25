@@ -13,7 +13,6 @@ import javax.validation.constraints.Size;
 public class User {
  
     @Id
-    @GeneratedValue
     @Column (name = "USER_CODE")
    	@Size (min = 9 , max = 9)
    	private String userCode;

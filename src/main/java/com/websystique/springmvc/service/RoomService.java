@@ -10,7 +10,7 @@ public interface RoomService {
 
 	List<Room> getReservationRoom();
 	
-	List<Room> getRentRoomByCategory(char roomCategory);
+	List<Room> getRentRoomByCategory(String roomCategory);
 	
 	Room getRoom(int room_id);
 }

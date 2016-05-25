@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="EXTERNAL USER")
+@Table(name="EXTERNAL_USER")
 public class ExternalUser{
  
     @Id

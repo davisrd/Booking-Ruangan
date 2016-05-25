@@ -5,27 +5,25 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class System {
-
-	
-	@Entity
-	@Table(name="SCHEDULE")
-	public class Schedule {
+@Entity
+@Table(name="SYSTEM")
+@IdClass(MSystemPK.class)
+public class MSystem {
 		
 		@Id
 	    @Column(name="CATEGORY")
 		@Size(max = 50)
-	    private char category;
+	    private String category;
 		
 		@Id
 		@Column(name="SUB_CATEGORY")
-		@Size(max=50)
-		private char subCategory;
+		private Character subCategory;
 		
 		@Column (name= "DATA_VALUE")
 		private char dataValue;
@@ -49,7 +47,7 @@ public class System {
 	    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
 		private Date updatedDate;
 
-		public Schedule(char category, char subCategory, char dataValue, String description, Date createdDate,
+		public MSystem(String category, char subCategory, char dataValue, String description, Date createdDate,
 				Date createdby, char updatedBy, Date updatedDate) {
 			super();
 			this.category = category;
@@ -62,11 +60,11 @@ public class System {
 			this.updatedDate = updatedDate;
 		}
 
-		public char getCategory() {
+		public String getCategory() {
 			return category;
 		}
 
-		public void setCategory(char category) {
+		public void setCategory(String category) {
 			this.category = category;
 		}
 
@@ -125,13 +123,4 @@ public class System {
 		public void setUpdatedDate(Date updatedDate) {
 			this.updatedDate = updatedDate;
 		}
-
-	
-	
-	
-	
-	}
-	
-
-
 }

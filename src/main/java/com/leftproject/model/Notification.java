@@ -30,7 +30,7 @@ public class Notification {
 	private String notificationMessage;
     
     @Column(name="NOTIFICATION_STATUS")
-	private boolean notificationStatus;
+	private Boolean notificationStatus;
     
     @Column(name="CREATED_DATE")
 	private Date createdDate;

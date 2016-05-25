@@ -21,7 +21,7 @@ public class RentLog {
 	
 	@Column (name = "RENT_CODE")
 	@Size ( min = 9 , max = 9)
-	private int rentCode;
+	private String rentCode;
 	
     @Column(name="RENT_DATE_START")
     @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
@@ -32,7 +32,7 @@ public class RentLog {
 	private Date rentDateEnd;
     
     @Column(name="RENT_PRICE")
-	private long rentPrice;
+	private Long rentPrice;
     
     @Column(name="RENT_STATUS")
     @Size(min=1,max=1)
@@ -47,7 +47,7 @@ public class RentLog {
 	private String rentLetterPath;
     
     @Column(name="RENT_EVIDANCE_PATH")
-	private long rentEvidancePath;
+	private Long rentEvidancePath;
     
     @Column(name="RENT_REJECT_REASON")
 	private String rentRejectReason;
@@ -60,7 +60,7 @@ public class RentLog {
     @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
 	private Date updatedDate;
 
-	public RentLog(int rentLogId, int rentCode, Date rentDateStart, Date rentDateEnd, long rentPrice, String rentStatus,
+	public RentLog(int rentLogId, String rentCode, Date rentDateStart, Date rentDateEnd, long rentPrice, String rentStatus,
 			String rentPhase, String rentLetterPath, long rentEvidancePath, String rentRejectReason, String updatedBy,
 			Date updatedDate) {
 		super();
@@ -86,11 +86,11 @@ public class RentLog {
 		this.rentLogId = rentLogId;
 	}
 
-	public int getRentCode() {
+	public String getRentCode() {
 		return rentCode;
 	}
 
-	public void setRentCode(int rentCode) {
+	public void setRentCode(String rentCode) {
 		this.rentCode = rentCode;
 	}
 

@@ -10,7 +10,7 @@ public interface RentService {
 	
 	//void updateReservation(Reservation employee);
 	
-	void deleteRentByCode(String rentCode);
+//	void deleteRentByCode(String rentCode);
 
 //	List<Reservation> findAllReservations(); 
 

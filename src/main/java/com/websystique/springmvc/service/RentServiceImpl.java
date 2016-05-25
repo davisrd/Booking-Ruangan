@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.websystique.springmvc.dao.*;
-import com.websystique.springmvc.model.*;
 import com.leftproject.model.*;
 
 @Service("rentService")
@@ -32,9 +31,9 @@ public class RentServiceImpl implements RentService {
 	 * It will be updated in db once transaction ends. 
 	 */
 
-	public void deleteRentByCode(String rentCode) {
-		rentDao.deleteRentByCode(rentCode);
-	}
+//	public void deleteRentByCode(String rentCode) {
+//		rentDao.deleteRentByCode(rentCode);
+//	}
 	
 	public List<Rent> getProposedRent(){
 		return rentDao.getProposedRent();

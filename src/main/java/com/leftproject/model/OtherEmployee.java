@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 
 public class OtherEmployee {
 	@Entity
-	@Table(name="OTHER EMPLOYEE")
+	@Table(name="OTHER_EMPLOYEE")
 	public class ExternalUser{
 		
 		@Id
