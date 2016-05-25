@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.leftproject.model.Reservation;
 
+import com.leftproject.model.*;
+
 public interface ReservationService {
 	
 	void saveReservation(Reservation reservation);
@@ -13,6 +15,10 @@ public interface ReservationService {
 	Reservation getReservationByCode(String reservationCode);
 	
 	List<Reservation> getProposedReservation();
+	
+	List<Reservation> getAllReservation(User user);
+	
+	void cancelReservation(Reservation reservation);
 
 	//	List<Reservation> findAllReservations(); 
 

@@ -56,7 +56,7 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 	
 	//yg dari sequence appl
 	@SuppressWarnings("unchecked")
-	public List<Reservation> getAllReservations(User user){
+	public List<Reservation> getAllReservation(User user){
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("user_id", user.getUserCode()));
 		return (List<Reservation>) criteria.list();

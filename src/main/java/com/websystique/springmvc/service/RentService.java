@@ -21,6 +21,8 @@ public interface RentService {
 	
 	void updateRent(Rent rent);
 	
+	void cancelRent(Rent rent);
+	
 //	void sendMemorandum (String memorandum);
 	
 	

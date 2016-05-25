@@ -257,6 +257,42 @@ public class AppController {
         return new ResponseEntity<Reservation>(currentReservation, HttpStatus.OK);
     }
     
+ //-------------------Use Case : Menyetujui Peminjaman - Kasubag TU--------------------------------------------------------
+    
+    @RequestMapping(value = "/reservationApprove/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Reservation> kasubbagTUReseervationConfirmation(@PathVariable("id") String id, @RequestBody Reservation reservation) {
+    	Reservation currentReservation = reservationService.getReservationByCode(id);
+        
+        if (currentReservation==null) {
+            System.out.println("Reservation with ID " + id + " not found");
+            return new ResponseEntity<Reservation>(HttpStatus.NOT_FOUND);
+        }
+ 
+        currentReservation.setReservationPhase(reservation.getReservationPhase());
+
+        reservationService.updateReservation(currentReservation);
+//        Boolean status = true;
+        return new ResponseEntity<Reservation>(currentReservation, HttpStatus.OK);
+    }
+    
+  //-------------------------Cancel Reservation ----------------------------------------------
+  	@RequestMapping(value = "/cancelReservation", method = RequestMethod.PUT)
+      public ResponseEntity<Void> cancelReservation(@RequestBody Reservation reservation)
+      {
+      	reservationService.cancelReservation(reservation);
+
+      	return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+      }
+  	
+  	
+  //---------------------------Cancel Rent-------------------------------------
+  	@RequestMapping(value = "/cancelRent", method = RequestMethod.PUT)
+      public ResponseEntity<Void> cancelRent(@RequestBody Rent rent)
+      {
+      	rentService.cancelRent(rent);
+
+      	return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+      }
     
 //    //------------------- Delete All Users --------------------------------------------------------
 //     

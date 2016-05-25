@@ -11,7 +11,7 @@ public interface ReservationDao {
 	List<Reservation> getProposedReservation();
 	
 	//yg dari sequence appl
-	List<Reservation> getAllReservations(User user);
+	List<Reservation> getAllReservation(User user);
 	
 	boolean cancelReservation(Reservation reservation);
 	

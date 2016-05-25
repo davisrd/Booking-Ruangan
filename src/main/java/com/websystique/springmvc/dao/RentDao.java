@@ -32,4 +32,6 @@ public interface RentDao {
 	public List<Rent> getProposedRent();
 	
 	public Rent getRentByCode(String rentCode);
+	
+	
 }

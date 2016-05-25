@@ -48,14 +48,23 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 	
 	public Reservation getReservationByCode(String reservationCode ){
-//		return reservationDao.getProposedReservation(reservationCode);
-		return null;
+		return reservationDao.getReservationByCode(reservationCode);
+		
+	}
+	
+	public List<Reservation> getAllReservation(User user) {
+		return reservationDao.getAllReservation(user);
 	}
 	
 	public List<Reservation> getProposedReservation(){
 		return reservationDao.getProposedReservation();
 	}
-
+	
+	public void cancelReservation(Reservation reservation){
+		reservationDao.cancelReservation(reservation);
+		Notification notif = new Notification();
+		notif.setNotificationMessage("Pembatalan peminjaman berhasil");
+	}
 		
 	
 }

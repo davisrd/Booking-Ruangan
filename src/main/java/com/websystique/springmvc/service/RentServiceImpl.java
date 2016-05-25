@@ -77,6 +77,10 @@ public class RentServiceImpl implements RentService {
 		
 	}
 	
-	
+	public void cancelRent(Rent rent){
+		rentDao.cancelRent(rent);
+		Notification notif = new Notification();
+		notif.setNotificationMessage("Pembatalan penyewaan berhasil");
+	}
 	
 }
