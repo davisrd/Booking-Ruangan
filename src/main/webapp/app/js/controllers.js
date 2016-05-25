@@ -27,9 +27,16 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 		
 	$rootScope.dateFormat = 'dd-MMMM-yyyy';
 
-	$rootScope.user.userId = 'UMRG0001';
+	$rootScope.user.userCode = 'UMRG0001';
 	$rootScope.user.userName = 'Zakiy';
-	$rootScope.user.userRole = 'Peminjam';
+	$rootScope.user.userRoleCode = $rootScope.user.userCode.substring(0,4);
+	$rootScope.user.userRoleName = '';
+
+	// $rootScope.$watch('user.userRoleCode', function(newValue, oldValue) {
+	// 	if(newValue == 'UMRG') $rootScope.user.userRoleName = '';
+	// 	if(newValue == 'UMRS') $rootScope.user.userRoleName = '';
+	// 	if(newValue.substring(0,3) == 'UST') $rootScope.user.userRoleName = 'Student';
+	// });
 	
 	$rootScope.message = '';
 	$rootScope.nextPath = '';
@@ -162,13 +169,20 @@ roomReservationControllers.controller('ReservationRequestListCtrl', function($sc
 	};
 
 	$scope.selectReservation = function(reservation){
-		console.log(reservation);
 		$rootScope.eventTypeCode = reservation.eventType;
 		$rootScope.eventScaleCode = reservation.eventScale;
 		$rootScope.rentReservationStatusCode = reservation.reservationStatus;
 		$rootScope.selectedReservation = reservation;
 		$rootScope.roomTypeCode = reservation.room.roomCode.substring(1,2);
 	};
+
+	$scope.viewReservationDetail = function(){
+		if($rootScope.selectedReservation.reservationCode != undefined){
+			$rootScope.goTo('/reservationDetail');
+		} else {
+			alert('Peminjaman belum dipilih');
+		}
+	}
 });
 
 roomReservationControllers.controller('ReservationRoomSelectionCtrl', function($scope, $rootScope, Service, $location) {
@@ -201,8 +215,8 @@ roomReservationControllers.controller('ReservationRoomSelectionCtrl', function($
 		if($rootScope.selectedRoom.roomCode != undefined){
 			if($scope.selectedDateTime.startDate !=undefined) {
 				if($scope.selectedDateTime.endDate !=undefined) {
-					$rootScope.selectedDate.startDate = moment(moment($scope.selectedDateTime.startDate).format("DD-MM-YYYY") + ' ' + $scope.selectedDateTime.startTime, 'DD-MM-YYYY HH:mm');
-					$rootScope.selectedDate.endDate = moment(moment($scope.selectedDateTime.endDate).format("DD-MM-YYYY") + ' ' + $scope.selectedDateTime.endTime, 'DD-MM-YYYY HH:mm');
+					$rootScope.selectedDate.startDate = moment(moment($scope.selectedDateTime.startDate).format("DD-MM-YYYY") + ' ' + $scope.selectedDateTime.startTime, 'DD-MM-YYYY HH:mm').toDate();
+					$rootScope.selectedDate.endDate = moment(moment($scope.selectedDateTime.endDate).format("DD-MM-YYYY") + ' ' + $scope.selectedDateTime.endTime, 'DD-MM-YYYY HH:mm').toDate();
 					$location.path(path);
 				} else {
 					alert('Tanggal selesai harus diisi!');
@@ -244,7 +258,7 @@ roomReservationControllers.controller('ReservationFormCtrl', function($scope, $r
 	$scope.reservation.reservationEndDate = $rootScope.selectedDate.endDate;
 	$scope.reservation.reservationStatus = 'N';
 	$scope.reservation.reservationPhase = '1';
-	$scope.reservation.room = $scope.room;
+	$scope.reservation.room = $rootScope.selectedRoom;
 	
 	$scope.createPeminjam = function(){
 		  $scope.reservation.$save(function(){
@@ -267,7 +281,7 @@ roomReservationControllers.controller('RentFormCtrl', function($scope, $rootScop
 	$scope.rent.rentStatus = 'N';
 	$scope.rent.rentPhase = '1';
 
-	$scope.rent.room = $scope.room;
+	$scope.rent.room = $rootScope.selectedRoom;
 
 	$scope.createRent = function(){
 		console.log($scope.rent);
@@ -376,6 +390,14 @@ roomReservationControllers.controller('RentRequestListCtrl', function($scope, $r
 		$rootScope.selectedRent = rent;
 		$scope.isSelected = true;
 	};
+
+	$scope.viewRentDetail = function(){
+		if($rootScope.selectedRent.rentCode != undefined){
+			$rootScope.goTo('/rentDetail');
+		} else {
+			alert('Penyewaan belum dipilih');
+		}
+	}
 });
 
 roomReservationControllers.controller('RentRequestModalCtrl', function($scope, $rootScope, $uibModalInstance) {
@@ -423,7 +445,19 @@ roomReservationControllers.controller('ReservationRequestApprovalListCtrl', func
 	$scope.listOfReservation = Reservation.query();
 	
 	$scope.selectReservation = function(reservation) {
+		$rootScope.eventTypeCode = reservation.eventType;
+		$rootScope.eventScaleCode = reservation.eventScale;
+		$rootScope.rentReservationStatusCode = reservation.reservationStatus;
 		$rootScope.selectedReservation = reservation;
+		$rootScope.roomTypeCode = reservation.room.roomCode.substring(1,2);
+	}
+
+	$scope.viewReservationApprovalDetail = function(){
+		if($rootScope.selectedReservation.reservationCode != undefined){
+			$rootScope.goTo('/reservationApprovalDetail');
+		} else {
+			alert('Peminjaman belum dipilih');
+		}
 	}
 });
 
@@ -434,6 +468,14 @@ roomReservationControllers.controller('RentRequestApprovalListCtrl', function($s
 		console.log(rent)
 		$rootScope.selectedRent = rent;
 		console.log($rootScope.selectedRent.rentId);
+	}
+
+	$scope.viewRentApprovalDetail = function(){
+		if($rootScope.selectedRent.rentCode != undefined){
+			$rootScope.goTo('/rentApprovalDetail');
+		} else {
+			alert('Penyewaan belum dipilih');
+		}
 	}
 });
 
@@ -458,15 +500,24 @@ roomReservationControllers.controller('RentRejectionDetailCtrl', function($scope
 });
 
 roomReservationControllers.controller('ReservationApprovalDetailCtrl', function($scope, $rootScope) {
-	$scope.openApproveEvent = function () {
+	$scope.approveEvent = function () {
+		rentApprove
 		$rootScope.message = 'Peminjaman Diizinkan';
 		$rootScope.nextPath = '/reservationRequestApprovalList';
 		$rootScope.openMessage('MessageModalCtrl');
 	};
 });
 
-roomReservationControllers.controller('RentApprovalDetailCtrl', function($scope, $rootScope) {
+roomReservationControllers.controller('RentApprovalDetailCtrl', function($scope, $rootScope, Rent) {
+	$scope.rent = new Rent();
+
 	$scope.openApproveEvent = function () {
+		$scope.rent.rentPhase = "5";
+		$scope.rent.$update(function(){
+			alert('sesuatuDeh');  
+			goTo('/rentRequestApprovalList');
+		 });
+
 		$rootScope.message = 'Penyewaan Diizinkan';
 		$rootScope.nextPath = '/rentRequestApprovalList';
 		$rootScope.openMessage('MessageModalCtrl');

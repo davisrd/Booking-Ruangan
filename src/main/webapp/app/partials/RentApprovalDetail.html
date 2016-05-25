@@ -67,17 +67,9 @@
 
       <br>
       <div class="form-group">
-        <div class="col-md-offset-1 col-md-7">
-          <div class="row">
-            <div ng-show="(user.userId.substring(0,4) == 'UMRG')">
-              <button type="reset" class="btn btn-danger"  ng-click="goTo('/rentRejectionDetail')">Tolak Penyewaan</button>
-            </div>
-            <div ng-show="(user.userId.substring(0,4) == 'UMRG')">
-              <button class="btn btn-success"  ng-click="goTo('/rentRequestApprovalList')">Mengetahui Penyewaan</button></div>
-            <div ng-show="(user.userId.substring(0,4) == 'UMRG')">
-              <button class="btn btn-success" ng-click="openApproveEvent()">Izinkan Penyewaan</button>
-            </div>        
-          </div>
+        <div class="col-md-offset-4 col-md-7">
+          <button type="reset" class="btn btn-danger btn-md"  ng-click="goTo('/rentRejectionDetail')">Tolak Penyewaan</button>
+          <button class="btn btn-success btn-md" ng-click="approveEvent()">Izinkan Penyewaan</button>
         </div>
       </div>
     </form>

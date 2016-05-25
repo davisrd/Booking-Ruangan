@@ -16,17 +16,21 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="reservation in listOfReservation" ng-click="selectReservation(reservation)"  ng-class="{selected: reservation.reservationId == selectedReservation.reservationId}">
-				<td><span ng-bind="reservation.reservationId"></span></td>
-				<td><span ng-bind="reservation.eventUserName"></span></td>
-				<td><span ng-bind="reservation.reservationStartDate"></span></td>
-				<td><span ng-bind="reservation.reservationEndDate"></span></td>
+			<tr ng-repeat="reservation in listOfReservation" ng-click="selectReservation(reservation)"  ng-class="{selected: reservation.reservationCode == selectedReservation.reservationCode}">
+				<td><span ng-bind="reservation.reservationCode"></span></td>
+				<td><span ng-bind="reservation.borrower"></span></td>
+				<td><span>{{(reservation.reservationDateStart | date:'dd MMMM yyyy HH:mm')}}</span></td>
+				<td><span>{{(reservation.reservationDateEnd | date:'dd MMMM yyyy HH:mm')}}</span></td>
 				<td><span ng-bind="reservation.room.roomName"></span></td>
 				<td><span ng-bind="reservation.eventName"></span></td>
-				<td><span ng-bind="reservation.reservationStatus"></span></td>
+				<td>
+					<span ng-show="reservation.reservationStatus == 'N'">Pengajuan Baru</span>
+					<span ng-show="reservation.reservationStatus == 'M'">Pengajuan Pemindahan</span>
+					<span ng-show="reservation.reservationStatus == 'C'">Dibatalkan</span>
+				</td>
 			</tr>
 		</tbody>
 	</table>
-	<a href="#/reservationApprovalDetail"><button class="btn btn-primary">Lihat Detail</button></a>
+	<button class="btn btn-primary" ng-click="viewReservationApprovalDetail()">Lihat Detail</button></a>
   </div>
  </div>

@@ -40,22 +40,25 @@
 
 		<div class="row">
 			<div class="col-md-2">
-				<label>Tanggal Selesai</label>
+				<label>Periode</label>
 			</div>
-			<div class="col-md-4">
-				<p class="input-group">
-				  <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="selectedDate.endDate" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-				  <span class="input-group-btn">
-					<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
-				  </span>
-				</p>
+			<div class="col-md-2">
+				<input type="number" class="form-control" />
+			</div>
+			<div class="col-md-2">
+				<select class="form-control" ng-model="reservation.eventScale" ng-required="true">
+				  	<option value="1">Jam</option>
+				  	<option value="2">Hari</option>
+				  	<option value="3">Bulan</option>
+				  	<option value="4">Tahun</option>
+				</select>
 			</div>
 		</div>
 		<br><br>
 		<div class="row">
 			<div class="col-md-3 col-md-offset-10">
 				<a href="#/rentRequestList"><button class="btn btn-danger">Batal</button></a>
-				<button type="button" class="btn btn-success btn-md" ng-click="validateData('/rentForm')">Lanjut</button>
+				<button type="submit" class="btn btn-success btn-md" ng-click="validateData('/rentForm')">Lanjut</button>
 			</div>
 		</div>
 		<br><br>
