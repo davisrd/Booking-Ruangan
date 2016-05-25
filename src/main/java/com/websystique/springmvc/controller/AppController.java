@@ -183,7 +183,10 @@ public class AppController {
     @RequestMapping(value = "/reservation", method = RequestMethod.POST)
     public ResponseEntity<Void> saveReservation(@RequestBody Reservation reservation, UriComponentsBuilder ucBuilder)
     {
-    	reservationService.saveReservation(reservation);
+    	Boolean status = reservationService.saveReservation(reservation);
+    	if(!status){
+    		return new ResponseEntity<Void>(HttpStatus.EXPECTATION_FAILED);
+    	}
     	HttpHeaders headers = new HttpHeaders();
     	headers.setLocation(ucBuilder.path("/reservation/{id}").buildAndExpand(reservation.getReservationCode()).toUri());
     	return new ResponseEntity<Void>(headers, HttpStatus.CREATED);

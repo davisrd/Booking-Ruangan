@@ -16,7 +16,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="room in listOfRoom" ng-click="selectRoom(room)" ng-class="{selected: room.roomId == selectedRoom.roomId}">
+				<tr ng-repeat="room in listOfRoom" ng-click="selectRoom(room)" ng-class="{selected: room.roomCode == selectedRoom.roomCode}">
 					<td><span ng-bind="room.roomCode"></span></td>
 					<td><span ng-bind="room.roomName"></span></td>
 					<td><span ng-bind="room.roomPrice"></span></td>

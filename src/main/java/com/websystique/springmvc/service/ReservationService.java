@@ -6,7 +6,7 @@ import com.leftproject.model.Reservation;
 
 public interface ReservationService {
 	
-	void saveReservation(Reservation reservation);
+	Boolean saveReservation(Reservation reservation);
 	
 	void deleteReservationByCode(String reservationCode);
 	

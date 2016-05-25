@@ -16,8 +16,8 @@ public class ReservationServiceImpl implements ReservationService {
 	@Autowired
 	private ReservationDao reservationDao;
 	
-	public void saveReservation(Reservation reservation){
-		
+	public Boolean saveReservation(Reservation reservation){
+		return reservationDao.saveReservation(reservation);
 	}
 	
 	public void deleteReservationByCode(String reservationCode){

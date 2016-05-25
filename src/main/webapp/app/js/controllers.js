@@ -25,16 +25,8 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 		$rootScope.popup2.opened = true;
 	};
 		
-	$rootScope.dateFormat = 'dd-MMMM-yyyy HH:mm';
-	$rootScope.eventCategoryName;
-	$rootScope.eventCategoryCode;
-	
-	$rootScope.$watch('eventCategoryCode', function(newValue, oldValue) {
-		if(newValue == 'B') $rootScope.eventCategoryName = 'Bisnis'
-		if(newValue == 'N') $rootScope.eventCategoryName = 'Non-Bisnis'
-		if(newValue == 'S') $rootScope.eventCategoryName = 'Sosial'
-	});
-	
+	$rootScope.dateFormat = 'dd-MMMM-yyyy';
+
 	$rootScope.user.userId = 'UMRG0001';
 	$rootScope.user.userName = 'Zakiy';
 	$rootScope.user.userRole = 'Peminjam';
@@ -53,6 +45,76 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 	$rootScope.goTo = function(path) {
 		$location.path(path);
 	}
+
+
+	$rootScope.eventCategoryName;
+	$rootScope.eventCategoryCode;
+	$rootScope.eventTypeName;
+	$rootScope.eventTypeCode;
+	$rootScope.rentReservationStatusName;
+	$rootScope.rentReservationStatusCode;
+	$rootScope.eventScaleName;
+	$rootScope.eventScaleCode;
+	$rootScope.reservationPhaseName;
+	$rootScope.reservationPhaseCode;
+	$rootScope.rentPhaseName;
+	$rootScope.rentPhaseCode;
+	$rootScope.roomTypeName;
+	$rootScope.roomTypeCode;
+	
+	$rootScope.$watch('eventCategoryCode', function(newValue, oldValue) {
+		if(newValue == 'B') $rootScope.eventCategoryName = 'Bisnis'
+		if(newValue == 'N') $rootScope.eventCategoryName = 'Non-Bisnis'
+		if(newValue == 'S') $rootScope.eventCategoryName = 'Sosial'
+	});
+	
+	$rootScope.$watch('rentReservationStatusCode', function(newValue, oldValue) {
+		if(newValue == 'N') $rootScope.rentReservationStatusName = 'Pengajuan Baru'
+		if(newValue == 'M') $rootScope.rentReservationStatusName = 'Pengajuan Pemindahan'
+		if(newValue == 'C') $rootScope.rentReservationStatusName = 'Dibatalkan'
+	});
+
+	$rootScope.$watch('eventScaleCode', function(newValue, oldValue) {
+		if(newValue == '1') $rootScope.eventScaleName = 'Organisasi'
+		if(newValue == '2') $rootScope.eventScaleName = 'POLBAN'
+		if(newValue == '3') $rootScope.eventScaleName = 'Kota'
+		if(newValue == '4') $rootScope.eventScaleName = 'Provinsi'
+		if(newValue == '5') $rootScope.eventScaleName = 'Nasional'
+		if(newValue == '6') $rootScope.eventScaleName = 'Internasional'
+	});
+
+	$rootScope.$watch('eventTypeCode', function(newValue, oldValue) {
+		if(newValue == 'A') $rootScope.eventTypeName = 'Akademik'
+		if(newValue == 'H') $rootScope.eventTypeName = 'Himpunan / UKM'
+		if(newValue == 'J') $rootScope.eventTypeName = 'Jurusan'
+		if(newValue == 'M') $rootScope.eventTypeName = 'Manajemen'
+	});
+	
+	$rootScope.$watch('reservationPhaseCode', function(newValue, oldValue) {
+		if(newValue == '1') $rootScope.rentReservationStatusName = 'Dalam proses Kasubbag TU'
+		if(newValue == '2') $rootScope.rentReservationStatusName = 'Dalam proses Pengelola Ruangan Khusus'
+		if(newValue == '3') $rootScope.rentReservationStatusName = 'Diizinkan Kasubbag TU'
+		if(newValue == '4') $rootScope.rentReservationStatusName = 'Diizinkan Pengelola Ruangan Khusus'
+		if(newValue == '5') $rootScope.rentReservationStatusName = 'Tidak Diizinkan Pengelola Ruangan Khusus'
+		if(newValue == '6') $rootScope.rentReservationStatusName = 'Tidak Diizinkan Kasubbag TU'
+	});
+
+	$rootScope.$watch('rentPhaseCode', function(newValue, oldValue) {
+		if(newValue == '1') $rootScope.eventScaleName = 'Dalam proses Direktur'
+		if(newValue == '2') $rootScope.eventScaleName = 'Dalam proses Kasubbag TU'
+		if(newValue == '3') $rootScope.eventScaleName = 'Dalam proses KPKNL'
+		if(newValue == '4') $rootScope.eventScaleName = 'Konfirmasi Pembayaran'
+		if(newValue == '5') $rootScope.eventScaleName = 'Diizinkan Direktur'
+		if(newValue == '6') $rootScope.eventScaleName = 'Diizinkan Kasubbag TU'
+		if(newValue == '7') $rootScope.eventScaleName = 'Tidak Diizinkan Direktur'
+		if(newValue == '8') $rootScope.eventScaleName = 'Tidak Diizinkan KPKNL'
+	});
+
+	$rootScope.$watch('roomTypeCode', function(newValue, oldValue) {
+		if(newValue == 'S') $rootScope.roomTypeName = 'Ruangan Khusus'
+		if(newValue == 'G') $rootScope.roomTypeName = 'Ruangan Umum'
+	});
+
 })
 .controller('DashboardCtrl', function($rootScope){
 	if($rootScope.user.userName == undefined){
@@ -100,24 +162,47 @@ roomReservationControllers.controller('ReservationRequestListCtrl', function($sc
 	};
 
 	$scope.selectReservation = function(reservation){
+		console.log(reservation);
+		$rootScope.eventTypeCode = reservation.eventType;
+		$rootScope.eventScaleCode = reservation.eventScale;
+		$rootScope.rentReservationStatusCode = reservation.reservationStatus;
 		$rootScope.selectedReservation = reservation;
+		$rootScope.roomTypeCode = reservation.room.roomCode.substring(1,2);
 	};
 });
 
-roomReservationControllers.controller('ReservationRoomSelectionCtrl', function($scope, $rootScope, Room, $location) {
-	$scope.listOfRoom = Room.query();
-	$('.clockpicker1').clockpicker()
+roomReservationControllers.controller('ReservationRoomSelectionCtrl', function($scope, $rootScope, Service, $location) {
+	$scope.listOfRoom;
+	$scope.selectedDateTime = {};
+	$rootScope.selectedRoom = {};
+
+	$scope.selectedDateTime.startTime = "00:00";
+	$scope.selectedDateTime.endTime = "00:00";
+
+	Service.getReservationRoom().then(function success(data) {
+	 	$scope.listOfRoom = data.data;
+    }, function error(error){
+        console.log(error);
+    });
+	
+	$('.clockpicker1').clockpicker().find('input').change(function(){
+		$scope.selectedDateTime.startTime = this.value;
+	});;
+
+	$('.clockpicker2').clockpicker().find('input').change(function(){
+		$scope.selectedDateTime.endTime = this.value;
+	});;
 
 	$scope.selectRoom = function(room){
 		$rootScope.selectedRoom = room;
 	};
 	
 	$scope.validateData = function(path){
-		if($rootScope.selectedRoom.roomId != undefined){
-			if($rootScope.selectedDate.startDate !=undefined) {
-				if($rootScope.selectedDate.endDate !=undefined) {
-					$rootScope.selectedDate.startDate = moment($rootScope.selectedDate.startDate).format("DD-MMM-YYYY HH:mm");
-					$rootScope.selectedDate.endDate = moment($rootScope.selectedDate.endDate).format("DD-MMM-YYYY HH:mm");
+		if($rootScope.selectedRoom.roomCode != undefined){
+			if($scope.selectedDateTime.startDate !=undefined) {
+				if($scope.selectedDateTime.endDate !=undefined) {
+					$rootScope.selectedDate.startDate = moment(moment($scope.selectedDateTime.startDate).format("DD-MM-YYYY") + ' ' + $scope.selectedDateTime.startTime, 'DD-MM-YYYY HH:mm');
+					$rootScope.selectedDate.endDate = moment(moment($scope.selectedDateTime.endDate).format("DD-MM-YYYY") + ' ' + $scope.selectedDateTime.endTime, 'DD-MM-YYYY HH:mm');
 					$location.path(path);
 				} else {
 					alert('Tanggal selesai harus diisi!');
@@ -215,27 +300,6 @@ roomReservationControllers.controller('ReservationChangeFormCtrl', function($sco
 })
 
 roomReservationControllers.controller('ReservationDetailCtrl', function($scope, $rootScope) {
-	$scope.reservation = {
-		reservationId: 1,
-		eventUserName: "Himakom",
-		reservationStartDate: "17-04-2016",
-		reservationEndDate: "20-04-2016",
-		eventName: "Seminar International",
-		eventType: "Kegiatan Mahasiswa",
-		eventScale: "International",
-		totalAudience : "200 orang",
-		room: {
-			roomId: 1,
-			roomName: "RSG",
-			roomType: "Fasilitas Umum"
-		},
-		reservationStatus: "Diizinkan"
-		
-	};
-
-	$scope.selectReservation = function(reservation){
-		$rootScope.selectedReservation = reservation;
-	};
 })
 
 roomReservationControllers.controller('ReservationCancelFormCtrl', function($scope, $rootScope) {
@@ -263,48 +327,11 @@ roomReservationControllers.controller('ReservationCancelFormCtrl', function($sco
 })
 
 roomReservationControllers.controller('RentDetailCtrl', function($scope, $rootScope) {
-	$scope.rent = {
-		rentId: 1,
-		eventUserName: "Himakom",
-		rentStartDate: "17-04-2016",
-		rentEndDate: "20-04-2016",
-		eventName: "Seminar International",
-		eventType: "Kegiatan Mahasiswa",
-		room: {
-			roomId: 1,
-			roomName: "RSG",
-			roomType: "Fasilitas Umum"
-		},
-		rentStatus: "Diizinkan",
-		rentPrice: "200000"
-	};
 
-	$scope.selectRent = function(rent){
-		$rootScope.selectedRent = rent;
-	};
 })
 
-roomReservationControllers.controller('FormPemindahanPenyewaanCtrl', function($scope, $rootScope) {
-	$scope.reservation = {
-		reservationId: 1,
-		eventUserName: "Jaki",
-		reservationStartDate: "18-04-2016",
-		reservationEndDate: "18-04-2016",
-		eventName: "Pernikahan",
-		eventType: "Diijinkan",
-		facility: {
-			facilityId: 1,
-			facilityName: "Ruang Utama Pendopo Agung",
-			facilityPrice: "10.000.000"
-		},
-		eventName: "Studi Banding",
-		eventType: "Studi Banding",
-		reservationStatus: true
-	};
-
-	$scope.selectReservation = function(reservation){
-		$rootScope.selectedReservation = reservation;
-	};
+roomReservationControllers.controller('FormPemindahanPenyewaanCtrl', function($scope, $rootScope, Service) {
+	
 });
 roomReservationControllers.controller('FormPemPenyewaanCtrl', function($scope, $rootScope) {
 	$scope.reservation = {
@@ -330,6 +357,7 @@ roomReservationControllers.controller('FormPemPenyewaanCtrl', function($scope, $
 });
 roomReservationControllers.controller('RentRequestListCtrl', function($scope, $rootScope, $uibModal, Rent) {
 	$scope.listOfRent = Rent.query();
+	console.log($rootScope.selectedRent);
 	
 	$scope.open = function () {
 		var modalInstance = $uibModal.open({
@@ -343,6 +371,8 @@ roomReservationControllers.controller('RentRequestListCtrl', function($scope, $r
 	$scope.isSelected = false;
 	
 	$scope.selectRent = function(rent){
+		$rootScope.eventCategoryCode = rent.eventCategory;
+		$rootScope.rentReservationStatusCode = rent.rentStatus;
 		$rootScope.selectedRent = rent;
 		$scope.isSelected = true;
 	};

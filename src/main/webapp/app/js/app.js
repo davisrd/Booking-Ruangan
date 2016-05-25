@@ -62,7 +62,7 @@ roomReservationApp.config(['$routeProvider',
         controller: 'ReservationChangeFormCtrl'
       }).
      when('/pemindahanpenyewaan', {
-        templateUrl: 'partials/FormPemindahanPeminjaman.html',
+        templateUrl: 'partials/FormPemindahanPenyewaan.html',
         controller: 'FormPemindahanPenyewaanCtrl'
     }).
     when('/pembatalanpenyewaan', {
