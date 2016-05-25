@@ -103,7 +103,7 @@ public class AppController {
     	headers.setLocation(ucBuilder.path("/rent/{id}").buildAndExpand(rent.getRentCode()).toUri());
     	return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
-
+//
     @RequestMapping(value = "/rent/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Rent> saveRent(@PathVariable("id") String id, @RequestBody Rent rent, UriComponentsBuilder ucBuilder)
     {
