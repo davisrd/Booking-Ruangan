@@ -11,10 +11,7 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.leftproject.model.Rent;
-import com.leftproject.model.Room;
-import com.leftproject.model.Reservation;
-import com.leftproject.model.User;
+import com.leftproject.model.*;
 
 @Repository("UserDao")
 public class UserDaoImpl extends AbstractDao<Integer, Rent> implements UserDao{ {

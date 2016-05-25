@@ -4,12 +4,13 @@ package com.leftproject.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+
+import com.google.gson.Gson;
 
 @Entity
 @Table(name="ROOM")
@@ -20,7 +21,7 @@ public class Room {
     @Size (max = 5)
     private String roomCode;
     
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="USER_CODE")
    	@Size (min = 9 , max = 9)
     private RoomManager roomManager;
@@ -37,10 +38,19 @@ public class Room {
    @Column(name="ROOM_CATEGORY")
    private String roomCategory;
     
-     
-    public Room() {
-         
-    }
+
+   public Room(){}
+
+   public Room(String roomJSON){
+	   	Gson gson = new Gson();
+	   	Room room = gson.fromJson(roomJSON, Room.class);
+		this.roomCode = room.roomCode;
+		this.roomManager = room.roomManager;
+		this.roomName = room.roomName;
+		this.roomStatus = room.roomStatus;
+		this.roomPrice = room.roomPrice;
+		this.roomCategory = room.roomCategory;
+   }
 
 	public Room(String roomCode, RoomManager roomManager, String roomName, String roomStatus, long roomPrice, String roomCategory) {
 		super();

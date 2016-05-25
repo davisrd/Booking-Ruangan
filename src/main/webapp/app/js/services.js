@@ -130,6 +130,17 @@ roomReservationServices.factory('Phone', ['$resource',
   .factory('Service', function($resource, $http){
   		var urlBase = 'http://localhost:8080/ProyekRuangan'; //get?model=userDetail&userid=123123123;
 	    return {
+	    	getReservation: function() {
+	    		$http({
+				    url: urlBase + '/reservation/' + roomId, 
+				    method: "GET",
+				    params: params
+				 }).then(function success(data) {
+                	console.log(data);
+                }, function error(error){
+                    console.log(error);
+                });
+	    	},
 	        getRoomAvailibility: function(roomId, startDate, endDate) {
 	        	var params = {
 	        		startDate: startDate,

@@ -29,13 +29,15 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 			return false;
 		}				
 	}
-		
+
+	@SuppressWarnings("unchecked")
 	public List<Rent> getNotYetApproveMovementRentByDirectur(){
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("rentStatus", "M"));
 		return (List<Rent>) criteria.list();
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	public List<Rent> getAllRentsByUser(User user){
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("userCode", user.getUserCode()));
@@ -93,7 +95,8 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 		
 		return (List<Rent>)UserRentListToCancel;
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	public List<Rent> getProposedRent(){
 		Criteria criteria = createEntityCriteria();
 		return (List<Rent>) criteria.list();

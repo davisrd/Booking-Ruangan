@@ -134,7 +134,7 @@ public class AppController {
         currentRent.setRoom(rent.getRoom());
         currentRent.setUpdatedBy(rent.getUpdatedBy());
         currentRent.setUpdatedDate(rent.getUpdatedDate());
-        currentRent.setUserId(rent.getUserId());
+        currentRent.setUser(rent.getUser());
          
         rentService.updateRent(currentRent);
         return new ResponseEntity<Rent>(currentRent, HttpStatus.OK);
@@ -168,6 +168,15 @@ public class AppController {
     	Boolean status = true;
     	return new ResponseEntity<Boolean>(status, HttpStatus.OK);
 //    	return new ResponseEntity<Boolean>(scheduleService.getRoomStatus(schedule.getIdRoom(), schedule.getDateStart(), schedule.getDateEnd()), HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/reservation", method = RequestMethod.GET)
+    public ResponseEntity<List<Reservation>> getAllReservation() {
+        List<Reservation> reservations = reservationService.getProposedReservation();
+        if(reservations.isEmpty()){
+            return new ResponseEntity<List<Reservation>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+        }
+        return new ResponseEntity<List<Reservation>>(reservations, HttpStatus.OK);
     }
     
     //-------------------Save a Reservation-------------------------------------------------------

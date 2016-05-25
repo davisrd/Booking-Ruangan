@@ -1,24 +1,18 @@
 package com.leftproject.model;
 
 import java.util.Date;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import com.leftproject.model.*;
 
 @Entity
 @Table(name="RESERVATION")
@@ -29,12 +23,12 @@ public class Reservation {
     private String reservationCode;
     
 	@Autowired
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "USER_CODE")
    	private User user;
 	
 	@Autowired
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "ROOM_CODE")
 	private Room room;
 	
@@ -143,7 +137,7 @@ public class Reservation {
 		return room;
 	}
 
-	public void setRoom(Room roomCode) {
+	public void setRoom(Room room) {
 		this.room = room;
 	}
 

@@ -64,7 +64,7 @@ public class RentServiceImpl implements RentService {
 	        entity.setRoom(rent.getRoom());
 	        entity.setUpdatedBy(rent.getUpdatedBy());
 	        entity.setUpdatedDate(rent.getUpdatedDate());
-	        entity.setUserId(rent.getUserId());
+	        entity.setUser(rent.getUser());
 		}
 	}
 //	public Rent getsendMemorandum(String memorandum){

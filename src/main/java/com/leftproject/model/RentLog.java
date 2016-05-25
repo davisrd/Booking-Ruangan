@@ -4,7 +4,6 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -16,6 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class RentLog {
 	
 	@Id
+	@GeneratedValue
 	@Column (name = "RENT_LOG_ID")
 	private int rentLogId;
 	

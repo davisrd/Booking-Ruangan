@@ -1,17 +1,14 @@
 package com.leftproject.model;
 
 import java.util.Date;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +21,6 @@ public class Rent {
     @Column(name="RENT_CODE")
     @Size(min=9 ,max=9)
     private String rentCode;
-    
-    @Column (name = "USER_CODE")
-	@Size (min = 9 , max = 9)
-	private String userCode;
-    
-    @Column (name = "ROOM_CODE")
-	@Size (min = 5 , max = 5)
-	private String roomCode;
 
     @Column(name="RENTER")
     @Size (max =255)
@@ -51,11 +40,11 @@ public class Rent {
     @Column(name="RENT_OPERATIONAL_PRICE")
 	private long rentOperationalPrice;
 
-    @Column(name="RENT_STATUS", nullable = false)
+    @Column(name="RENT_STATUS")
     @Size(min=1,max=1)
 	private String rentStatus;
 
-    @Column(name="RENT_PHASE", nullable = false)
+    @Column(name="RENT_PHASE")
     @Size(min=1,max=1)
 	private String rentPhase;
     
@@ -91,12 +80,14 @@ public class Rent {
     @Column(name="UPDATED_DATE")
 	private Date updatedDate;
 
-    @Column(name="USER_ID")
-	private String userId;
-	
 	@Autowired
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "room_id")
+	@JoinColumn(name = "USER_CODE")
+	private User user;
+
+	@Autowired
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "ROOM_CODE")
 	private Room room;
 	
 //	@OneToMany(mappedBy="department")
@@ -111,14 +102,12 @@ public class Rent {
 		
 	}
 
-	public Rent(String rentCode, String userCode, String roomCode, String renter, Date rentDateStart, Date rentDateEnd,
+	public Rent(String rentCode, String renter, Date rentDateStart, Date rentDateEnd,
 			long rentPrice, long rentOperationalPrice, String rentStatus, String rentPhase, String rentLetterPath,
 			String rentEvidencePath, String rentRejectReason, String rentCancelReason, String eventCategory,
-			String eventName, Date createdDate, String updatedBy, Date updatedDate, String userId, Room room) {
+			String eventName, Date createdDate, String updatedBy, Date updatedDate, User user, Room room) {
 		super();
 		this.rentCode = rentCode;
-		this.userCode = userCode;
-		this.roomCode = roomCode;
 		this.renter = renter;
 		this.rentDateStart = rentDateStart;
 		this.rentDateEnd = rentDateEnd;
@@ -135,7 +124,7 @@ public class Rent {
 		this.createdDate = createdDate;
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
-		this.userId = userId;
+		this.user = user;
 		this.room = room;
 	}
 
@@ -145,22 +134,6 @@ public class Rent {
 
 	public void setRentCode(String rentCode) {
 		this.rentCode = rentCode;
-	}
-
-	public String getUserCode() {
-		return userCode;
-	}
-
-	public void setUserCode(String userCode) {
-		this.userCode = userCode;
-	}
-
-	public String getRoomCode() {
-		return roomCode;
-	}
-
-	public void setRoomCode(String roomCode) {
-		this.roomCode = roomCode;
 	}
 
 	public String getRenter() {
@@ -283,12 +256,12 @@ public class Rent {
 		this.updatedDate = updatedDate;
 	}
 
-	public String getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Room getRoom() {

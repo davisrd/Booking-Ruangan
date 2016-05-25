@@ -1,7 +1,6 @@
 package com.websystique.springmvc.dao;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -26,6 +25,7 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 		}		
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Reservation> getProposedReservation(){
 		Criteria criteria = createEntityCriteria();
 		return (List<Reservation>) criteria.list();
@@ -48,6 +48,7 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 
 	
 	//yg dari sequence appl
+	@SuppressWarnings("unchecked")
 	public List<Reservation> getAllReservations(User user){
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("user_id", user.getUserCode()));
@@ -74,10 +75,11 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 			return false;
 		}
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	public List<Reservation> getProposedMovementReservation(){
 		Criteria criteria = createEntityCriteria();
-		criteria.add(Restrictions.eq("reservation_phase", "M"));
+		criteria.add(Restrictions.eq("reservationPhase", "M"));
 		return (List<Reservation>) criteria.list();
 	}
 	

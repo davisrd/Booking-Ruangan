@@ -14,6 +14,7 @@ import javax.validation.constraints.Size;
 public class Schedule {
 	
 	@Id
+	@GeneratedValue
     @Column(name="SCHEDULE_ID")
     private int idSchedule;
 	
@@ -23,11 +24,11 @@ public class Schedule {
 
 	@Column(name="DATE_START")
 	@Size( min = 10 ,max=10)
-	private String  dateStart;
+	private Date  dateStart;
 
 	@Column(name="DATE_END")
 	@Size( min = 10 ,max=10)
-	private String  dateEnd;
+	private Date  dateEnd;
 	
 	public Schedule(int idSchedule, String usageCode) {
 		super();

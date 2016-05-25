@@ -7,8 +7,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.leftproject.model.Reservation;
-import com.leftproject.model.Schedule;;
+import com.leftproject.model.*;
 
 @Repository("ScheduleDao")
 public class ScheduleDaoImpl extends AbstractDao<Integer, Schedule> implements ScheduleDao{
@@ -22,7 +21,8 @@ public class ScheduleDaoImpl extends AbstractDao<Integer, Schedule> implements S
 			else 
 				return false;
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	public List<Schedule> getListSchedule(String usageCode, Date startDate, Date endDate){
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("usageCode", usageCode));

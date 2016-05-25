@@ -1,15 +1,13 @@
 package com.leftproject.model;
 
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+
+import com.google.gson.Gson;
 
 @Entity
 @Table(name="ROOM_MANAGER")
@@ -35,6 +33,16 @@ public class RoomManager {
 		// TODO Auto-generated constructor stub
 	}
 
+    public RoomManager(String roomManagerJSON) {
+		super();
+       	Gson gson = new Gson();
+       	RoomManager roomManager = gson.fromJson(roomManagerJSON, RoomManager.class);
+		this.userCode = roomManager.userCode;
+		this.employeePosition = roomManager.employeePosition;
+		this.employeeUnit = roomManager.employeeUnit;
+		// TODO Auto-generated constructor stub
+	}
+    
 	public RoomManager(String userCode, String employeePosition, String employeeUnit) {
 		super();
 		this.userCode = userCode;

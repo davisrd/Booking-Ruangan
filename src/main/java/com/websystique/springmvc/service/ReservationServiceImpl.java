@@ -34,7 +34,7 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 	
 	public List<Reservation> getProposedReservation(){
-		return null;
+		return reservationDao.getProposedReservation();
 	}
 
 		

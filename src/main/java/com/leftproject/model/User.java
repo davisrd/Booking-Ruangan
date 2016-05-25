@@ -2,11 +2,11 @@ package com.leftproject.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+
+import com.google.gson.Gson;
 
 @Entity
 @Table(name="USER")
@@ -31,6 +31,15 @@ public class User {
      
     public User(){}
 
+    public User(String userJSON){
+    	Gson gson = new Gson();
+    	User user = gson.fromJson(userJSON, User.class);
+		this.userCode = user.userCode;
+		this.userName = user.userName;
+		this.userPassword = user.userPassword;
+		this.userType = user.userType;
+    }
+    
 	public User(String userCode, String userName, String userPassword, String userType) {
 		super();
 		this.userCode = userCode;
