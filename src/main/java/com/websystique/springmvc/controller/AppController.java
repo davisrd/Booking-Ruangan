@@ -170,6 +170,41 @@ public class AppController {
 //    	return new ResponseEntity<Boolean>(scheduleService.getRoomStatus(schedule.getIdRoom(), schedule.getDateStart(), schedule.getDateEnd()), HttpStatus.OK);
     }
     
+    
+    //-------------------Save a Reservation-------------------------------------------------------
+    
+  /*  
+    @RequestMapping(value = "/reservation", method = RequestMethod.POST)
+    public ResponseEntity<Void> saveReservation(@RequestBody Reservation reservation, UriComponentsBuilder ucBuilder)
+    {
+    	reservationService.saveReservation(reservation);
+    	HttpHeaders headers = new HttpHeaders();
+    	headers.setLocation(ucBuilder.path("/reservation/{id}").buildAndExpand(reservation.getReservationCode()).toUri());
+    	return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+    }
+  */
+    //------------------Use Case: Mengajukan Peminjaman-----------------------------------
+    @RequestMapping(value = "/reservationRoom", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Room>> getAllReservationableRoom() {
+    	List<Room> rooms = roomService.getReservationRoom(); // With condition it should be
+        if(rooms.isEmpty()){
+            return new ResponseEntity<List<Room>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+        }
+        return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/roomAvailibility/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> getReservationRoomAvailibility(@PathVariable("id") String id, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
+    	System.out.println(startDate);
+    	Boolean status = scheduleService.getReservationRoomAvailability(id, startDate, endDate); // With condition it should be
+//        Boolean status = true;
+    	if(status==false){
+            return new ResponseEntity<Boolean>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+        }
+        return new ResponseEntity<Boolean>(status, HttpStatus.OK);
+    }
+    
+    
     @RequestMapping(value = "/reservation", method = RequestMethod.GET)
     public ResponseEntity<List<Reservation>> getAllReservation() {
         List<Reservation> reservations = reservationService.getProposedReservation();
@@ -179,18 +214,50 @@ public class AppController {
         return new ResponseEntity<List<Reservation>>(reservations, HttpStatus.OK);
     }
     
-    //-------------------Save a Reservation-------------------------------------------------------
     @RequestMapping(value = "/reservation", method = RequestMethod.POST)
     public ResponseEntity<Void> saveReservation(@RequestBody Reservation reservation, UriComponentsBuilder ucBuilder)
     {
-    	Boolean status = reservationService.saveReservation(reservation);
-    	if(!status){
-    		return new ResponseEntity<Void>(HttpStatus.EXPECTATION_FAILED);
-    	}
+    	reservationService.saveReservation(reservation);
     	HttpHeaders headers = new HttpHeaders();
     	headers.setLocation(ucBuilder.path("/reservation/{id}").buildAndExpand(reservation.getReservationCode()).toUri());
     	return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
+
+    @RequestMapping(value = "/reservation/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Reservation> saveReservation(@PathVariable("id") String id, @RequestBody Reservation reservation, UriComponentsBuilder ucBuilder)
+    {
+    	System.out.println("Updating Employee " + id);
+        
+        Reservation currentReservation = reservationService.getReservationByCode(id);
+         
+        if (currentReservation==null) {
+            System.out.println("Employee with nip " + id + " not found");
+            return new ResponseEntity<Reservation>(HttpStatus.NOT_FOUND);
+        }
+		currentReservation.setReservationCode(reservation.getReservationCode());
+		currentReservation.setReservationDateStart(reservation.getReservationDateStart());
+		currentReservation.setReservationDateEnd(reservation.getReservationDateEnd());
+		currentReservation.setCreatedDate(reservation.getCreatedDate());
+		currentReservation.setReservationStatus(reservation.getReservationStatus());
+		currentReservation.setReservationPhase(reservation.getReservationPhase());
+		currentReservation.setReservationFilePath(reservation.getReservationFilePath());
+		currentReservation.setReservationOperationalPrice(reservation.getReservationOperationalPrice());
+		currentReservation.setReservationRejectReason(reservation.getReservationRejectReason());
+		currentReservation.setReservationCancelReason(reservation.getReservationCancelReason());
+		currentReservation.setEventType(reservation.getEventType());
+		currentReservation.setEventName(reservation.getEventName());
+		currentReservation.setEventScale(reservation.getEventScale());
+		currentReservation.setEventTotalParticipant(reservation.getEventTotalParticipant());
+		currentReservation.setUser(reservation.getUser());
+		currentReservation.setRoom(reservation.getRoom());
+		currentReservation.setUpdatedBy(reservation.getUpdatedBy());
+		currentReservation.setUpdatedDate(reservation.getUpdatedDate());
+         
+        reservationService.updateReservation(currentReservation);
+        return new ResponseEntity<Reservation>(currentReservation, HttpStatus.OK);
+    }
+    
+    
 //    //------------------- Delete All Users --------------------------------------------------------
 //     
 //    @RequestMapping(value = "/employee", method = RequestMethod.DELETE)

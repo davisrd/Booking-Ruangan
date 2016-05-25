@@ -28,6 +28,18 @@ public class ScheduleServiceImpl implements ScheduleService{
 		return true;
 	}
 	
+	public boolean getReservationRoomAvailability(String usageCode, Date startDate, Date endDate){
+		List<Schedule> schedules = dao.getListSchedule(usageCode, startDate, endDate);
+		if(!schedules.isEmpty())
+			for(Schedule schedule:schedules)
+			{
+				if(schedule.getUsageCode().toString().substring(1,2)=="RS")
+					return false;
+			}
+		return true;
+	}
+	
+	
 	public Schedule getSchedule(String usageCode, Date date){
 		return dao.getSchedule(usageCode,date);
 	}

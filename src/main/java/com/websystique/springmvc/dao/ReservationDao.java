@@ -18,6 +18,8 @@ public interface ReservationDao {
 	/*Reservation getReservationByRoomId(String roomId);*/
 	Reservation getReservation(String reservationId);
 	
+	Reservation getReservationByCode(String reservationCode);
+	
 	boolean saveReservation(Reservation reservation);
 	
 	List<Reservation> getProposedMovementReservation();

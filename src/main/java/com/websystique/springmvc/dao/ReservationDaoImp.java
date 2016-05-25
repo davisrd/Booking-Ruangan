@@ -7,6 +7,7 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import com.leftproject.model.Rent;
 import com.leftproject.model.Reservation;
 import com.leftproject.model.User;
 
@@ -45,6 +46,12 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 		Criteria criteria = createEntityCriteria();
 		return (List<Reservation>) criteria.list();
 	}*/
+	
+	public Reservation getReservationByCode(String reservationCode){
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("reservationCode", reservationCode));
+		return (Reservation) criteria.list();
+	}
 
 	
 	//yg dari sequence appl

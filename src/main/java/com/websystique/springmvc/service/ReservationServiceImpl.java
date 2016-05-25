@@ -16,19 +16,38 @@ public class ReservationServiceImpl implements ReservationService {
 	@Autowired
 	private ReservationDao reservationDao;
 	
-	public Boolean saveReservation(Reservation reservation){
-		return reservationDao.saveReservation(reservation);
+	public void saveReservation(Reservation reservation){
+		reservationDao.saveReservation(reservation);
+		Notification notif = new Notification();
+		notif.setNotificationMessage("Pemesanan berhasil");	
 	}
-	
-	public void deleteReservationByCode(String reservationCode){
 		
-	}
-	
+		
 	public void updateReservation(Reservation reservation){
-		
+		Reservation entity = reservationDao.getReservationByCode(reservation.getReservationCode());
+		if(entity!=null){
+			entity.setReservationCode(reservation.getReservationCode());
+	        entity.setReservationDateStart(reservation.getReservationDateStart());
+	        entity.setReservationDateEnd(reservation.getReservationDateEnd());
+			entity.setCreatedDate(reservation.getCreatedDate());
+			entity.setReservationStatus(reservation.getReservationStatus());
+			entity.setReservationPhase(reservation.getReservationPhase());
+			entity.setReservationFilePath(reservation.getReservationFilePath());
+			entity.setReservationOperationalPrice(reservation.getReservationOperationalPrice());
+			entity.setReservationRejectReason(reservation.getReservationRejectReason());
+			entity.setReservationCancelReason(reservation.getReservationCancelReason());
+			entity.setEventType(reservation.getEventType());
+			entity.setEventName(reservation.getEventName());
+			entity.setEventScale(reservation.getEventScale());
+			entity.setEventTotalParticipant(reservation.getEventTotalParticipant());
+			entity.setUser(reservation.getUser());
+			entity.setRoom(reservation.getRoom());
+			entity.setUpdatedBy(reservation.getUpdatedBy());
+		    entity.setUpdatedDate(reservation.getUpdatedDate());	       
+		}
 	}
 	
-	public Reservation getReservation(String reservationCode ){
+	public Reservation getReservationByCode(String reservationCode ){
 //		return reservationDao.getProposedReservation(reservationCode);
 		return null;
 	}
