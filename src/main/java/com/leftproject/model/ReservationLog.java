@@ -57,6 +57,11 @@ public class ReservationLog {
     @Column(name="UPDATED_DATE")
     @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
 	private Date updatedDate;
+    
+    public ReservationLog()
+    {
+    	
+    }
 
 	public ReservationLog(int resLogId, String resCode, Date resDateStart, Date resDateEnd, String resStatus,
 			String resPhase, long resOperationalPrice, String resFilePath, String rentRejectReason, String updatedBy,

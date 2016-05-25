@@ -22,6 +22,11 @@ public class Student {
     @Column(name="STUDENT_MAJOR")
     @Size(max=50)
     private String StudentMaj;
+    
+    public Student()
+    {
+    	
+    }
 
 	public Student(String userCode, String studentFac, String studentMaj) {
 		super();

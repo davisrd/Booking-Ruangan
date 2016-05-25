@@ -3,6 +3,8 @@ package com.websystique.springmvc.dao;
 import java.io.Serializable;
 
 import java.lang.reflect.ParameterizedType;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -56,6 +58,14 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 	
 	public void saveOrUpdate(T entity) {
 		getSession().saveOrUpdate(entity);
+	}
+	
+	public String dateToYYMM(Date date)
+	{
+		Date dateTest = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyMM");
+		String dateToStr = format.format(dateTest.getTime());
+		return dateToStr;
 	}
 
 }

@@ -14,6 +14,11 @@ public class Alumnus {
 	@Column (name = "USER_CODE")
 	@Size (min = 9 , max = 9)
 	private String userCode;
+	
+	public Alumnus()
+	{
+		
+	}
 
 	public Alumnus(String userCode) {
 		super();

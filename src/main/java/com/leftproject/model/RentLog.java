@@ -59,6 +59,11 @@ public class RentLog {
     @Column(name="UPDATED_DATE")
     @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
 	private Date updatedDate;
+    
+    public RentLog()
+    {
+    	
+    }
 
 	public RentLog(int rentLogId, String rentCode, Date rentDateStart, Date rentDateEnd, long rentPrice, String rentStatus,
 			String rentPhase, String rentLetterPath, long rentEvidancePath, String rentRejectReason, String updatedBy,

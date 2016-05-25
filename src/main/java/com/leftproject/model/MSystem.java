@@ -46,6 +46,11 @@ public class MSystem {
 	    @Column(name="UPDATED_DATE")
 	    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
 		private Date updatedDate;
+	    
+	    public MSystem()
+	    {
+	    	
+	    }
 
 		public MSystem(String category, char subCategory, char dataValue, String description, Date createdDate,
 				Date createdby, char updatedBy, Date updatedDate) {

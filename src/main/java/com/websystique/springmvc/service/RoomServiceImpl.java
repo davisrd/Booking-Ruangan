@@ -32,7 +32,7 @@ public class RoomServiceImpl implements RoomService{
 		return roomDao.getRentRoomByCategory(roomCategory);
 	}
 	
-	public Room getRoom(int room_id)
+	public Room getRoom(String room_id)
 	{
 		return roomDao.getRoom(room_id);
 	}

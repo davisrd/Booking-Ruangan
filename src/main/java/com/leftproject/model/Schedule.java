@@ -30,6 +30,11 @@ public class Schedule {
 	@Size( min = 10 ,max=10)
 	private Date  dateEnd;
 	
+	public Schedule()
+	{
+		
+	}
+	
 	public Schedule(int idSchedule, String usageCode) {
 		super();
 		this.idSchedule = idSchedule;

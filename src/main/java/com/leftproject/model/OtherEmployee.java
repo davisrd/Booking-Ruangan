@@ -25,6 +25,11 @@ public class OtherEmployee {
 		@Size (max = 50)
 		private String employeeUnit;
 
+		public ExternalUser()
+		{
+			
+		}
+		
 		public ExternalUser(String userCode, String employeePosition, String employeeUnit) {
 			super();
 			this.userCode = userCode;

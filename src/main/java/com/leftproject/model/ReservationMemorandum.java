@@ -41,6 +41,11 @@ public class ReservationMemorandum  {
 	    @Column(name="CREATED_DATE")
 	    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
 		private Date memCreatedDate;
+	    
+	    public ReservationMemorandum()
+	    {
+	    	
+	    }
 
 		public ReservationMemorandum(int memorandumId, String memorandumReceiver, String memoradumSubject,
 				String memorandumMessage, boolean memorandumStatus, String memCreatedBy, Date memCreatedDate) {

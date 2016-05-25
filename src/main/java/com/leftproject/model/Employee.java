@@ -22,6 +22,11 @@ public class Employee {
     @Column (name= "EMPLOYEE_UNIT")
     @Size (max =50)
     private String employeeUnit;
+    
+    public Employee()
+    {
+    	
+    }
 
 	public Employee(String userCode, String employeePosition, String employeeUnit) {
 		super();

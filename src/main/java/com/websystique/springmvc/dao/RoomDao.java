@@ -12,5 +12,5 @@ public interface RoomDao {
 
 	List<Room> getRentRoomByCategory(String category);
 	
-	Room getRoom(int room_id);
+	Room getRoom(String room_id);
 }

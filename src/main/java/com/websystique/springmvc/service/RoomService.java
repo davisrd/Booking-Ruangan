@@ -12,5 +12,5 @@ public interface RoomService {
 	
 	List<Room> getRentRoomByCategory(String roomCategory);
 	
-	Room getRoom(int room_id);
+	Room getRoom(String room_id);
 }

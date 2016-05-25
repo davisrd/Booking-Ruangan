@@ -26,6 +26,28 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 		}		
 	}
 	
+	private String getCurrentLastId(String mmYY)
+	{
+		String reservationCode;
+		Query query = getSession().createQuery("from Reservation where substring(reservation_code,3,4)='"+mmYY+"' order by reservation_code DESC");
+		query.setMaxResults(1);
+		List<Reservation> reservations = query.list();
+		Reservation reservation = new Reservation();
+		if(!reservations.isEmpty())
+		{
+			 reservation = reservations.get(0);
+			 reservationCode = reservation.getReservationCode().substring(0, 5);
+			 int id = Integer.parseInt(reservation.getReservationCode().substring(6, 8));
+			 id++;
+			 reservationCode = reservationCode + String.format("%03d", id);
+		}
+		else
+		{
+			reservationCode = "RS"+mmYY+"001";
+		}
+		return reservationCode;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Reservation> getProposedReservation(){
 		Criteria criteria = createEntityCriteria();
@@ -75,10 +97,12 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 	
 	public boolean saveReservation(Reservation reservation) {
 		try{
+			reservation.setReservationCode(this.getCurrentLastId(dateToYYMM(reservation.getReservationDateStart())));
 			persist(reservation);
 			return true;
 		}
 		catch(Exception e){
+			e.printStackTrace();
 			return false;
 		}
 	}

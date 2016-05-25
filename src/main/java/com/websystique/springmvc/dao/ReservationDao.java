@@ -32,6 +32,7 @@ public interface ReservationDao {
 	
 	boolean denyReservationByKasubbagTU(Reservation reservation);
 	
+	
 //	List<Reservation> findAllReservations();
 }
 
