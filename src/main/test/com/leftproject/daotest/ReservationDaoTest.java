@@ -39,7 +39,7 @@ public class ReservationDaoTest extends AbstractJUnit4SpringContextTests{
 		reservation.setCreatedDate(date);
 		reservation.setBorrower("Bambang");
 		reservationDao.saveReservation(reservation);
-		Reservation found = reservationDao.getReservation("RS1605002");
+		Reservation found = reservationDao.getReservation("RS1605003");
 		assertEquals("Bambang", found.getBorrower());
 	}
 	

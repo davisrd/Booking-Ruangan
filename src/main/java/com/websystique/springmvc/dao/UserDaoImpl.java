@@ -14,9 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.leftproject.model.*;
 
 @Repository("UserDao")
-public class UserDaoImpl extends AbstractDao<Integer, Rent> implements UserDao{ {
-
-}
+public class UserDaoImpl extends AbstractDao<Integer, Rent> implements UserDao{
 
 //public List<User> getUserKasubagTU(char userType) {
 //	Criteria criteria = createEntityCriteria()
@@ -35,11 +33,12 @@ public class UserDaoImpl extends AbstractDao<Integer, Rent> implements UserDao{ 
 //	
 //}
 
-public User getUser(String userCode) {
-	Criteria criteria = createEntityCriteria();
-	criteria.add(Restrictions.eq("userCode", userCode));
-	return (User) criteria.list();
+	public User getUser(String userCode) {
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("userCode", userCode));
+		return (User) criteria.uniqueResult();
+	}
 	
-}
+
 
 }

@@ -18,6 +18,28 @@ import com.leftproject.model.User;
 public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 	//getAllMinRent(User user)
 	
+	private String getCurrentLastId(String mmYY)
+	{
+		String rentCode;
+		Query query = getSession().createQuery("from Rent where substring(rent_code,3,4)='"+mmYY+"' order by reservation_code DESC");
+		query.setMaxResults(1);
+		List<Rent> rents = query.list();
+		Rent rent = new Rent();
+		if(!rents.isEmpty())
+		{
+			 rent = rents.get(0);
+			 rentCode = rent.getRentCode().substring(0, 6);
+			 int id = Integer.parseInt(rent.getRentCode().substring(6, 9));
+			 id++;
+			 rentCode = rentCode + String.format("%03d", id);
+		}
+		else
+		{
+			rentCode = "RE"+mmYY+"001";
+		}
+		return rentCode;
+	}
+	
 	public boolean cancelRent(Rent rent){
 		try{
 			Query query = getSession().createSQLQuery("delete from RENT where rent_id = " + rent.getRentCode());
@@ -40,7 +62,7 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 	@SuppressWarnings("unchecked")
 	public List<Rent> getAllRentsByUser(User user){
 		Criteria criteria = createEntityCriteria();
-		criteria.add(Restrictions.eq("userCode", user.getUserCode()));
+		criteria.add(Restrictions.eq("user.userCode", user.getUserCode()));
 		return (List<Rent>) criteria.list();
 	}
 	

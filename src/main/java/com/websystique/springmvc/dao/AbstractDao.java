@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,12 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 	private SessionFactory sessionFactory;
 
 	protected Session getSession(){
-		return sessionFactory.getCurrentSession();
+		try{
+			return sessionFactory.getCurrentSession();
+		}catch(HibernateException e)
+		{
+			return sessionFactory.openSession();
+		}
 	}
 
 	@SuppressWarnings("unchecked")
