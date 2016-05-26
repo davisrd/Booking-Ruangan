@@ -53,7 +53,7 @@ public class AppController {
 
 	//-------------------Retrieve All Reservable Room--------------------------------------------------------
     
-    @RequestMapping(value = "/reservationRoom", method = RequestMethod.GET)
+    @RequestMapping(value = "/reservation/room", method = RequestMethod.GET)
     public ResponseEntity<List<Room>> getAllReservableRoom() {
         List<Room> rooms = roomService.getReservationRoom();
         if(rooms.isEmpty()){
@@ -64,7 +64,7 @@ public class AppController {
     
     //-------------------Use Case : Mengajukan Penyewaan--------------------------------------------------------
 
-    @RequestMapping(value = "/rentRoom/{category}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/rent/room/{category}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Room>> getAllRentableRoom(@PathVariable("category") String category) {
     	List<Room> rooms = roomService.getRentRoomByCategory(category); // With condition it should be
         if(rooms.isEmpty()){
@@ -73,7 +73,7 @@ public class AppController {
         return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
     }
     
-    @RequestMapping(value = "/roomAvailibility/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/rent/roomAvailibility/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> getRoomAvailibility(@PathVariable("id") String id, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
     	System.out.println(startDate);
     	Boolean status = scheduleService.getRentRoomAvailability(id, startDate, endDate); // With condition it should be
@@ -162,13 +162,13 @@ public class AppController {
     // If no schedule, status = 0
     // If akademik/rent, status = 1
     // If non-akademik, status = 2
-    @RequestMapping(value = "/roomStatus", method = RequestMethod.GET)
-    public ResponseEntity<Boolean> getRoomStatus(@RequestBody Schedule schedule)
-    {
-    	Boolean status = true;
-    	return new ResponseEntity<Boolean>(status, HttpStatus.OK);
-//    	return new ResponseEntity<Boolean>(scheduleService.getRoomStatus(schedule.getIdRoom(), schedule.getDateStart(), schedule.getDateEnd()), HttpStatus.OK);
-    }
+//    @RequestMapping(value = "/roomStatus", method = RequestMethod.GET)
+//    public ResponseEntity<Boolean> getRoomStatus(@RequestBody Schedule schedule)
+//    {
+//    	Boolean status = true;
+//    	return new ResponseEntity<Boolean>(status, HttpStatus.OK);
+////    	return new ResponseEntity<Boolean>(scheduleService.getRoomStatus(schedule.getIdRoom(), schedule.getDateStart(), schedule.getDateEnd()), HttpStatus.OK);
+//    }
     
     
     //-------------------Save a Reservation-------------------------------------------------------
@@ -184,7 +184,7 @@ public class AppController {
     }
   */
     //------------------Use Case: Mengajukan Peminjaman-----------------------------------
-    @RequestMapping(value = "/reservationRoom", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/reservation/room", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Room>> getAllReservationableRoom() {
     	List<Room> rooms = roomService.getReservationRoom(); // With condition it should be
         if(rooms.isEmpty()){
@@ -193,7 +193,7 @@ public class AppController {
         return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
     }
     
-    @RequestMapping(value = "/roomAvailibility/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/reservation/roomAvailibility/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> getReservationRoomAvailibility(@PathVariable("id") String id, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
     	System.out.println(startDate);
     	Boolean status = scheduleService.getReservationRoomAvailability(id, startDate, endDate); // With condition it should be

@@ -27,10 +27,8 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 		
 	$rootScope.dateFormat = 'dd-MMMM-yyyy';
 
-	$rootScope.user.userCode = 'UMRG0001';
-	$rootScope.user.userName = 'Zakiy';
-	$rootScope.user.userRoleCode = $rootScope.user.userCode.substring(0,4);
-	$rootScope.user.userRoleName = '';
+	$rootScope.user.userCode = 'UMRG00001';
+	$rootScope.user.userName = 'Sudarman';
 
 	// $rootScope.$watch('user.userRoleCode', function(newValue, oldValue) {
 	// 	if(newValue == 'UMRG') $rootScope.user.userRoleName = '';
@@ -258,12 +256,15 @@ roomReservationControllers.controller('ReservationFormCtrl', function($scope, $r
 	$scope.reservation.reservationEndDate = $rootScope.selectedDate.endDate;
 	$scope.reservation.reservationStatus = 'N';
 	$scope.reservation.reservationPhase = '1';
+
 	$scope.reservation.room = $rootScope.selectedRoom;
+	$scope.reservation.user = $rootScope.user;
 	
 	$scope.createPeminjam = function(){
+		console.log($scope.reservation);
 		  $scope.reservation.$save(function(){
 			alert('sesuatu');  
-			goTo('/reservationRequestList');
+			$rootScope.goTo('/reservationRequestList');
 		  });
 	  };
 	
@@ -287,7 +288,7 @@ roomReservationControllers.controller('RentFormCtrl', function($scope, $rootScop
 		console.log($scope.rent);
 		  $scope.rent.$save(function(){
 			alert('sesuatu');  
-			goTo('/rentRequestList');
+			$rootScope.goTo('/rentRequestList');
 		  });
 	  };
 });
@@ -421,7 +422,7 @@ roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, 
 				if($rootScope.selectedDate.endDate !=undefined) {
 					$rootScope.selectedDate.startDate = moment($rootScope.selectedDate.startDate).format("DD-MMM-YYYY HH:mm");
 					$rootScope.selectedDate.endDate = moment($rootScope.selectedDate.endDate).format("DD-MMM-YYYY HH:mm");
-					Service.getRoomAvailibility($rootScope.selectedRoom.roomId, $rootScope.selectedDate.startDate, $rootScope.selectedDate.endDate).then(
+					Service.getRentRoomAvailibility($rootScope.selectedRoom.roomId, $rootScope.selectedDate.startDate, $rootScope.selectedDate.endDate).then(
 						function success(data){
 							console.log(data);
 							$location.path(path);

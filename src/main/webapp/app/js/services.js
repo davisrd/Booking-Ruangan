@@ -117,7 +117,7 @@ roomReservationServices.factory('Phone', ['$resource',
   .factory('RentRoom', function($resource){
 	  
 	   return $resource(
-     		'http://localhost:8080/ProyekRuangan/rentRoom/:id', 
+     		'http://localhost:8080/ProyekRuangan/rent/room/:id', 
      		{id: '@id'},//Handy for update & delete. id will be set with id of instance
      		{
      			update: {
@@ -130,13 +130,28 @@ roomReservationServices.factory('Phone', ['$resource',
   .factory('Service', function($resource, $http){
   		var urlBase = 'http://localhost:8080/ProyekRuangan'; //get?model=userDetail&userid=123123123;
 	    return {
-	        getRoomAvailibility: function(roomId, startDate, endDate) {
+	        getRentRoomAvailibility: function(roomId, startDate, endDate) {
 	        	var params = {
 	        		startDate: startDate,
 	        		endDate: endDate
 	        	}
 	        	$http({
-				    url: urlBase + '/roomAvailibility/' + roomId, 
+				    url: urlBase + '/rent/roomAvailibility/' + roomId, 
+				    method: "GET",
+				    params: params
+				 }).then(function success(data) {
+                	console.log(data);
+                }, function error(error){
+                    console.log(error);
+                });
+	        },
+	        getReservationRoomAvailibility: function(roomId, startDate, endDate) {
+	        	var params = {
+	        		startDate: startDate,
+	        		endDate: endDate
+	        	}
+	        	$http({
+				    url: urlBase + '/reservation/roomAvailibility/' + roomId, 
 				    method: "GET",
 				    params: params
 				 }).then(function success(data) {
@@ -161,7 +176,7 @@ roomReservationServices.factory('Phone', ['$resource',
 			},
 			getReservationRoom: function(){
 				return $http({
-				    url: urlBase + '/reservationRoom', 
+				    url: urlBase + '/reservation/room', 
 				    method: "GET"
 				 });
 			}

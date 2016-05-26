@@ -36,8 +36,8 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 		if(!reservations.isEmpty())
 		{
 			 reservation = reservations.get(0);
-			 reservationCode = reservation.getReservationCode().substring(0, 5);
-			 int id = Integer.parseInt(reservation.getReservationCode().substring(6, 8));
+			 reservationCode = reservation.getReservationCode().substring(0, 6);
+			 int id = Integer.parseInt(reservation.getReservationCode().substring(6, 9));
 			 id++;
 			 reservationCode = reservationCode + String.format("%03d", id);
 		}
