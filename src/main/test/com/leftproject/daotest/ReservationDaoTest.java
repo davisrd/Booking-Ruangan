@@ -30,8 +30,10 @@ public class ReservationDaoTest extends AbstractJUnit4SpringContextTests{
 	@Test
 	public void testSaveReservation()
 	{
-		User user = userDao.getUser("UMRG00001");
+		User user = userDao.getUser("UEX00001");
+		assertEquals("Davis", user.getUserName());
 		Room room = roomDao.getRoom("RG003");
+		assertEquals("Student Center", room.getRoomName());
 		Reservation reservation = new Reservation();
 		reservation.setUser(user);
 		reservation.setRoom(room);
