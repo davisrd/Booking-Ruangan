@@ -12,9 +12,10 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.leftproject.model.*;
+import com.leftproject.model.User;
 
 @Repository("UserDao")
-public class UserDaoImpl extends AbstractDao<Integer, Rent> implements UserDao{
+public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao{
 
 //public List<User> getUserKasubagTU(char userType) {
 //	Criteria criteria = createEntityCriteria()
@@ -39,6 +40,14 @@ public class UserDaoImpl extends AbstractDao<Integer, Rent> implements UserDao{
 		return (User) criteria.uniqueResult();
 	}
 	
+	public User findById(String code) {
+		return getByKey(code);
+	}
 
+	public User findByName(String name) {
+		Criteria crit = createEntityCriteria();
+		crit.add(Restrictions.eq("ssoId", name));
+		return (User) crit.uniqueResult();
+	}
 
 }

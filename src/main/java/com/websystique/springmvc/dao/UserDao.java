@@ -13,6 +13,8 @@ public interface UserDao {
 //	void getUserDirektur(char userType);
 	User getUser(String userCode);
 	
-
+	User findById(String code);
+	
+	User findByName(String name);
 	
 }
