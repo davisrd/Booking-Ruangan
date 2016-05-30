@@ -72,7 +72,7 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 	public Reservation getReservationByCode(String reservationCode){
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("reservationCode", reservationCode));
-		return (Reservation) criteria.list();
+		return (Reservation) criteria.uniqueResult();
 	}
 
 	

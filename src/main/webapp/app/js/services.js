@@ -14,7 +14,7 @@ roomReservationServices.factory('Phone', ['$resource',
   .factory('Reservation', function($resource){
 	  return $resource(
      		'http://localhost:8080/ProyekRuangan/reservation/:id', 
-     		{id: '@id'},//Handy for update & delete. id will be set with id of instance
+     		{id: '@reservationCode'},//Handy for update & delete. id will be set with id of instance
      		{
      			update: {
      			      method: 'PUT' // To send the HTTP Put request when calling this custom update method.
@@ -64,7 +64,7 @@ roomReservationServices.factory('Phone', ['$resource',
   .factory('Rent', function($resource){
 	  return $resource(
      		'http://localhost:8080/ProyekRuangan/rent/:id', 
-     		{id: '@id'},//Handy for update & delete. id will be set with id of instance
+     		{id: '@rentCode'},//Handy for update & delete. id will be set with id of instance
      		{
      			update: {
      			      method: 'PUT' // To send the HTTP Put request when calling this custom update method.
@@ -178,6 +178,12 @@ roomReservationServices.factory('Phone', ['$resource',
 				return $http({
 				    url: urlBase + '/reservation/room', 
 				    method: "GET"
+				 });
+			},
+			updateReservation: function(reservationCode){
+				return $http({
+				    url: urlBase + '/reservation/' + reservationCode, 
+				    method: "PUT"
 				 });
 			}
 	    }
