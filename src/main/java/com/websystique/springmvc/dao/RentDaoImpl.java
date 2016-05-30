@@ -21,7 +21,7 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 	private String getCurrentLastId(String mmYY)
 	{
 		String rentCode;
-		Query query = getSession().createQuery("from Rent where substring(rent_code,3,4)='"+mmYY+"' order by rent_code DESC");
+		Query query = getSession().createQuery("from Rent where substring(rent_code,3,4)='"+mmYY+"' order by reservation_code DESC");
 		query.setMaxResults(1);
 		List<Rent> rents = query.list();
 		Rent rent = new Rent();
@@ -80,7 +80,6 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 	
 	public boolean saveRent(Rent rent){
 		try{
-			rent.setRentCode(this.getCurrentLastId(dateToYYMM(rent.getRentDateStart())));
 			persist(rent);
 			return true;
 		}
@@ -128,6 +127,6 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 	public Rent getRentByCode(String rentCode){
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("rentCode", rentCode));
-		return (Rent) criteria.uniqueResult();
+		return (Rent) criteria.list();
 	}
 }

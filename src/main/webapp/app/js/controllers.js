@@ -252,8 +252,8 @@ roomReservationControllers.controller('FormPembatalanCtrl', function($scope, $ro
 
 roomReservationControllers.controller('ReservationFormCtrl', function($scope, $rootScope, Reservation) {	
 	$scope.reservation = new Reservation();
-	$scope.reservation.reservationDateStart = $rootScope.selectedDate.startDate;
-	$scope.reservation.reservationDateEnd = $rootScope.selectedDate.endDate;
+	$scope.reservation.reservationStartDate = $rootScope.selectedDate.startDate;
+	$scope.reservation.reservationEndDate = $rootScope.selectedDate.endDate;
 	$scope.reservation.reservationStatus = 'N';
 	$scope.reservation.reservationPhase = '1';
 
@@ -263,11 +263,8 @@ roomReservationControllers.controller('ReservationFormCtrl', function($scope, $r
 	$scope.createPeminjam = function(){
 		console.log($scope.reservation);
 		  $scope.reservation.$save(function(){
-			
-			$rootScope.message = 'Form Sukses Disubmit';
-			$rootScope.nextPath = '/reservationRequestList';
-			$rootScope.openMessage('MessageModalCtrl');
-			// $rootScope.goTo('/reservationRequestList');
+			alert('sesuatu');  
+			$rootScope.goTo('/reservationRequestList');
 		  });
 	  };
 	
@@ -279,22 +276,19 @@ roomReservationControllers.controller('ReservationFormCtrl', function($scope, $r
 roomReservationControllers.controller('RentFormCtrl', function($scope, $rootScope, Rent) {
 	$scope.rent = new Rent();
 	
-	$scope.rent.rentDateStart = $rootScope.selectedDate.startDate;
-	$scope.rent.rentDateEnd = $rootScope.selectedDate.endDate;
+	$scope.rent.rentStartDate = $rootScope.selectedDate.startDate;
+	$scope.rent.rentEndDate = $rootScope.selectedDate.endDate;
 	$scope.rent.eventCategory = $rootScope.eventCategoryCode;
 	$scope.rent.rentStatus = 'N';
 	$scope.rent.rentPhase = '1';
 
 	$scope.rent.room = $rootScope.selectedRoom;
-	$scope.rent.user = $rootScope.user;
 
 	$scope.createRent = function(){
 		console.log($scope.rent);
 		  $scope.rent.$save(function(){
-			$rootScope.message = 'Form Sukses Disubmit';
-			$rootScope.nextPath = '/rentRequestList';
-			$rootScope.openMessage('MessageModalCtrl');
-			// $rootScope.goTo('/rentRequestList');
+			alert('sesuatu');  
+			$rootScope.goTo('/rentRequestList');
 		  });
 	  };
 });
@@ -378,6 +372,7 @@ roomReservationControllers.controller('FormPemPenyewaanCtrl', function($scope, $
 });
 roomReservationControllers.controller('RentRequestListCtrl', function($scope, $rootScope, $uibModal, Rent) {
 	$scope.listOfRent = Rent.query();
+	console.log($rootScope.selectedRent);
 	
 	$scope.open = function () {
 		var modalInstance = $uibModal.open({
@@ -416,47 +411,27 @@ roomReservationControllers.controller('RentRequestModalCtrl', function($scope, $
 
 roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, $rootScope, $location, RentRoom, Service) {
 	$scope.listOfRoom = RentRoom.query({id:$rootScope.eventCategoryCode});
-	$scope.period = {};
 	
 	$scope.selectRoom = function(room){
 		$rootScope.selectedRoom = room;
 	};
 
 	$scope.validateData = function(path){
-		if($rootScope.selectedRoom.roomCode != undefined){
+		if($rootScope.selectedRoom.roomId != undefined){
 			if($rootScope.selectedDate.startDate !=undefined) {
-				if($scope.period.value !=undefined) {
-					$rootScope.selectedDate.startDate = moment($rootScope.selectedDate.startDate).toDate();
-
-					switch($scope.period.valueType){
-						case 1:
-							$rootScope.selectedDate.endDate = moment($rootScope.selectedDate.startDate).add($scope.period.value, 'hours').toDate();
-							break;
-						case 2:
-							$rootScope.selectedDate.endDate = moment($rootScope.selectedDate.startDate).add($scope.period.value, 'days').toDate();
-							break;
-						case 3:
-							$rootScope.selectedDate.endDate = moment($rootScope.selectedDate.startDate).add($scope.period.value, 'months').toDate();
-							break;
-						case 4:
-							$rootScope.selectedDate.endDate = moment($rootScope.selectedDate.startDate).add($scope.period.value, 'years').toDate();
-							break;
-						default:
-							$rootScope.selectedDate.endDate = moment($rootScope.selectedDate.startDate).add($scope.period.value, 'days').toDate();
-							break;
-					}
-
-					// $rootScope.selectedDate.endDate = moment($rootScope.selectedDate.endDate).format("DD-MMM-YYYY HH:mm");
-					// Service.getRentRoomAvailibility($rootScope.selectedRoom.roomCode, $rootScope.selectedDate.startDate, $rootScope.selectedDate.endDate).then(
-					// 	function success(data){
-					// 		console.log(data);
+				if($rootScope.selectedDate.endDate !=undefined) {
+					$rootScope.selectedDate.startDate = moment($rootScope.selectedDate.startDate).format("DD-MMM-YYYY HH:mm");
+					$rootScope.selectedDate.endDate = moment($rootScope.selectedDate.endDate).format("DD-MMM-YYYY HH:mm");
+					Service.getRentRoomAvailibility($rootScope.selectedRoom.roomId, $rootScope.selectedDate.startDate, $rootScope.selectedDate.endDate).then(
+						function success(data){
+							console.log(data);
 							$location.path(path);
-						// },
-						// function error(error){
-						// 	alert('Error : ' + error);
-						// })
+						},
+						function error(error){
+							alert('Error : ' + error);
+						})
 				} else {
-					alert('Periode harus diisi!');
+					alert('Tanggal selesai harus diisi!');
 				}
 			} else {
 				alert('Tanggal mulai harus diisi!');
@@ -491,9 +466,9 @@ roomReservationControllers.controller('RentRequestApprovalListCtrl', function($s
 	$scope.listOfRent = Rent.query();
 	
 	$scope.selectRent = function(rent) {
-		$rootScope.eventCategoryCode = rent.eventCategory;
-		$rootScope.rentReservationStatusCode = rent.rentStatus;
+		console.log(rent)
 		$rootScope.selectedRent = rent;
+		console.log($rootScope.selectedRent.rentId);
 	}
 
 	$scope.viewRentApprovalDetail = function(){
@@ -525,31 +500,28 @@ roomReservationControllers.controller('RentRejectionDetailCtrl', function($scope
 	};
 });
 
-roomReservationControllers.controller('ReservationApprovalDetailCtrl', function($scope, $rootScope, Reservation) {
-	$scope.reservation = new Reservation();
-	$scope.reservation = $rootScope.selectedReservation;
+roomReservationControllers.controller('ReservationApprovalDetailCtrl', function($scope, $rootScope) {
 	$scope.approveEvent = function () {
-		$scope.reservation.reservationPhase = "3"; // Belum ada kondisi untuk pengelola khusus
-		$scope.reservation.$update(function(){
-			$rootScope.message = 'Peminjaman Diizinkan';
-			$rootScope.nextPath = '/reservationRequestApprovalList';
-			$rootScope.openMessage('MessageModalCtrl');
-		  });
-		// Service.updateReservation($rootScope.selectedReservation.reservationCode);
+		rentApprove
+		$rootScope.message = 'Peminjaman Diizinkan';
+		$rootScope.nextPath = '/reservationRequestApprovalList';
+		$rootScope.openMessage('MessageModalCtrl');
 	};
 });
 
 roomReservationControllers.controller('RentApprovalDetailCtrl', function($scope, $rootScope, Rent) {
 	$scope.rent = new Rent();
-	$scope.rent = $rootScope.selectedRent;
 
-	$scope.approveEvent = function () {
+	$scope.openApproveEvent = function () {
 		$scope.rent.rentPhase = "5";
 		$scope.rent.$update(function(){
-			$rootScope.message = 'Penyewaan Diizinkan';
-			$rootScope.nextPath = '/rentRequestApprovalList';
-			$rootScope.openMessage('MessageModalCtrl');
+			alert('sesuatuDeh');  
+			goTo('/rentRequestApprovalList');
 		 });
+
+		$rootScope.message = 'Penyewaan Diizinkan';
+		$rootScope.nextPath = '/rentRequestApprovalList';
+		$rootScope.openMessage('MessageModalCtrl');
 	};
 });
 
