@@ -106,6 +106,6 @@ roomReservationApp.config(['$routeProvider',
         controller: 'RoomScheduleSelectionCtrl'
     }).
       otherwise({
-        redirectTo: '/dashboard'
+        redirectTo: '/login'
       });
   }]);
