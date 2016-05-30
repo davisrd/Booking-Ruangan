@@ -1,7 +1,5 @@
 package com.leftproject.model;
 
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,16 +12,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.FetchType;
 
 import com.google.gson.Gson;
-import com.leftproject.model.UserRole;
+
 
 @Entity
 @Table(name="USER")
 public class User {
  
-	@ManyToMany(fetch = FetchType.EAGER)
-	   @JoinTable(name = "USER_USER_ROLE", 
-	            joinColumns = { @JoinColumn(name = "USER_CODE") }, 
-	            inverseJoinColumns = { @JoinColumn(name = "USER_ROLES") })
 	
     @Id
     @Column (name = "USER_CODE")
@@ -42,7 +36,7 @@ public class User {
     @Size(min = 1, max=1)
     private String userType;
     
-    private Set<UserRole> userRoles = new HashSet<UserRole>();
+    
      
     public User(){}
 
@@ -95,9 +89,7 @@ public class User {
 		this.userType = userType;
 	}
 	
-	public Set<UserRole> getUserRoles() {
-		return userRoles;
-	}
+	
     
    
 	
