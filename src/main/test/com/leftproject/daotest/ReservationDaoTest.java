@@ -1,7 +1,7 @@
 package com.leftproject.daotest;
 import static org.junit.Assert.*;
 
-import java.util.Date;
+import java.util.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +30,7 @@ public class ReservationDaoTest extends AbstractJUnit4SpringContextTests{
 	@Test
 	public void testSaveReservation()
 	{
-		User user = userDao.getUser("UEX00001");
+		User user = userDao.getUser("UEX000001");
 		assertEquals("Davis", user.getUserName());
 		Room room = roomDao.getRoom("RG003");
 		assertEquals("Student Center", room.getRoomName());
@@ -40,9 +40,10 @@ public class ReservationDaoTest extends AbstractJUnit4SpringContextTests{
 		Date date = new Date();
 		reservation.setCreatedDate(date);
 		reservation.setBorrower("Bambang");
+		int count = reservationDao.getAllReservation(user).size();
 		reservationDao.saveReservation(reservation);
-		Reservation found = reservationDao.getReservation("RS1605003");
-		assertEquals("Bambang", found.getBorrower());
+		List<Reservation> hasil = reservationDao.getAllReservation(user);
+		assertEquals(count+1, hasil.size());
 	}
 	
 	
