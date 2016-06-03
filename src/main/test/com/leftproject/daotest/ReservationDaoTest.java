@@ -29,7 +29,6 @@ public class ReservationDaoTest extends AbstractJUnit4SpringContextTests{
 	private RoomDao roomDao;
 	
 	@Test
-	@Transactional
 	public void testSaveReservation()
 	{
 		User user = userDao.getUser("UEX000001");

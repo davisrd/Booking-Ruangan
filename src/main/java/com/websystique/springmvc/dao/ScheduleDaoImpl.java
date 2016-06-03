@@ -12,29 +12,30 @@ import com.leftproject.model.*;
 @Repository("ScheduleDao")
 public class ScheduleDaoImpl extends AbstractDao<Integer, Schedule> implements ScheduleDao{
 	ReservationDao dao;
-	public boolean getRoomAvailability(String usageId, Date startDate, Date endDate){
-			
-			List<Schedule> listSchedule = getListSchedule(usageId, startDate, endDate);
-			if(listSchedule.isEmpty()){
-				return true;
-			}
-			else 
-				return false;
-	}
 
 	@SuppressWarnings("unchecked")
-	public List<Schedule> getListSchedule(String usageCode, Date startDate, Date endDate){
+	public List<Schedule> getListSchedule(String roomCode, Date startDate, Date endDate){
 		Criteria criteria = createEntityCriteria();
-		criteria.add(Restrictions.eq("usageCode", usageCode));
-		criteria.add(Restrictions.between("dateStart", startDate, endDate));
-		criteria.add(Restrictions.between("dateEnd", startDate, endDate));
+		criteria.createCriteria("room")
+			.add(Restrictions.eq("roomCode", roomCode));
+		criteria.add(Restrictions.or(
+					Restrictions.and
+						(Restrictions.le("dateStart", startDate), Restrictions.ge("dateEnd", endDate)),
+					Restrictions.and
+						(Restrictions.le("dateEnd", startDate), Restrictions.ge("dateEnd", endDate)),
+					Restrictions.and
+						(Restrictions.le("dateStart", startDate), Restrictions.ge("dateStart", endDate))
+					));
+		
+//		criteria.add(Restrictions.between("dateStart", startDate, endDate));
+//		criteria.add(Restrictions.between("dateEnd", startDate, endDate));
 		return (List<Schedule>) criteria.list();
 	}
 	
-	public Schedule getSchedule(String usageCode, Date date){
+	public Schedule getSchedule(String roomCode, Date startDate, Date endDate){
 		Criteria criteria = createEntityCriteria();
-		criteria.add(Restrictions.eq("usageCode", usageCode));
+		criteria.add(Restrictions.eq("room.roomCode", roomCode));
 //		criteria.add(res.like("dateStart", new Date(date.getYear(),date.getMonth(),date.getDate()) ));
-		return (Schedule) criteria.list();
+		return (Schedule) criteria.uniqueResult();
 	}
 }

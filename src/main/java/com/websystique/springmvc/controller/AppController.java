@@ -202,14 +202,14 @@ public class AppController {
     }
     
     @RequestMapping(value = "/reservation/roomAvailibility/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> getReservationRoomAvailibility(@PathVariable("id") String id, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
+    public ResponseEntity<Integer> getReservationRoomAvailibility(@PathVariable("id") String id, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
     	System.out.println(startDate);
-    	Boolean status = scheduleService.getReservationRoomAvailability(id, startDate, endDate); // With condition it should be
+    	Integer status = scheduleService.getRoomAvailability(id, startDate, endDate); // With condition it should be
 //        Boolean status = true;
-    	if(status==false){
-            return new ResponseEntity<Boolean>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
-        }
-        return new ResponseEntity<Boolean>(status, HttpStatus.OK);
+//    	if(status==false){
+//            return new ResponseEntity<Boolean>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+//        }
+        return new ResponseEntity<Integer>(status, HttpStatus.OK);
     }
     
     

@@ -17,30 +17,21 @@ public class ScheduleServiceImpl implements ScheduleService{
 	@Autowired
 	private ScheduleDao dao;
 	
-	public boolean getRentRoomAvailability(String usageCode, Date startDate, Date endDate){
+	public int getRoomAvailability(String usageCode, Date startDate, Date endDate){
 		List<Schedule> schedules = dao.getListSchedule(usageCode, startDate, endDate);
-		if(!schedules.isEmpty())
+		if(!schedules.isEmpty()){
 			for(Schedule schedule:schedules)
 			{
-				if(schedule.getUsageCode().toString().substring(1,2)=="RE")
-					return false;
+				if(schedule.getRoomStatus()=="1" || schedule.getRoomStatus()=="3")
+					return 3;
 			}
-		return true;
-	}
-	
-	public boolean getReservationRoomAvailability(String usageCode, Date startDate, Date endDate){
-		List<Schedule> schedules = dao.getListSchedule(usageCode, startDate, endDate);
-		if(!schedules.isEmpty())
-			for(Schedule schedule:schedules)
-			{
-				if(schedule.getUsageCode().toString().substring(1,2)=="RS")
-					return false;
-			}
-		return true;
+			return 2;
+		}
+		return 1;
 	}
 	
 	
-	public Schedule getSchedule(String usageCode, Date date){
-		return dao.getSchedule(usageCode,date);
+	public Schedule getSchedule(String usageCode, Date startDate, Date endDate){
+		return dao.getSchedule(usageCode ,startDate, endDate);
 	}
 }

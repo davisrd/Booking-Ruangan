@@ -6,9 +6,7 @@ import com.leftproject.model.Schedule;
 
 public interface ScheduleService {
 	
-	public boolean getRentRoomAvailability(String usageCode, Date startDate, Date endDate);
+	public int getRoomAvailability(String usageCode, Date startDate, Date endDate);
 	
-	public boolean getReservationRoomAvailability(String usageCode, Date startDate, Date endDate);
-	
-	Schedule getSchedule(String usageCode, Date date);
+	Schedule getSchedule(String usageCode, Date startDate, Date endDate);
 }
