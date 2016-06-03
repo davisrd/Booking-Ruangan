@@ -32,7 +32,7 @@ public interface ReservationDao {
 	
 	boolean denyReservationByKasubbagTU(Reservation reservation);
 	
-	
+	void sessionFlush();
 //	List<Reservation> findAllReservations();
 }
 

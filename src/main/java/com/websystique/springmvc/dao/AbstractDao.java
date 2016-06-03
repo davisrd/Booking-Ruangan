@@ -24,13 +24,15 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
+	private Session session;
 
 	protected Session getSession(){
 		try{
 			return sessionFactory.getCurrentSession();
 		}catch(HibernateException e)
 		{
-			return sessionFactory.openSession();
+			session = sessionFactory.openSession();
+			return session;
 		}
 	}
 
@@ -74,4 +76,9 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 		return dateToStr;
 	}
 
+	public void sessionFlush()
+	{
+		session.flush();
+		session.clear();
+	}
 }
