@@ -80,7 +80,9 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 	
 	public boolean saveRent(Rent rent){
 		try{
-			rent.setRentCode(this.getCurrentLastId(dateToYYMM(rent.getRentDateStart())));
+			Date currentDate = new Date();
+			rent.setCreatedDate(currentDate);
+			rent.setRentCode(this.getCurrentLastId(dateToYYMM(rent.getCreatedDate())));
 			persist(rent);
 			return true;
 		}

@@ -70,9 +70,8 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 	
 	public String dateToYYMM(Date date)
 	{
-		Date dateTest = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("yyMM");
-		String dateToStr = format.format(dateTest.getTime());
+		String dateToStr = format.format(date.getTime());
 		return dateToStr;
 	}
 

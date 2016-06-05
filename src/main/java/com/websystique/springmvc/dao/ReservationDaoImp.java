@@ -1,5 +1,6 @@
 package com.websystique.springmvc.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -99,7 +100,9 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 	
 	public boolean saveReservation(Reservation reservation) {
 		try{
-			reservation.setReservationCode(this.getCurrentLastId(dateToYYMM(reservation.getReservationDateStart())));
+			Date currentDate = new Date();
+			reservation.setCreatedDate(currentDate);
+			reservation.setReservationCode(this.getCurrentLastId(dateToYYMM(reservation.getCreatedDate())));
 			persist(reservation);
 			return true;
 		}
