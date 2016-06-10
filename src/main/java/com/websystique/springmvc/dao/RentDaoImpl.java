@@ -93,7 +93,7 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 	
 	public boolean updateRent(Rent rent){
 		try{
-			persist(rent);
+			saveOrUpdate(rent);
 			return true;
 		}
 		catch(Exception e){
