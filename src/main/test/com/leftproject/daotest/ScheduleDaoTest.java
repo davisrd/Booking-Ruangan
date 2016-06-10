@@ -2,6 +2,7 @@ package com.leftproject.daotest;
 import static org.junit.Assert.assertEquals;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -38,14 +39,14 @@ public class ScheduleDaoTest extends AbstractJUnit4SpringContextTests{
 	}
 
 	@Test
-	public void getRoomUsedStatusTest()
+	public void getRoomUsedStatusTest() throws ParseException
 	{
 		Room room = roomDao.getRoom("RG002");
 //		assertEquals("Student Center", room.getRoomName());
-		
-		Date date = new Date();
-		int status = scheduleDao.getListSchedule(room.getRoomCode(), date, date).size();
-		assertEquals(status, 0);
+
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		int status = scheduleDao.getListSchedule(room.getRoomCode(), df.parse("2016-07-03 00:00:00"), df.parse("2016-07-04 00:00:00")).size();
+		assertEquals(status, 1);
 	}
 	
 	@Test

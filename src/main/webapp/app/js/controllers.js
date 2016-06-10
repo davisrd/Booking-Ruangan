@@ -215,7 +215,34 @@ roomReservationControllers.controller('ReservationRoomSelectionCtrl', function($
 				if($scope.selectedDateTime.endDate !=undefined) {
 					$rootScope.selectedDate.startDate = moment(moment($scope.selectedDateTime.startDate).format("DD-MM-YYYY") + ' ' + $scope.selectedDateTime.startTime, 'DD-MM-YYYY HH:mm').toDate();
 					$rootScope.selectedDate.endDate = moment(moment($scope.selectedDateTime.endDate).format("DD-MM-YYYY") + ' ' + $scope.selectedDateTime.endTime, 'DD-MM-YYYY HH:mm').toDate();
-					$location.path(path);
+					// $location.path(path);
+
+					console.log($rootScope.selectedDate.startDate);
+					Service.getReservationRoomAvailibility($rootScope.selectedRoom.roomCode, $rootScope.selectedDate.startDate, $rootScope.selectedDate.endDate).then(
+						function success(data){
+							console.log(data);
+							if(data.data == 1){
+								$location.path(path);
+							} else if(data.data == 3){
+								$rootScope.message = 'Pada tanggal ' + $rootScope.selectedDate.startDate +  '-' + $rootScope.selectedDate.endDate + ', \n' +
+													 'ruangan ' + $rootScope.selectedRoom.roomName + ' \n' +
+													 'akan digunakan untuk kegiatan lain, \n' +
+													 'Tetap ajukan peminjaman?';
+								$rootScope.nextPath = '/reservationForm';
+								$rootScope.openMessage('MessageModalCtrl');
+							} else {
+								$rootScope.message = 'Pada tanggal ' + $rootScope.selectedDate.startDate +  '-' + $rootScope.selectedDate.endDate + ', \n' +
+													 'ruangan ' + $rootScope.selectedRoom.roomName + ' \n' +
+													 'akan digunakan untuk kegiatan akademik. \n' +
+													 'Silahkan memilih tanggal/ruangan yang lain';
+								$rootScope.nextPath = '/reservationRoomSelection';
+								$rootScope.openMessage('MessageModalCtrl');
+							}
+						},
+						function error(error){
+							alert('Error : ' + error);
+						}
+					);
 				} else {
 					alert('Tanggal selesai harus diisi!');
 				}
@@ -447,14 +474,23 @@ roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, 
 					}
 
 					// $rootScope.selectedDate.endDate = moment($rootScope.selectedDate.endDate).format("DD-MMM-YYYY HH:mm");
-					// Service.getRentRoomAvailibility($rootScope.selectedRoom.roomCode, $rootScope.selectedDate.startDate, $rootScope.selectedDate.endDate).then(
-					// 	function success(data){
-					// 		console.log(data);
-							$location.path(path);
-						// },
-						// function error(error){
-						// 	alert('Error : ' + error);
-						// })
+					Service.getRentRoomAvailibility($rootScope.selectedRoom.roomCode, $rootScope.selectedDate.startDate, $rootScope.selectedDate.endDate).then(
+						function success(data){
+							if(data.data == 1){
+								$location.path(path);
+							} else {
+								$rootScope.message = 'Pada tanggal ' + $rootScope.selectedDate.startDate +  '-' + $rootScope.selectedDate.endDate + ', \n' +
+													 'ruangan ' + $rootScope.selectedRoom.roomName + ' \n' +
+													 'akan digunakan untuk kegiatan akademik. \n' +
+													 'Silahkan memilih tanggal/ruangan yang lain';
+								$rootScope.nextPath = '/rentRoomSelection';
+								$rootScope.openMessage('MessageModalCtrl');
+							}
+						},
+						function error(error){
+							alert('Error : ' + error);
+						}
+					);
 				} else {
 					alert('Periode harus diisi!');
 				}

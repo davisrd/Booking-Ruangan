@@ -1,10 +1,9 @@
 package com.websystique.springmvc.controller;
 
-import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -12,12 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,14 +76,15 @@ public class AppController {
     }
     
     @RequestMapping(value = "/rent/roomAvailibility/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> getRoomAvailibility(@PathVariable("id") String id, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
+    public ResponseEntity<Integer> getRoomAvailibility(@PathVariable("id") String id, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate) throws ParseException {
     	System.out.println(startDate);
-//    	Boolean status = scheduleService.getRentRoomAvailability(id, startDate, endDate); // With condition it should be
-        Boolean status = true;
-    	if(status==false){
-            return new ResponseEntity<Boolean>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
-        }
-        return new ResponseEntity<Boolean>(status, HttpStatus.OK);
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+    	Integer status = scheduleService.getRentRoomAvailability(id, df.parse(startDate), df.parse(endDate)); // With condition it should be
+//        Boolean status = true;
+//    	if(status==false){
+//            return new ResponseEntity<Integer>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+//        }
+        return new ResponseEntity<Integer>(status, HttpStatus.OK);
     }
     
     
@@ -202,12 +197,13 @@ public class AppController {
     }
     
     @RequestMapping(value = "/reservation/roomAvailibility/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Integer> getReservationRoomAvailibility(@PathVariable("id") String id, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
+    public ResponseEntity<Integer> getReservationRoomAvailibility(@PathVariable("id") String id, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate) throws ParseException {
     	System.out.println(startDate);
-    	Integer status = scheduleService.getRoomAvailability(id, startDate, endDate); // With condition it should be
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+    	Integer status = scheduleService.getReservationRoomAvailability(id, df.parse(startDate), df.parse(endDate)); // With condition it should be
 //        Boolean status = true;
-//    	if(status==false){
-//            return new ResponseEntity<Boolean>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+//    	if(status==1){
+//            return new ResponseEntity<Integer>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
 //        }
         return new ResponseEntity<Integer>(status, HttpStatus.OK);
     }

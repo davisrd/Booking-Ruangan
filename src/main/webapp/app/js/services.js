@@ -135,36 +135,29 @@ roomReservationServices.factory('Phone', ['$resource',
 	        		startDate: startDate,
 	        		endDate: endDate
 	        	}
-	        	$http({
+	        	return $http({
 				    url: urlBase + '/rent/roomAvailibility/' + roomId, 
 				    method: "GET",
 				    params: params
-				 }).then(function success(data) {
-                	console.log(data);
-                }, function error(error){
-                    console.log(error);
-                });
+				 })
 	        },
 	        getReservationRoomAvailibility: function(roomId, startDate, endDate) {
 	        	var params = {
 	        		startDate: startDate,
 	        		endDate: endDate
 	        	}
-	        	$http({
+	        	console.log(params);
+	        	return $http({
 				    url: urlBase + '/reservation/roomAvailibility/' + roomId, 
 				    method: "GET",
 				    params: params
-				 }).then(function success(data) {
-                	console.log(data);
-                }, function error(error){
-                    console.log(error);
-                });
+				 })
 	        },
 	        getRentApprovalList: function() {
 	        	var params = {
 	        		rentStatus: 'N'
 	        	}
-	        	$http({
+	        	return $http({
 				    url: urlBase + '/rentApproval', 
 				    method: "GET",
 				    params: params

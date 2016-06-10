@@ -27,8 +27,6 @@ public class ScheduleDaoImpl extends AbstractDao<Integer, Schedule> implements S
 						(Restrictions.le("dateStart", startDate), Restrictions.ge("dateStart", endDate))
 					));
 		
-//		criteria.add(Restrictions.between("dateStart", startDate, endDate));
-//		criteria.add(Restrictions.between("dateEnd", startDate, endDate));
 		return (List<Schedule>) criteria.list();
 	}
 	
