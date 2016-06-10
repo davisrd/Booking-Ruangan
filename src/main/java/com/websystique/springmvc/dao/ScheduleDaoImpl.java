@@ -35,7 +35,25 @@ public class ScheduleDaoImpl extends AbstractDao<Integer, Schedule> implements S
 	public Schedule getSchedule(String roomCode, Date startDate, Date endDate){
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("room.roomCode", roomCode));
-//		criteria.add(res.like("dateStart", new Date(date.getYear(),date.getMonth(),date.getDate()) ));
+		criteria.add(Restrictions.or(
+				Restrictions.and
+					(Restrictions.le("dateStart", startDate), Restrictions.ge("dateEnd", endDate)),
+				Restrictions.and
+					(Restrictions.le("dateEnd", startDate), Restrictions.ge("dateEnd", endDate)),
+				Restrictions.and
+					(Restrictions.le("dateStart", startDate), Restrictions.ge("dateStart", endDate))
+				));
 		return (Schedule) criteria.uniqueResult();
+	}
+
+	public boolean saveSchedule(Schedule schedule) {
+		try{
+			persist(schedule);
+			return true;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

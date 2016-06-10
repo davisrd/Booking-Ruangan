@@ -45,7 +45,7 @@ public class ScheduleDaoTest extends AbstractJUnit4SpringContextTests{
 		
 		Date date = new Date();
 		int status = scheduleDao.getListSchedule(room.getRoomCode(), date, date).size();
-		assertEquals(status, 1);
+		assertEquals(status, 0);
 	}
 	
 	@Test
@@ -59,6 +59,36 @@ public class ScheduleDaoTest extends AbstractJUnit4SpringContextTests{
 			System.out.println("Fail");
 		}
 		assertEquals(schedule.getRoom().getRoomCode(), "RG002");
+	}
+	
+	@Test
+	public void saveScheduleTest()
+	{
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		
+		Room room = roomDao.getRoom("RG002");
+		Schedule schedule = null;
+		Schedule getSchedule = null;
+		try{
+			schedule = new Schedule();
+
+			schedule.setIdSchedule(3);
+			schedule.setRoom(room);
+			schedule.setRoomStatus("1");
+			schedule.setDateStart(df.parse("2016-07-03 00:00:00"));
+			schedule.setDateEnd(df.parse("2016-07-04 00:00:00"));
+			
+			scheduleDao.saveSchedule(schedule);
+			scheduleDao.sessionFlush();
+			
+			getSchedule = scheduleDao.getSchedule("RG002", df.parse("2016-07-03 00:00:00"), df.parse("2016-07-04 00:00:00"));
+			System.out.println("Success");
+		} catch(Exception ex) {
+			ex.printStackTrace();
+			System.out.println("Fail");
+		}
+		assertEquals(schedule.getRoom().getRoomCode(), getSchedule.getRoom().getRoomCode());
+		System.out.println("asd"  + schedule.getRoom().getRoomCode());
 	}
 
 }
