@@ -64,6 +64,20 @@ public class ReservationDaoTest extends AbstractJUnit4SpringContextTests{
 		assertEquals(count+1, hasil.size());
 	}
 	
+	@Test
+	public void testDeleteReservationById(){
+		boolean status = reservationDao.deleteReservationById("RS1606002");
+		assertEquals(true,status);
+		
+		
+	}
 	
-	
+//	@Test
+//	public void testcancelReservation(){
+//		Reservation reservation = reservationDao.getReservation("RS1606002");
+//		boolean status = reservationDao.cancelReservation(reservation);
+//		assertEquals(true,status);
+//		
+//		
+//	}
 }

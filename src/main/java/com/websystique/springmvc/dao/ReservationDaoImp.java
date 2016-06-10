@@ -15,9 +15,9 @@ import com.leftproject.model.User;
 @Repository("ReservationDao")
 public class ReservationDaoImp extends AbstractDao<Integer, Reservation> implements ReservationDao {
 
-	public boolean deleteReservationById(int nip) {
+	public boolean deleteReservationById(String reservationCode) {
 		try{
-			Query query = getSession().createSQLQuery("delete from RESERVATION where idPeminjaman = " + nip);
+			Query query = getSession().createSQLQuery("delete from RESERVATION where Reservation_Code = '" + reservationCode + "'");
 			query.executeUpdate();
 			return true;
 		}
@@ -89,7 +89,7 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 	
 	public boolean cancelReservation(Reservation reservation){
 		try{
-			Query query = getSession().createSQLQuery("delete from RESERVATION where reservation_id = " + reservation.getReservationCode());
+			Query query = getSession().createSQLQuery("delete from RESERVATION where reservation_code = " + reservation.getReservationCode());
 			query.executeUpdate();
 			return true;
 		}

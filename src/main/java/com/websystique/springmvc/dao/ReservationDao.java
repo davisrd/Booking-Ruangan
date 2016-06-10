@@ -7,7 +7,7 @@ import com.leftproject.model.User;
 public interface ReservationDao {
 //	Reservation findById(int nip);
 	
-	boolean deleteReservationById(int id);
+	boolean deleteReservationById(String reservationCode);
 	List<Reservation> getProposedReservation();
 	
 	//yg dari sequence appl
