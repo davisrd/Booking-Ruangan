@@ -18,7 +18,7 @@ import com.websystique.springmvc.dao.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestConfiguration.class, loader=AnnotationConfigContextLoader.class)
-public abstract class RoomDaoTest extends AbstractJUnit4SpringContextTests{
+public class RoomDaoTest extends AbstractJUnit4SpringContextTests{
 	
 	@Autowired
 	private RoomDao roomDao;
