@@ -2,6 +2,7 @@ package com.leftproject.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,7 +25,7 @@ public class Schedule {
     private int idSchedule;
 
 	@Autowired
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER, cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "ROOM_CODE")
 	private Room room;
 	
