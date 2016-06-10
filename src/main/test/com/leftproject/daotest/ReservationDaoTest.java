@@ -3,6 +3,8 @@ import static org.junit.Assert.*;
 
 import java.util.*;
 
+import javax.validation.constraints.AssertTrue;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,21 @@ public class ReservationDaoTest extends AbstractJUnit4SpringContextTests{
 	
 	@Autowired
 	private RoomDao roomDao;
+	
+	@Test
+	public void testGetProposedReservation(){
+		int result = reservationDao.getProposedReservation().size();
+		assertTrue(result>0);
+		assertEquals(9, result);
+	}
+	
+	@Test
+	public void testGetAllReservation(){
+		User user = userDao.getUser("UEX000001");
+		int result = reservationDao.getAllReservation(user).size();
+		assertTrue(result>0);
+		assertEquals(1,result);
+	}
 	
 	@Test
 	public void testSaveReservation()
