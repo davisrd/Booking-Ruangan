@@ -60,8 +60,8 @@ public class RoomDaoImpl extends AbstractDao<Integer, Room> implements RoomDao{
 	}
 	
 	
-	public Room getRoom(String room_id)
+	public Room getRoom(String room_code)
 	{
-		return getByKey(room_id);
+		return getByKey(room_code);
 	}
 }
