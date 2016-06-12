@@ -16,7 +16,7 @@ public interface ReservationDao {
 	boolean cancelReservation(Reservation reservation);
 	
 	/*Reservation getReservationByRoomId(String roomId);*/
-	Reservation getReservation(String reservationId);
+	Reservation getReservation(String reservationCode);
 	
 	Reservation getReservationByCode(String reservationCode);
 	

@@ -61,8 +61,8 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 		return ((List<Reservation>) criteria.list()).get(0);
 	}*/
 	
-	public Reservation getReservation(String reservationId){
-		return getByKey(reservationId);
+	public Reservation getReservation(String reservationCode){
+		return getByKey(reservationCode);
 	}
 	/*	@SuppressWarnings("unchecked")
 	public List<Reservation> findAllPeminjamans() {
