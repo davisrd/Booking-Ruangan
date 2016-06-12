@@ -105,6 +105,13 @@ roomReservationApp.config(['$routeProvider',
         templateUrl: 'partials/RoomScheduleSelection.html',
         controller: 'RoomScheduleSelectionCtrl'
     }).
+    when('/roomReport', {
+        templateUrl: 'partials/RoomSelectScreen.html',
+        controller: 'RoomReportCtrl'
+    }).
+    when('/report', {
+        templateUrl: 'partials/Report.html'
+    }).
       otherwise({
         redirectTo: '/login'
       });

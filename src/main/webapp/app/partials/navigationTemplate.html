@@ -5,8 +5,8 @@
 		<li ng-class="isActive(3)" ng-click="selectNavBar(3)"><a href="#/rentRequestList">Pengajuan Penyewaan Ruangan</a></li>
 		<li ng-class="isActive(4)" ng-click="selectNavBar(4)" ng-show="(user.userCode.substring(0,3) == 'UMR')"><a href="#/reservationRequestApprovalList">Persetujuan Peminjaman</a></li>
 		<li ng-class="isActive(5)" ng-click="selectNavBar(5)" ng-show="(user.userCode.substring(0,4) == 'UMRG' || user.userCode.substring(0,3) == 'UMD')"><a href="#/rentRequestApprovalList">Persetujuan Penyewaan</a></li>
-		<li ng-class="isActive(6)" ng-click="selectNavBar(6)" ng-show="(user.userCode.substring(0,3) == 'UMR' || user.userCode.substring(0,3) == 'UMD')"><a href="#/memorandumForm">Memorandum</a></li>
+		<!--<li ng-class="isActive(6)" ng-click="selectNavBar(6)" ng-show="(user.userCode.substring(0,3) == 'UMR' || user.userCode.substring(0,3) == 'UMD')"><a href="#/memorandumForm">Memorandum</a></li>-->
 		<li ng-class="isActive(7)" ng-click="selectNavBar(7)" ng-show="(user.userCode.substring(0,4) == 'UMRG')"><a href="#">Manage Ruangan</a></li>
-		<li ng-class="isActive(8)" ng-click="selectNavBar(8)" ng-show="(user.userCode.substring(0,3) == 'UMR')"><a href="#">Laporan</a></li>
+		<li ng-class="isActive(8)" ng-click="selectNavBar(8)" ng-show="(user.userCode.substring(0,3) == 'UMR')"><a href="#/roomReport">Laporan</a></li>
 	</ul>
 </div>
