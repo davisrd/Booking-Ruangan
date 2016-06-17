@@ -25,7 +25,8 @@ public class UserServiceTest extends AbstractJUnit4SpringContextTests {
 		User user = userDao.findById("UEX000001");
 		assertEquals("UEX000001", user.getUserName());
 	}
-
+	
+	@Test
 	public void testfindByName(){
 		User user = userDao.findByName("Davis");
 		assertEquals("Davis", user.getUserName());
