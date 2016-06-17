@@ -123,7 +123,6 @@ public class ReservationDaoTest extends AbstractJUnit4SpringContextTests{
 	{
 		Reservation reservation = reservationDao.getReservation("RS1302002");
 		assertTrue(reservationDao.denyReservationByRoomManager(reservation));
-		reservationDao.sessionFlush();
 		reservation = reservationDao.getReservation("RS1302002");
 		assertEquals("5", reservation.getReservationPhase());
 	}
