@@ -43,6 +43,20 @@ public class ReservationDaoTest extends AbstractJUnit4SpringContextTests{
 	}
 	
 	@Test
+	public void testGetReservation()
+	{
+		Reservation reservation = reservationDao.getReservation("RS1302005");
+		assertEquals("HIMAS", reservation.getBorrower());
+	}
+	
+	@Test
+	public void testGetReservationByCode()
+	{
+		Reservation reservation = reservationDao.getReservationByCode("RS1302006");
+		assertEquals("HME", reservation.getBorrower());
+	}
+	
+	@Test
 	public void testSaveReservation()
 	{
 		User user = userDao.getUser("UEX000001");
@@ -63,6 +77,13 @@ public class ReservationDaoTest extends AbstractJUnit4SpringContextTests{
 	}
 	
 	@Test
+	public void getProposedMovementReservation()
+	{
+		int result = reservationDao.getProposedMovementReservation().size();
+		assertTrue(result>0);
+	}
+	
+	@Test
 	public void testDeleteReservationById(){
 		boolean status = reservationDao.deleteReservationById("RS1606002");
 		assertEquals(true,status);
@@ -70,6 +91,42 @@ public class ReservationDaoTest extends AbstractJUnit4SpringContextTests{
 		
 	}
 	
+	@Test
+	public void testApproveReservationByKaSubbagTU()
+	{
+		Reservation reservation = reservationDao.getReservation("RS1302002");
+		assertTrue(reservationDao.approveReservationByKaSubbagTU(reservation));
+		reservation = reservationDao.getReservation("RS1302002");
+		assertEquals("3", reservation.getReservationPhase());
+	}
+	
+	@Test
+	public void testApproveReservationByRoomManager()
+	{
+		Reservation reservation = reservationDao.getReservation("RS1302002");
+		assertTrue(reservationDao.approveReservationByRoomManager(reservation));
+		reservation = reservationDao.getReservation("RS1302002");
+		assertEquals("4", reservation.getReservationPhase());
+	}
+	
+	@Test
+	public void TestDenyReservationByKaSubbagTU()
+	{
+		Reservation reservation = reservationDao.getReservation("RS1302002");
+		assertTrue(reservationDao.denyReservationByKasubbagTU(reservation));
+		reservation = reservationDao.getReservation("RS1302002");
+		assertEquals("6", reservation.getReservationPhase());
+	}
+	
+	@Test
+	public void TestDenyReservationByRoomManager()
+	{
+		Reservation reservation = reservationDao.getReservation("RS1302002");
+		assertTrue(reservationDao.denyReservationByRoomManager(reservation));
+		reservationDao.sessionFlush();
+		reservation = reservationDao.getReservation("RS1302002");
+		assertEquals("5", reservation.getReservationPhase());
+	}
 //	@Test
 //	public void testcancelReservation(){
 //		Reservation reservation = reservationDao.getReservation("RS1606002");
