@@ -155,7 +155,7 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 	public boolean denyReservationByKasubbagTU(Reservation reservation){
 		try{
 			reservation.setReservationPhase("6");
-			persist(reservation);
+			saveOrUpdate(reservation);
 			return true;
 		}
 		catch(Exception e){

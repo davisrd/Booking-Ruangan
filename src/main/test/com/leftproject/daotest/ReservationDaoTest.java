@@ -112,7 +112,9 @@ public class ReservationDaoTest extends AbstractJUnit4SpringContextTests{
 	public void TestDenyReservationByKaSubbagTU()
 	{
 		Reservation reservation = reservationDao.getReservation("RS1302002");
-		assertTrue(reservationDao.denyReservationByKasubbagTU(reservation));
+		boolean res = reservationDao.denyReservationByKasubbagTU(reservation);
+		reservationDao.sessionFlush();
+		assertTrue(res);
 		reservation = reservationDao.getReservation("RS1302002");
 		assertEquals("6", reservation.getReservationPhase());
 	}
@@ -121,7 +123,9 @@ public class ReservationDaoTest extends AbstractJUnit4SpringContextTests{
 	public void TestDenyReservationByRoomManager()
 	{
 		Reservation reservation = reservationDao.getReservation("RS1302002");
-		assertTrue(reservationDao.denyReservationByRoomManager(reservation));
+		boolean res = reservationDao.denyReservationByKasubbagTU(reservation);
+		reservationDao.sessionFlush();
+		assertTrue(res);
 		reservation = reservationDao.getReservation("RS1302002");
 		assertEquals("5", reservation.getReservationPhase());
 	}
