@@ -1,6 +1,6 @@
 package com.websystique.springmvc.dao;
 
-import java.util.List;
+import java.util.*;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -103,7 +103,7 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 	
 	public List<Rent> getAllMinRent(User user){
 		List<Rent> UserRentList= getAllRentsByUser(user);
-		List<Rent> UserRentListToCancel=null; 
+		List<Rent> UserRentListToCancel = new ArrayList<Rent>();
 		
 		int minDaysCondition = 3;
 		Calendar cal = Calendar.getInstance();

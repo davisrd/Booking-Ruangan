@@ -144,7 +144,7 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 	public boolean denyReservationByRoomManager(Reservation reservation){
 		try{
 			reservation.setReservationPhase("5");
-			persist(reservation);
+			saveOrUpdate(reservation);
 			return true;
 		}
 		catch(Exception e){

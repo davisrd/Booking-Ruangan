@@ -97,7 +97,40 @@ public class RentDaoTest {
 		assertEquals(updatedRent.getRenter(), rent.getRenter());
 	}
 	
+	@Test 
+	public void getAllMinRentTest()
+	{
+		User user = new User();
+		user.setUserCode(userCode);
+		List<Rent> rent = rentDao.getAllMinRent(user);
+		assertNotNull(rent);
+		assertNotEquals(0, rent.size());
+	}
 	
+	@Test
+	public void getAllRentsByUserTest()
+	{
+		User user = new User();
+		user.setUserCode(userCode);
+		List<Rent> rents = rentDao.getAllRentsByUser(user);
+		assertNotNull(rents);
+		assertTrue(rents.size()>0);
+	}
 	
+	@Test
+	public void getProposedRent()
+	{
+		List<Rent> rents = rentDao.getProposedRent();
+		assertNotNull(rents);
+		assertTrue(rents.size()>0);
+		
+	}
+	
+	@Test
+	public void getRentByCode()
+	{
+		Rent rent = rentDao.getRentByCode("RE1606001");
+		assertNotNull(rent);
+	}
 	
 }
