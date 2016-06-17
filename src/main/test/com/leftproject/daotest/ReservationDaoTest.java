@@ -3,7 +3,6 @@ import static org.junit.Assert.*;
 
 import java.util.*;
 
-import javax.validation.constraints.AssertTrue;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -79,8 +78,8 @@ public class ReservationDaoTest extends AbstractJUnit4SpringContextTests{
 	@Test
 	public void getProposedMovementReservation()
 	{
-		int result = reservationDao.getProposedMovementReservation().size();
-		assertTrue(result>0);
+		List<Reservation> reservations = reservationDao.getProposedMovementReservation();
+		assertTrue(reservations.size()>0);
 	}
 	
 	@Test
