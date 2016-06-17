@@ -18,17 +18,21 @@ import com.websystique.springmvc.service.UserService;
 public class UserServiceTest extends AbstractJUnit4SpringContextTests {
 	
 	@Autowired
-	private UserService userService;
+	private UserService userDao;
 	
 	@Test
-	public void testFindById() {
-		User user = userService.findById("UEX000001");
+	public void testfindById() {
+		User user = userDao.findById("UEX000001");
 		assertEquals("UEX000001", user.getUserName());
 	}
 
-	private User findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public void testfindByName(){
+		User user = userDao.findByName("Davis");
+		assertEquals("Davis", user.getUserName());
 	}
+	//private User findById(String id) {
+		// TODO Auto-generated method stub
+		//return null;
+//	}
 
 }
