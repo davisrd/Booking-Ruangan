@@ -65,6 +65,15 @@ public class ReservationServiceImpl implements ReservationService {
 		Notification notif = new Notification();
 		notif.setNotificationMessage("Pembatalan peminjaman berhasil");
 	}
+	
+	public List<Reservation> getReservationByKasubag() {
+		return reservationDao.getReservationGeneralRoom();
+	}
 		
+	public List<Reservation> getReservationBySpecialRoomManger() {
+		return reservationDao.getReservationSpecialRoom();
+	}
+		
+	
 	
 }

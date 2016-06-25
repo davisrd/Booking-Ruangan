@@ -75,6 +75,22 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 		criteria.add(Restrictions.eq("reservationCode", reservationCode));
 		return (Reservation) criteria.uniqueResult();
 	}
+	
+	//nyari reservasi khusus
+		@SuppressWarnings("unchecked")
+		public List<Reservation> getReservationSpecialRoom(){
+			Criteria criteria = createEntityCriteria();
+			criteria.add(Restrictions.like("roomCode","RS"+"%"));
+			return (List<Reservation>) criteria.list();
+		}
+		
+		//nyari reservasi umum
+		@SuppressWarnings("unchecked")
+		public List<Reservation> getReservationGeneralRoom(){
+			Criteria criteria = createEntityCriteria();
+			criteria.add(Restrictions.like("roomCode","RG"+"%"));
+			return (List<Reservation>) criteria.list();
+		}
 
 	
 	//yg dari sequence appl
