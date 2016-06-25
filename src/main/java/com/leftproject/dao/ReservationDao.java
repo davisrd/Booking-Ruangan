@@ -34,5 +34,8 @@ public interface ReservationDao {
 	
 	void sessionFlush();
 //	List<Reservation> findAllReservations();
+	List<Reservation> getReservationSpecialRoom();
+	
+	List<Reservation> getReservationGeneralRoom();
 }
 

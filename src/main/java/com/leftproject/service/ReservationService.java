@@ -25,5 +25,9 @@ public interface ReservationService {
 	//boolean isEmployeeSsnUnique(Integer id, String ssn);
 		
 	//	void sendMemorandum (String memorandum);
+
+	List<Reservation> getReservationByKasubag();
+	
+	List<Reservation> getReservationBySpecialRoomManger();
 	
 }
