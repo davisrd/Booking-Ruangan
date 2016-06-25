@@ -50,11 +50,11 @@ public class ReservationRequestController {
         return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
     }
     
-    @RequestMapping(value = "/rent/roomAvailibility/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/reservation/roomAvailibility/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Integer> getRoomAvailibility(@PathVariable("id") String id, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate) throws ParseException {
     	System.out.println(startDate);
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-    	Integer status = scheduleService.getRentRoomAvailability(id, df.parse(startDate), df.parse(endDate)); // With condition it should be
+    	Integer status = scheduleService.getReservationRoomAvailability(id, df.parse(startDate), df.parse(endDate)); // With condition it should be
 //        Boolean status = true;
 //    	if(status==false){
 //            return new ResponseEntity<Integer>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
