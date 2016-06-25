@@ -21,7 +21,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 
 @Configuration
-@ComponentScan(basePackages = "com.websystique.springmvc.service")
+@ComponentScan(basePackages = {"com.websystique.springmvc.service", "com.websystique.springmvc.dao"})
 @PropertySource(value = { "classpath:application.properties" })
 
 public class TestConfigurationService {

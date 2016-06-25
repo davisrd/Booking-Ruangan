@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-import com.websystique.springmvc.dao.*;
+import com.leftproject.dao.*;
 import com.leftproject.model.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)

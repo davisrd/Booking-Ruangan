@@ -2,9 +2,10 @@ package com.leftproject.servicetest;
 
 import java.util.List;
 
+import com.leftproject.dao.RoomDao;
 import com.leftproject.daotest.TestConfiguration;
 import com.leftproject.model.Room;
-import com.websystique.springmvc.dao.RoomDao;
+
 import static org.junit.Assert.assertEquals;
 
 import org.springframework.beans.factory.annotation.Autowired;

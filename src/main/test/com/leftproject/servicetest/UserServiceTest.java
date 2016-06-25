@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import com.leftproject.model.User;
-import com.websystique.springmvc.service.UserService;
+import com.leftproject.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes=TestConfigurationService.class, loader=AnnotationConfigContextLoader.class)

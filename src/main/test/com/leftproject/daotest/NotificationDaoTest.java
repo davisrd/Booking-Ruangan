@@ -15,9 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
  import org.junit.runner.RunWith;
 
  import com.leftproject.model.User;
- import com.leftproject.model.Notification;
+import com.leftproject.dao.*;
+import com.leftproject.model.Notification;
 import com.leftproject.model.Reservation;
-import com.websystique.springmvc.dao.*;
  
 
 @RunWith(SpringJUnit4ClassRunner.class)

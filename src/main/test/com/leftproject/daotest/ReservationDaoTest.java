@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-import com.websystique.springmvc.dao.*;
+import com.leftproject.dao.*;
 import com.leftproject.model.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -103,7 +103,10 @@ public class ReservationDaoTest extends AbstractJUnit4SpringContextTests{
 	public void testApproveReservationByRoomManager()
 	{
 		Reservation reservation = reservationDao.getReservation("RS1302002");
-		assertTrue(reservationDao.approveReservationByRoomManager(reservation));
+		boolean res = reservationDao.approveReservationByRoomManager(reservation);
+		reservationDao.sessionFlush();
+		assertTrue(res);
+		assertTrue(res);
 		reservation = reservationDao.getReservation("RS1302002");
 		assertEquals("4", reservation.getReservationPhase());
 	}
