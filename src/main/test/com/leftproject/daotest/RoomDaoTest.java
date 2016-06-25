@@ -35,28 +35,40 @@ public class RoomDaoTest extends AbstractJUnit4SpringContextTests{
 		assertEquals(room.getRoomCode(),"RS001");
 	}
 	
-	@Test
-	public void getReservationRoomTest()
+	public void getRoomListTest()
 	{
-		Room room = null;
+		List<Room> room = null;
 		try{
-			room = roomDao.getRoom("RG003");
+			room = roomDao.getRoomList();
 		} catch(Exception ex) {
 			System.out.println("Fail");
 		}
-		assertEquals(room.getRoomStatus(),"P");
+		assertEquals(room.size(),5);
+	}
+	
+	
+	@Test
+	public void getReservationRoomTest()
+	{
+		List<Room> room = null;
+		try{
+			room = roomDao.getReservationRoom();
+		} catch(Exception ex) {
+			System.out.println("Fail");
+		}
+		assertEquals(room.size(),5);
 	}
 	
 	@Test
 	public void getRentRoomByCategoryTest()
 	{
-		Room room = null;
+		List<Room> room = null;
 		try{
-			room = roomDao.getRoom("RG001");
+			room = roomDao.getRentRoomByCategory("S");
 		} catch(Exception ex) {
 			System.out.println("Fail");
 		}
-		assertEquals(room.getRoomStatus(),"S");
+		assertEquals(room.size(),1);
 	}
 	
 	
