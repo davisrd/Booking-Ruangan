@@ -14,14 +14,14 @@
 		<div class="form-group">
 		  <label class=" col-md-2" style="text-align:left" for="tanggalMulai">Tanggal Mulai</label>
 		  <div class="col-md-4">
-			{{selectedDate.startDate}}             
+			{{(rent.rentDateStart | date:'dd MMMM yyyy')}}             
 		  </div>
 		</div>
 
 		<div class="form-group">
 		  <label class=" col-md-2" style="text-align:left" for="tanggalSelesai">Tanggal Selesai</label>
 		  <div class="col-md-4">
-			{{selectedDate.endDate}}               
+			{{(rent.rentDateEnd | date:'dd MMMM yyyy')}}               
 		  </div>
 		</div>
 
@@ -33,9 +33,11 @@
 		</div>
 
 		<div class="form-group">
-		  <label class=" col-md-2" style="text-align:left" for="jenisKegiatan">Jenis Kegiatan</label>
+		  <label class=" col-md-2" style="text-align:left" for="kategoriKegiatan">Kategori Kegiatan</label>
 		  <div class="col-md-4">
-			<input type="text" class="form-control" ng-model="rent.eventCategory" ng-required="true">               
+				<span ng-if="rent.eventCategory == 'B'">Bisnis</span>
+				<span ng-if="rent.eventCategory == 'N'">Non Bisnis</span>
+				<span ng-if="rent.eventCategory == 'S'">Sosial</span>             
 		  </div>
 		</div>
 
@@ -47,9 +49,10 @@
 		</div>
 
 		<div class="form-group">
-		  <label class=" col-md-2" style="text-align:left" for="jenisRuangan">Jenis Ruangan</label>
+		  <label class=" col-md-2" style="text-align:left" for="hargaSewa">Harga Sewa</label>
 		  <div class="col-md-4">
-			{{selectedRoom.roomCode}}              
+			<p>{{selectedRoom.roomPrice | currency : "Rp "}}*</p>
+			<p>*keterangan: Harga belum termasuk biaya operasional</p>
 		  </div>
 		</div>
 
@@ -62,9 +65,9 @@
 		<br>
 		<div class="form-group">
 		  <div class="col-md-offset-6 col-md-4">
-			<a href="#/reservationRoomSelection"><button type="button" class="btn btn-danger btn-md">Batal</button></a>
+			<a href="#/rentRoomSelection"><button type="button" class="btn btn-danger btn-md">Kembali</button></a>
 			<!-- <a href="#/reservationRequestList"><button type="submit" class="btn btn-success btn-md">Ajukan Penyewaan</button></a> -->
-			<button type="submit" class="btn btn-success btn-md" ng-click="createRent()">Ajukan Peminjaman</button>
+			<button type="submit" class="btn btn-success btn-md" ng-click="createRent()">Ajukan Penyewaan</button>
 		  </div>
 		</div>
 	</form>

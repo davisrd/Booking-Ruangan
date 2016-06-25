@@ -46,7 +46,7 @@ roomReservationServices.factory('Phone', ['$resource',
     			
      		}
    		);
-  })
+  	})
 
   	.factory('ReservationApproval', function($resource, $rootScope){
 	  return $resource(

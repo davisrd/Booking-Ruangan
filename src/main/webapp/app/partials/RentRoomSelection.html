@@ -19,7 +19,7 @@
 				<tr ng-repeat="room in listOfRoom" ng-click="selectRoom(room)" ng-class="{selected: room.roomCode == selectedRoom.roomCode}">
 					<td><span ng-bind="room.roomCode"></span></td>
 					<td><span ng-bind="room.roomName"></span></td>
-					<td><span ng-bind="room.roomPrice"></span></td>
+					<td><span>{{room.roomPrice | currency : "Rp "}}</span></td>
 				</tr>
 			</tbody>
 		</table>
@@ -43,21 +43,20 @@
 				<label>Periode</label>
 			</div>
 			<div class="col-md-2">
-				<input type="number" class="form-control" ng-model="period.value"/>
+				<input type="number" class="form-control" ng-model="period.value" min="1"/>
 			</div>
 			<div class="col-md-2">
 				<select class="form-control" ng-model="period.valueType" ng-required="true">
-				  	<option value="1">Jam</option>
-				  	<option value="2">Hari</option>
-				  	<option value="3">Bulan</option>
-				  	<option value="4">Tahun</option>
+				  	<option value="1">Hari</option>
+				  	<option value="2">Bulan</option>
+				  	<option value="3">Tahun</option>
 				</select>
 			</div>
 		</div>
 		<br><br>
 		<div class="row">
 			<div class="col-md-3 col-md-offset-10">
-				<a href="#/rentRequestList"><button class="btn btn-danger">Batal</button></a>
+				<a href="#/rentRequestList"><button class="btn btn-danger">Kembali</button></a>
 				<button type="submit" class="btn btn-success btn-md" ng-click="validateData('/rentForm')">Lanjut</button>
 			</div>
 		</div>
