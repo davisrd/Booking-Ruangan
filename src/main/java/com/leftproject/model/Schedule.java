@@ -31,7 +31,7 @@ public class Schedule {
 	
 	@Column(name="USAGE_STATUS")
 	@Size( min = 1 ,max=1)
-	private String  roomStatus;
+	private String  usageStatus;
 
 	@Column(name="DATE_START")
 	private Date  dateStart;
@@ -48,7 +48,7 @@ public class Schedule {
 		super();
 		this.idSchedule = idSchedule;
 		this.room = room;
-		this.roomStatus = roomStatus;
+		this.usageStatus = roomStatus;
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
 	}
@@ -69,12 +69,12 @@ public class Schedule {
 		this.room = room;
 	}
 
-	public String getRoomStatus() {
-		return roomStatus;
+	public String getUsageStatus() {
+		return usageStatus;
 	}
 
-	public void setRoomStatus(String roomStatus) {
-		this.roomStatus = roomStatus;
+	public void setUsageStatus(String roomStatus) {
+		this.usageStatus = roomStatus;
 	}
 
 	public Date getDateStart() {
