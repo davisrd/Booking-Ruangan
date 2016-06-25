@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.leftproject.model.Rent;
 import com.leftproject.model.Reservation;
 import com.leftproject.model.Room;
 import com.leftproject.model.User;
@@ -64,9 +63,10 @@ public class ReservationRequestController {
     
     
     @RequestMapping(value = "/reservation", method = RequestMethod.GET)
-    public ResponseEntity<List<Reservation>> getAllReservation(@RequestParam("userId") String userId) {
-    	User user = userService.findById(userId);
+    public ResponseEntity<List<Reservation>> getAllReservation(@RequestParam("userCode") String userCode) {
+    	User user = userService.findById(userCode);
     	if(user != null){
+    		System.out.print(user.getUserCode());
 	        List<Reservation> reservations = reservationService.getAllReservation(user);
 	        if(reservations.isEmpty()){
 	            return new ResponseEntity<List<Reservation>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND

@@ -11,14 +11,21 @@ roomReservationServices.factory('Phone', ['$resource',
     });
   }])
   
-  .factory('Reservation', function($resource){
+  .factory('Reservation', function($resource, $rootScope){
 	  return $resource(
      		'http://localhost:8080/ProyekRuangan/reservation/:id', 
      		{id: '@reservationCode'},//Handy for update & delete. id will be set with id of instance
      		{
      			update: {
      			      method: 'PUT' // To send the HTTP Put request when calling this custom update method.
-     			}
+     			},
+			query: {
+				method: 'GET',
+				params: {
+         				userCode: $rootScope.user.userCode
+				},
+       				isArray:true
+			}
     			
      		}
    		);

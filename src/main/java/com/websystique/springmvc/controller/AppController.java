@@ -186,7 +186,7 @@ public class AppController {
     	return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
   */
-    //------------------Use Case: Mengajukan Peminjaman-----------------------------------
+  /*  //------------------Use Case: Mengajukan Peminjaman-----------------------------------
     @RequestMapping(value = "/reservation/room", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Room>> getAllReservationableRoom() {
     	List<Room> rooms = roomService.getReservationRoom(); // With condition it should be
@@ -260,6 +260,7 @@ public class AppController {
         reservationService.updateReservation(currentReservation);
         return new ResponseEntity<Reservation>(currentReservation, HttpStatus.OK);
     }
+    */
     
  //-------------------Use Case : Menyetujui Peminjaman - Kasubag TU--------------------------------------------------------
     
