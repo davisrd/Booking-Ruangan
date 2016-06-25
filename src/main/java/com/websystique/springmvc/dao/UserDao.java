@@ -1,9 +1,5 @@
 package com.websystique.springmvc.dao;
 
-
-
-import java.util.List;
-
 import com.leftproject.model.User;
 
 public interface UserDao {
@@ -16,5 +12,7 @@ public interface UserDao {
 	User findById(String code);
 	
 	User findByName(String name);
+
+	User Login(String username, String password);
 	
 }

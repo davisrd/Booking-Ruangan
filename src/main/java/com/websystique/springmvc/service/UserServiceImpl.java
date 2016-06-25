@@ -22,4 +22,9 @@ public class UserServiceImpl implements UserService{
 		return dao.findByName(name);
 	}
 
+	public User Login(String userCode, String password){
+		return dao.Login(userCode, password);
+	}
+	
+
 }
