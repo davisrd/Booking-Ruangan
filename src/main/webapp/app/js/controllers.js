@@ -348,30 +348,20 @@ roomReservationControllers.controller('ReservationChangeFormCtrl', function($sco
 })
 
 roomReservationControllers.controller('ReservationDetailCtrl', function($scope, $rootScope) {
+	$scope.date = new Date();
 })
 
-roomReservationControllers.controller('ReservationCancelFormCtrl', function($scope, $rootScope) {
-	$scope.reservation = {
-		reservationId: 1,
-		eventUserName: "Himakom",
-		reservationStartDate: "17-04-2016",
-		reservationEndDate: "20-04-2016",
-		eventName: "Seminar International",
-		eventType: "Kegiatan Mahasiswa",
-		eventScale: "International",
-		totalAudience : "200 orang",
-		room: {
-			roomId: 1,
-			roomName: "RSG",
-			roomType: "Fasilitas Umum"
-		},
-		reservationStatus: "Diizinkan"
-		
-	};
-
-	$scope.selectReservation = function(reservation){
-		$rootScope.selectedReservation = reservation;
-	};
+roomReservationControllers.controller('ReservationCancelFormCtrl', function($scope, $rootScope,Reservation) {
+	$scope.reservation = new Reservation();
+	$scope.reservation = $rootScope.selectedReservation;
+	$scope.cancelEvent = function () {
+		$scope.reservation.reservationStatus = "C"; // Belum ada kondisi untuk pengelola khusus
+		$scope.reservation.$update(function(){
+			$rootScope.message = 'Pengajuan Peminjaman Dibatalkan';
+			$rootScope.nextPath = '/reservationRequestList';
+			$rootScope.openMessage('MessageModalCtrl');
+	  	});
+	}
 })
 
 roomReservationControllers.controller('RentDetailCtrl', function($scope, $rootScope) {
