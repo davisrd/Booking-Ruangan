@@ -31,6 +31,9 @@ import com.leftproject.service.UserService;
 public class RentRequestController {
 	
 	@Autowired
+	UserService userService;
+	
+	@Autowired
 	RentService rentService;
 	
 	@Autowired
@@ -64,12 +67,17 @@ public class RentRequestController {
     
     
     @RequestMapping(value = "/rent", method = RequestMethod.GET)
-    public ResponseEntity<List<Rent>> getAllRent() {
-        List<Rent> rents = rentService.getProposedRent();
-        if(rents.isEmpty()){
-            return new ResponseEntity<List<Rent>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
-        }
-        return new ResponseEntity<List<Rent>>(rents, HttpStatus.OK);
+    public ResponseEntity<List<Rent>> getAllRent(@RequestParam("userCode") String userCode) {
+    	User user = userService.findById(userCode);
+    	if(user != null){
+    		System.out.print(user.getUserCode());
+	        List<Rent> rents = rentService.getAllRent(user);
+	        if(rents.isEmpty()){
+	            return new ResponseEntity<List<Rent>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+	        }
+	        return new ResponseEntity<List<Rent>>(rents, HttpStatus.OK);
+    	}
+    	return new ResponseEntity<List<Rent>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
     }
 
     @RequestMapping(value = "/rent", method = RequestMethod.POST)

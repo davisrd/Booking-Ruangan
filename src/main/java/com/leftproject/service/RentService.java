@@ -3,6 +3,7 @@ package com.leftproject.service;
 import java.util.List;
 
 import com.leftproject.model.Rent;
+import com.leftproject.model.User;
 
 public interface RentService {
 
@@ -22,6 +23,8 @@ public interface RentService {
 	void updateRent(Rent rent);
 	
 	void cancelRent(Rent rent);
+	
+	List<Rent> getAllRent(User user);
 	
 //	void sendMemorandum (String memorandum);
 	

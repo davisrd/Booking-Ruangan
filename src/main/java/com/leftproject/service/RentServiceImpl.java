@@ -83,4 +83,7 @@ public class RentServiceImpl implements RentService {
 		notif.setNotificationMessage("Pembatalan penyewaan berhasil");
 	}
 	
+	public List<Rent> getAllRent(User user) {
+		return rentDao.getAllRentsByUser(user);
+	}
 }
