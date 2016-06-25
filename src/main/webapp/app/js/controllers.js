@@ -96,10 +96,8 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 	$rootScope.$watch('reservationPhaseCode', function(newValue, oldValue) {
 		if(newValue == '1') $rootScope.rentReservationStatusName = 'Dalam proses Kasubbag TU'
 		if(newValue == '2') $rootScope.rentReservationStatusName = 'Dalam proses Pengelola Ruangan Khusus'
-		if(newValue == '3') $rootScope.rentReservationStatusName = 'Diizinkan Kasubbag TU'
-		if(newValue == '4') $rootScope.rentReservationStatusName = 'Diizinkan Pengelola Ruangan Khusus'
-		if(newValue == '5') $rootScope.rentReservationStatusName = 'Tidak Diizinkan Pengelola Ruangan Khusus'
-		if(newValue == '6') $rootScope.rentReservationStatusName = 'Tidak Diizinkan Kasubbag TU'
+		if(newValue == '3') $rootScope.rentReservationStatusName = 'Peminjaman Diizinkan'
+		if(newValue == '4') $rootScope.rentReservationStatusName = 'Peminjaman Tidak Diizinkan'
 	});
 
 	$rootScope.$watch('rentPhaseCode', function(newValue, oldValue) {
@@ -107,10 +105,9 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 		if(newValue == '2') $rootScope.eventScaleName = 'Dalam proses Kasubbag TU'
 		if(newValue == '3') $rootScope.eventScaleName = 'Dalam proses KPKNL'
 		if(newValue == '4') $rootScope.eventScaleName = 'Konfirmasi Pembayaran'
-		if(newValue == '5') $rootScope.eventScaleName = 'Diizinkan Direktur'
-		if(newValue == '6') $rootScope.eventScaleName = 'Diizinkan Kasubbag TU'
-		if(newValue == '7') $rootScope.eventScaleName = 'Tidak Diizinkan Direktur'
-		if(newValue == '8') $rootScope.eventScaleName = 'Tidak Diizinkan KPKNL'
+		if(newValue == '5') $rootScope.eventScaleName = 'Pembayaran sudah dilakukan'
+		if(newValue == '6') $rootScope.eventScaleName = 'Penyewaan Diizinkan'
+		if(newValue == '7') $rootScope.eventScaleName = 'Penyewaan Tidak Diizinkan'
 	});
 
 	$rootScope.$watch('roomTypeCode', function(newValue, oldValue) {

@@ -62,7 +62,8 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 	@SuppressWarnings("unchecked")
 	public List<Rent> getAllRentsByUser(User user){
 		Criteria criteria = createEntityCriteria();
-		criteria.add(Restrictions.eq("user.userCode", user.getUserCode()));
+		criteria.createCriteria("user")
+			.add(Restrictions.eq("userCode", user.getUserCode()));
 		return (List<Rent>) criteria.list();
 	}
 	
@@ -83,10 +84,13 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 			Date currentDate = new Date();
 			rent.setCreatedDate(currentDate);
 			rent.setRentCode(this.getCurrentLastId(dateToYYMM(rent.getCreatedDate())));
+			rent.setRentOperationalPrice(0);
+			rent.setRentPrice(rent.getRoom().getRoomPrice());
 			persist(rent);
 			return true;
 		}
 		catch(Exception e){
+			e.printStackTrace();
 			return false;
 		}		
 	}
