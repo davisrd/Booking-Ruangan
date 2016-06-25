@@ -35,10 +35,10 @@ public class Rent {
 	private Date rentDateEnd;
 
     @Column(name="RENT_PRICE")
-	private long rentPrice;
+	private Long rentPrice;
 
     @Column(name="RENT_OPERATIONAL_PRICE")
-	private long rentOperationalPrice;
+	private Long rentOperationalPrice;
 
     @Column(name="RENT_STATUS")
     @Size(min=1,max=1)
