@@ -13,7 +13,7 @@ public interface ReservationService {
 	void updateReservation(Reservation reservation);
 	
 	Reservation getReservationByCode(String reservationCode);
-	
+
 	List<Reservation> getProposedReservation();
 	
 	List<Reservation> getAllReservation(User user);

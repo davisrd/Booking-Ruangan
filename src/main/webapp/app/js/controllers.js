@@ -27,7 +27,7 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 		
 	$rootScope.dateFormat = 'dd-MMMM-yyyy';
 
-	$rootScope.user.userCode = 'UMRS00001';
+	$rootScope.user.userCode = 'UMRG00001';
 	$rootScope.user.userName = 'Sudarman';
 
 	// $rootScope.$watch('user.userRoleCode', function(newValue, oldValue) {
@@ -601,60 +601,6 @@ roomReservationControllers.controller('CollidedReservationApprovalDetailCtrl', f
 		$rootScope.nextPath = '/reservationRequestApprovalList';
 		$rootScope.openMessage('MessageModalCtrl');
 	};
-});
-
-roomReservationControllers.controller('RoomReportCtrl', function($scope, $rootScope, Room) {
-	$scope.listOfRoom = Room.query();
-	$rootScope.selectedRoom = {};
-
-	$scope.selectRoom = function(room){
-		$rootScope.selectedRoom = room;
-	};
-	
-	$scope.validateData = function(path){
-		if($rootScope.selectedRoom.roomCode != undefined){
-			if($scope.selectedDateTime.startDate !=undefined) {
-				if($scope.selectedDateTime.endDate !=undefined) {
-					$rootScope.selectedDate.startDate = moment(moment($scope.selectedDateTime.startDate).format("DD-MM-YYYY") + ' ' + $scope.selectedDateTime.startTime, 'DD-MM-YYYY HH:mm').toDate();
-					$rootScope.selectedDate.endDate = moment(moment($scope.selectedDateTime.endDate).format("DD-MM-YYYY") + ' ' + $scope.selectedDateTime.endTime, 'DD-MM-YYYY HH:mm').toDate();
-					// $location.path(path);
-
-					console.log($rootScope.selectedDate.startDate);
-					Service.getReservationRoomAvailibility($rootScope.selectedRoom.roomCode, $rootScope.selectedDate.startDate, $rootScope.selectedDate.endDate).then(
-						function success(data){
-							console.log(data);
-							if(data.data == 1){
-								$location.path(path);
-							} else if(data.data == 3){
-								$rootScope.message = 'Pada tanggal ' + $rootScope.selectedDate.startDate +  '-' + $rootScope.selectedDate.endDate + ', \n' +
-													 'ruangan ' + $rootScope.selectedRoom.roomName + ' \n' +
-													 'akan digunakan untuk kegiatan lain, \n' +
-													 'Tetap ajukan peminjaman?';
-								$rootScope.nextPath = '/reservationForm';
-								$rootScope.openMessage('MessageModalCtrl');
-							} else {
-								$rootScope.message = 'Pada tanggal ' + $rootScope.selectedDate.startDate +  '-' + $rootScope.selectedDate.endDate + ', \n' +
-													 'ruangan ' + $rootScope.selectedRoom.roomName + ' \n' +
-													 'akan digunakan untuk kegiatan akademik. \n' +
-													 'Silahkan memilih tanggal/ruangan yang lain';
-								$rootScope.nextPath = '/reservationRoomSelection';
-								$rootScope.openMessage('MessageModalCtrl');
-							}
-						},
-						function error(error){
-							alert('Error : ' + error);
-						}
-					);
-				} else {
-					alert('Tanggal selesai harus diisi!');
-				}
-			} else {
-				alert('Tanggal mulai harus diisi!');
-			}
-		} else {
-			alert('Ruangan harus dipilih!');
-		}
-	}
 });
 
 roomReservationControllers.controller('RoomScheduleSelectionCtrl', function($scope, $rootScope, Room) {
