@@ -18,7 +18,7 @@ public class LoginController {
 	UserService userService;
 	
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
-    public ResponseEntity<User> getUser(@RequestParam("userCode") String userCode, @RequestParam("password") String password) {
+    public ResponseEntity<User> getUser(@RequestParam("userCode") String userCode, @RequestParam("userPassword") String password) {
     	User user = userService.Login(userCode, password);
     	if(user != null){
 	        return new ResponseEntity<User>(user, HttpStatus.OK);

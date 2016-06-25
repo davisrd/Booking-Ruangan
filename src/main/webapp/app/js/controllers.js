@@ -27,8 +27,7 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 		
 	$rootScope.dateFormat = 'dd-MMMM-yyyy';
 
-	$rootScope.user.userCode = 'UMRG00001';
-	$rootScope.user.userName = 'Sudarman';
+	// $rootScope.user.userName = 'Sudarman';
 
 	// $rootScope.$watch('user.userRoleCode', function(newValue, oldValue) {
 	// 	if(newValue == 'UMRG') $rootScope.user.userRoleName = '';
@@ -50,7 +49,6 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 	$rootScope.goTo = function(path) {
 		$location.path(path);
 	}
-
 
 	$rootScope.eventCategoryName;
 	$rootScope.eventCategoryCode;
@@ -127,12 +125,19 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 		//$rootScope.goTo('/login');
 	}
 })
-.controller('LoginCtrl', function($rootScope, $scope){
-	$scope.userLogin = {};
+.controller('LoginCtrl', function($rootScope, $scope, Service){
 	$scope.login = function(){
-		$rootScope.user.userName = $scope.userLogin.username;
-		$rootScope.user.password = $scope.userLogin.password;
-		$rootScope.goTo('/dashboard');
+		$rootScope.user = Service.getUser($rootScope.user.userCode, $rootScope.user.userPassword).then(function(data){
+			if(data.status != 204){
+				$rootScope.user = data.data;
+				console.log(data);
+				$rootScope.goTo('/dashboard');	
+			} else {
+				$rootScope.message = 'User not found!';
+				$rootScope.nextPath = '/';
+				$rootScope.openMessage('MessageModalCtrl');
+			}
+	  	});
 	}
 });
 

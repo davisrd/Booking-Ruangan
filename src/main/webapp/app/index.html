@@ -68,27 +68,26 @@
     </form>
   </div>
   -->
-  <div class="container">
+  <div class="container" ng-if="user.userName == undefined">
   
-  <div class="row" id="pwd-container">
+  <div ng-controller="LoginCtrl" class="row" id="pwd-container">
     <div class="col-md-4"></div>
     
     <div class="col-md-4">
       <section class="login-form">
-        <form method="post" action="#" role="login">
+        <form role="login">
           <img src="images/BR.png" class="img-responsive"  alt="" />
-          <input type="email" name="email" placeholder="Email" required class="form-control input-lg" value="davisrd@gmail.com" />
+          <input type="text" name="text" placeholder="UserCode" required class="form-control input-lg" ng-model="user.userCode"  value="" />
           
-          <input type="password" class="form-control input-lg" id="password" placeholder="Password" required="" />
+          <input type="password" class="form-control input-lg" id="password" placeholder="Password" ng-model="user.userPassword" required="" />
           
           
           <div class="pwstrength_viewport_progress"></div>
           
-          
-          <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>
-          <div>
+          <button type="submit" name="go" ng-click="login()" class="btn btn-lg btn-primary btn-block">Sign in</button>
+          <!-- <div>
             <a href="#">Create account</a> or <a href="#">reset password</a>
-          </div>
+          </div> -->
           
         </form>
         
@@ -99,16 +98,10 @@
       
 
   </div>
-  
-  <p>
-  
-    <br>
-    <br>
-    
-  </p>     
+       
 </div>
 
-  <div class="con" ng-show="user.userName == undefined">
+  <div class="con" ng-if="user.userName != undefined">
     <div class= "row" id="header">
       <div class="logo col-md-5">
         <div class="col-md-3" style="border-right:medium #CC0000 solid; height:110px;">

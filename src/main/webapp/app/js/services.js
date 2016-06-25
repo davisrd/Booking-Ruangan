@@ -11,6 +11,23 @@ roomReservationServices.factory('Phone', ['$resource',
     });
   }])
   
+	.factory('User', function($resource, $rootScope){
+		console.log($rootScope.user.userCode);
+		return $resource(
+			'http://localhost:8080/ProyekRuangan/user/:id',
+			{id: '@userCode'},
+			{
+				login: {
+					method: 'GET',
+					params: {
+	         			userCode: $rootScope.user.userCode,
+	         			userPassword: $rootScope.user.userPassword
+					}
+				}
+			}
+		);
+	})
+
   .factory('Reservation', function($resource, $rootScope){
 	  return $resource(
      		'http://localhost:8080/ProyekRuangan/reservation/:id', 
@@ -19,13 +36,13 @@ roomReservationServices.factory('Phone', ['$resource',
      			update: {
      			      method: 'PUT' // To send the HTTP Put request when calling this custom update method.
      			},
-			query: {
-				method: 'GET',
-				params: {
-         				userCode: $rootScope.user.userCode
-				},
-       				isArray:true
-			}
+				query: {
+					method: 'GET',
+					params: {
+	         				userCode: $rootScope.user.userCode
+					},
+	       				isArray:true
+				}
     			
      		}
    		);
@@ -137,6 +154,17 @@ roomReservationServices.factory('Phone', ['$resource',
   .factory('Service', function($resource, $http){
   		var urlBase = 'http://localhost:8080/ProyekRuangan'; //get?model=userDetail&userid=123123123;
 	    return {
+	    	getUser: function(userCode, userPassword) {
+				var params = {
+	        		userCode: userCode,
+	        		userPassword: userPassword
+	        	}
+	        	return $http({
+				    url: urlBase + '/user', 
+				    method: "GET",
+				    params: params
+				 })
+	    	},
 	        getRentRoomAvailibility: function(roomId, startDate, endDate) {
 	        	var params = {
 	        		startDate: startDate,
