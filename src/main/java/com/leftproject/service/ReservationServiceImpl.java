@@ -73,6 +73,15 @@ public class ReservationServiceImpl implements ReservationService {
 	public List<Reservation> getReservationBySpecialRoomManger() {
 		return reservationDao.getReservationSpecialRoom();
 	}
+
+
+	public List<Reservation> getReservationByPhase(char phase, User user) {
+		if(phase == '1')
+			return reservationDao.getReservationByPhase(phase);
+		else
+			return reservationDao.getReservationByPhaseAndUser(phase,user);
+		
+	}
 		
 	
 	

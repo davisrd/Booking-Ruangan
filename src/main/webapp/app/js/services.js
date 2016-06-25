@@ -28,7 +28,7 @@ roomReservationServices.factory('Phone', ['$resource',
 		);
 	})
 
-  .factory('Reservation', function($resource, $rootScope){
+  	.factory('Reservation', function($resource, $rootScope){
 	  return $resource(
      		'http://localhost:8080/ProyekRuangan/reservation/:id', 
      		{id: '@reservationCode'},//Handy for update & delete. id will be set with id of instance
@@ -46,43 +46,26 @@ roomReservationServices.factory('Phone', ['$resource',
     			
      		}
    		);
-		/*
-	  var listOfReservation = [{
-		reservationId: 1,
-		eventUserName: "Himakom",
-		reservationStartDate: "18 April 2016 10:00",
-		reservationEndDate: "18 April 2016 17:00",
-		room: {
-			roomId: 1,
-			roomName: "RSG"
-		},
-		eventName: "Studi Banding",
-		reservationStatus: true
-	},{
-		reservationId: 2,
-		eventUserName: "Himakaps",
-		reservationStartDate: "19 April 2016 10:00",
-		reservationEndDate: "20 April 2016 10:00",
-		room: {
-			roomId: 2,
-			roomName: "Pendopo"
-		},
-		eventName: "Seminar",
-		reservationStatus: true
-	},{
-		reservationId: 3,
-		eventUserName: "Himakom",
-		reservationStartDate: "30 April 2016 08:00",
-		reservationEndDate: "30 April 2016 21:00",
-		room: {
-			roomId: 3,
-			roomName: "Student Center"
-		},
-		eventName: "Pelatihan",
-		reservationStatus: true
-	}];
-	
-	return listOfReservation; */
+  })
+
+  	.factory('ReservationApproval', function($resource, $rootScope){
+	  return $resource(
+     		'http://localhost:8080/ProyekRuangan/reservationApprove/:id', 
+     		{id: '@reservationCode'},//Handy for update & delete. id will be set with id of instance
+     		{
+     			update: {
+     			      method: 'PUT' // To send the HTTP Put request when calling this custom update method.
+     			},
+				query: {
+					method: 'GET',
+					params: {
+	         				userCode: $rootScope.user.userCode
+					},
+	       				isArray:true
+				}
+    			
+     		}
+   		);
   })
   
   .factory('Rent', function($resource,$rootScope){

@@ -495,8 +495,8 @@ roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, 
 	}
 });
 
-roomReservationControllers.controller('ReservationRequestApprovalListCtrl', function($scope, $rootScope, Reservation) {
-	$scope.listOfReservation = Reservation.query();
+roomReservationControllers.controller('ReservationRequestApprovalListCtrl', function($scope, $rootScope, ReservationApproval) {
+	$scope.listOfReservation = ReservationApproval.query();
 	
 	$scope.selectReservation = function(reservation) {
 		$rootScope.eventTypeCode = reservation.eventType;
