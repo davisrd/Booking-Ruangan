@@ -258,25 +258,17 @@ roomReservationControllers.controller('ReservationRoomSelectionCtrl', function($
 });
 
 
-roomReservationControllers.controller('FormPembatalanCtrl', function($scope, $rootScope) {
-	$scope.reservation = {
-		reservationId: 1,
-		eventUserName: "Himakom",
-		reservationStartDate: "17-04-2016",
-		reservationEndDate: "20-04-2016",
-		room: {
-			roomId: 1,
-			roomName: "RSG",
-			roomType: "Diijinkan"
-		},
-		eventName: "Studi Banding",
-		eventType: "Studi Banding",
-		reservationStatus: true
-	};
-
-	$scope.selectReservation = function(reservation){
-		$rootScope.selectedReservation = reservation;
-	};
+roomReservationControllers.controller('rentCancelFormCtrl', function($scope, $rootScope, Rent) {
+	$scope.rent = new Rent();
+	$scope.rent = $rootScope.selectedRent;
+	$scope.cancelEvent = function () {
+		$scope.rent.rentStatus = "C"; 
+		$scope.rent.$update(function(){
+			$rootScope.message = 'Pengajuan Penyewaan Dibatalkan';
+			$rootScope.nextPath = '/rentRequestList';
+			$rootScope.openMessage('MessageModalCtrl');
+	  	});
+	}
 });
 
 roomReservationControllers.controller('ReservationFormCtrl', function($scope, $rootScope, Reservation) {	
@@ -367,10 +359,10 @@ roomReservationControllers.controller('ReservationCancelFormCtrl', function($sco
 })
 
 roomReservationControllers.controller('RentDetailCtrl', function($scope, $rootScope) {
-
+	$scope.date = new Date();
 })
 
-roomReservationControllers.controller('FormPemindahanPenyewaanCtrl', function($scope, $rootScope, Service) {
+roomReservationControllers.controller('rentChangeFormCtrl', function($scope, $rootScope, Service) {
 	
 });
 roomReservationControllers.controller('FormPemPenyewaanCtrl', function($scope, $rootScope) {
@@ -412,6 +404,7 @@ roomReservationControllers.controller('RentRequestListCtrl', function($scope, $r
 	$scope.selectRent = function(rent){
 		$rootScope.eventCategoryCode = rent.eventCategory;
 		$rootScope.rentReservationStatusCode = rent.rentStatus;
+		$rootScope.rentPhaseCode = rent.rentPhase;
 		$rootScope.selectedRent = rent;
 		$scope.isSelected = true;
 	};
@@ -520,6 +513,7 @@ roomReservationControllers.controller('RentRequestApprovalListCtrl', function($s
 	$scope.selectRent = function(rent) {
 		$rootScope.eventCategoryCode = rent.eventCategory;
 		$rootScope.rentReservationStatusCode = rent.rentStatus;
+		$rootScope.rentPhaseCode = rent.rentPhase;
 		$rootScope.selectedRent = rent;
 	}
 

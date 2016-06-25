@@ -32,12 +32,12 @@
 				<td><span>{{rent.rentPrice + rent.rentOperationalPrice | currency : "Rp "}}</span></td>
 				<td>
 					<span ng-if="rent.rentPhase == '1'">Dalam proses Direktur</span>
-					<span ng-if="reservation.rentPhase == '2'">Dalam proses Kasubbag TU</span>
-					<span ng-if="reservation.rentPhase == '3'">Dalam proses KPKNL</span>
-					<span ng-if="reservation.rentPhase == '4'">Konfirmasi Pembayaran</span>
-					<span ng-if="reservation.rentPhase == '5'">Pembayaran sudah dilakukan</span>
-					<span ng-if="reservation.rentPhase == '6'">Penyewaan Diizinkan</span>
-					<span ng-if="reservation.rentPhase == '7'">Penyewaan Tidak Diizinkan</span>
+					<span ng-if="rent.rentPhase == '2'">Dalam proses Kasubbag TU</span>
+					<span ng-if="rent.rentPhase == '3'">Dalam proses KPKNL</span>
+					<span ng-if="rent.rentPhase == '4'">Konfirmasi Pembayaran</span>
+					<span ng-if="rent.rentPhase == '5'">Pembayaran sudah dilakukan</span>
+					<span ng-if="rent.rentPhase == '6'">Penyewaan Diizinkan</span>
+					<span ng-if="rent.rentPhase == '7'">Penyewaan Tidak Diizinkan</span>
 				</td>
 			</tr>
 		</tbody>

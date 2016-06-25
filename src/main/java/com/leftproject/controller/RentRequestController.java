@@ -93,12 +93,12 @@ public class RentRequestController {
     @RequestMapping(value = "/rent/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Rent> saveRent(@PathVariable("id") String id, @RequestBody Rent rent, UriComponentsBuilder ucBuilder)
     {
-    	System.out.println("Updating Employee " + id);
+    	System.out.println("Updating Rent " + id);
         
         Rent currentRent = rentService.getRentByCode(id);
          
         if (currentRent==null) {
-            System.out.println("Employee with nip " + id + " not found");
+            System.out.println("Rent with id " + id + " not found");
             return new ResponseEntity<Rent>(HttpStatus.NOT_FOUND);
         }
  
