@@ -1,7 +1,6 @@
 package com.leftproject.dao;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -9,13 +8,13 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.leftproject.model.Rent;
-import com.leftproject.model.Reservation;
 import com.leftproject.model.User;
 
 @Repository("RentDao")
 public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 	//getAllMinRent(User user)
 	
+	@SuppressWarnings("unchecked")
 	private String getCurrentLastId(String mmYY)
 	{
 		String rentCode;
@@ -135,6 +134,7 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 		return (Rent) criteria.uniqueResult();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Rent> getRentKasubbag() {
 		System.out.println("getRentKasubbag ");
 		Criteria criteria = createEntityCriteria();
@@ -149,6 +149,7 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 		return (List<Rent>) criteria.list();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Rent> getRentDirektur() {
 		System.out.println("getRentDirektur");
 		Criteria criteria = createEntityCriteria();
