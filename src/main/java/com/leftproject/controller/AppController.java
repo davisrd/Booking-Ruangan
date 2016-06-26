@@ -1,16 +1,23 @@
 package com.leftproject.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.leftproject.model.*;
 import com.leftproject.service.*;
@@ -26,7 +33,8 @@ public class AppController {
 	ReservationService reservationService;
 	@Autowired
 	RentService rentService;
-	
+	@Autowired
+	UserService userService;
 	@Autowired
 	MessageSource messageSource;
 
@@ -60,6 +68,26 @@ public class AppController {
     
 
     //-------------------Use Case : Menyetujui Penyewaan - Direktur--------------------------------------------------------
+    @RequestMapping(value = "/rentApprove", method = RequestMethod.GET)
+    public ResponseEntity<List<Rent>> getAllRentByPhase(@RequestParam("userCode") String userCode) {
+		User user = userService.findById(userCode);
+    	if(user != null){
+    		System.out.print(user.getUserCode().substring(0,4));
+    		String userType = "";
+    		if(user.getUserCode().substring(0,3).equals("UMD"))
+    			userType = "direktur";
+    		else if(user.getUserCode().substring(0,4).equals("UMRG")){
+	    		userType = "kasubbag";
+    		}
+	        List<Rent> rents = rentService.getRentByPhase(userType);
+	        if(rents.isEmpty()){
+	            return new ResponseEntity<List<Rent>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+	        }
+	        return new ResponseEntity<List<Rent>>(rents, HttpStatus.OK);
+    	} else {
+    		return new ResponseEntity<List<Rent>>(HttpStatus.NO_CONTENT);
+    	}
+    }
     
     @RequestMapping(value = "/rentApprove/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Rent> directurRentConfirmation(@PathVariable("id") String id, @RequestBody Rent rent) {
@@ -70,7 +98,25 @@ public class AppController {
             return new ResponseEntity<Rent>(HttpStatus.NOT_FOUND);
         }
  
+        currentRent.setCreatedDate(rent.getCreatedDate());
+        currentRent.setEventCategory(rent.getEventCategory());
+        currentRent.setEventName(rent.getEventName());
+        currentRent.setRentCancelReason(rent.getRentCancelReason());
+        currentRent.setRentCode(rent.getRentCode());
+        currentRent.setRentDateStart(rent.getRentDateStart());
+        currentRent.setRentDateEnd(rent.getRentDateEnd());
+        currentRent.setRenter(rent.getRenter());
+        currentRent.setRentEvidencePath(rent.getRentEvidencePath());
+        currentRent.setRentLetterPath(rent.getRentLetterPath());
+        currentRent.setRentOperationalPrice(rent.getRentOperationalPrice());
         currentRent.setRentPhase(rent.getRentPhase());
+        currentRent.setRentPrice(rent.getRentPrice());
+        currentRent.setRentRejectReason(rent.getRentRejectReason());
+        currentRent.setRentStatus(rent.getRentStatus());
+        currentRent.setRoom(rent.getRoom());
+        currentRent.setUpdatedBy(rent.getUpdatedBy());
+        currentRent.setUpdatedDate(rent.getUpdatedDate());
+        currentRent.setUser(rent.getUser());
 
         rentService.updateRent(currentRent);
 //        Boolean status = true;

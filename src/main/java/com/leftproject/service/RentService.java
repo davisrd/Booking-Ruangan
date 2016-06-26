@@ -26,6 +26,8 @@ public interface RentService {
 	
 	List<Rent> getAllRent(User user);
 	
+	List<Rent> getRentByPhase(String userType);
+	
 //	void sendMemorandum (String memorandum);
 	
 	

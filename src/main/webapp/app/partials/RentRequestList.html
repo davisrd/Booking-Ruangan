@@ -25,12 +25,12 @@
 			<tr ng-repeat="rent in listOfRent" ng-click="selectRent(rent)" ng-class="{selected: rent.rentCode == selectedRent.rentCode}">
 				<td><span ng-bind="rent.rentCode"></span></td>
 				<td><span ng-bind="rent.renter"></span></td>
-				<td><span>{{(rent.rentDateStart | date:'dd MMMM yyyy HH:mm')}}</span></td>
-				<td><span>{{(rent.rentDateEnd | date:'dd MMMM yyyy HH:mm')}}</span></td>
+				<td><span>{{(rent.rentDateStart | date:'dd MMMM yyyy')}}</span></td>
+				<td><span>{{(rent.rentDateEnd | date:'dd MMMM yyyy')}}</span></td>
 				<td><span ng-bind="rent.room.roomName"></span></td>
 				<td><span ng-bind="rent.eventName"></span></td>
 				<td><span>{{rent.rentPrice + rent.rentOperationalPrice | currency : "Rp "}}</span></td>
-				<td>
+				<td ng-if="rent.rentStatus!='C'">
 					<span ng-if="rent.rentPhase == '1'">Dalam proses Direktur</span>
 					<span ng-if="rent.rentPhase == '2'">Dalam proses Kasubbag TU</span>
 					<span ng-if="rent.rentPhase == '3'">Dalam proses KPKNL</span>
@@ -38,6 +38,9 @@
 					<span ng-if="rent.rentPhase == '5'">Pembayaran sudah dilakukan</span>
 					<span ng-if="rent.rentPhase == '6'">Penyewaan Diizinkan</span>
 					<span ng-if="rent.rentPhase == '7'">Penyewaan Tidak Diizinkan</span>
+				</td>
+				<td ng-if="rent.rentStatus=='C'">
+					<span>Dibatalkan</span>
 				</td>
 			</tr>
 		</tbody>

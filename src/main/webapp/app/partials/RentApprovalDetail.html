@@ -14,14 +14,14 @@
       <div class="form-group">
         <label class=" col-md-2" style="text-align:left" for="tanggalMulai">Tanggal Mulai</label>
         <div class="col-md-4">
-          {{(selectedRent.rentDateStart | date:'dd MMMM yyyy HH:mm')}}             
+          {{(selectedRent.rentDateStart | date:'dd MMMM yyyy')}}             
         </div>
       </div>
 
       <div class="form-group">
         <label class=" col-md-2" style="text-align:left" for="tanggalSelesai">Tanggal Selesai</label>
         <div class="col-md-4">
-          {{(selectedRent.rentDateEnd | date:'dd MMMM yyyy HH:mm')}}               
+          {{(selectedRent.rentDateEnd | date:'dd MMMM yyyy')}}               
         </div>
       </div>
 
@@ -33,7 +33,7 @@
       </div>
 
       <div class="form-group">
-        <label class=" col-md-2" style="text-align:left" for="jenisKegiatan">Jenis Kegiatan</label>
+        <label class=" col-md-2" style="text-align:left" for="jenisKegiatan">Kategori Kegiatan</label>
         <div class="col-md-4">  
           {{eventCategoryName}}            
         </div>
@@ -47,14 +47,14 @@
       </div>
 
       <div class="form-group">
-        <label class=" col-md-2" style="text-align:left" for="statusPeminjaman">Status Peminjaman</label>
+        <label class=" col-md-2" style="text-align:left" for="statusPeminjaman">Status</label>
         <div class="col-md-4">
           {{rentReservationStatusName}}              
         </div>
       </div>
 
       <div class="form-group">
-        <label class=" col-md-2" style="text-align:left" for="lampiranSuratIzinKegiatan">Lampiran Surat Izin Kegiatan</label>
+        <label class=" col-md-2" style="text-align:left" for="lampiranSuratIzinKegiatan">Lampiran Surat Pengajuan Penyewaan</label>
         <div class="col-md-4">
           <p class="input-group">
             <span class="input-group-btn">
@@ -67,7 +67,7 @@
 
       <br>
       <div class="form-group">
-        <div class="col-md-offset-4 col-md-7">
+        <div class="col-md-offset-4 col-md-7" ng-if="selectedRent.rentPhase=='1'">
           <button type="reset" class="btn btn-danger btn-md"  ng-click="goTo('/rentRejectionDetail')">Tolak Penyewaan</button>
           <button class="btn btn-success btn-md" ng-click="approveEvent()">Izinkan Penyewaan</button>
         </div>

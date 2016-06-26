@@ -35,5 +35,7 @@ public interface RentDao {
 
 	void sessionFlush();
 	
+	public List<Rent> getRentKasubbag();
+	public List<Rent> getRentDirektur();
 	
 }

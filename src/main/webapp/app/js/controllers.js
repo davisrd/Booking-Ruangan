@@ -122,18 +122,12 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 		//$rootScope.goTo('/login');
 	}
 })
-.controller('LoginCtrl', function($rootScope, $scope, Service, $cookies, $cookieStore){
-	$scope.cookiesData = $cookies.get('loginObj');
-	if($scope.cookiesData != undefined){
-		$rootScope.user = JSON.parse($scope.cookiesData);
-		$rootScope.goTo('/dashboard');
-	}
+.controller('LoginCtrl', function($rootScope, $scope, Service){
 	$scope.login = function(){
 		$rootScope.user = Service.getUser($rootScope.user.userCode, $rootScope.user.userPassword).then(function(data){
 			if(data.status != 204){
 				$rootScope.user = data.data;
-
-			    $cookieStore.put('loginObj', data.data);
+				console.log(data);
 				$rootScope.goTo('/dashboard');	
 			} else {
 				$rootScope.message = 'User not found!';
@@ -142,7 +136,6 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 			}
 	  	});
 	}
-
 });
 
 roomReservationControllers.controller('MessageModalCtrl', function($scope, $rootScope, $uibModalInstance, $location) {
@@ -414,6 +407,8 @@ roomReservationControllers.controller('RentRequestListCtrl', function($scope, $r
 		$rootScope.rentPhaseCode = rent.rentPhase;
 		$rootScope.selectedRent = rent;
 		$scope.isSelected = true;
+		console.log($rootScope.rentPhaseName);
+		console.log($rootScope.rentReservationStatusName);
 	};
 
 	$scope.viewRentDetail = function(){
@@ -514,8 +509,8 @@ roomReservationControllers.controller('ReservationRequestApprovalListCtrl', func
 	}
 });
 
-roomReservationControllers.controller('RentRequestApprovalListCtrl', function($scope, $rootScope, Rent) {
-	$scope.listOfRent = Rent.query();
+roomReservationControllers.controller('RentRequestApprovalListCtrl', function($scope, $rootScope, RentApproval) {
+	$scope.listOfRent = RentApproval.query();
 	
 	$scope.selectRent = function(rent) {
 		$rootScope.eventCategoryCode = rent.eventCategory;
@@ -545,11 +540,16 @@ roomReservationControllers.controller('ReservationRejectionDetailCtrl', function
 	};
 });
 
-roomReservationControllers.controller('RentRejectionDetailCtrl', function($scope, $rootScope) {
-	$scope.open = function () {
-		$rootScope.message = 'Form sukses disubmit';
-		$rootScope.nextPath = '/rentRequestApprovalList';
-		$rootScope.openMessage('MessageModalCtrl');
+roomReservationControllers.controller('RentRejectionDetailCtrl', function($scope, $rootScope, Rent) {
+	$scope.rent = new Rent();
+	$scope.rent = $rootScope.selectedRent;
+	$scope.rejectEvent = function () {
+		$scope.rent.rentPhase = "7";
+		$scope.rent.$update(function(){
+			$rootScope.message = 'Form sukses disubmit';
+			$rootScope.nextPath = '/rentRequestApprovalList';
+			$rootScope.openMessage('MessageModalCtrl');
+		 });
 	};
 });
 
@@ -572,7 +572,11 @@ roomReservationControllers.controller('RentApprovalDetailCtrl', function($scope,
 	$scope.rent = $rootScope.selectedRent;
 
 	$scope.approveEvent = function () {
-		$scope.rent.rentPhase = "5";
+		if($rootScope.user.userCode.substring(0,3)=="UMD")
+			$scope.rent.rentPhase = "2";
+		else if($rootScope.user.userCode.substring(0,4)=="UMRG")
+			$scope.rent.rentPhase = "6";
+
 		$scope.rent.$update(function(){
 			$rootScope.message = 'Penyewaan Diizinkan';
 			$rootScope.nextPath = '/rentRequestApprovalList';

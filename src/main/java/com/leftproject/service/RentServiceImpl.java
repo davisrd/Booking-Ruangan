@@ -86,4 +86,11 @@ public class RentServiceImpl implements RentService {
 	public List<Rent> getAllRent(User user) {
 		return rentDao.getAllRentsByUser(user);
 	}
+
+	public List<Rent> getRentByPhase(String userType) {
+		if(userType.equals("kasubbag"))
+			return rentDao.getRentKasubbag();
+		else
+			return rentDao.getRentDirektur();
+	}
 }
