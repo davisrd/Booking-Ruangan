@@ -1,10 +1,4 @@
  package com.leftproject.daotest;
- import static org.junit.Assert.assertEquals;
-
- import java.text.DateFormat;
- import java.text.SimpleDateFormat;
- import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
  import org.springframework.test.context.ContextConfiguration;
@@ -17,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
  import com.leftproject.model.User;
 import com.leftproject.dao.*;
 import com.leftproject.model.Notification;
-import com.leftproject.model.Reservation;
  
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -32,6 +25,7 @@ public class NotificationDaoTest extends AbstractJUnit4SpringContextTests {
 	@Test
 	public void sendNotification ()
 	{
+		@SuppressWarnings("unused")
 		User user = userDao.getUser("UEX000001");
 		Notification notification = new Notification();
 		notification.setNotificationSubject("cincau hijau");

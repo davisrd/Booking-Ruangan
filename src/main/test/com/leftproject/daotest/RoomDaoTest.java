@@ -1,11 +1,8 @@
 package com.leftproject.daotest;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import static org.junit.Assert.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

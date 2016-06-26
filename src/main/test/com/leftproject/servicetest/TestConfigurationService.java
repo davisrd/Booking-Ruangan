@@ -1,7 +1,5 @@
 package com.leftproject.servicetest;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
 import java.util.Properties;
 import javax.sql.DataSource;
 
@@ -13,15 +11,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 
 @Configuration
-@ComponentScan(basePackages = {"com.websystique.springmvc.service", "com.websystique.springmvc.dao"})
+@ComponentScan(basePackages = {"com.leftproject.service", "com.leftproject.dao"})
 @PropertySource(value = { "classpath:application.properties" })
 
 public class TestConfigurationService {

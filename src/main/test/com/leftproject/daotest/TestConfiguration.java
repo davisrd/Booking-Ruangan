@@ -17,7 +17,7 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 
 
 @Configuration
-@ComponentScan(basePackages = "com.websystique.springmvc.dao")
+@ComponentScan(basePackages = "com.leftproject.dao")
 @PropertySource(value = { "classpath:application.properties" })
 public class TestConfiguration {
 	@Autowired
