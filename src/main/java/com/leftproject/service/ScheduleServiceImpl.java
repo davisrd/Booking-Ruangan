@@ -44,4 +44,8 @@ public class ScheduleServiceImpl implements ScheduleService{
 	public Schedule getSchedule(String usageCode, Date startDate, Date endDate){
 		return dao.getSchedule(usageCode ,startDate, endDate);
 	}
+	
+	public void saveSchedule(Schedule schedule){
+		dao.saveSchedule(schedule);
+	}
 }

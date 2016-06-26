@@ -11,4 +11,6 @@ public interface ScheduleService {
 	public int getRentRoomAvailability(String usageCode, Date startDate, Date endDate);
 	
 	Schedule getSchedule(String usageCode, Date startDate, Date endDate);
+	
+	public void saveSchedule(Schedule schedule);
 }

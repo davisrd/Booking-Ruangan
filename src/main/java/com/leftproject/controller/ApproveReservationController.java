@@ -13,17 +13,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.leftproject.model.Reservation;
+import com.leftproject.model.Schedule;
 import com.leftproject.model.User;
 import com.leftproject.service.ReservationService;
+import com.leftproject.service.ScheduleService;
 import com.leftproject.service.UserService;
 
 @RestController
 public class ApproveReservationController {
 	@Autowired
 	ReservationService reservationService;
-	
+
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	ScheduleService scheduleService;
 	
  //-------------------Use Case : Menyetujui Peminjaman - Kasubag TU--------------------------------------------------------
     
@@ -37,9 +42,16 @@ public class ApproveReservationController {
         }
  
         currentReservation.setReservationPhase(reservation.getReservationPhase());
-
+        
+        /* Buat create schedule
+        Schedule sc = new Schedule();
+        sc.setRoom(currentReservation.getRoom());
+        sc.setDateStart(currentReservation.getReservationDateStart());
+        sc.setDateEnd(currentReservation.getReservationDateEnd());
+        scheduleService.saveSchedule(sc);
+        */
+        
         reservationService.updateReservation(currentReservation);
-//        Boolean status = true;
         return new ResponseEntity<Reservation>(currentReservation, HttpStatus.OK);
     }
     
