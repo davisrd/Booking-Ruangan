@@ -505,8 +505,7 @@ roomReservationControllers.controller('ReservationChangeRoomSelectionCtrl', func
 
 roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, $rootScope, $location, RentRoom, Service) {
 	$scope.listOfRoom = RentRoom.query({id:$rootScope.eventCategoryCode});
-
-
+	
 	$scope.period = {};
 	
 	$scope.selectRoom = function(room){
@@ -518,7 +517,7 @@ roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, 
 			if($rootScope.selectedDate.startDate !=undefined) {
 				if($scope.period.value !=undefined) {
 					$rootScope.selectedDate.startDate = moment($rootScope.selectedDate.startDate).toDate();
-
+					//$rootScope.selectedDate.startDate = moment(moment($scope.selectedDateTime.startDate).format("DD-MM-YYYY") + ' ' + $scope.selectedDateTime.startTime, 'DD-MM-YYYY HH:mm').toDate();
 					switch($scope.period.valueType){
 						case 1:
 							$rootScope.selectedDate.endDate = moment($rootScope.selectedDate.startDate).add($scope.period.value, 'days').toDate();
