@@ -58,9 +58,13 @@ roomReservationApp.config(['$routeProvider',
         templateUrl: 'partials/ReservationCancelForm.html',
         controller: 'ReservationCancelFormCtrl'
       }).
-	  when('/reservationChangeForm', {
+    when('/reservationChangeForm', {
         templateUrl: 'partials/ReservationChangeForm.html',
         controller: 'ReservationChangeFormCtrl'
+      }).
+    when('/reservationChangeRoomSelection', {
+        templateUrl: 'partials/ReservationChangeRoomSelection.html',
+        controller: 'ReservationChangeRoomSelectionCtrl'
       }).
      when('/rentChangeForm', {
         templateUrl: 'partials/rentChangeForm.html',

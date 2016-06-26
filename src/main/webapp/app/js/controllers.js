@@ -123,11 +123,17 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 	}
 })
 .controller('LoginCtrl', function($rootScope, $scope, Service){
+	$scope.cookiesData = $cookies.get('loginObj');
+	if($scope.cookiesData != undefined){
+		$rootScope.user = JSON.parse($scope.cookiesData);
+		$rootScope.goTo('/dashboard');
+	}
 	$scope.login = function(){
 		$rootScope.user = Service.getUser($rootScope.user.userCode, $rootScope.user.userPassword).then(function(data){
 			if(data.status != 204){
 				$rootScope.user = data.data;
-				console.log(data);
+
+			    $cookieStore.put('loginObj', data.data);
 				$rootScope.goTo('/dashboard');	
 			} else {
 				$rootScope.message = 'User not found!';
@@ -320,25 +326,21 @@ roomReservationControllers.controller('RentFormCtrl', function($scope, $rootScop
 	  };
 });
 
-roomReservationControllers.controller('ReservationChangeFormCtrl', function($scope, $rootScope) {
-	$scope.reservation = {
-		reservationId: 1,
-		eventUserName: "Himakom",
-		reservationStartDate: "17-04-2016",
-		reservationEndDate: "20-04-2016",
-		room: {
-			roomId: 1,
-			roomName: "RSG",
-			roomType: "Diijinkan"
-		},
-		eventName: "Studi Banding",
-		eventType: "Studi Banding",
-		reservationStatus: true
-	};
 
-	$scope.selectReservation = function(reservation){
-		$rootScope.selectedReservation = reservation;
-	};
+roomReservationControllers.controller('ReservationChangeFormCtrl', function($scope, $rootScope) {
+	$scope.reservation = new Reservation();
+	$scope.reservation = $rootScope.selectedReservation;
+	$scope.cancelEvent = function () {
+		$scope.reservation.reservationStatus = 'M';
+		$scope.reservation.reservationDateStart = $rootScope.selectedDate.startDate;
+		$scope.reservation.reservationDateEnd = $rootScope.selectedDate.endDate;
+		$scope.reservation.room = selectedRoom; 
+		$scope.reservation.$update(function(){
+			$rootScope.message = 'Pengajuan Pemindahan Peminjaman Sukses Disubmit';
+			$rootScope.nextPath = '/reservationRequestList';
+			$rootScope.openMessage('MessageModalCtrl');
+	  	});
+	}
 })
 
 roomReservationControllers.controller('ReservationDetailCtrl', function($scope, $rootScope) {
@@ -427,6 +429,79 @@ roomReservationControllers.controller('RentRequestModalCtrl', function($scope, $
 		$uibModalInstance.close();
 	}
 });
+
+roomReservationControllers.controller('ReservationChangeRoomSelectionCtrl', function($scope, $rootScope, Service, $location) {
+	$scope.listOfRoom;
+	$scope.selectedDateTime = {};
+	$rootScope.selectedRoom = {};
+
+	$scope.selectedDateTime.startTime = "00:00";
+	$scope.selectedDateTime.endTime = "00:00";
+
+	Service.getReservationRoom().then(function success(data) {
+	 	$scope.listOfRoom = data.data;
+    }, function error(error){
+        console.log(error);
+    });
+	
+	$('.clockpicker1').clockpicker().find('input').change(function(){
+		$scope.selectedDateTime.startTime = this.value;
+	});;
+
+	$('.clockpicker2').clockpicker().find('input').change(function(){
+		$scope.selectedDateTime.endTime = this.value;
+	});;
+
+	$scope.selectRoom = function(room){
+		$rootScope.selectedRoom = room;
+	};
+	
+	$scope.validateData = function(path){
+		if($rootScope.selectedRoom.roomCode != undefined){
+			if($scope.selectedDateTime.startDate !=undefined) {
+				if($scope.selectedDateTime.endDate !=undefined) {
+					$rootScope.selectedDate.startDate = moment(moment($scope.selectedDateTime.startDate).format("DD-MM-YYYY") + ' ' + $scope.selectedDateTime.startTime, 'DD-MM-YYYY HH:mm').toDate();
+					$rootScope.selectedDate.endDate = moment(moment($scope.selectedDateTime.endDate).format("DD-MM-YYYY") + ' ' + $scope.selectedDateTime.endTime, 'DD-MM-YYYY HH:mm').toDate();
+					// $location.path(path);
+
+					console.log($rootScope.selectedDate.startDate);
+					Service.getReservationRoomAvailibility($rootScope.selectedRoom.roomCode, $rootScope.selectedDate.startDate, $rootScope.selectedDate.endDate).then(
+						function success(data){
+							console.log(data);
+							if(data.data == 1){
+								$location.path(path);
+							} else if(data.data == 3){
+								$rootScope.message = 'Pada tanggal ' + $rootScope.selectedDate.startDate +  '-' + $rootScope.selectedDate.endDate + ', \n' +
+													 'ruangan ' + $rootScope.selectedRoom.roomName + ' \n' +
+													 'akan digunakan untuk kegiatan lain, \n' +
+													 'Tetap ajukan peminjaman?';
+								$rootScope.nextPath = '/reservationChangeForm';
+								$rootScope.openMessage('MessageModalCtrl');
+							} else {
+								$rootScope.message = 'Pada tanggal ' + $rootScope.selectedDate.startDate +  '-' + $rootScope.selectedDate.endDate + ', \n' +
+													 'ruangan ' + $rootScope.selectedRoom.roomName + ' \n' +
+													 'akan digunakan untuk kegiatan akademik. \n' +
+													 'Silahkan memilih tanggal/ruangan yang lain';
+								$rootScope.nextPath = '/reservationChangeRoomSelection';
+								$rootScope.openMessage('MessageModalCtrl');
+							}
+						},
+						function error(error){
+							alert('Error : ' + error);
+						}
+					);
+				} else {
+					alert('Tanggal selesai harus diisi!');
+				}
+			} else {
+				alert('Tanggal mulai harus diisi!');
+			}
+		} else {
+			alert('Ruangan harus dipilih!');
+		}
+	}
+});
+
 
 roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, $rootScope, $location, RentRoom, Service) {
 	$scope.listOfRoom = RentRoom.query({id:$rootScope.eventCategoryCode});

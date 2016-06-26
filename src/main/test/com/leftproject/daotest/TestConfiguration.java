@@ -15,7 +15,6 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 
-
 @Configuration
 @ComponentScan(basePackages = "com.leftproject.dao")
 @PropertySource(value = { "classpath:application.properties" })
