@@ -15,5 +15,7 @@ public interface ScheduleDao {
 	
 	Schedule getSchedule(String roomCode, Date startDate, Date endDate);
 	
+	Schedule getSchedule(int scheduleId);
+	
 	void sessionFlush();
 }

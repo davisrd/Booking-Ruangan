@@ -28,7 +28,7 @@ public class ApproveReservationController {
  //-------------------Use Case : Menyetujui Peminjaman - Kasubag TU--------------------------------------------------------
     
     @RequestMapping(value = "/reservationApprove/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Reservation> kasubbagTUReseervationConfirmation(@PathVariable("id") String id, @RequestBody Reservation reservation) {
+    public ResponseEntity<Reservation> kasubbagTUReservationConfirmation(@PathVariable("id") String id, @RequestBody Reservation reservation) {
     	Reservation currentReservation = reservationService.getReservationByCode(id);
         
         if (currentReservation==null) {

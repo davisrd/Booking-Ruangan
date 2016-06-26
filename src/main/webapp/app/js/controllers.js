@@ -122,7 +122,7 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 		//$rootScope.goTo('/login');
 	}
 })
-.controller('LoginCtrl', function($rootScope, $scope, Service){
+.controller('LoginCtrl', function($rootScope, $scope, Service, $cookies, $cookieStore){
 	$scope.cookiesData = $cookies.get('loginObj');
 	if($scope.cookiesData != undefined){
 		$rootScope.user = JSON.parse($scope.cookiesData);
@@ -327,14 +327,14 @@ roomReservationControllers.controller('RentFormCtrl', function($scope, $rootScop
 });
 
 
-roomReservationControllers.controller('ReservationChangeFormCtrl', function($scope, $rootScope) {
+roomReservationControllers.controller('ReservationChangeFormCtrl', function($scope, $rootScope, Reservation) {
 	$scope.reservation = new Reservation();
 	$scope.reservation = $rootScope.selectedReservation;
-	$scope.cancelEvent = function () {
+	$scope.updateReservation = function () {
 		$scope.reservation.reservationStatus = 'M';
 		$scope.reservation.reservationDateStart = $rootScope.selectedDate.startDate;
 		$scope.reservation.reservationDateEnd = $rootScope.selectedDate.endDate;
-		$scope.reservation.room = selectedRoom; 
+		$scope.reservation.room = $rootScope.selectedRoom; 
 		$scope.reservation.$update(function(){
 			$rootScope.message = 'Pengajuan Pemindahan Peminjaman Sukses Disubmit';
 			$rootScope.nextPath = '/reservationRequestList';

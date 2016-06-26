@@ -22,9 +22,11 @@ public class ScheduleDaoImpl extends AbstractDao<Integer, Schedule> implements S
 					Restrictions.and
 						(Restrictions.le("dateStart", startDate), Restrictions.ge("dateEnd", endDate)),
 					Restrictions.and
-						(Restrictions.le("dateEnd", startDate), Restrictions.ge("dateEnd", endDate)),
+						(Restrictions.ge("dateStart", startDate), Restrictions.le("dateEnd", endDate)),
 					Restrictions.and
-						(Restrictions.le("dateStart", startDate), Restrictions.ge("dateStart", endDate))
+						(Restrictions.ge("dateEnd", startDate), Restrictions.le("dateEnd", endDate)),
+					Restrictions.and
+						(Restrictions.ge("dateStart", startDate), Restrictions.le("dateStart", endDate))
 					));
 		
 		return (List<Schedule>) criteria.list();
@@ -32,14 +34,17 @@ public class ScheduleDaoImpl extends AbstractDao<Integer, Schedule> implements S
 	
 	public Schedule getSchedule(String roomCode, Date startDate, Date endDate){
 		Criteria criteria = createEntityCriteria();
-		criteria.add(Restrictions.eq("room.roomCode", roomCode));
+		criteria.createCriteria("room")
+		.add(Restrictions.eq("roomCode", roomCode));
 		criteria.add(Restrictions.or(
-				Restrictions.and
+					Restrictions.and
 					(Restrictions.le("dateStart", startDate), Restrictions.ge("dateEnd", endDate)),
 				Restrictions.and
-					(Restrictions.le("dateEnd", startDate), Restrictions.ge("dateEnd", endDate)),
+					(Restrictions.ge("dateStart", startDate), Restrictions.le("dateEnd", endDate)),
 				Restrictions.and
-					(Restrictions.le("dateStart", startDate), Restrictions.ge("dateStart", endDate))
+					(Restrictions.ge("dateEnd", startDate), Restrictions.le("dateEnd", endDate)),
+				Restrictions.and
+					(Restrictions.ge("dateStart", startDate), Restrictions.le("dateStart", endDate))
 				));
 		return (Schedule) criteria.uniqueResult();
 	}
@@ -53,5 +58,12 @@ public class ScheduleDaoImpl extends AbstractDao<Integer, Schedule> implements S
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public Schedule getSchedule(int id) {
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("idSchedule", id));
+		
+		return (Schedule) criteria.uniqueResult();
 	}
 }

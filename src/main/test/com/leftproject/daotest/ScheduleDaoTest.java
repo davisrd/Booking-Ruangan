@@ -37,15 +37,23 @@ public class ScheduleDaoTest extends AbstractJUnit4SpringContextTests{
 		int status = scheduleDao.getListSchedule(room.getRoomCode(), date, date).size();
 		assertEquals(status, 0);
 	}
+	
+	@Test
+	public void getScheduleByIdTest() throws ParseException
+	{
+		Schedule sc = scheduleDao.getSchedule(1);
+		
+		assertEquals(sc.getRoom().getRoomCode(), "RG001");
+	}
 
 	@Test
 	public void getRoomUsedStatusTest() throws ParseException
 	{
-		Room room = roomDao.getRoom("RG002");
+		Room room = roomDao.getRoom("RG001");
 //		assertEquals("Student Center", room.getRoomName());
 
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		int status = scheduleDao.getListSchedule(room.getRoomCode(), df.parse("2016-07-03 00:00:00"), df.parse("2016-07-04 00:00:00")).size();
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+		int status = scheduleDao.getListSchedule(room.getRoomCode(), df.parse("2016-05-18T17:00:00.000Z"), df.parse("2016-06-18T17:00:00.000Z")).size();
 		assertEquals(status, 1);
 	}
 	
