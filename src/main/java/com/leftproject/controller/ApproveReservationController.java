@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.leftproject.model.Reservation;
-import com.leftproject.model.Schedule;
 import com.leftproject.model.User;
 import com.leftproject.service.ReservationService;
 import com.leftproject.service.ScheduleService;
