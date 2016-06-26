@@ -4,6 +4,7 @@
 
 var roomReservationApp = angular.module('roomReservationApp', [
   'ngRoute',
+  'ngCookies',
   'roomReservationAnimations',
   'roomReservationControllers',
   'roomReservationFilters',

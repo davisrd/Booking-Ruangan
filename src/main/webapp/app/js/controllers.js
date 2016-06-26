@@ -122,12 +122,18 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 		//$rootScope.goTo('/login');
 	}
 })
-.controller('LoginCtrl', function($rootScope, $scope, Service){
+.controller('LoginCtrl', function($rootScope, $scope, Service, $cookies, $cookieStore){
+	$scope.cookiesData = $cookies.get('loginObj');
+	if($scope.cookiesData != undefined){
+		$rootScope.user = JSON.parse($scope.cookiesData);
+		$rootScope.goTo('/dashboard');
+	}
 	$scope.login = function(){
 		$rootScope.user = Service.getUser($rootScope.user.userCode, $rootScope.user.userPassword).then(function(data){
 			if(data.status != 204){
 				$rootScope.user = data.data;
-				console.log(data);
+
+			    $cookieStore.put('loginObj', data.data);
 				$rootScope.goTo('/dashboard');	
 			} else {
 				$rootScope.message = 'User not found!';
@@ -136,6 +142,7 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 			}
 	  	});
 	}
+
 });
 
 roomReservationControllers.controller('MessageModalCtrl', function($scope, $rootScope, $uibModalInstance, $location) {
