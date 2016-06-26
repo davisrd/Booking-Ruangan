@@ -75,7 +75,7 @@ public class ScheduleDaoTest extends AbstractJUnit4SpringContextTests{
 
 			schedule.setIdSchedule(3);
 			schedule.setRoom(room);
-			schedule.setRoomStatus("1");
+			schedule.setUsageStatus("1");
 			schedule.setDateStart(df.parse("2016-07-03 00:00:00"));
 			schedule.setDateEnd(df.parse("2016-07-04 00:00:00"));
 			
