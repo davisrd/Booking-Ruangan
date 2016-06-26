@@ -1,8 +1,8 @@
 <div class="panel panel-default" id="pan">
   <div class="panel-heading" id="pan-head">
-    <p class="panel-title" id="pan-title">Rincian Penyewaan </p>
+    <p class="panel-title" id="pan-title">Form Pembatalan Penyewaan</p>
   </div>
-  <div class="panel-body" id="pan-body">
+   <div class="panel-body" id="pan-body">
     <form class="form-horizontal" role="form" ng-submit="openModal('sm',pengajuan)">
       <div class="form-group">
         <label class=" col-md-2" style="text-align:left" for="namaPeminjam">Nama Penyewa</label>
@@ -72,24 +72,21 @@
         </div>
       </div>
 
-      
-
-
-      <br>
       <div class="form-group">
-        <div class="col-md-offset-4 col-md-7">
-          <a href="#/rentRequestList"><button type="reset" class="btn btn-danger">Kembali</button></a>
+		  <label class=" col-md-2" style="text-align:left" for="alasanPembatalan">Alasan Pembatalan</label>
+		  <div class="col-md-4">
+			<input type="text" class="form-control" ng-model="rent.rentCancelReason" ng-required="true">               
+		  </div>
+	  </div> 
 
-          <div ng-hide = "(selectedRent.rentStatus=='C') || (selectedRent.rentDateStart <= date)" ng-click="goTo('/rentCancelForm')"><button type="reset" class="btn btn-danger btn-md">Batalkan Penyewaan</button></div>
-
-          <div ng-hide = "(selectedRent.rentDateStart <= date)" ng-click="goTo('/pemindahanpenyewaan')"><button type="submit" class="btn btn-success btn-md">Pindah Jadwal / Tempat</button></div>
-
-          </button>
+      <br><br>
+      <div class="form-group">
+        <div class="col-md-offset-3 col-md-7">
+          <a href="#/rentDetail"><button type="reset" class="btn btn-danger btn-md">Kembali</button></a>
+          <button type="submit" ng-click="cancelEvent()" class="btn btn-success btn-md">Ajukan Pembatalan</button>
         </div>
       </div>
     </form>
+    <br><br>
   </div>
 </div>
-
-
-

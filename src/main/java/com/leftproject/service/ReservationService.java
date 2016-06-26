@@ -30,4 +30,6 @@ public interface ReservationService {
 	
 	List<Reservation> getReservationBySpecialRoomManger();
 	
+	List<Reservation> getReservationByPhase(char phase, User user);
+	
 }

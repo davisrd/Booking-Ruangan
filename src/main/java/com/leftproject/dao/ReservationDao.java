@@ -37,5 +37,8 @@ public interface ReservationDao {
 	List<Reservation> getReservationSpecialRoom();
 	
 	List<Reservation> getReservationGeneralRoom();
+	
+	List<Reservation> getReservationByPhase(char phase);
+	List<Reservation> getReservationByPhaseAndUser(char phase, User user);
 }
 

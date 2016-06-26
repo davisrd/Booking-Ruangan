@@ -76,6 +76,7 @@ public class ReservationRequestController {
     		return new ResponseEntity<List<Reservation>>(HttpStatus.NO_CONTENT);
     	}
     }
+    
 
     @RequestMapping(value = "/reservation", method = RequestMethod.POST)
     public ResponseEntity<Void> saveReservation(@RequestBody Reservation reservation, UriComponentsBuilder ucBuilder)

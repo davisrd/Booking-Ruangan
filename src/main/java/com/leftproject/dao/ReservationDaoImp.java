@@ -178,5 +178,22 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 			return false;
 		}
 	}
+
+	public List<Reservation> getReservationByPhase(char phase) {
+		System.out.println("phase : " + phase);
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("reservationPhase", "" + phase));
+		return (List<Reservation>) criteria.list();
+	}
+
+	public List<Reservation> getReservationByPhaseAndUser(char phase, User user) {
+		System.out.println("phase : " + phase + " userCode : " + user.getUserCode());
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("reservationPhase", "" + phase));
+		criteria.createCriteria("room")
+			.createCriteria("roomManager")
+			.add(Restrictions.eq("userCode", user.getUserCode()));
+		return (List<Reservation>) criteria.list();
+	}
 	
 }

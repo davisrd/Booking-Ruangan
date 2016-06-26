@@ -1,6 +1,6 @@
 <div class="panel panel-default" id="pan">
   <div class="panel-heading" id="pan-head">
-    <p class="panel-title" id="pan-title">Rincian Penyewaan </p>
+    <p class="panel-title" id="pan-title">Form Pemindahan Penyewaan</p>
   </div>
   <div class="panel-body" id="pan-body">
     <form class="form-horizontal" role="form" ng-submit="openModal('sm',pengajuan)">
@@ -33,7 +33,7 @@
       </div>
 
       <div class="form-group">
-        <label class=" col-md-2" style="text-align:left" for="jenisKegiatan">Kategori Kegiatan</label>
+        <label class=" col-md-2" style="text-align:left" for="jenisKegiatan">Jenis Kegiatan</label>
         <div class="col-md-4">
           {{eventCategoryName}}              
         </div>
@@ -47,21 +47,14 @@
       </div>
 
       <div class="form-group">
-        <label class=" col-md-2" style="text-align:left" for="statusPeminjaman">Status Penyewaan</label>
+        <label class=" col-md-2" style="text-align:left" for="statusPeminjaman">Harga Sewa</label>
         <div class="col-md-4">
-          {{rentPhaseName}}              
+          {{(selectedRent.rentPrice + selectedRent.rentOperationalPrice)}}              
         </div>
       </div>
 
       <div class="form-group">
-        <label class=" col-md-2" style="text-align:left" for="statusPeminjaman">Total Biaya</label>
-        <div class="col-md-4">
-          {{selectedRent.rentPrice + selectedRent.rentOperationalPrice | currency : "Rp "}}              
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class=" col-md-2" style="text-align:left" for="lampiranSuratIzinKegiatan">Lampiran Surat Izin Kegiatan</label>
+        <label class=" col-md-2" style="text-align:left" for="lampiranSuratIzinKegiatan">Lampiran Surat Pengajuan Penyewaan</label>
         <div class="col-md-4">
           <p class="input-group">
             <span class="input-group-btn">
@@ -72,19 +65,11 @@
         </div>
       </div>
 
-      
-
-
       <br>
       <div class="form-group">
         <div class="col-md-offset-4 col-md-7">
-          <a href="#/rentRequestList"><button type="reset" class="btn btn-danger">Kembali</button></a>
-
-          <div ng-hide = "(selectedRent.rentStatus=='C') || (selectedRent.rentDateStart <= date)" ng-click="goTo('/rentCancelForm')"><button type="reset" class="btn btn-danger btn-md">Batalkan Penyewaan</button></div>
-
-          <div ng-hide = "(selectedRent.rentDateStart <= date)" ng-click="goTo('/pemindahanpenyewaan')"><button type="submit" class="btn btn-success btn-md">Pindah Jadwal / Tempat</button></div>
-
-          </button>
+          <a href="#/rentRequestList"><button type="reset" class="btn btn-danger">Batal</button>
+          <button type="reset" class="btn btn-success">Ajukan Pemindahan Penyewaan</button>
         </div>
       </div>
     </form>

@@ -94,20 +94,20 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 	});
 	
 	$rootScope.$watch('reservationPhaseCode', function(newValue, oldValue) {
-		if(newValue == '1') $rootScope.rentReservationStatusName = 'Dalam proses Kasubbag TU'
-		if(newValue == '2') $rootScope.rentReservationStatusName = 'Dalam proses Pengelola Ruangan Khusus'
-		if(newValue == '3') $rootScope.rentReservationStatusName = 'Peminjaman Diizinkan'
-		if(newValue == '4') $rootScope.rentReservationStatusName = 'Peminjaman Tidak Diizinkan'
+		if(newValue == '1') $rootScope.reservationPhaseName = 'Dalam proses Kasubbag TU'
+		if(newValue == '2') $rootScope.reservationPhaseName = 'Dalam proses Pengelola Ruangan Khusus'
+		if(newValue == '3') $rootScope.reservationPhaseName = 'Peminjaman Diizinkan'
+		if(newValue == '4') $rootScope.reservationPhaseName = 'Peminjaman Tidak Diizinkan'
 	});
 
 	$rootScope.$watch('rentPhaseCode', function(newValue, oldValue) {
-		if(newValue == '1') $rootScope.eventScaleName = 'Dalam proses Direktur'
-		if(newValue == '2') $rootScope.eventScaleName = 'Dalam proses Kasubbag TU'
-		if(newValue == '3') $rootScope.eventScaleName = 'Dalam proses KPKNL'
-		if(newValue == '4') $rootScope.eventScaleName = 'Konfirmasi Pembayaran'
-		if(newValue == '5') $rootScope.eventScaleName = 'Pembayaran sudah dilakukan'
-		if(newValue == '6') $rootScope.eventScaleName = 'Penyewaan Diizinkan'
-		if(newValue == '7') $rootScope.eventScaleName = 'Penyewaan Tidak Diizinkan'
+		if(newValue == '1') $rootScope.rentPhaseName = 'Dalam proses Direktur'
+		if(newValue == '2') $rootScope.rentPhaseName = 'Dalam proses Kasubbag TU'
+		if(newValue == '3') $rootScope.rentPhaseName = 'Dalam proses KPKNL'
+		if(newValue == '4') $rootScope.rentPhaseName = 'Konfirmasi Pembayaran'
+		if(newValue == '5') $rootScope.rentPhaseName = 'Pembayaran sudah dilakukan'
+		if(newValue == '6') $rootScope.rentPhaseName = 'Penyewaan Diizinkan'
+		if(newValue == '7') $rootScope.rentPhaseName = 'Penyewaan Tidak Diizinkan'
 	});
 
 	$rootScope.$watch('roomTypeCode', function(newValue, oldValue) {
@@ -258,25 +258,17 @@ roomReservationControllers.controller('ReservationRoomSelectionCtrl', function($
 });
 
 
-roomReservationControllers.controller('FormPembatalanCtrl', function($scope, $rootScope) {
-	$scope.reservation = {
-		reservationId: 1,
-		eventUserName: "Himakom",
-		reservationStartDate: "17-04-2016",
-		reservationEndDate: "20-04-2016",
-		room: {
-			roomId: 1,
-			roomName: "RSG",
-			roomType: "Diijinkan"
-		},
-		eventName: "Studi Banding",
-		eventType: "Studi Banding",
-		reservationStatus: true
-	};
-
-	$scope.selectReservation = function(reservation){
-		$rootScope.selectedReservation = reservation;
-	};
+roomReservationControllers.controller('rentCancelFormCtrl', function($scope, $rootScope, Rent) {
+	$scope.rent = new Rent();
+	$scope.rent = $rootScope.selectedRent;
+	$scope.cancelEvent = function () {
+		$scope.rent.rentStatus = "C"; 
+		$scope.rent.$update(function(){
+			$rootScope.message = 'Pengajuan Penyewaan Dibatalkan';
+			$rootScope.nextPath = '/rentRequestList';
+			$rootScope.openMessage('MessageModalCtrl');
+	  	});
+	}
 });
 
 roomReservationControllers.controller('ReservationFormCtrl', function($scope, $rootScope, Reservation) {	
@@ -367,10 +359,10 @@ roomReservationControllers.controller('ReservationCancelFormCtrl', function($sco
 })
 
 roomReservationControllers.controller('RentDetailCtrl', function($scope, $rootScope) {
-
+	$scope.date = new Date();
 })
 
-roomReservationControllers.controller('FormPemindahanPenyewaanCtrl', function($scope, $rootScope, Service) {
+roomReservationControllers.controller('rentChangeFormCtrl', function($scope, $rootScope, Service) {
 	
 });
 roomReservationControllers.controller('FormPemPenyewaanCtrl', function($scope, $rootScope) {
@@ -412,6 +404,7 @@ roomReservationControllers.controller('RentRequestListCtrl', function($scope, $r
 	$scope.selectRent = function(rent){
 		$rootScope.eventCategoryCode = rent.eventCategory;
 		$rootScope.rentReservationStatusCode = rent.rentStatus;
+		$rootScope.rentPhaseCode = rent.rentPhase;
 		$rootScope.selectedRent = rent;
 		$scope.isSelected = true;
 	};
@@ -435,6 +428,8 @@ roomReservationControllers.controller('RentRequestModalCtrl', function($scope, $
 
 roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, $rootScope, $location, RentRoom, Service) {
 	$scope.listOfRoom = RentRoom.query({id:$rootScope.eventCategoryCode});
+
+
 	$scope.period = {};
 	
 	$scope.selectRoom = function(room){
@@ -449,15 +444,12 @@ roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, 
 
 					switch($scope.period.valueType){
 						case 1:
-							$rootScope.selectedDate.endDate = moment($rootScope.selectedDate.startDate).add($scope.period.value, 'hours').toDate();
-							break;
-						case 2:
 							$rootScope.selectedDate.endDate = moment($rootScope.selectedDate.startDate).add($scope.period.value, 'days').toDate();
 							break;
-						case 3:
+						case 2:
 							$rootScope.selectedDate.endDate = moment($rootScope.selectedDate.startDate).add($scope.period.value, 'months').toDate();
 							break;
-						case 4:
+						case 3:
 							$rootScope.selectedDate.endDate = moment($rootScope.selectedDate.startDate).add($scope.period.value, 'years').toDate();
 							break;
 						default:
@@ -495,8 +487,8 @@ roomReservationControllers.controller('RentRoomSelectionCtrl', function($scope, 
 	}
 });
 
-roomReservationControllers.controller('ReservationRequestApprovalListCtrl', function($scope, $rootScope, Reservation) {
-	$scope.listOfReservation = Reservation.query();
+roomReservationControllers.controller('ReservationRequestApprovalListCtrl', function($scope, $rootScope, ReservationApproval) {
+	$scope.listOfReservation = ReservationApproval.query();
 	
 	$scope.selectReservation = function(reservation) {
 		$rootScope.eventTypeCode = reservation.eventType;
@@ -521,6 +513,7 @@ roomReservationControllers.controller('RentRequestApprovalListCtrl', function($s
 	$scope.selectRent = function(rent) {
 		$rootScope.eventCategoryCode = rent.eventCategory;
 		$rootScope.rentReservationStatusCode = rent.rentStatus;
+		$rootScope.rentPhaseCode = rent.rentPhase;
 		$rootScope.selectedRent = rent;
 	}
 
