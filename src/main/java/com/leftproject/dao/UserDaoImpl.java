@@ -1,17 +1,9 @@
 package com.leftproject.dao;
 
 import org.springframework.stereotype.Repository;
-import java.util.List;
-import java.util.Date;
-import java.util.Calendar;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.stereotype.Repository;
-
-import com.leftproject.model.*;
 import com.leftproject.model.User;
 
 @Repository("UserDao")

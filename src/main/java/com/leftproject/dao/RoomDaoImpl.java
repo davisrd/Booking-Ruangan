@@ -7,12 +7,12 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.leftproject.model.Rent;
 import com.leftproject.model.Room;
 
 @Repository("RoomDao")
 public class RoomDaoImpl extends AbstractDao<Integer, Room> implements RoomDao{
 
+	@SuppressWarnings({ "unchecked", "unused" })
 	private String getCurrentLastId(String roomType)
 	{
 		String roomCode="";

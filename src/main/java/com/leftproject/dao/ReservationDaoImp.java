@@ -8,7 +8,6 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.leftproject.model.Rent;
 import com.leftproject.model.Reservation;
 import com.leftproject.model.User;
 
@@ -32,6 +31,7 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 		String reservationCode;
 		Query query = getSession().createQuery("from Reservation where substring(reservation_code,3,4)='"+mmYY+"' order by reservation_code DESC");
 		query.setMaxResults(1);
+		@SuppressWarnings("unchecked")
 		List<Reservation> reservations = query.list();
 		Reservation reservation = new Reservation();
 		if(!reservations.isEmpty())
@@ -179,6 +179,7 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Reservation> getReservationByPhase(char phase) {
 		System.out.println("phase : " + phase);
 		Criteria criteria = createEntityCriteria();
@@ -186,6 +187,7 @@ public class ReservationDaoImp extends AbstractDao<Integer, Reservation> impleme
 		return (List<Reservation>) criteria.list();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Reservation> getReservationByPhaseAndUser(char phase, User user) {
 		System.out.println("phase : " + phase + " userCode : " + user.getUserCode());
 		Criteria criteria = createEntityCriteria();

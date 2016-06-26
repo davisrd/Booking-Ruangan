@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.leftproject.model.Rent;
-import com.leftproject.model.Reservation;
 import com.leftproject.model.Room;
 import com.leftproject.model.User;
 import com.leftproject.service.RentService;

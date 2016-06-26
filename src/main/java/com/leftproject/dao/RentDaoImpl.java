@@ -3,7 +3,6 @@ package com.leftproject.dao;
 import java.util.*;
 import java.util.Date;
 import java.util.Calendar;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -11,7 +10,6 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.leftproject.model.Rent;
-import com.leftproject.model.Reservation;
 import com.leftproject.model.User;
 
 @Repository("RentDao")
@@ -23,6 +21,7 @@ public class RentDaoImpl extends AbstractDao<Integer, Rent> implements RentDao{
 		String rentCode;
 		Query query = getSession().createQuery("from Rent where substring(rent_code,3,4)='"+mmYY+"' order by rent_code DESC");
 		query.setMaxResults(1);
+		@SuppressWarnings("unchecked")
 		List<Rent> rents = query.list();
 		Rent rent = new Rent();
 		if(!rents.isEmpty())
