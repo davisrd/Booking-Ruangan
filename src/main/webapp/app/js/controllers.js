@@ -3,7 +3,7 @@
 /* Controllers */
 
 var roomReservationControllers = angular.module('roomReservationControllers', ['ui.bootstrap', 'datatables']);
-roomReservationControllers.run(function($rootScope, $uibModal, $location) {
+roomReservationControllers.run(function($rootScope, $uibModal, $location, $cookieStore) {
 	$rootScope.user = {};
 	$rootScope.selectedRent = {};
 	$rootScope.selectedReservation = {};
@@ -48,6 +48,12 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location) {
 	
 	$rootScope.goTo = function(path) {
 		$location.path(path);
+	}
+
+	$rootScope.logout = function() {
+		console.log("Logout");
+		$rootScope.user = {};
+		$cookieStore.put('loginObj', undefined);
 	}
 
 	$rootScope.eventCategoryName;

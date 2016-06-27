@@ -80,7 +80,7 @@
           <img src="images/BR.png" class="img-responsive"  alt="" />
           <input type="text" name="text" placeholder="UserCode" required class="form-control input-lg" ng-model="user.userCode"  value="" />
           
-          <input type="password" class="form-control input-lg" id="password" placeholder="Password" ng-model="user.userPassword" required="" />
+          <input type="password" class="form-control input-lg" id="password" placeholder="Password" ng-model="user.userPassword" />
           
           
           <div class="pwstrength_viewport_progress"></div>
@@ -91,10 +91,6 @@
           </div> -->
           
         </form>
-        <h3>Cookies</h3>
-        <pre>{{usingCookies|json}}</pre>
-        <h3>Cookie Store</h3>
-        <pre>{{usingCookieStore|json}}</pre>
       </section>  
       </div>
       
@@ -124,6 +120,9 @@
           <span class="glyphicon glyphicon-user">
           </span> Hello, {{user.userName}}
         </a>
+        <div class="btn btn-secondary btn-lg" id="user" style="color: white;" ng-click="logout()">
+        Logout
+        </div>
       </div>
     </div>
     <!--<hr size="100">-->
