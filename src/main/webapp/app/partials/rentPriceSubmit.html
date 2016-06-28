@@ -65,32 +65,17 @@
         </div>
       </div>
 
+     <div class="form-group">
+      <label class=" col-md-2" style="text-align:left" for="biayaOperational">Biaya Operasional</label>
+        <input type="number" class="form-control" ng-model="selectedRent.rentOperationalPrice" min="0"/>
+      </div>
+    </div>
+
       <br>
-      <div class="form-group" ng-if="selectedRent.rentPhase=='1'">
+      <div class="form-group">
         <div class="col-md-offset-4 col-md-7">
-          <button type="reset" class="btn btn-danger btn-md"  ng-click="goTo('/rentRejectionDetail')">Tolak Penyewaan</button>
-          <button class="btn btn-success btn-md" ng-click="approveEvent()">Izinkan Penyewaan</button>
-        </div>
-      </div>
-
-      <div class="form-group" ng-if="selectedRent.rentPhase=='2'">
-        <div class="col-md-offset-4 col-md-7">
-          <button type="reset" class="btn btn-danger btn-md"  ng-click="goTo('/rentRejectionDetail')">Tolak Penyewaan</button>
-          <button type="btn btn-success btn-md" ng-click="kpknlProcess()">Proses ke KPKNL</button>
-          <button class="btn btn-success btn-md" ng-click="goTo('/rentPriceSubmit')">Submit Harga Sewa</button>
-        </div>
-      </div>
-
-      <div class="form-group" ng-if="selectedRent.rentPhase=='3'">
-        <div class="col-md-offset-4 col-md-7">
-          <button type="reset" class="btn btn-danger btn-md"  ng-click="goTo('/rentRejectionDetail')">Tidak diizinkan KPKNL</button>
-          <button class="btn btn-success btn-md" ng-click="goTo('/rentPriceSubmit')">Diizinkan KPKNL</button>
-        </div>
-      </div>
-
-      <div class="form-group" ng-if="selectedRent.rentPhase=='5'">
-        <div class="col-md-offset-4 col-md-7">
-          <button class="btn btn-success btn-md" ng-click="approveEvent()">Izinkan Penyewaan</button>
+          <button type="reset" class="btn btn-danger btn-md"  ng-click="goTo('/rentApprovalDetail')">Kembali</button>
+          <button class="btn btn-success btn-md" ng-click="submitPrice()">Submit</button>
         </div>
       </div>
 

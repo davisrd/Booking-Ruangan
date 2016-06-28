@@ -665,6 +665,21 @@ roomReservationControllers.controller('RentApprovalDetailCtrl', function($scope,
 	};
 });
 
+roomReservationControllers.controller('RentPriceSubmitCtrl', function($scope, $rootScope, Rent) {
+	$scope.rent = new Rent();
+	$scope.rent = $rootScope.selectedRent;
+
+	$scope.submitPrice = function () {
+		$scope.rent.rentPhase = "4";
+
+		$scope.rent.$update(function(){
+			$rootScope.message = 'Besar biaya operasional telah diinformasikan ke Penyewa';
+			$rootScope.nextPath = '/rentRequestApprovalList';
+			$rootScope.openMessage('MessageModalCtrl');
+		 });
+	};
+});
+
 roomReservationControllers.controller('CollidedReservationApprovalDetailCtrl', function($scope, $rootScope) {
 	$scope.openRecommendedEvent = function () {
 		$rootScope.message = 'Rekomendasi Kegiatan yang diizinkan<br>';
