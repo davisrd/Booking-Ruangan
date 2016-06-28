@@ -22,13 +22,13 @@ public class ScheduleServiceImpl implements ScheduleService{
 		if(!schedules.isEmpty()){
 			for(Schedule schedule:schedules)
 			{
-				System.out.println("Geus aya nu : " + schedule.getUsageStatus());
+				//System.out.println("Geus aya nu : " + schedule.getUsageStatus());
 				if(schedule.getUsageStatus()=="1" || schedule.getUsageStatus()=="3")
 					return 3;
 			}
 			return 2;
 		} else {
-			System.out.println("Can aya nu minjem");
+			//System.out.println("Can aya nu minjem");
 			return 1;
 		}
 	}
