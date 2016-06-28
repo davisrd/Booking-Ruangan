@@ -90,25 +90,21 @@
       </div>
 
       
-
-
-      <br>
       <div class="form-group">
-        <div class="col-md-offset-4 col-md-7">
-          <a href="#/rentRequestList"><button type="reset" class="btn btn-danger">Kembali</button></a>
-
-          <div ng-hide = "(selectedRent.rentStatus=='C') || (selectedRent.rentDateStart <= date)" ng-click="goTo('/rentCancelForm')"><button type="reset" class="btn btn-danger btn-md">Batalkan Penyewaan</button></div>
-
-          <div ng-hide = "(selectedRent.rentStatus=='C') || (selectedRent.rentDateStart <= date)" ng-click="goTo('/rentChangeForm')"><button type="submit" class="btn btn-success btn-md">Pindah Jadwal / Tempat</button></div>
-
-          </button>
+        <label class=" col-md-2" style="text-align:left" for="paymentEvidence">Bukti Pembayaran</label>
+        <div class="col-md-4">
+        <input type="text" class="form-control" ng-model="rent.rentEvidencePath" ng-required="true">
         </div>
+      </div> 
 
-
-         <div class="form-group" ng-if="selectedRent.rentPhase=='4'">
-        <div class="col-md-offset-4 col-md-7">
-          <button class="btn btn-success btn-md" ng-click="goTo('/rentUpdatePaymentEvidence')">Upload Bukti Pembayaran</button>
+     <br>
+      <div class="form-group">
+      <div class="col-md-offset-4 col-md-7">
+        <div class="row">
+        <button class="btn btn-default alert alert-danger" ng-click="goTo('/rentDetail')">Kembali</button>
+        <button class="btn btn-default alert alert-success" ng-click="submitEvent()">Submit</button>
         </div>
+      </div>
       </div>
 
 

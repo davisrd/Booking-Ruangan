@@ -663,6 +663,16 @@ roomReservationControllers.controller('RentApprovalDetailCtrl', function($scope,
 			$rootScope.openMessage('MessageModalCtrl');
 		 });
 	};
+
+	$scope.kpknlProcess = function () {
+		$scope.rent.rentPhase = "3";
+
+		$scope.rent.$update(function(){
+			$rootScope.message = 'Silahkan proses penyewaan ke KPKNL';
+			$rootScope.nextPath = '/rentRequestApprovalList';
+			$rootScope.openMessage('MessageModalCtrl');
+		 });
+	};
 });
 
 roomReservationControllers.controller('RentPriceSubmitCtrl', function($scope, $rootScope, Rent) {
@@ -675,6 +685,21 @@ roomReservationControllers.controller('RentPriceSubmitCtrl', function($scope, $r
 		$scope.rent.$update(function(){
 			$rootScope.message = 'Besar biaya operasional telah diinformasikan ke Penyewa';
 			$rootScope.nextPath = '/rentRequestApprovalList';
+			$rootScope.openMessage('MessageModalCtrl');
+		 });
+	};
+});
+
+roomReservationControllers.controller('RentUpdatePaymentEvidenceCtrl', function($scope, $rootScope, Rent) {
+	$scope.rent = new Rent();
+	$scope.rent = $rootScope.selectedRent;
+
+	$scope.submitPrice = function () {
+		$scope.rent.rentPhase = "5";
+
+		$scope.rent.$update(function(){
+			$rootScope.message = 'Bukti Pembayaran telah disubmit';
+			$rootScope.nextPath = '/rentRequestList';
 			$rootScope.openMessage('MessageModalCtrl');
 		 });
 	};

@@ -50,6 +50,10 @@ roomReservationApp.config(['$routeProvider',
         templateUrl: 'partials/RentDetail.html',
         controller: 'RentDetailCtrl'
       }).
+      when('/rentUpdatePaymentEvidence', {
+        templateUrl: 'partials/rentUpdatePaymentEvidence.html',
+        controller: 'RentUpdatePaymentEvidenceCtrl'
+      }).
       when('/rentRoomSelection', {
         templateUrl: 'partials/RentRoomSelection.html',
         controller: 'RentRoomSelectionCtrl'
