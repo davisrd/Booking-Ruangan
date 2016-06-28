@@ -28,7 +28,7 @@ roomReservationServices.factory('Phone', ['$resource',
 		);
 	})
 
-  	.factory('Reservation', function($resource, $rootScope){
+  	.service('Reservation', function($resource, $rootScope){
 	  return $resource(
      		'http://localhost:8080/ProyekRuangan/reservation/:id', 
      		{id: '@reservationCode'},//Handy for update & delete. id will be set with id of instance

@@ -3,7 +3,7 @@
 /* Controllers */
 
 var roomReservationControllers = angular.module('roomReservationControllers', ['ui.bootstrap', 'datatables']);
-roomReservationControllers.run(function($rootScope, $uibModal, $location, $cookieStore) {
+roomReservationControllers.run(function($rootScope, $uibModal, $location, $cookieStore, $route) {
 	$rootScope.user = {};
 	$rootScope.selectedRent = {};
 	$rootScope.selectedReservation = {};
@@ -53,7 +53,8 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location, $cooki
 	$rootScope.logout = function() {
 		console.log("Logout");
 		$rootScope.user = {};
-		$cookieStore.put('loginObj', undefined);
+		$route.reload();
+		// $cookieStore.put('loginObj', undefined);
 	}
 
 	$rootScope.eventCategoryName;
@@ -129,18 +130,18 @@ roomReservationControllers.run(function($rootScope, $uibModal, $location, $cooki
 	}
 })
 .controller('LoginCtrl', function($rootScope, $scope, Service, $cookies, $cookieStore){
-	$scope.cookiesData = $cookies.get('loginObj');
-	if($scope.cookiesData != undefined){
-		$rootScope.user = JSON.parse($scope.cookiesData);
-		$rootScope.goTo('/dashboard');
-	}
+	// $scope.cookiesData = $cookies.get('loginObj');
+	// // if($scope.cookiesData != undefined){
+	// // 	$rootScope.user = JSON.parse($scope.cookiesData);
+	// // 	$rootScope.goTo('/dashboard');
+	// // }
 	$scope.login = function(){
 		$rootScope.user = Service.getUser($rootScope.user.userCode, $rootScope.user.userPassword).then(function(data){
 			if(data.status != 204){
 				$rootScope.user = data.data;
 
-			    $cookieStore.put('loginObj', data.data);
-				$rootScope.goTo('/dashboard');	
+			 //    $cookieStore.put('loginObj', data.data);
+				// $rootScope.goTo('/dashboard');	
 			} else {
 				$rootScope.message = 'User not found!';
 				$rootScope.nextPath = '/';
@@ -396,8 +397,13 @@ roomReservationControllers.controller('FormPemPenyewaanCtrl', function($scope, $
 	};
 });
 roomReservationControllers.controller('RentRequestListCtrl', function($scope, $rootScope, $uibModal, Rent) {
-	$scope.listOfRent = Rent.query();
-	
+	// $scope.listOfRent = Rent.query();
+
+	refresh();
+	function refresh(){
+		$scope.listOfRent = Rent.query();
+	}
+
 	$scope.open = function () {
 		var modalInstance = $uibModal.open({
 		  animation: $scope.animationsEnabled,
@@ -407,7 +413,8 @@ roomReservationControllers.controller('RentRequestListCtrl', function($scope, $r
 		});
 	};
 	
-	$scope.isSelected = false;
+	
+$scope.isSelected = false;
 	
 	$scope.selectRent = function(rent){
 		$rootScope.eventCategoryCode = rent.eventCategory;
@@ -679,6 +686,12 @@ roomReservationControllers.controller('RentPriceSubmitCtrl', function($scope, $r
 	$scope.rent = new Rent();
 	$scope.rent = $rootScope.selectedRent;
 
+	refresh();
+	function refresh(){
+		$scope.rent = new Rent();
+		$scope.rent = $rootScope.selectedRent;
+	}
+
 	$scope.submitPrice = function () {
 		$scope.rent.rentPhase = "4";
 
@@ -694,7 +707,7 @@ roomReservationControllers.controller('RentUpdatePaymentEvidenceCtrl', function(
 	$scope.rent = new Rent();
 	$scope.rent = $rootScope.selectedRent;
 
-	$scope.submitPrice = function () {
+	$scope.submitEvent = function () {
 		$scope.rent.rentPhase = "5";
 
 		$scope.rent.$update(function(){
